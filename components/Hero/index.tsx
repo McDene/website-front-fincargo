@@ -1,37 +1,54 @@
-// "use client";
+"use client";
 
-import Image from "next/image";
+import SectionHero from "@/components/Common/SectionHero";
+import SectionHeroMobile from "@/components/Common/SectionHeroMobile"; // Importe la version mobile
+import { useState, useEffect } from "react";
 
 export default function Hero() {
-  return (
-    <section className="flex justify-between items-center  bg-blue-950 py-20 px-8">
-      {/* Section texte à gauche */}
-      <div className="flex max-w-7xl mx-auto  py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-lg">
-          <h1 className="text-4xl font-bold text-neutral-50 mb-4">
-            Bienvenue sur notre plateforme
-          </h1>
-          <p className="text-gray-700 text-lg mb-6">
-            Nous facilitons le transport et la gestion logistique pour les
-            carriers et freight forwarders. Découvrez comment Fincargo peut
-            simplifier votre expérience.
-          </p>
-          <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300">
-            En savoir plus
-          </button>
-        </div>
+  const [isMobile, setIsMobile] = useState(false);
 
-        {/* Section image à droite */}
-        <div className="flex-shrink-0">
-          <Image
-            src="/images/truck_fincargo_carrier.jpeg" // Remplace par le chemin vers ton image
-            alt="Image de logistique"
-            width={800} // Largeur de l'image
-            height={400} // Hauteur de l'image
-            className="rounded-lg shadow-md"
-          />
-        </div>
-      </div>
-    </section>
+  // Détecte la taille de l'écran pour rendre le bon composant
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    };
+
+    // Vérifie la taille de l'écran au chargement
+    handleResize();
+
+    // Ajoute un event listener pour vérifier la taille de l'écran lorsqu'il est redimensionné
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup pour retirer l'event listener
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  return (
+    <>
+      {/* Affichage conditionnel en fonction de la taille de l'écran */}
+      {isMobile ? (
+        <SectionHeroMobile
+          title="Secure your Fast Payment"
+          paragraph="If you have an established relationship with Freight Forwarders in Fincargo’s network, we expedite the payment of your invoices. If your Freight Forwarder is not yet part of Fincargo’s network, you can invite them to join our platform."
+          buttonText="Get started"
+          imageUrl="/images/truck_fincargo_carrier.jpeg"
+          imageAlt="Image de logistique"
+        />
+      ) : (
+        <SectionHero
+          title="Secure your Fast Payment"
+          paragraph="If you have an established relationship with Freight Forwarders in Fincargo’s network, we expedite the payment of your invoices. If your Freight Forwarder is not yet part of Fincargo’s network, you can invite them to join our platform."
+          buttonText="Get started"
+          imageUrl="/images/truck_fincargo_carrier.jpeg"
+          imageAlt="Image de logistique"
+        />
+      )}
+    </>
   );
 }

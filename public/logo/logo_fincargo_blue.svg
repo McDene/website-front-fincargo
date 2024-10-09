@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="131px" height="43px" viewBox="0 0 131 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>fc 2</title>
+    <g id="Preview" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-family="Helvetica-Bold, Helvetica" font-size="36" font-weight="bold">
+        <g id="04-copy" transform="translate(-621.000000, -884.000000)" fill-rule="nonzero">
+            <g id="fc" transform="translate(621.000000, 884.000000)">
+                <text id="fin" fill="#5885AF" letter-spacing="-2">
+                    <tspan x="0" y="35">fin</tspan>
+                </text>
+                <text id="cargo." fill="#223C60" letter-spacing="-2.5">
+                    <tspan x="36.980468" y="35">cargo.</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

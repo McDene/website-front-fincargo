@@ -59,7 +59,7 @@ export default function Header() {
     <header
       className={`top-0 z-40 w-full items-center ${
         sticky
-          ? "fixed z-[9999] bg-blue-950 !bg-opacity-80 shadow-sticky backdrop-blur-sm transition"
+          ? "fixed z-[9999] bg-blue-200 !bg-opacity-80 shadow-sticky backdrop-blur-sm transition"
           : "absolute bg-transparent"
       }`}
     >
@@ -79,7 +79,11 @@ export default function Header() {
           <div className="block md:hidden  flex-shrink-0">
             <Link href="/">
               <Image
-                src="/logo/logo_fincargo_white.svg"
+                src={
+                  sticky
+                    ? "/logo/logo_fincargo_blue.svg"
+                    : "/logo/logo_fincargo_white.svg"
+                }
                 alt="Fincargo Logo"
                 width={150}
                 height={40}
@@ -90,9 +94,7 @@ export default function Header() {
             <Link
               href="/"
               className={`px-1 py-2 text-white text-sm ${
-                pathname === "/"
-                  ? "font-bold bg-blue-400 rounded-bl-xl rounded-br-xl"
-                  : ""
+                pathname === "/" ? " border-b-2 border-blue-400" : ""
               }`}
             >
               For carriers
@@ -101,7 +103,7 @@ export default function Header() {
               href="/freight-forwarders"
               className={`px-1 py-2 text-white text-sm ${
                 pathname === "/freight-forwarders"
-                  ? "font-bold bg-blue-400 rounded-bl-xl rounded-br-xl"
+                  ? "border-b-2 border-blue-400"
                   : ""
               }`}
             >
@@ -122,7 +124,11 @@ export default function Header() {
           <div className="flex-shrink-0">
             <Link href="/">
               <Image
-                src="/logo/logo_fincargo_white.svg"
+                src={
+                  sticky
+                    ? "/logo/logo_fincargo_blue.svg"
+                    : "/logo/logo_fincargo_white.svg"
+                }
                 alt="Fincargo Logo"
                 width={150}
                 height={40}
