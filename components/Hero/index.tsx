@@ -4,9 +4,9 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="flex justify-between items-center  bg-blue-950 py-16 px-8">
+    <section className="flex justify-between items-center  bg-blue-950 py-20 px-8">
       {/* Section texte à gauche */}
-      <div className="flex max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex max-w-7xl mx-auto  py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-lg">
           <h1 className="text-4xl font-bold text-neutral-50 mb-4">
             Bienvenue sur notre plateforme
