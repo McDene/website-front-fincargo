@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import WhatIsFincargo from "@/components/WhatIsFincargo";
 
 import { Metadata } from "next";
 
@@ -12,6 +13,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <WhatIsFincargo />
       <section id="prerequis" className="py-16">
         <h2 className="text-2xl font-bold">Prérequis</h2>
         <p>Voici les prérequis pour être un carrier chez nous.</p>

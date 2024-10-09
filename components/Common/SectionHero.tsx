@@ -26,7 +26,7 @@ export default function SectionHero({
   }, []);
 
   return (
-    <section className="relative flex justify-end items-center bg-blue-950 py-20 px-8 overflow-hidden">
+    <section className="relative flex justify-end items-center h-lvh bg-blue-950 py-20 px-8 overflow-hidden">
       <div className="relative w-full max-w-7xl mx-auto py-20">
         {/* Section image à droite */}
         <div

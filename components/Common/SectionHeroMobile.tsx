@@ -26,7 +26,7 @@ export default function SectionHeroMobile({
   }, []);
 
   return (
-    <section className="relative bg-blue-950 py-10 px-4 overflow-hidden">
+    <section className="relative bg-blue-950 py-10 px-4 h-[90vh] overflow-hidden">
       {/* Image centrée */}
       <div
         className={`relative w-full transition-all py-10 duration-1000 ease-in-out ${

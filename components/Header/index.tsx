@@ -13,7 +13,7 @@ export default function Header() {
     pathname === "/freight-forwarders" ? "Freightforwarder" : "Carrier";
 
   const carrierMenu = [
-    { name: "What is Fincargo", anchor: "#prerequis" },
+    { name: "What is Fincargo", anchor: "#whatisfincargo" },
     { name: "Benefits", anchor: "#fincargo" },
     { name: "How to use", anchor: "#aide" },
     { name: "Parteners", anchor: "#aide" },
@@ -21,7 +21,7 @@ export default function Header() {
   ];
 
   const freightforwarderMenu = [
-    { name: "Whats is Fincargo", anchor: "#contact" },
+    { name: "Whats is Fincargo", anchor: "#whatisfincargo" },
     { name: "Benefits", anchor: "#prerequis" },
     { name: "How it woorks", anchor: "#prerequis" },
     { name: "Invite your subcontractors", anchor: "#prerequis" },
@@ -59,7 +59,7 @@ export default function Header() {
     <header
       className={`top-0 z-40 w-full items-center ${
         sticky
-          ? "fixed z-[9999] bg-blue-200 !bg-opacity-80 shadow-sticky backdrop-blur-sm transition"
+          ? "fixed z-[9999] bg-blue-200 !bg-opacity-80 shadow backdrop-blur-sm transition"
           : "absolute bg-transparent"
       }`}
     >
@@ -93,19 +93,19 @@ export default function Header() {
           <div className="hidden md:block space-x-4">
             <Link
               href="/"
-              className={`px-1 py-2 text-white text-sm ${
-                pathname === "/" ? " border-b-2 border-blue-400" : ""
-              }`}
+              className={`px-1 py-2 text-sm ${
+                pathname === "/" ? "border-b-2 border-blue-400" : ""
+              } ${sticky ? "text-blue-950" : "text-white"}`} // Ajout de l'espace ici
             >
               For carriers
             </Link>
             <Link
               href="/freight-forwarders"
-              className={`px-1 py-2 text-white text-sm ${
+              className={`px-1 py-2 text-sm ${
                 pathname === "/freight-forwarders"
                   ? "border-b-2 border-blue-400"
                   : ""
-              }`}
+              } ${sticky ? "text-blue-950" : "text-white"}`}
             >
               Freight Forwarders
             </Link>
@@ -113,7 +113,11 @@ export default function Header() {
 
           {/*Login button mobile mode */}
           <div className="md:hidden space-x-4">
-            <button className="text-white border-2 border-white px-4 py-2 rounded-xl hover:bg-blue-900">
+            <button
+              className={`px-4 py-2 rounded-xl hover:bg-blue-900 border-2 ${
+                sticky ? "border-blue-950 text-blue-950" : "border-white"
+              } text-white`}
+            >
               Login
             </button>
           </div>
@@ -137,12 +141,14 @@ export default function Header() {
           </div>
 
           {/* Menu anchor */}
-          <div className="flex justify-center space-x-6">
+          <div className="flex justify-center space-x-6 scroll-smooth">
             {menuItems.map((item) => (
               <a
                 key={item.name}
                 href={item.anchor}
-                className="text-white font-semibold hover:text-gray-300"
+                className={`font-semibold hover:text-gray-300 ${
+                  sticky ? "text-blue-950" : "text-white"
+                }`}
               >
                 {item.name}
               </a>
@@ -151,10 +157,20 @@ export default function Header() {
 
           {/* Button Register and login desktop mode*/}
           <div className="flex space-x-4">
-            <button className=" border-2 bg-neutral-50 border-white px-4 py-2 rounded-xl hover:bg-neutral-200">
+            <button
+              className={`px-4 py-2 rounded-xl hover:bg-blue-900 border-2 ${
+                sticky
+                  ? "border-blue-950 bg-blue-950"
+                  : "border-white bg-white text-blue-950"
+              } text-white`}
+            >
               Register
             </button>
-            <button className="text-white  border-2 border-white  px-4 py-2 rounded-xl hover:bg-blue-900">
+            <button
+              className={`px-4 py-2 rounded-xl hover:bg-blue-900 border-2 ${
+                sticky ? "border-blue-950 text-blue-950" : "border-white"
+              } text-white`}
+            >
               Login
             </button>
           </div>
