@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import Header from "@/components/Header";
+import { Prompt, Inter } from "@next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const prompt = Prompt({
+  weight: ["400", "700", "900"], // Poids disponibles
+  subsets: ["latin"], // Sous-ensemble pour le support des caractères
+  variable: "--font-arimo", // Variable CSS personnalisée pour Arimo
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+
+const inter = Inter({
+  weight: ["400", "500", "600", "700"], // Poids disponibles
+  subsets: ["latin"], // Sous-ensemble pour le support des caractères
+  variable: "--font-inter", // Variable CSS personnalisée pour Inter
 });
 
 export const metadata: Metadata = {
@@ -30,9 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${prompt.variable} ${inter.variable} antialiased`}>
         <Providers>
           <Header />
           <main>{children}</main> {/* Contenu des pages */}

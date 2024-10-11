@@ -9,6 +9,10 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 export default function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [sticky, setSticky] = useState(false);
+  const [visible, setVisible] = useState(true); // Header visibility
+  const [lastScrollY, setLastScrollY] = useState(0);
+
   const clientType =
     pathname === "/freight-forwarders" ? "Freightforwarder" : "Carrier";
 
@@ -31,20 +35,32 @@ export default function Header() {
     clientType === "Carrier" ? carrierMenu : freightforwarderMenu;
 
   // Sticky Navbar
-  const [sticky, setSticky] = useState(false);
-  const handleStickyNavbar = () => {
-    if (window.scrollY >= 90) {
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+
+    // Sticky when user scrolls past 150px
+    if (currentScrollY > 90) {
       setSticky(true);
     } else {
       setSticky(false);
     }
+
+    // Hide header when scrolling down and show when scrolling up
+    if (currentScrollY > lastScrollY) {
+      setVisible(false);
+    } else {
+      setVisible(true);
+    }
+
+    setLastScrollY(currentScrollY);
   };
+
   useEffect(() => {
-    window.addEventListener("scroll", handleStickyNavbar);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleStickyNavbar);
+      window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [lastScrollY]);
 
   useEffect(() => {
     if (menuOpen) {
@@ -57,13 +73,13 @@ export default function Header() {
 
   return (
     <header
-      className={`top-0 z-40 w-full items-center ${
+      className={`fixed top-0 z-40 w-full transition-transform duration-500 ease-in-out ${
         sticky
-          ? "fixed z-[9999] bg-blue-200 !bg-opacity-80 shadow backdrop-blur-sm transition"
-          : "absolute bg-transparent"
-      }`}
+          ? "bg-gray-50 bg-opacity-80 shadow backdrop-blur-sm"
+          : "bg-transparent"
+      } ${visible ? "translate-y-0" : "-translate-y-full"}`} // Hide when scrolling down
     >
-      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* First level */}
         <div className="flex justify-between items-center h-16 md:h-8 ">
           {/* Open/Close button for mobile menu */}
@@ -76,7 +92,7 @@ export default function Header() {
               )}
             </button>
           </div>
-          <div className="block md:hidden  flex-shrink-0">
+          <div className="block md:hidden flex-shrink-0">
             <Link href="/">
               <Image
                 src={
@@ -94,8 +110,10 @@ export default function Header() {
             <Link
               href="/"
               className={`px-1 py-2 text-sm ${
-                pathname === "/" ? "border-b-2 border-blue-400" : ""
-              } ${sticky ? "text-blue-950" : "text-white"}`} // Ajout de l'espace ici
+                pathname === "/"
+                  ? "border-b-2 border-blue-400 text-blue-950"
+                  : ""
+              } ${sticky ? "text-blue-950" : "text-white"}`}
             >
               For carriers
             </Link>
@@ -131,7 +149,7 @@ export default function Header() {
                 src={
                   sticky
                     ? "/logo/logo_fincargo_blue.svg"
-                    : "/logo/logo_fincargo_white.svg"
+                    : "/logo/logo_fincargo_blue.svg"
                 }
                 alt="Fincargo Logo"
                 width={150}
@@ -146,7 +164,7 @@ export default function Header() {
               <a
                 key={item.name}
                 href={item.anchor}
-                className={`font-semibold hover:text-gray-300 ${
+                className={`font-semibold text-lg transition duration-300 hover:text-blue-950 ${
                   sticky ? "text-blue-950" : "text-white"
                 }`}
               >
@@ -155,21 +173,23 @@ export default function Header() {
             ))}
           </div>
 
-          {/* Button Register and login desktop mode*/}
+          {/* Button Register and login desktop mode */}
           <div className="flex space-x-4">
             <button
-              className={`px-4 py-2 rounded-xl hover:bg-blue-900 border-2 ${
+              className={`px-4 py-2 rounded-3xl border-2 transition duration-300 ${
                 sticky
-                  ? "border-blue-950 bg-blue-950"
-                  : "border-white bg-white text-blue-950"
-              } text-white`}
+                  ? "border-blue-400 bg-blue-400 text-white hover:bg-gray-200 hover:border-gray-200 hover:text-blue-950"
+                  : "border-white bg-white text-blue-950 hover:bg-gray-200 hover:border-gray-200"
+              } `}
             >
               Register
             </button>
             <button
-              className={`px-4 py-2 rounded-xl hover:bg-blue-900 border-2 ${
-                sticky ? "border-blue-950 text-blue-950" : "border-white"
-              } text-white`}
+              className={`px-4 py-2 rounded-3xl transition duration-300  ${
+                sticky
+                  ? "border-blue-400 text-blue-400 hover:bg-gray-100"
+                  : "border-white text-white hover:text-blue-950 "
+              } `}
             >
               Login
             </button>
@@ -177,7 +197,7 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Menu mobile full screen*/}
+      {/* Menu mobile full screen */}
       {menuOpen && (
         <div className="fixed inset-0 bg-blue-950 z-50 flex flex-col items-center place-content-around text-center">
           {/* Close button */}
@@ -217,7 +237,7 @@ export default function Header() {
               <a
                 key={item.name}
                 href={item.anchor}
-                className="text-white text-lg font-semibold hover:text-gray-300"
+                className="text-white text-xl font-semibold hover:text-gray-300"
                 onClick={() => setMenuOpen(false)} // Close the menu when clicking on a link
               >
                 {item.name}
@@ -225,9 +245,9 @@ export default function Header() {
             ))}
           </div>
 
-          {/*Register and Login bouttons mobile mode */}
+          {/* Register and Login buttons mobile mode */}
           <div className="flex flex-col space-y-4">
-            <button className=" border-2 bg-neutral-50 border-white px-4 py-2 rounded-xl hover:bg-neutral-200">
+            <button className="border-2 bg-neutral-50 border-white px-4 py-2 rounded-xl hover:bg-neutral-200">
               Register
             </button>
             <button className="text-white border-2 border-white px-4 py-2 rounded-xl hover:bg-blue-900">

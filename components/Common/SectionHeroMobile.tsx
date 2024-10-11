@@ -40,6 +40,7 @@ export default function SectionHeroMobile({
           width={1920}
           height={1080}
           className="rounded-lg w-full h-auto"
+          unoptimized
         />
       </div>
 

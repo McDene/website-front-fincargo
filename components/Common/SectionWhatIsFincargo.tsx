@@ -41,18 +41,24 @@ export default function SectionWhatIsFincargo({
     <section
       id="whatisfincargo"
       ref={sectionRef}
-      className="py-16 md:py-24 bg-gray-100 px-4"
+      className="py-36 xl:py-36 lg:py-32 md:py-28 sm:py-24 bg-white px-4"
     >
-      <div
-        className={`max-w-7xl mx-auto transform transition-all duration-1000 ease-in-out ${
-          isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-        }`}
-      >
-        <h2 className="text-4xl font-bold text-blue-950 text-center mb-8">
+      <div className="max-w-7xl mx-auto">
+        {/* Effet flottant pour le titre */}
+        <h2
+          className={`text-6xl font-bold text-blue-400 uppercase text-center mb-8 transform transition-all duration-1000 ease-in-out ${
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+          }`}
+        >
           {title}
         </h2>
 
-        <p className="text-lg text-gray-700 text-center max-w-3xl mx-auto">
+        {/* Effet flottant pour le paragraphe */}
+        <p
+          className={`text-lg text-gray-700 text-center leading-8 max-w-3xl mx-auto transform transition-all duration-1000 ease-in-out delay-200 ${
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+          }`}
+        >
           {paragraph}
         </p>
       </div>
