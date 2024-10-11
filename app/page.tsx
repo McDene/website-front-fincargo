@@ -1,6 +1,8 @@
 import Hero from "@/components/Hero";
 import WhatIsFincargo from "@/components/WhatIsFincargo";
 import BenefitsC from "@/components/Benefits/BenefitsC";
+import FaqC from "@/components/FAQs/FaqC";
+import Footer from "@/components/Footer";
 
 import { Metadata } from "next";
 
@@ -16,7 +18,9 @@ export default function Home() {
       <Hero />
       <WhatIsFincargo />
       <BenefitsC />
-      <section id="prerequis" className="py-16">
+      <FaqC />
+      <Footer />
+      {/* <section id="prerequis" className="py-16">
         <h2 className="text-2xl font-bold">Prérequis</h2>
         <p>Voici les prérequis pour être un carrier chez nous.</p>
       </section>
@@ -29,7 +33,7 @@ export default function Home() {
       <section id="aide" className="py-16">
         <h2 className="text-2xl font-bold">Aide</h2>
         <p>Besoin daide ? Voici les informations.</p>
-      </section>
+      </section> */}
     </>
   );
 }
