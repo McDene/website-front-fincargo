@@ -55,7 +55,7 @@ export default function BenefitsC() {
         </h3>
 
         {/* Carrousel */}
-        <div className="relative  ">
+        <div className="relative">
           {/* Slider Container */}
           <div className="overflow-hidden">
             <div

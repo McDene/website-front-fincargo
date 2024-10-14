@@ -12,7 +12,7 @@ export default function CarrierFaqs() {
     // Fonction pour récupérer les FAQs depuis Strapi
     const getFAQs = async () => {
       try {
-        const data = await fetchAPI("/api/faq-carriers"); // Récupère les FAQs de Strapi via fetchAPI
+        const data = await fetchAPI("/api/faq-freight-forwarders"); // Récupère les FAQs de Strapi via fetchAPI
         //console.log("API response data:", data);
 
         if (data && data.data) {
@@ -45,5 +45,5 @@ export default function CarrierFaqs() {
   }
 
   // Afficher les FAQs avec le composant FaqComponent
-  return <SectionFaq title="Carriers FAQS" faqs={faqs} />;
+  return <SectionFaq title="Freight Forwarders FAQS" faqs={faqs} />;
 }

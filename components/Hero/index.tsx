@@ -11,7 +11,7 @@ const fetchHeroData = async () => {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   try {
     const response = await axios.get(`${apiUrl}/api/hero?populate=Image`);
-    console.log("Hero data fetched with axios", response.data);
+    // console.log("Hero data fetched with axios", response.data);
     return response.data;
   } catch (error) {
     console.error("Error fetching hero data with axiso", error);
@@ -40,7 +40,7 @@ export default function Hero() {
     const getHeroData = async () => {
       const data = await fetchHeroData();
       if (data && data.data) {
-        console.log("Hero data in state:", data.data); // Valider la structure
+        //console.log("Hero data in state:", data.data); // Valider la structure
         setHeroData(data.data); // Mettre à jour l'état avec les données
       }
     };
@@ -59,7 +59,7 @@ export default function Hero() {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   const imageUrl = baseUrl + heroData.Image.url;
 
-  console.log("Hero data", imageUrl);
+  //console.log("Hero data", imageUrl);
 
   return (
     <>
