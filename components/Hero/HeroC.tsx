@@ -10,12 +10,12 @@ interface HeroData {
   Title: string;
   Paragraph: string;
   Button: string;
-  Video: {
+  Image: {
     url: string;
   };
 }
 
-export default function HeroFF() {
+export default function HeroC() {
   const [heroData, setHeroData] = useState<HeroData | null>(null);
   const [loading, setLoading] = useState(true); // Gestion du chargement
 
@@ -23,7 +23,7 @@ export default function HeroFF() {
     // Récupérer les données de l'API Strapi via utils.ts
     const getHeroData = async () => {
       try {
-        const data = await fetchAPI("/api/hero-ff?populate=Video"); // Appel de l'API avec la fonction fetchAPI
+        const data = await fetchAPI("/api/hero?populate=Image"); // Appel de l'API avec la fonction fetchAPI
         if (data && data.data) {
           setHeroData(data.data); // Mettre à jour l'état avec les données
         }
@@ -40,7 +40,7 @@ export default function HeroFF() {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
   // Gérer le cas où heroData est encore null pour éviter les erreurs
-  const imageUrl = heroData ? `${baseUrl}${heroData.Video.url}` : "";
+  const imageUrl = heroData ? `${baseUrl}${heroData.Image.url}` : "";
 
   // Affichage du chargement si les données ne sont pas encore disponibles
   if (loading) {

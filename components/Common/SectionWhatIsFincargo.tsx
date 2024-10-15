@@ -50,7 +50,7 @@ export default function SectionWhatIsFincargo({
       <div className="max-w-7xl mx-auto">
         {/* Effet flottant pour le titre */}
         <h2
-          className={`text-6xl font-bold text-blue-400 uppercase text-center mb-8 transform transition-all duration-1000 ease-in-out ${
+          className={`text-3xl md:text-6xl font-bold text-blue-400 uppercase text-center mb-8 transform transition-all duration-1000 ease-in-out ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
           }`}
         >

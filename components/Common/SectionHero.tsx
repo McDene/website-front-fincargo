@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
 
 interface SectionHeroProps {
   title: string;
@@ -16,7 +15,6 @@ export default function SectionHero({
   paragraph,
   buttonText,
   imageUrl,
-  imageAlt,
 }: SectionHeroProps) {
   const [isVisible, setIsVisible] = useState(false);
   const titleRef = useRef<HTMLDivElement | null>(null);
@@ -60,24 +58,15 @@ export default function SectionHero({
   }, []);
 
   return (
-    <section className="relative flex items-start min-h-screen py-20 px-8 overflow-hidden">
+    <section className="relative flex items-start min-h-screen py-32 xl:py-32 lg:py-38 md:py-24 sm:py-20 px-8 overflow-hidden">
       {/* Vidéo en arrière-plan */}
-      {/* <video
+      <video
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
-        src="images/fincargo_hero_carriers.mp4"
+        src={imageUrl}
         autoPlay
         muted
         loop
         playsInline
-      /> */}
-
-      <Image
-        src={imageUrl}
-        alt={imageAlt}
-        width={700}
-        height={700}
-        className="absolute top-0 left-0 w-full h-full object-cover z-0"
-        unoptimized
       />
       {/* Overlay bleu transparent */}
       <div className="absolute top-0 left-0 w-full h-full bg-blue-900 opacity-30 z-0"></div>
@@ -91,7 +80,7 @@ export default function SectionHero({
           }`}
         >
           <div className="max-w-7xl mb-10">
-            <h1 className="text-8xl uppercase font-bold text-start text-white">
+            <h1 className="text-4xl md:text-8xl uppercase font-bold text-start text-white">
               {title}
             </h1>
           </div>
@@ -105,7 +94,7 @@ export default function SectionHero({
           }`}
         >
           <div className="max-w-xl mb-10">
-            <p className="text-xl text-white font-medium mb-6 leading-8">
+            <p className="text-lg md:text-xl text-white font-medium mb-6 leading-8">
               {paragraph}
             </p>
           </div>

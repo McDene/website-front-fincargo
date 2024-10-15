@@ -1,4 +1,4 @@
-import Hero from "@/components/Hero";
+import HeroC from "@/components/Hero/HeroC";
 import WhatIsFincargo from "@/components/WhatIsFincargo";
 import BenefitsC from "@/components/Benefits/BenefitsC";
 import FaqC from "@/components/FAQs/FaqC";
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <Hero />
+      <HeroC />
       <WhatIsFincargo />
       <BenefitsC />
       <FaqC />
