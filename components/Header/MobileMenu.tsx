@@ -32,7 +32,7 @@ export default function MobileMenu({
 
   return (
     menuOpen && (
-      <div className="fixed inset-0 bg-gray-50 z-50 flex flex-col items-center justify-between text-center h-screen">
+      <div className="fixed inset-0 bg-gray-50 z-50 flex flex-col items-center text-center h-screen">
         {/* Header avec logo et bouton de fermeture */}
         <div className="w-full flex justify-between items-center px-5 pt-5">
           {/* Logo */}
@@ -54,7 +54,7 @@ export default function MobileMenu({
         </div>
 
         {/* Liens */}
-        <div className="flex space-x-4 py-5 text-xl">
+        <div className="flex space-x-4 pt-10 pb-32 text-xl">
           <Link
             href="/"
             className={`px-4 py-2 text-gray-700 font-bold transition-all duration-300 ease-in-out rounded-3xl ${
@@ -77,7 +77,7 @@ export default function MobileMenu({
         </div>
 
         {/* Menu dynamique */}
-        <div className="flex flex-col space-y-6">
+        <div className="flex flex-col pb-32 space-y-6">
           {menuItems.map((item) => (
             <Link
               key={item.name}
@@ -91,7 +91,7 @@ export default function MobileMenu({
         </div>
 
         {/* Boutons Register et Login */}
-        <div className="flex space-x-4 pb-8">
+        <div className="flex space-x-4  ">
           <button className="text-white bg-gray-900 px-4 py-2 rounded-3xl hover:bg-gray-800">
             Register
           </button>

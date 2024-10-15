@@ -93,7 +93,7 @@ export default function SectionBenefits({
           </div>
 
           {/* Boutons de navigation avec icônes et positionnement */}
-          <div className="absolute inset-x-0 top-1/2 transform -translate-y-1/2 flex justify-between px-8 z-50">
+          <div className="absolute inset-x-0 top-1/2 transform -translate-y-1/2 flex justify-between px-8 z-30">
             <button
               onClick={handlePrev}
               className="bg-black transition duration-300 hover:bg-gray-900 text-white font-bold w-12 h-12 rounded-full flex items-center justify-center"
