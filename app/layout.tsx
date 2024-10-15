@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header";
-import { Prompt, Inter } from "@next/font/google";
+import { Prompt, Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 

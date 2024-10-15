@@ -4,8 +4,22 @@ import { useEffect, useState } from "react";
 import SectionFaq from "@/components/Common/SectionFaq";
 import { fetchAPI } from "@/lib/utils"; // Import de la fonction fetchAPI
 
+// Définir une interface pour les éléments de FAQ
+interface FAQ {
+  id: number;
+  Title: string;
+  Answer: string;
+}
+
+// Définir une interface pour la FAQ formatée
+interface FormattedFAQ {
+  id: number;
+  question: string;
+  answer: string;
+}
+
 export default function CarrierFaqs() {
-  const [faqs, setFaqs] = useState([]); // Utilisation de useState pour stocker les FAQs
+  const [faqs, setFaqs] = useState<FormattedFAQ[]>([]); // Utilisation de useState avec un tableau typé
   const [loading, setLoading] = useState(true); // Utilisation d'un état pour le chargement
 
   useEffect(() => {
@@ -13,11 +27,10 @@ export default function CarrierFaqs() {
     const getFAQs = async () => {
       try {
         const data = await fetchAPI("/api/faq-carriers"); // Récupère les FAQs de Strapi via fetchAPI
-        //console.log("API response data:", data);
 
         if (data && data.data) {
-          // Strapi retourne les données sous `data`
-          const formattedFAQs = data.data.map((item: any) => ({
+          // Utilisation de l'interface FAQ pour typifier les éléments
+          const formattedFAQs = data.data.map((item: FAQ) => ({
             id: item.id,
             question: item.Title, // Utilise le champ `Title` comme question
             answer: item.Answer, // Utilise le champ `Answer` comme réponse

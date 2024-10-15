@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 export default function Header() {
@@ -35,17 +35,15 @@ export default function Header() {
     clientType === "Carrier" ? carrierMenu : freightforwarderMenu;
 
   // Sticky Navbar
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     const currentScrollY = window.scrollY;
 
-    // Sticky when user scrolls past 150px
     if (currentScrollY > 90) {
       setSticky(true);
     } else {
       setSticky(false);
     }
 
-    // Hide header when scrolling down and show when scrolling up
     if (currentScrollY > lastScrollY) {
       setVisible(false);
     } else {
@@ -53,14 +51,14 @@ export default function Header() {
     }
 
     setLastScrollY(currentScrollY);
-  };
+  }, [lastScrollY]); // Dépendance de lastScrollY
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [lastScrollY]);
+  }, [handleScroll]); // Inclure handleScroll dans les dépendances
 
   useEffect(() => {
     if (menuOpen) {

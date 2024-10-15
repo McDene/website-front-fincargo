@@ -42,32 +42,45 @@ export default function SectionHero({
       observerOptions
     );
 
-    if (titleRef.current) observer.observe(titleRef.current);
-    if (textRef.current) observer.observe(textRef.current);
-    if (buttonRef.current) observer.observe(buttonRef.current);
+    // Capture les références actuelles
+    const currentTitleRef = titleRef.current;
+    const currentTextRef = textRef.current;
+    const currentButtonRef = buttonRef.current;
+
+    if (currentTitleRef) observer.observe(currentTitleRef);
+    if (currentTextRef) observer.observe(currentTextRef);
+    if (currentButtonRef) observer.observe(currentButtonRef);
 
     return () => {
-      if (titleRef.current) observer.unobserve(titleRef.current);
-      if (textRef.current) observer.unobserve(textRef.current);
-      if (buttonRef.current) observer.unobserve(buttonRef.current);
+      // Utiliser les références capturées dans la fonction de nettoyage
+      if (currentTitleRef) observer.unobserve(currentTitleRef);
+      if (currentTextRef) observer.unobserve(currentTextRef);
+      if (currentButtonRef) observer.unobserve(currentButtonRef);
     };
   }, []);
 
   return (
     <section className="relative flex items-start min-h-screen py-20 px-8 overflow-hidden">
       {/* Vidéo en arrière-plan */}
-      <video
+      {/* <video
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
         src="images/fincargo_hero_carriers.mp4"
         autoPlay
         muted
         loop
         playsInline
-      />
+      /> */}
 
+      <Image
+        src={imageUrl}
+        alt={imageAlt}
+        width={700}
+        height={700}
+        className="absolute top-0 left-0 w-full h-full object-cover z-0"
+        unoptimized
+      />
       {/* Overlay bleu transparent */}
       <div className="absolute top-0 left-0 w-full h-full bg-blue-900 opacity-30 z-0"></div>
-
       {/* Contenu principal qui commence sous le header */}
       <div className="flex flex-col max-w-7xl justify-center m-auto mt-[120px] w-full">
         {/* Titre avec effet flottant */}
@@ -100,12 +113,14 @@ export default function SectionHero({
 
         {/* Bouton avec effet flottant */}
         <div
-          ref={buttonRef}
           className={`relative z-10 flex justify-start px-4 sm:px-6 lg:px-8 transition-transform duration-1000 ease-out delay-400 ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
           }`}
         >
-          <button className="bg-blue-400 text-white px-6 py-3 border-2 border-blue-400 rounded-3xl font-semibold hover:bg-blue-500 hover:border-blue-500 transition duration-300">
+          <button
+            ref={buttonRef} // Assignez le ref directement au bouton
+            className="bg-blue-400 text-white px-6 py-3 border-2 border-blue-400 rounded-3xl font-semibold hover:bg-blue-500 hover:border-blue-500 transition duration-300"
+          >
             {buttonText}
           </button>
         </div>
