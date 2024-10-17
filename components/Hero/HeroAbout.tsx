@@ -1,6 +1,6 @@
 "use client";
 
-import SectionHero from "@/components/Common/SectionHero";
+import SectionHeroImage from "@/components/Common/SectionHeroImage";
 import { useState, useEffect } from "react";
 import { fetchAPI } from "@/lib/utils";
 import SkeletonLoader from "@/components/SkeletonLoader";
@@ -37,10 +37,10 @@ export default function HeroAbout() {
     getHeroData(); // Appeler l'API au montage
   }, []);
 
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  //const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
   // Gérer le cas où heroData est encore null pour éviter les erreurs
-  const imageUrl = heroData ? `${baseUrl}${heroData.Image.url}` : "";
+  //const imageUrl = heroData ? `${baseUrl}${heroData.Image.url}` : "";
 
   // Affichage du chargement si les données ne sont pas encore disponibles
   if (loading) {
@@ -54,11 +54,12 @@ export default function HeroAbout() {
 
   return (
     <>
-      <SectionHero
-        title={heroData.Title}
-        paragraph={heroData.Paragraph}
+      <SectionHeroImage
+        title="Some additional information"
+        subtitle="About."
+        paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien"
         buttonText={heroData.Button}
-        imageUrl={imageUrl} // Utilisation de l'URL complète de l'image
+        imageUrl="/images/truck_fincargo_freightforwarder.jpg"
         imageAlt="Image de logistique"
       />
     </>

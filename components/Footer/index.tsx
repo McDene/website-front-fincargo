@@ -17,7 +17,7 @@ export default function Footer() {
             height={40}
           />
           <p className="mt-4">
-            Rue de L'industrie 23
+            Rue de L&rsquo;industrie 23
             <br />
             1950 Sion
             <br />
@@ -50,7 +50,7 @@ export default function Footer() {
           </h4>
           <ul className="space-y-2">
             <li>
-              <Link href="/about-us" className="hover:text-blue-900">
+              <Link href="/about" className="hover:text-blue-900">
                 About Us
               </Link>
             </li>
@@ -60,18 +60,21 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/careers" className="hover:text-blue-900">
+              <Link
+                href="/confidentiality-security-notice"
+                className="hover:text-blue-900"
+              >
                 Confidentialitity & secutiity
               </Link>
             </li>
             <br />
             <li>
-              <Link href="/contact" className="hover:text-blue-900">
+              <Link href="/legal-notice" className="hover:text-blue-900">
                 Legal notice
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="hover:text-blue-900">
+              <Link href="/cookies" className="hover:text-blue-900">
                 Cookies policy
               </Link>
             </li>
@@ -139,7 +142,7 @@ export default function Footer() {
             </li>
             <li>
               <Link href="/carriers/contact" className="hover:text-blue-900">
-                FAQ's
+                FAQ&lsquo;s
               </Link>
             </li>
           </ul>
@@ -196,7 +199,7 @@ export default function Footer() {
                 href="/freight-forwarders/contact"
                 className="hover:text-blue-900"
               >
-                FAQ's
+                FAQ&lsquo;s
               </Link>
             </li>
           </ul>
@@ -245,7 +248,7 @@ export default function Footer() {
                 href="/liquidity-providers/contact"
                 className="hover:text-blue-900"
               >
-                FAQ's
+                FAQ&lsquo;s
               </Link>
             </li>
           </ul>

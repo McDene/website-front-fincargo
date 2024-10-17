@@ -142,3 +142,7 @@ h6 {
     opacity: 1;
   }
 }
+
+.line-break {
+  white-space: pre-wrap;
+}
