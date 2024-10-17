@@ -85,3 +85,60 @@ h6 {
     @apply bg-background text-foreground;
   }
 }
+
+.menu-slide-in {
+  animation: slide-in-left-right 0.8s forwards ease-in-out;
+}
+
+.menu-slide-out {
+  animation: slide-out-left-right 0.8s forwards ease-in-out;
+}
+
+@keyframes slide-in-left-right {
+  0% {
+    transform: translateY(-100%) scaleX(1);
+    border-radius: 0;
+  }
+  30% {
+    transform: translateY(0) scaleX(0.6); /* Le côté gauche descend plus vite */
+  }
+  70% {
+    transform: translateY(0) scaleX(0.9); /* Le côté droit descend après */
+  }
+  100% {
+    transform: translateY(0) scaleX(1);
+    border-radius: 0;
+  }
+}
+
+@keyframes slide-out-left-right {
+  0% {
+    transform: translateY(0) scaleX(1);
+    border-radius: 0;
+  }
+  30% {
+    transform: translateY(0) scaleX(0.9); /* Le côté gauche monte plus vite */
+  }
+  70% {
+    transform: translateY(-100%) scaleX(0.6); /* Le côté droit monte après */
+  }
+  100% {
+    transform: translateY(-100%) scaleX(1);
+    border-radius: 0;
+  }
+}
+
+/* Le texte apparaît légèrement après l'ouverture du rideau */
+.menu-text {
+  opacity: 0;
+  animation: text-fade-in 0.8s forwards ease-in-out 0.4s;
+}
+
+@keyframes text-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

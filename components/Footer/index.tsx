@@ -1,11 +1,8 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ChevronRightIcon,
-  ChevronLeftIcon,
-  ArrowUpRightIcon,
-} from "@heroicons/react/24/solid"; // Remplacez par vos icônes préférées d'Heroicons
+import XIcon from "@mui/icons-material/X";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 export default function Footer() {
   return (
@@ -20,9 +17,11 @@ export default function Footer() {
             height={40}
           />
           <p className="mt-4">
-            123 Transport Avenue,
+            Rue de L'industrie 23
             <br />
-            City, State, ZIP
+            1950 Sion
+            <br />
+            Switzerland
           </p>
           <div className="flex space-x-4 mt-6">
             <a
@@ -31,7 +30,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <ChevronRightIcon className="w-6 h-6 text-white hover:text-blue-400" />
+              <XIcon className="w-6 h-6 text-gray-900 hover:text-blue-400" />
             </a>
             <a
               href="https://twitter.com"
@@ -39,43 +38,66 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <ChevronLeftIcon className="w-6 h-6 text-white hover:text-blue-400" />
-            </a>
-            <a
-              href="https://linkedin.com"
-              aria-label="LinkedIn"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <ArrowUpRightIcon className="w-6 h-6 text-white hover:text-blue-400" />
+              <LinkedInIcon className=" text-gray-900 hover:text-blue-400" />
             </a>
           </div>
         </div>
 
         {/* Colonne 2: Company + Liens */}
         <div>
-          <h4 className="text-lg font-bold text-blue-400 mb-4 uppercase">
+          <h4 className="text-lg font-bold text-blue-900 mb-4 uppercase">
             Company
           </h4>
           <ul className="space-y-2">
             <li>
-              <Link href="/about" className="hover:text-blue-400">
+              <Link href="/about-us" className="hover:text-blue-900">
                 About Us
               </Link>
             </li>
             <li>
-              <Link href="/team" className="hover:text-blue-400">
-                Our Team
-              </Link>
-            </li>
-            <li>
-              <Link href="/careers" className="hover:text-blue-400">
-                Careers
-              </Link>
-            </li>
-            <li>
-              <Link href="/contact" className="hover:text-blue-400">
+              <Link href="/contact" className="hover:text-blue-900">
                 Contact
+              </Link>
+            </li>
+            <li>
+              <Link href="/careers" className="hover:text-blue-900">
+                Confidentialitity & secutiity
+              </Link>
+            </li>
+            <br />
+            <li>
+              <Link href="/contact" className="hover:text-blue-900">
+                Legal notice
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className="hover:text-blue-900">
+                Cookies policy
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className="hover:text-blue-900">
+                Sustainability
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className="hover:text-blue-900">
+                Parteners
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className="hover:text-blue-900">
+                Investors
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className="hover:text-blue-900">
+                Career
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className="hover:text-blue-900">
+                Blog
               </Link>
             </li>
           </ul>
@@ -83,29 +105,41 @@ export default function Footer() {
 
         {/* Colonne 3: Carriers + Liens */}
         <div>
-          <h4 className="text-lg font-bold text-white mb-4">Carriers</h4>
+          <h4 className="text-lg font-bold text-blue-900 mb-4 uppercase">
+            Carriers
+          </h4>
           <ul className="space-y-2">
             <li>
               <Link
                 href="/carriers/how-it-works"
-                className="hover:text-blue-400"
+                className="hover:text-blue-900"
               >
-                How it works
+                Get started
               </Link>
             </li>
             <li>
-              <Link href="/carriers/benefits" className="hover:text-blue-400">
-                Benefits
+              <Link href="/carriers/benefits" className="hover:text-blue-900">
+                Customer service
               </Link>
             </li>
             <li>
-              <Link href="/carriers/faq" className="hover:text-blue-400">
-                FAQs
+              <Link href="/carriers/faq" className="hover:text-blue-900">
+                Log-in
               </Link>
             </li>
             <li>
-              <Link href="/carriers/contact" className="hover:text-blue-400">
-                Support
+              <Link href="/carriers/contact" className="hover:text-blue-900">
+                Explore freight forwarding partners
+              </Link>
+            </li>
+            <li>
+              <Link href="/carriers/contact" className="hover:text-blue-900">
+                Carriers protection policy
+              </Link>
+            </li>
+            <li>
+              <Link href="/carriers/contact" className="hover:text-blue-900">
+                FAQ's
               </Link>
             </li>
           </ul>
@@ -113,40 +147,56 @@ export default function Footer() {
 
         {/* Colonne 4: Freight Forwarders + Liens */}
         <div>
-          <h4 className="text-lg font-bold text-white mb-4">
+          <h4 className="text-lg font-bold text-blue-900 mb-4 uppercase">
             Freight Forwarders
           </h4>
           <ul className="space-y-2">
             <li>
               <Link
                 href="/freight-forwarders/solutions"
-                className="hover:text-blue-400"
+                className="hover:text-blue-900"
               >
-                Solutions
+                Get started
               </Link>
             </li>
             <li>
               <Link
                 href="/freight-forwarders/benefits"
-                className="hover:text-blue-400"
+                className="hover:text-blue-900"
               >
-                Benefits
+                Forwarders support
               </Link>
             </li>
             <li>
               <Link
                 href="/freight-forwarders/resources"
-                className="hover:text-blue-400"
+                className="hover:text-blue-900"
               >
-                Resources
+                Log-in
               </Link>
             </li>
             <li>
               <Link
                 href="/freight-forwarders/contact"
-                className="hover:text-blue-400"
+                className="hover:text-blue-900"
               >
-                Support
+                Pay carrier early
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/freight-forwarders/contact"
+                className="hover:text-blue-900"
+              >
+                API Intergration
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/freight-forwarders/contact"
+                className="hover:text-blue-900"
+              >
+                FAQ's
               </Link>
             </li>
           </ul>
@@ -154,40 +204,48 @@ export default function Footer() {
 
         {/* Colonne 5: Liquidity Providers + Liens */}
         <div>
-          <h4 className="text-lg font-bold text-white mb-4">
+          <h4 className="text-lg font-bold text-blue-900 mb-4 uppercase">
             Liquidity Providers
           </h4>
           <ul className="space-y-2">
             <li>
               <Link
                 href="/liquidity-providers/partnerships"
-                className="hover:text-blue-400"
+                className="hover:text-blue-900"
               >
-                Partnerships
+                Get started
               </Link>
             </li>
             <li>
               <Link
                 href="/liquidity-providers/how-it-works"
-                className="hover:text-blue-400"
+                className="hover:text-blue-900"
               >
-                How it works
+                Why invest with Fincargo
               </Link>
             </li>
             <li>
               <Link
                 href="/liquidity-providers/faq"
-                className="hover:text-blue-400"
+                className="hover:text-blue-900"
               >
-                FAQs
+                Log-in
               </Link>
             </li>
             <li>
               <Link
                 href="/liquidity-providers/contact"
-                className="hover:text-blue-400"
+                className="hover:text-blue-900"
               >
-                Contact Us
+                API Integration
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/liquidity-providers/contact"
+                className="hover:text-blue-900"
+              >
+                FAQ's
               </Link>
             </li>
           </ul>
