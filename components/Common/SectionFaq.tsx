@@ -16,12 +16,11 @@ interface FaqProps {
 export default function SectionFaq({ title, faqs }: FaqProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  // Gérer l'ouverture/fermeture de l'accordéon
   const toggleAccordion = (index: number) => {
     if (activeIndex === index) {
-      setActiveIndex(null); // Fermer si déjà ouvert
+      setActiveIndex(null);
     } else {
-      setActiveIndex(index); // Ouvrir la nouvelle section
+      setActiveIndex(index);
     }
   };
 
@@ -42,9 +41,8 @@ export default function SectionFaq({ title, faqs }: FaqProps) {
                 className="w-full text-left px-4 py-4 flex justify-between items-center text-xl font-bold text-gray-900"
               >
                 <span>{faq.question}</span>
-                {/* Bouton "+" ou "-" avec background-color et border-radius */}
                 <span
-                  className={`flex items-center justify-center w-8 h-8 ${
+                  className={`flex items-center p-3 justify-center w-8 h-8 ${
                     activeIndex === index
                       ? "bg-blue-300 text-white"
                       : "bg-blue-400 text-white"

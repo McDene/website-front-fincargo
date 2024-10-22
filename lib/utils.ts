@@ -5,16 +5,14 @@ import { twMerge } from "tailwind-merge";
 export const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 /**
- * Fonction pour faire une requête GET à l'API Strapi avec Axios
- * @param endpoint - L'endpoint de l'API Strapi (par exemple: /api/hero)
- * @returns - Les données de l'API Strapi
+ * Function to make a GET request to the Strapi API with Axios
+ * @param endpoint - The Strapi API endpoint (e.g., /api/hero)
+ * @returns - The data from the Strapi API
  */
-
 export const fetchAPI = async (endpoint: string) => {
   try {
     const res = await axios.get(`${API_URL}${endpoint}`);
-    // console.log("Data fetched with Axios:", res.data);
-    return res.data; // Axios retourne déjà le JSON dans "data"
+    return res.data;
   } catch (error) {
     console.error("Error fetching data from Strapi:", error);
     return null;
@@ -22,9 +20,26 @@ export const fetchAPI = async (endpoint: string) => {
 };
 
 /**
- * Fonction utilitaire pour fusionner les classes Tailwind
- * @param inputs - Liste des classes à fusionner
- * @returns - Les classes fusionnées
+ * Function to make a POST request to the Strapi API with Axios
+ * @param endpoint - The Strapi API endpoint (e.g., /api/contact-submissions)
+ * @param data - The data to send in the body of the POST request
+ * @returns - The response data from the Strapi API
+ */
+export const postAPI = async <T>(endpoint: string, data: T) => {
+  // Utilisation de <T> pour un type générique
+  try {
+    const res = await axios.post(`${API_URL}${endpoint}`, { data });
+    return res.data;
+  } catch (error) {
+    console.error("Error posting data to Strapi:", error);
+    return null;
+  }
+};
+
+/**
+ * Utility function to merge Tailwind classes
+ * @param inputs - List of classes to merge
+ * @returns - The merged classes
  */
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

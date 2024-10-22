@@ -25,10 +25,9 @@ export default function SectionHeroImage({
   const textRef = useRef<HTMLDivElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
 
-  // Utiliser l'API IntersectionObserver pour déclencher l'animation lors du scroll
   useEffect(() => {
     const observerOptions = {
-      threshold: 0.2, // L'élément doit être au moins à 20% visible avant de déclencher l'animation
+      threshold: 0.2,
     };
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
@@ -44,7 +43,6 @@ export default function SectionHeroImage({
       observerOptions
     );
 
-    // Capture les références actuelles
     const currentTitleRef = titleRef.current;
     const currentTextRef = textRef.current;
     const currentButtonRef = buttonRef.current;
@@ -54,7 +52,6 @@ export default function SectionHeroImage({
     if (currentButtonRef) observer.observe(currentButtonRef);
 
     return () => {
-      // Utiliser les références capturées dans la fonction de nettoyage
       if (currentTitleRef) observer.unobserve(currentTitleRef);
       if (currentTextRef) observer.unobserve(currentTextRef);
       if (currentButtonRef) observer.unobserve(currentButtonRef);
@@ -71,11 +68,8 @@ export default function SectionHeroImage({
         unoptimized={true}
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
       />
-      {/* Overlay bleu transparent */}
       <div className="absolute top-0 left-0 w-full h-full bg-blue-800 opacity-30 z-0"></div>
-      {/* Contenu principal qui commence sous le header */}
       <div className="flex flex-col max-w-7xl justify-center m-auto mt-[120px] w-full">
-        {/* Titre avec effet flottant */}
         <div
           ref={titleRef}
           className={`relative z-10 flex justify-start px-4 sm:px-6 lg:px-8 transition-transform duration-1000 ease-out ${
@@ -105,15 +99,13 @@ export default function SectionHeroImage({
             </p>
           </div>
         </div>
-
-        {/* Bouton avec effet flottant */}
         <div
           className={`relative z-10 flex justify-start px-4 sm:px-6 lg:px-8 transition-transform duration-1000 ease-out delay-400 ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
           }`}
         >
           <button
-            ref={buttonRef} // Assignez le ref directement au bouton
+            ref={buttonRef}
             className="bg-blue-400 text-white px-6 py-3 border-2 border-blue-400 rounded-3xl font-semibold hover:bg-blue-500 hover:border-blue-500 transition duration-300"
           >
             {buttonText}

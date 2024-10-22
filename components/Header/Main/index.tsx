@@ -19,11 +19,10 @@ export default function Header() {
     pathname === "/freight-forwarders" ? "Freightforwarder" : "Carrier";
 
   const carrierMenu = [
-    { name: "What is Fincargo", anchor: "#whatisfincargo" },
-    { name: "Benefits", anchor: "#fincargo" },
-    { name: "How to use", anchor: "#aide" },
-    { name: "Partners", anchor: "#aide" },
-    { name: "FAQ's", anchor: "#aide" },
+    { name: "What is Fincargo", anchor: "../#whatisfincargo" },
+    { name: "Benefits", anchor: "../#fincargo" },
+    { name: "How to use", anchor: "../#aide" },
+    { name: "FAQ's", anchor: "../#aide" },
   ];
 
   const freightforwarderMenu = [

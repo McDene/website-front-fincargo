@@ -38,3 +38,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ## Translate website
 
 https://strapi.io/blog/how-to-build-a-multilingual-app-with-react-native-and-strapi-5
+
+https://www.revolut.com/revolut-x/
+
+https://ui.aceternity.com/

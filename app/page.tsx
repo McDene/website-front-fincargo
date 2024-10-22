@@ -1,8 +1,9 @@
+import Header from "@/components/Header/Main";
 import HeroC from "@/components/Hero/HeroC";
-import WhatIsFincargo from "@/components/WhatIsFincargo";
 import BenefitsC from "@/components/Benefits/BenefitsC";
 import FaqC from "@/components/FAQs/FaqC";
 import Footer from "@/components/Footer";
+import SectionKeyFeatures from "@/components/Common/SectionKeyFeatures";
 
 import { Metadata } from "next";
 
@@ -15,8 +16,9 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
+      <Header />
       <HeroC />
-      <WhatIsFincargo />
+      <SectionKeyFeatures />
       <BenefitsC />
       <FaqC />
       <Footer />

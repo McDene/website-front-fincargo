@@ -1,9 +1,11 @@
+import HeaderSecondary from "@/components/Header/Secondary";
 import HeroAbout from "@/components/Hero/HeroAbout";
 import Footer from "@/components/Footer";
 
 export default function AboutPage() {
   return (
     <div>
+      <HeaderSecondary />
       <HeroAbout />
       <section className="py-32 xl:py-32 lg:py-38 md:py-24 sm:py-20 bg-white px-4">
         <div className="max-w-7xl mx-auto">

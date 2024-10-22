@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import SectionBenefits from "@/components/Common/SectionBenefits"; // Le composant commun
-import { fetchAPI } from "@/lib/utils"; // Import de la fonction fetchAPI pour appeler Strapi
+import SectionBenefits from "@/components/Common/SectionBenefits";
+import { fetchAPI } from "@/lib/utils";
 
 interface StrapiBenefit {
   id: number;
@@ -26,12 +26,11 @@ interface SectionTitle {
 }
 
 export default function BenefitsC() {
-  const [benefits, setBenefits] = useState<Benefit[]>([]); // Utilisation de useState pour stocker les bénéfices
+  const [benefits, setBenefits] = useState<Benefit[]>([]);
   const [sectionTitle, setSectionTitle] = useState<SectionTitle | null>(null);
-  const [loading, setLoading] = useState(true); // Gestion du chargement
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fonction pour récupérer les données depuis Strapi
     const getBenefits = async () => {
       try {
         const data = await fetchAPI("/api/benefit-carriers?populate=Image");
@@ -41,16 +40,15 @@ export default function BenefitsC() {
         );
 
         if (data && data.data) {
-          const baseUrl = process.env.NEXT_PUBLIC_API_URL; // Base URL pour Strapi
+          const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
-          // Formatter les bénéfices
           const formattedBenefits = data.data.map((item: StrapiBenefit) => ({
             id: item.id,
-            image: `${baseUrl}${item.Image.url}`, // Ajouter le domaine de base
+            image: `${baseUrl}${item.Image.url}`,
             title: item.Title,
             description: item.Paragraph,
           }));
-          setBenefits(formattedBenefits); // Mise à jour de l'état avec les bénéfices formatés
+          setBenefits(formattedBenefits);
         }
 
         if (sectionTitleResponse && sectionTitleResponse.data) {
@@ -62,24 +60,21 @@ export default function BenefitsC() {
       } catch (error) {
         console.error("Error fetching benefits:", error);
       } finally {
-        setLoading(false); // Fin du chargement
+        setLoading(false);
       }
     };
 
-    getBenefits(); // Appel de l'API au montage du composant
+    getBenefits();
   }, []);
 
-  // Si les données sont en cours de chargement
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  // Si aucune donnée n'est trouvée
   if (benefits.length === 0) {
     return <div>No benefits available.</div>;
   }
 
-  // Affichage du composant SectionBenefits avec les données récupérées
   return (
     <SectionBenefits
       title={sectionTitle?.title || ""}

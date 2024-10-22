@@ -20,14 +20,12 @@ export default function SectionHeroMobile({
 }: SectionHeroProps) {
   const [isVisible, setIsVisible] = useState(false);
 
-  // Déclenche l'animation lors du chargement
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
   return (
     <section className="relative bg-blue-950 py-10 px-4 h-[90vh] overflow-hidden">
-      {/* Image centrée */}
       <div
         className={`relative w-full transition-all py-10 duration-1000 ease-in-out ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
@@ -43,8 +41,6 @@ export default function SectionHeroMobile({
           unoptimized
         />
       </div>
-
-      {/* Contenu (titre, paragraphe, bouton) chevauchant légèrement l'image */}
       <div
         className={`relative z-20 mx-auto transform transition-all duration-1000 ease-in-out ${
           isVisible ? "opacity-100 -translate-y-8" : "opacity-0 translate-y-5"

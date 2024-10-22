@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
-import { fetchAPI } from "@/lib/utils"; // Importer la fonction de fetch depuis utils.ts
+import { fetchAPI } from "@/lib/utils";
 
 interface ConfidentialityData {
   title: string;
@@ -11,19 +11,18 @@ interface ConfidentialityData {
 
 export default function Confidentiality() {
   const [data, setData] = useState<ConfidentialityData | null>(null);
-  const [loading, setLoading] = useState(true); // État de chargement
-  const [error, setError] = useState<string | null>(null); // État d'erreur
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Fonction pour récupérer les données de l'API
     const getData = async () => {
       try {
         const apiData = await fetchAPI(
           "/api/confidentiality-and-security-notice"
-        ); // Appel à l'API avec l'endpoint approprié
+        );
         if (apiData) {
           setData({
-            title: apiData.data.Title, // Adapter selon la structure de tes données
+            title: apiData.data.Title,
             content: apiData.data.Paragraph,
           });
         } else {
@@ -32,14 +31,13 @@ export default function Confidentiality() {
       } catch {
         setError("Error fetching data from API.");
       } finally {
-        setLoading(false); // Fin du chargement
+        setLoading(false);
       }
     };
 
-    getData(); // Appeler l'API au montage du composant
+    getData();
   }, []);
 
-  // Afficher le loader ou l'erreur si nécessaire
   if (loading) {
     return <div>Loading...</div>;
   }
