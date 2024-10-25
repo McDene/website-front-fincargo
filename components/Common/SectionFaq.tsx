@@ -10,11 +10,14 @@ interface FAQItem {
 
 interface FaqProps {
   title: string;
+  subtitle: string; // Ajout du sous-titre dans les props
   faqs: FAQItem[];
 }
 
-export default function SectionFaq({ title, faqs }: FaqProps) {
+export default function SectionFaq({ title, subtitle, faqs }: FaqProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  console.log(title, subtitle, faqs);
 
   const toggleAccordion = (index: number) => {
     if (activeIndex === index) {
@@ -27,12 +30,14 @@ export default function SectionFaq({ title, faqs }: FaqProps) {
   return (
     <section className="py-32 xl:py-32 lg:py-38 md:py-24 sm:py-20 bg-white px-4">
       <div className="max-w-7xl mx-auto">
-        <h4 className="text-gray-500 text-xl pb-8 text-center">
-          Need some help ?
-        </h4>
+        {/* Affichage du sous-titre */}
+        <h4 className="text-gray-500 text-xl pb-8 text-center">{subtitle}</h4>
+
+        {/* Affichage du titre */}
         <h2 className="text-3xl md:text-7xl font-bold text-center text-blue-400 uppercase mb-10 tracking-wide">
           {title}
         </h2>
+
         <div className="space-y-4">
           {faqs.map((faq, index) => (
             <div key={faq.id} className="border-b-2 border-gray-300">

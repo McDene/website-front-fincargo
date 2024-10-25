@@ -21,8 +21,6 @@ export default function Header() {
     { name: "Freight Forwarders", href: "/freight-forwarders" },
   ];
 
-  console.log("menuItems in Header: ", menuItems);
-
   // Sticky Navbar
   const handleScroll = useCallback(() => {
     const currentScrollY = window.scrollY;

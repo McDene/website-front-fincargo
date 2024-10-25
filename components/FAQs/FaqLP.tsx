@@ -19,7 +19,7 @@ interface FaqData {
   };
 }
 
-export default function FaqC() {
+export default function FaqLP() {
   const [faqData, setFaqData] = useState<FaqData | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -27,7 +27,7 @@ export default function FaqC() {
     const getFaqData = async () => {
       try {
         const response = await fetchAPI(
-          "/api/faqs?filters[Page][$eq]=Carrier&populate[FAQ][populate]=Accordion"
+          "/api/faqs?filters[Page][$eq]=LiquidityProvider&populate[FAQ][populate]=Accordion"
         );
 
         if (response && response.data && response.data.length > 0) {

@@ -212,10 +212,7 @@ export default function Footer() {
           </h4>
           <ul className="space-y-2">
             <li>
-              <Link
-                href="/liquidity-providers/partnerships"
-                className="hover:text-blue-900"
-              >
+              <Link href="/liquidity-providers" className="hover:text-blue-900">
                 Get started
               </Link>
             </li>

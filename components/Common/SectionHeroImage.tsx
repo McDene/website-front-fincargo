@@ -8,6 +8,7 @@ interface SectionHeroImageProps {
   subtitle: string;
   paragraph: string;
   buttonText: string;
+  buttonLink?: string | null;
   imageUrl: string;
   imageAlt: string;
 }
@@ -17,6 +18,7 @@ export default function SectionHeroImage({
   subtitle,
   paragraph,
   buttonText,
+  buttonLink,
   imageUrl,
   imageAlt,
 }: SectionHeroImageProps) {
@@ -77,16 +79,15 @@ export default function SectionHeroImage({
           }`}
         >
           <div className="max-w-7xl mb-10">
-            <h2 className="text-sm md:text-5xl text-gray-200 sha font-bold  mb-3 pb-10 ">
-              {subtitle}
+            <h2 className="text-sm md:text-5xl text-gray-200 font-bold mb-3 pb-10">
+              {title}
             </h2>
             <h1 className="text-4xl md:text-8xl uppercase font-bold text-start text-white">
-              {title}
+              {subtitle}
             </h1>
           </div>
         </div>
 
-        {/* Texte et bouton alignés à gauche avec effet flottant */}
         <div
           ref={textRef}
           className={`relative z-10 flex justify-start px-4 sm:px-6 lg:px-8 transition-transform duration-1000 ease-out delay-200 ${
@@ -99,18 +100,26 @@ export default function SectionHeroImage({
             </p>
           </div>
         </div>
-        <div
-          className={`relative z-10 flex justify-start px-4 sm:px-6 lg:px-8 transition-transform duration-1000 ease-out delay-400 ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-          }`}
-        >
-          <button
-            ref={buttonRef}
-            className="bg-blue-400 text-white px-6 py-3 border-2 border-blue-400 rounded-3xl font-semibold hover:bg-blue-500 hover:border-blue-500 transition duration-300"
+
+        {/* Bouton facultatif avec lien si buttonLink est défini */}
+        {buttonLink && (
+          <div
+            className={`relative z-10 flex justify-start px-4 sm:px-6 lg:px-8 transition-transform duration-1000 ease-out delay-400 ${
+              isVisible
+                ? "translate-y-0 opacity-100"
+                : "translate-y-12 opacity-0"
+            }`}
           >
-            {buttonText}
-          </button>
-        </div>
+            <a href={buttonLink}>
+              <button
+                ref={buttonRef}
+                className="bg-blue-400 text-white px-6 py-3 border-2 border-blue-400 rounded-3xl font-semibold hover:bg-blue-500 hover:border-blue-500 transition duration-300"
+              >
+                {buttonText}
+              </button>
+            </a>
+          </div>
+        )}
       </div>
     </section>
   );

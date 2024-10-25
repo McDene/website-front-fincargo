@@ -5,63 +5,67 @@ import { useState, useEffect } from "react";
 import { fetchAPI } from "@/lib/utils";
 import SkeletonLoader from "@/components/SkeletonLoader";
 
-// Définir l'interface pour les données du Hero
+interface Image {
+  id: number;
+  url: string;
+}
+
 interface HeroData {
   Title: string;
+  SecondeTitle: string;
   Paragraph: string;
-  Button: string;
-  Image: {
-    url: string;
-  };
+  ButtonText: string;
+  ButtonLink: string | null;
+  Image: Image;
 }
 
 export default function HeroAbout() {
   const [heroData, setHeroData] = useState<HeroData | null>(null);
-  const [loading, setLoading] = useState(true); // Gestion du chargement
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Récupérer les données de l'API Strapi via utils.ts
     const getHeroData = async () => {
       try {
-        const data = await fetchAPI("/api/hero?populate=Image"); // Appel de l'API avec la fonction fetchAPI
-        if (data && data.data) {
-          setHeroData(data.data); // Mettre à jour l'état avec les données
+        const response = await fetchAPI(
+          "/api/hero-images?filters[Page][$eq]=About&populate[Hero][populate]=Image"
+        );
+
+        if (response && response.data && response.data.length > 0) {
+          setHeroData(response.data[0].Hero);
         }
       } catch (error) {
         console.error("Error fetching hero data:", error);
       } finally {
-        setLoading(false); // Fin du chargement
+        setLoading(false);
       }
     };
 
-    getHeroData(); // Appeler l'API au montage
+    getHeroData();
   }, []);
 
-  //const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  const imageUrl =
+    heroData && heroData.Image && heroData.Image.url
+      ? `${baseUrl}${heroData.Image.url}`
+      : "";
 
-  // Gérer le cas où heroData est encore null pour éviter les erreurs
-  //const imageUrl = heroData ? `${baseUrl}${heroData.Image.url}` : "";
-
-  // Affichage du chargement si les données ne sont pas encore disponibles
   if (loading) {
     return <SkeletonLoader />;
   }
 
-  // Gérer le cas où heroData est null
   if (!heroData) {
     return <div>No hero data available.</div>;
   }
 
   return (
-    <>
-      <SectionHeroImage
-        title="Some additional information"
-        subtitle="About."
-        paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien"
-        buttonText={heroData.Button}
-        imageUrl="/images/truck_fincargo_freightforwarder.jpg"
-        imageAlt="Image de logistique"
-      />
-    </>
+    <SectionHeroImage
+      title={heroData.Title}
+      subtitle={heroData.SecondeTitle}
+      paragraph={heroData.Paragraph}
+      buttonText={heroData.ButtonText}
+      buttonLink={heroData.ButtonLink}
+      imageUrl={imageUrl}
+      imageAlt="Image de logistique"
+    />
   );
 }

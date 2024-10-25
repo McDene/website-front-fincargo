@@ -1,62 +1,67 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import SectionFaq from "@/components/Common/SectionFaq";
-import { fetchAPI } from "@/lib/utils"; // Import de la fonction fetchAPI
+import { useState, useEffect } from "react";
+import { fetchAPI } from "@/lib/utils";
 
-// Définir une interface pour les éléments de FAQ
-interface FAQ {
+interface Accordion {
   id: number;
-  Title: string;
+  Question: string;
   Answer: string;
 }
 
-// Définir une interface pour la FAQ formatée
-interface FormattedFAQ {
+interface FaqData {
   id: number;
-  question: string;
-  answer: string;
+  FAQ: {
+    Title: string;
+    Subtitle: string;
+    Accordion: Accordion[];
+  };
 }
 
-export default function CarrierFaqs() {
-  const [faqs, setFaqs] = useState<FormattedFAQ[]>([]); // Utilisation de useState pour stocker les FAQs (tableau d'objets)
-  const [loading, setLoading] = useState(true); // Utilisation d'un état pour le chargement
+export default function FaqFF() {
+  const [faqData, setFaqData] = useState<FaqData | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fonction pour récupérer les FAQs depuis Strapi
-    const getFAQs = async () => {
+    const getFaqData = async () => {
       try {
-        const data = await fetchAPI("/api/faq-freight-forwarders"); // Récupère les FAQs de Strapi via fetchAPI
+        const response = await fetchAPI(
+          "/api/faqs?filters[Page][$eq]=FreightForwarder&populate[FAQ][populate]=Accordion"
+        );
 
-        if (data && data.data) {
-          // Strapi retourne les données sous `data`
-          const formattedFAQs = data.data.map((item: FAQ) => ({
-            id: item.id,
-            question: item.Title, // Utilise le champ `Title` comme question
-            answer: item.Answer, // Utilise le champ `Answer` comme réponse
-          }));
-          setFaqs(formattedFAQs); // Mise à jour de l'état avec les FAQs formatées
+        if (response && response.data && response.data.length > 0) {
+          setFaqData(response.data[0]);
         }
       } catch (error) {
-        console.error("Error fetching FAQs:", error);
+        console.error("Error fetching FAQ data:", error);
       } finally {
-        setLoading(false); // Fin du chargement
+        setLoading(false);
       }
     };
 
-    getFAQs(); // Appel API au montage du composant
+    getFaqData();
   }, []);
 
-  // Si les données sont en cours de chargement
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  // Si aucune FAQ n'a été trouvée
-  if (faqs.length === 0) {
-    return <div>No FAQs available.</div>;
+  if (!faqData || !faqData.FAQ || !Array.isArray(faqData.FAQ.Accordion)) {
+    return <div>No data available</div>;
   }
 
-  // Afficher les FAQs avec le composant FaqComponent
-  return <SectionFaq title="Freight Forwarders FAQS" faqs={faqs} />;
+  const formattedFaqs = faqData.FAQ.Accordion.map((accordion) => ({
+    id: accordion.id,
+    question: accordion.Question,
+    answer: accordion.Answer,
+  }));
+
+  return (
+    <SectionFaq
+      title={faqData.FAQ.Title}
+      subtitle={faqData.FAQ.Subtitle}
+      faqs={formattedFaqs}
+    />
+  );
 }

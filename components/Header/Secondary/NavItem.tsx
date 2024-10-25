@@ -15,8 +15,6 @@ export default function NavItem({
   sticky,
   onClick,
 }: NavItemProps) {
-  console.log("Rendering NavItem: ", { href, text, isActive, sticky });
-
   return (
     <Link
       href={href}

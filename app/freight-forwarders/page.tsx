@@ -1,7 +1,7 @@
 import Header from "@/components/Header/Main";
 import HeroFF from "@/components/Hero/HeroFF";
-import WhatIsFincargoFF from "@/components/WhatIsFincargo/WhatIsFincargoFF";
-import BenefitsFF from "@/components/Benefits/BenefitsFF";
+import FeatureFF from "@/components/Feature/FeatureFF";
+import BenefitFF from "@/components/Benefit/BenefitFF";
 import FaqFF from "@/components/FAQs/FaqFF";
 import Footer from "@/components/Footer";
 
@@ -10,8 +10,8 @@ export default function FreightForwardersPage() {
     <>
       <Header />
       <HeroFF />
-      <WhatIsFincargoFF />
-      <BenefitsFF />
+      <FeatureFF />
+      <BenefitFF />
       <FaqFF />
       <Footer />
     </>

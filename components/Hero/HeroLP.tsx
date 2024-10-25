@@ -14,16 +14,18 @@ interface HeroData {
   };
 }
 
-export default function HeroC() {
+export default function HeroLP() {
   const [heroData, setHeroData] = useState<HeroData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getHeroData = async () => {
       try {
-        const response = await fetchAPI("/api/hero?populate=Image");
-        if (response && response.data) {
-          setHeroData(response.data.attributes);
+        const data = await fetchAPI(
+          "/api/hero-ll?populate[Hero][populate]=Video"
+        );
+        if (data && data.data) {
+          setHeroData(data.data);
         }
       } catch (error) {
         console.error("Error fetching hero data:", error);
@@ -47,12 +49,14 @@ export default function HeroC() {
   }
 
   return (
-    <SectionHero
-      title={heroData.Title}
-      paragraph={heroData.Paragraph}
-      buttonText={heroData.ButtonText}
-      imageUrl={imageUrl}
-      imageAlt="Image de logistique"
-    />
+    <>
+      <SectionHero
+        title={heroData.Title}
+        paragraph={heroData.Paragraph}
+        buttonText={heroData.ButtonText}
+        imageUrl={imageUrl}
+        imageAlt="Image de logistique"
+      />
+    </>
   );
 }

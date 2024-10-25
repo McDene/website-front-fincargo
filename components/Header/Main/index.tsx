@@ -16,7 +16,11 @@ export default function Header() {
   const [lastScrollY, setLastScrollY] = useState(0);
 
   const clientType =
-    pathname === "/freight-forwarders" ? "Freightforwarder" : "Carrier";
+    pathname === "/freight-forwarders"
+      ? "Freightforwarder"
+      : pathname === "/liquidity-providers"
+      ? "LiquidityProvider"
+      : "Carrier";
 
   const carrierMenu = [
     { name: "What is Fincargo", anchor: "../#whatisfincargo" },
@@ -32,8 +36,19 @@ export default function Header() {
     { name: "Invite your subcontractors", anchor: "#prerequis" },
   ];
 
+  const liquidityprovidersMenu = [
+    { name: "Why", anchor: "#whatisfincargo" },
+    { name: "Benefits", anchor: "#prerequis" },
+    { name: "How it works", anchor: "#prerequis" },
+    { name: "Invite your subcontractors", anchor: "#prerequis" },
+  ];
+
   const menuItems =
-    clientType === "Carrier" ? carrierMenu : freightforwarderMenu;
+    clientType === "Freightforwarder"
+      ? freightforwarderMenu
+      : clientType === "LiquidityProvider"
+      ? liquidityprovidersMenu
+      : carrierMenu;
 
   // Sticky Navbar
   const handleScroll = useCallback(() => {

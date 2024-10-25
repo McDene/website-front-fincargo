@@ -11,16 +11,14 @@ export default function NavLinks({
   sticky,
   pathname,
 }: NavLinksProps) {
-  console.log("Menu items: ", menuItems); // Ajout pour déboguer
-
   return (
     <div className="flex space-x-4 ">
       {menuItems.map((item) => (
         <NavItem
           key={item.name}
-          href={item.href} // Utilise "href" ici
+          href={item.href}
           text={item.name}
-          isActive={pathname === item.href} // Comparer avec le "pathname" actuel
+          isActive={pathname === item.href}
           sticky={sticky}
         />
       ))}
