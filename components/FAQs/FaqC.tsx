@@ -30,6 +30,8 @@ export default function FaqC() {
           "/api/faqs?filters[Page][$eq]=Carrier&populate[FAQ][populate]=Accordion"
         );
 
+        console.log("API Response:", response);
+
         if (response && response.data && response.data.length > 0) {
           setFaqData(response.data[0]);
         }

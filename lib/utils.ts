@@ -10,6 +10,7 @@ export const API_URL = process.env.NEXT_PUBLIC_API_URL;
  * @returns - The data from the Strapi API
  */
 export const fetchAPI = async (endpoint: string) => {
+  console.log("API URL:", API_URL);
   try {
     const res = await axios.get(`${API_URL}${endpoint}`, {
       headers: {
