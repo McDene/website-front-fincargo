@@ -17,6 +17,7 @@ export const fetchAPI = async (endpoint: string) => {
         Accept: "application/json",
         "Cache-Control": "no-cache",
       },
+      withCredentials: true,
     });
     return res.data;
   } catch (error) {
