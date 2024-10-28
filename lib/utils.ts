@@ -11,7 +11,12 @@ export const API_URL = process.env.NEXT_PUBLIC_API_URL;
  */
 export const fetchAPI = async (endpoint: string) => {
   try {
-    const res = await axios.get(`${API_URL}${endpoint}`);
+    const res = await axios.get(`${API_URL}${endpoint}`, {
+      headers: {
+        Accept: "application/json",
+        "Cache-Control": "no-cache",
+      },
+    });
     return res.data;
   } catch (error) {
     console.error("Error fetching data from Strapi:", error);
