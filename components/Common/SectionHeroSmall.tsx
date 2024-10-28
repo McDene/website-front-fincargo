@@ -1,5 +1,5 @@
 "use client";
 
 export default function SectionHeroBackground() {
-  return <section className="h-[10vh] w-full"></section>;
+  return <section className="h-[5vh] w-full"></section>;
 }

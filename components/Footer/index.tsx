@@ -79,22 +79,22 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="hover:text-blue-900">
+              <Link href="/sustainability" className="hover:text-blue-900">
                 Sustainability
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="hover:text-blue-900">
+              <Link href="/partener" className="hover:text-blue-900">
                 Parteners
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="hover:text-blue-900">
+              <Link href="/investor" className="hover:text-blue-900">
                 Investors
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="hover:text-blue-900">
+              <Link href="/careers" className="hover:text-blue-900">
                 Career
               </Link>
             </li>

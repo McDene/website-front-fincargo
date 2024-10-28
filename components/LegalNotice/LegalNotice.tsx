@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
-import { fetchAPI } from "@/lib/utils"; // Importer la fonction de fetch depuis utils.ts
+import { fetchAPI } from "@/lib/utils";
 
 interface ConfidentialityData {
   title: string;
@@ -11,17 +11,16 @@ interface ConfidentialityData {
 
 export default function LegalNotice() {
   const [data, setData] = useState<ConfidentialityData | null>(null);
-  const [loading, setLoading] = useState(true); // État de chargement
-  const [error, setError] = useState<string | null>(null); // État d'erreur
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Fonction pour récupérer les données de l'API
     const getData = async () => {
       try {
-        const apiData = await fetchAPI("/api/legal-notice"); // Appel à l'API avec l'endpoint approprié
+        const apiData = await fetchAPI("/api/legal-notice");
         if (apiData) {
           setData({
-            title: apiData.data.Title, // Adapter selon la structure de tes données
+            title: apiData.data.Title,
             content: apiData.data.Paragraph,
           });
         } else {
@@ -30,14 +29,13 @@ export default function LegalNotice() {
       } catch {
         setError("Error fetching data from API.");
       } finally {
-        setLoading(false); // Fin du chargement
+        setLoading(false);
       }
     };
 
-    getData(); // Appeler l'API au montage du composant
+    getData();
   }, []);
 
-  // Afficher le loader ou l'erreur si nécessaire
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -48,11 +46,11 @@ export default function LegalNotice() {
 
   return (
     <div>
-      <section className="py-32 xl:py-32 lg:py-38 md:py-24 sm:py-20 bg-white px-4">
+      <section className="py-24 xl:py-32 lg:py-38 md:py-24 sm:py-20 bg-white px-4">
         <div className="max-w-7xl mx-auto">
           <div>
             <div className="pb-10">
-              <h2 className="text-4xl font-semibold uppercase mb-3 tracking-wide flex justify-center">
+              <h2 className="text-7xl font-semibold uppercase mb-3 tracking-wide flex justify-center">
                 {data?.title || "Confidentiality & Security Notice"}
               </h2>
             </div>
