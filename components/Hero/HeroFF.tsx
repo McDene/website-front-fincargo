@@ -40,15 +40,15 @@ export default function HeroFF() {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   const videoUrl =
     heroData && heroData.Video && heroData.Video.url
-      ? `${baseUrl}${heroData.Video.url}`
+      ? heroData.Video.url.startsWith("http")
+        ? heroData.Video.url
+        : `${baseUrl}${heroData.Video.url}`
       : "";
 
-  // Affichage du chargement si les données ne sont pas encore disponibles
   if (loading) {
     return <SkeletonLoader />;
   }
 
-  // Gérer le cas où heroData est null
   if (!heroData) {
     return <div>No hero data available.</div>;
   }

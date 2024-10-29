@@ -40,7 +40,9 @@ export default function HeroC() {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   const videoUrl =
     heroData && heroData.Video && heroData.Video.url
-      ? `${baseUrl}${heroData.Video.url}`
+      ? heroData.Video.url.startsWith("http")
+        ? heroData.Video.url
+        : `${baseUrl}${heroData.Video.url}`
       : "";
 
   if (loading) {
