@@ -46,7 +46,9 @@ export default function HeroAbout() {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   const imageUrl =
     heroData && heroData.Image && heroData.Image.url
-      ? `${baseUrl}${heroData.Image.url}`
+      ? heroData.Image.url.startsWith("http")
+        ? heroData.Image.url
+        : `${baseUrl}${heroData.Image.url}`
       : "";
 
   if (loading) {
