@@ -9,7 +9,7 @@ interface HeroData {
   Title: string;
   Paragraph: string;
   ButtonText: string;
-  Image: {
+  Video: {
     url: string;
   };
 }
@@ -21,9 +21,11 @@ export default function HeroC() {
   useEffect(() => {
     const getHeroData = async () => {
       try {
-        const response = await fetchAPI("/api/hero?populate=Image");
-        if (response && response.data) {
-          setHeroData(response.data.attributes);
+        const response = await fetchAPI(
+          "/api/hero-videos?filters[Page][$eq]=Carriers&populate[Hero][populate]=Video"
+        );
+        if (response && response.data && response.data.length > 0) {
+          setHeroData(response.data[0].Hero);
         }
       } catch (error) {
         console.error("Error fetching hero data:", error);
@@ -36,7 +38,10 @@ export default function HeroC() {
   }, []);
 
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-  const imageUrl = heroData ? `${baseUrl}${heroData.Image.url}` : "";
+  const videoUrl =
+    heroData && heroData.Video && heroData.Video.url
+      ? `${baseUrl}${heroData.Video.url}`
+      : "";
 
   if (loading) {
     return <SkeletonLoader />;
@@ -51,7 +56,7 @@ export default function HeroC() {
       title={heroData.Title}
       paragraph={heroData.Paragraph}
       buttonText={heroData.ButtonText}
-      imageUrl={imageUrl}
+      videoUrl={videoUrl}
       imageAlt="Image de logistique"
     />
   );
