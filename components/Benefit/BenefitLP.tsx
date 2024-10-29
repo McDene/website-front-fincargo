@@ -13,44 +13,45 @@ interface Card {
   };
 }
 
+interface Benefit {
+  Title: string;
+  Subtitle: string;
+  Card: Card[];
+}
+
 interface BenefitData {
   id: number;
-  Benefit: {
-    Title: string;
-    Subtitle: string;
-    Card: Card[];
-  };
+  Benefit: Benefit;
 }
 
 const formatBenefitData = (benefitData: BenefitData | null) => {
-  if (
-    !benefitData ||
-    !benefitData.Benefit ||
-    !Array.isArray(benefitData.Benefit.Card)
-  ) {
+  if (!benefitData || !Array.isArray(benefitData.Benefit.Card)) {
     return [];
   }
 
   return benefitData.Benefit.Card.map((card) => ({
     id: card.id,
-    image: `${process.env.NEXT_PUBLIC_API_URL}${card.Image.url}`,
+    image: card.Image.url.startsWith("http")
+      ? card.Image.url
+      : `${process.env.NEXT_PUBLIC_API_URL}${card.Image.url}`,
     title: card.Title,
     description: card.Content,
   }));
 };
 
-export default function BenefitsLP() {
+export default function BenefitsC() {
   const [benefitData, setBenefitData] = useState<BenefitData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getBenefitData = async () => {
       try {
-        const data = await fetchAPI(
-          "/api/benefit-lp?populate[Benefit][populate][Card][populate]=Image"
+        const response = await fetchAPI(
+          "/api/benefits?filters[Page][$eq]=LiquidityProviders&populate[Benefit][populate][Card][populate]=Image"
         );
-        if (data && data.data) {
-          setBenefitData(data.data);
+
+        if (response && response.data && response.data.length > 0) {
+          setBenefitData(response.data[0]);
         }
       } catch (error) {
         console.error("Error fetching benefits:", error);
@@ -66,11 +67,7 @@ export default function BenefitsLP() {
     return <div>Loading...</div>;
   }
 
-  if (
-    !benefitData ||
-    !benefitData.Benefit ||
-    !Array.isArray(benefitData.Benefit.Card)
-  ) {
+  if (!benefitData || !Array.isArray(benefitData.Benefit.Card)) {
     return <div>No data available</div>;
   }
 

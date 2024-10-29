@@ -9,7 +9,7 @@ interface HeroData {
   Title: string;
   Paragraph: string;
   ButtonText: string;
-  Image: {
+  Video: {
     url: string;
   };
 }
@@ -21,11 +21,11 @@ export default function HeroLP() {
   useEffect(() => {
     const getHeroData = async () => {
       try {
-        const data = await fetchAPI(
-          "/api/hero-ll?populate[Hero][populate]=Video"
+        const response = await fetchAPI(
+          "/api/hero-videos?filters[Page][$eq]=LiquidityProviders&populate[Hero][populate]=Video"
         );
-        if (data && data.data) {
-          setHeroData(data.data);
+        if (response && response.data && response.data.length > 0) {
+          setHeroData(response.data[0].Hero);
         }
       } catch (error) {
         console.error("Error fetching hero data:", error);
@@ -38,7 +38,10 @@ export default function HeroLP() {
   }, []);
 
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-  const imageUrl = heroData ? `${baseUrl}${heroData.Image.url}` : "";
+  const videoUrl =
+    heroData && heroData.Video && heroData.Video.url
+      ? `${baseUrl}${heroData.Video.url}`
+      : "";
 
   if (loading) {
     return <SkeletonLoader />;
@@ -54,7 +57,7 @@ export default function HeroLP() {
         title={heroData.Title}
         paragraph={heroData.Paragraph}
         buttonText={heroData.ButtonText}
-        imageUrl={imageUrl}
+        videoUrl={videoUrl}
         imageAlt="Image de logistique"
       />
     </>

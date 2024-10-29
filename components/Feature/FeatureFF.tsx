@@ -13,29 +13,31 @@ interface Card {
   };
 }
 
-interface FeatureData {
-  id: number;
-  Feature: {
-    Title: string;
-    Card: Card[];
-  };
+interface Feature {
+  Title: string;
+  Card: Card[];
 }
 
-export default function FeatureFF() {
+interface FeatureData {
+  id: number;
+  Feature: Feature;
+}
+
+export default function FeatureC() {
   const [featureData, setFeatureData] = useState<FeatureData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getFeatureData = async () => {
       try {
-        const data = await fetchAPI(
-          "/api/feature-ff?populate[Feature][populate][Card][populate]=Image"
+        const response = await fetchAPI(
+          "/api/features?filters[Page][$eq]=FreightForwarders&populate[Feature][populate][Card][populate]=Image"
         );
-        if (data && data.data) {
-          setFeatureData(data.data);
+        if (response && response.data && response.data.length > 0) {
+          setFeatureData(response.data[0]);
         }
       } catch (error) {
-        console.error("Error fetching Feature FF:", error);
+        console.error("Error fetching Feature C:", error);
       } finally {
         setLoading(false);
       }
@@ -48,11 +50,7 @@ export default function FeatureFF() {
     return <div>Loading...</div>;
   }
 
-  if (
-    !featureData ||
-    !featureData.Feature ||
-    !Array.isArray(featureData.Feature.Card)
-  ) {
+  if (!featureData || !Array.isArray(featureData.Feature.Card)) {
     return <div>No data available</div>;
   }
 

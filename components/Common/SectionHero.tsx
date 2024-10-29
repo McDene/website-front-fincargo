@@ -6,7 +6,7 @@ interface SectionHeroProps {
   title: string;
   paragraph: string;
   buttonText: string;
-  imageUrl: string;
+  videoUrl: string;
   imageAlt: string;
 }
 
@@ -14,7 +14,7 @@ export default function SectionHero({
   title,
   paragraph,
   buttonText,
-  imageUrl,
+  videoUrl,
 }: SectionHeroProps) {
   const [isVisible, setIsVisible] = useState(false);
   const titleRef = useRef<HTMLDivElement | null>(null);
@@ -58,7 +58,7 @@ export default function SectionHero({
     <section className="relative flex items-start min-h-screen py-32 xl:py-32 lg:py-38 md:py-24 sm:py-20 px-8 overflow-hidden">
       <video
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
-        src={imageUrl}
+        src={videoUrl}
         autoPlay
         muted
         loop
