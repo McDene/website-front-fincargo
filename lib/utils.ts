@@ -10,10 +10,11 @@ export const API_URL = process.env.NEXT_PUBLIC_API_URL;
  * @param endpoint - The Strapi API endpoint (e.g., /api/hero)
  * @returns - The data from the Strapi API
  */
-export const fetchAPI = async (endpoint, params = {}) => {
+export const fetchAPI = async (
+  endpoint: string,
+  params: Record<string, unknown> = {}
+) => {
   console.log("API URL:", API_URL);
-
-  // Utilisation de qs pour structurer les paramètres de requête
   const queryString = qs.stringify(params, { encodeValuesOnly: true });
   const url = `${API_URL}${endpoint}?${queryString}`;
 
