@@ -25,15 +25,21 @@ export default function FaqC() {
 
   useEffect(() => {
     const getFaqData = async () => {
-      console.log(
-        "Fetching data with endpoint:",
-        "/api/faqs?filters[Page][$eq]=Carrier&populate[FAQ][populate]=Accordion"
-      );
+      const params = {
+        filters: {
+          Page: { $eq: "Carrier" },
+        },
+        populate: {
+          FAQ: {
+            populate: "Accordion",
+          },
+        },
+      };
+
+      console.log("Fetching data with endpoint and params:", params);
 
       try {
-        const response = await fetchAPI(
-          "/api/faqs?filters[Page][$eq]=Carrier&populate[FAQ][populate]=Accordion"
-        );
+        const response = await fetchAPI("/api/faqs", params);
         console.log("API Response:", response);
         if (response && response.data && response.data.length > 0) {
           setFaqData(response.data[0]);

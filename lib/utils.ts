@@ -1,4 +1,5 @@
 import axios from "axios";
+import qs from "qs";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -9,17 +10,29 @@ export const API_URL = process.env.NEXT_PUBLIC_API_URL;
  * @param endpoint - The Strapi API endpoint (e.g., /api/hero)
  * @returns - The data from the Strapi API
  */
-export const fetchAPI = async (endpoint: string) => {
+export const fetchAPI = async (endpoint, params = {}) => {
   console.log("API URL:", API_URL);
+
+  // Utilisation de qs pour structurer les paramètres de requête
+  const queryString = qs.stringify(params, { encodeValuesOnly: true });
+  const url = `${API_URL}${endpoint}?${queryString}`;
+
   try {
-    const res = await axios.get(`${API_URL}${endpoint}`, {
+    const res = await fetch(url, {
+      method: "GET",
       headers: {
         Accept: "application/json",
         "Cache-Control": "no-cache",
       },
-      // withCredentials: true,
+      // credentials: "include" (ajoutez-le si nécessaire)
     });
-    return res.data;
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
+    const data = await res.json();
+    return data;
   } catch (error) {
     console.error("Error fetching data from Strapi:", error);
     return null;
