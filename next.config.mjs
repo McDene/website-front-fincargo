@@ -10,7 +10,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "website-back-fincargo.onrender.com",
+        hostname: "fincargo-backend-website.onrender.com",
         pathname: "/uploads/**",
       },
     ],
