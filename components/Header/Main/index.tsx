@@ -50,6 +50,8 @@ export default function Header() {
       ? liquidityprovidersMenu
       : carrierMenu;
 
+  const SCROLL_THRESHOLD = 5;
+
   // Sticky Navbar
   const handleScroll = useCallback(() => {
     const currentScrollY = window.scrollY;
@@ -60,10 +62,8 @@ export default function Header() {
       setSticky(false);
     }
 
-    if (currentScrollY > lastScrollY) {
-      setVisible(false);
-    } else {
-      setVisible(true);
+    if (Math.abs(currentScrollY - lastScrollY) > SCROLL_THRESHOLD) {
+      setVisible(currentScrollY < lastScrollY);
     }
 
     setLastScrollY(currentScrollY);

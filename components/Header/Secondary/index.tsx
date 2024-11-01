@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { useEffect, useState, useCallback } from "react";
 import MenuButton from "./MenuButton";
-// import MobileMenu from "./MobileMenu";
 import NavLinks from "./NavLinks";
 
 export default function Header() {
@@ -15,11 +14,12 @@ export default function Header() {
   const [visible, setVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  // Menu items avec des chemins absolus (href)
   const menuItems = [
     { name: "Carriers", href: "/" },
     { name: "Freight Forwarders", href: "/freight-forwarders" },
   ];
+
+  const SCROLL_THRESHOLD = 5;
 
   // Sticky Navbar
   const handleScroll = useCallback(() => {
@@ -31,10 +31,8 @@ export default function Header() {
       setSticky(false);
     }
 
-    if (currentScrollY > lastScrollY) {
-      setVisible(false);
-    } else {
-      setVisible(true);
+    if (Math.abs(currentScrollY - lastScrollY) > SCROLL_THRESHOLD) {
+      setVisible(currentScrollY < lastScrollY);
     }
 
     setLastScrollY(currentScrollY);
