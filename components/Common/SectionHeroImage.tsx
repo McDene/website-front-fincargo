@@ -79,10 +79,10 @@ export default function SectionHeroImage({
           }`}
         >
           <div className="max-w-7xl mb-10">
-            <h2 className="text-sm md:text-5xl text-gray-200 font-bold mb-3 pb-10">
+            <h2 className="text-4xl md:text-5xl text-gray-200 font-bold mb-3 pb-10">
               {title}
             </h2>
-            <h1 className="text-4xl md:text-8xl uppercase font-bold text-start text-white">
+            <h1 className="text-5xl md:text-8xl uppercase font-bold text-start text-white">
               {subtitle}
             </h1>
           </div>

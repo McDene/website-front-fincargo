@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { fetchAPI, cn } from "@/lib/utils";
 import Image from "next/image";
+import ClipLoader from "react-spinners/ClipLoader";
 
 interface JobDescriptionChild {
   text: string;
@@ -32,8 +33,13 @@ interface CareerItemProps {
 
 export default function CareerItem({ slug }: CareerItemProps) {
   const [job, setJob] = useState<Job | null>(null);
+  const [showLoader, setShowLoader] = useState(false);
 
   useEffect(() => {
+    const loaderTimeout = setTimeout(() => {
+      setShowLoader(true);
+    }, 500);
+
     const fetchJob = async () => {
       if (slug) {
         try {
@@ -45,14 +51,27 @@ export default function CareerItem({ slug }: CareerItemProps) {
           }
         } catch (error) {
           console.error("Error fetching job:", error);
+        } finally {
+          clearTimeout(loaderTimeout);
         }
       }
     };
     fetchJob();
+
+    // Cleanup
+    return () => clearTimeout(loaderTimeout);
   }, [slug]);
 
+  if (!job && showLoader) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <ClipLoader color="#3b82f6" size={50} />
+      </div>
+    );
+  }
+
   if (!job) {
-    return <p>Chargement...</p>;
+    return null;
   }
 
   const customLoader = ({ src }: { src: string }) => src;

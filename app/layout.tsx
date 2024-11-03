@@ -4,15 +4,15 @@ import "./globals.css";
 import { Providers } from "./providers";
 
 const prompt = Prompt({
-  weight: ["400", "700", "900"], // Poids disponibles
-  subsets: ["latin"], // Sous-ensemble pour le support des caractères
-  variable: "--font-arimo", // Variable CSS personnalisée pour Arimo
+  weight: ["400", "700", "900"],
+  subsets: ["latin"],
+  variable: "--font-arimo",
 });
 
 const inter = Inter({
-  weight: ["400", "500", "600", "700"], // Poids disponibles
-  subsets: ["latin"], // Sous-ensemble pour le support des caractères
-  variable: "--font-inter", // Variable CSS personnalisée pour Inter
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -32,7 +32,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${prompt.variable} ${inter.variable} antialiased`}>
         <Providers>
-          <main>{children}</main> {/* Contenu des pages */}
+          <main>{children}</main>
         </Providers>
       </body>
     </html>
