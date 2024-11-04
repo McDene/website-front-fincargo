@@ -23,8 +23,21 @@ interface AboutData {
   Content: Content[];
 }
 
+interface HeroData {
+  Title: string;
+  SecondeTitle: string;
+  Paragraph: string;
+  ButtonText: string;
+  ButtonLink: string | null;
+  Image: {
+    id: number;
+    url: string;
+  };
+}
+
 export default function AboutPage() {
   const [aboutData, setAboutData] = useState<AboutData[]>([]);
+  const [heroData, setHeroData] = useState<HeroData | null>(null);
   const [loading, setLoading] = useState(true);
   const [showLoader, setShowLoader] = useState(false);
 
@@ -35,7 +48,16 @@ export default function AboutPage() {
 
     const fetchData = async () => {
       try {
-        const aboutResponse = await fetchAPI("/api/abouts");
+        const [heroResponse, aboutResponse] = await Promise.all([
+          fetchAPI(
+            "/api/hero-images?filters[Page][$eq]=About&populate[Hero][populate]=Image"
+          ),
+          fetchAPI("/api/abouts"),
+        ]);
+
+        if (heroResponse?.data?.length > 0) {
+          setHeroData(heroResponse.data[0].Hero);
+        }
 
         if (aboutResponse?.data) {
           setAboutData(aboutResponse.data);
@@ -62,11 +84,13 @@ export default function AboutPage() {
   }
 
   return (
-    <>
-      <HeaderSecondary />
-      <HeroAbout />
-      <About aboutData={aboutData} />
-      <Footer />
-    </>
+    !loading && (
+      <>
+        <HeaderSecondary />
+        <HeroAbout heroData={heroData} />
+        <About aboutData={aboutData} />
+        <Footer />
+      </>
+    )
   );
 }

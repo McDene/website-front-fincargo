@@ -55,7 +55,7 @@ export default function SectionHero({
   }, []);
 
   return (
-    <section className="relative flex items-start min-h-screen py-32 xl:py-32 lg:py-38 md:py-24 sm:py-20 px-8 overflow-hidden">
+    <section className="relative flex items-start min-h-screen py-32 xl:py-32 lg:py-38 md:py-24 sm:py-20 overflow-hidden">
       <video
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
         src={videoUrl}
@@ -67,7 +67,7 @@ export default function SectionHero({
 
       <div className="absolute top-0 left-0 w-full h-full bg-blue-900 opacity-30 z-0"></div>
 
-      <div className="flex flex-col max-w-7xl justify-center m-auto md:mt-[120px] mt-[50px] w-full">
+      <div className="flex flex-col max-w-7xl justify-center m-auto md:mt-[150px] mt-[100px] w-full">
         <div
           ref={titleRef}
           className={`relative z-10 flex justify-start px-4 sm:px-6 lg:px-8 transition-transform duration-1000 ease-out ${
@@ -75,7 +75,7 @@ export default function SectionHero({
           }`}
         >
           <div className="max-w-7xl mb-10">
-            <h1 className="text-5xl md:text-8xl uppercase font-bold text-start text-white">
+            <h1 className="text-6xl md:text-8xl uppercase font-bold text-start text-white">
               {title}
             </h1>
           </div>
@@ -88,7 +88,7 @@ export default function SectionHero({
           }`}
         >
           <div className="max-w-xl mb-10">
-            <p className="text-lg md:text-xl text-white font-medium mb-6 leading-8">
+            <p className="text-xl md:text-2xl text-white font-medium mb-6 leading-8">
               {paragraph}
             </p>
           </div>
@@ -101,7 +101,7 @@ export default function SectionHero({
         >
           <button
             ref={buttonRef}
-            className="bg-blue-400 text-white px-6 py-3 border-2 border-blue-400 rounded-3xl font-semibold hover:bg-blue-500 hover:border-blue-500 transition duration-300"
+            className="bg-lightBlue text-white px-6 py-3 border-2 border-lightBlue rounded-full font-semibold hover:bg-darkBlue hover:border-darkBlue transition duration-300"
           >
             {buttonText}
           </button>

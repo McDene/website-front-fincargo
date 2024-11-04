@@ -44,12 +44,12 @@ export default function SectionBenefits({
   }, [carouselApi, onSelect]);
 
   return (
-    <section className="py-32 xl:py-32 lg:py-38 md:py-24 sm:py-20 bg-black px-4">
+    <section className="py-32 xl:py-32 lg:py-38 md:py-24 sm:py-20 bg-gray-300 px-4">
       <div className="max-w-7xl mx-auto relative">
-        <h2 className="text-5xl md:text-7xl font-bold text-gray-50 mb-3 uppercase tracking-wide">
+        <h2 className="text-5xl md:text-7xl font-bold text-darkBlue mb-3 uppercase tracking-wide">
           {title}
         </h2>
-        <h3 className="text-2xl  md:text-3xl font-bold text-gray-500 mb-12">
+        <h3 className="text-2xl  md:text-3xl font-bold text-gray-700 mb-12">
           {subtitle}
         </h3>
 
@@ -75,10 +75,10 @@ export default function SectionBenefits({
                   <span className="text-gray-500 mb-6">
                     {currentIndex + 1}/{benefits.length}
                   </span>
-                  <h4 className="text-2xl font-bold text-blue-400 mb-5">
+                  <h4 className="text-2xl font-bold text-darkBlue mb-5">
                     {benefit.title}
                   </h4>
-                  <p className="text-gray-50 leading-8">
+                  <p className="text-gray-700 leading-8">
                     {benefit.description}
                   </p>
                 </div>

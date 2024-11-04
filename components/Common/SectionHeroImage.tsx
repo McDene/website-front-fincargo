@@ -61,7 +61,7 @@ export default function SectionHeroImage({
   }, []);
 
   return (
-    <section className="relative flex items-start min-h-screen py-32 xl:py-32 lg:py-38 md:py-24 sm:py-20 px-8 overflow-hidden">
+    <section className="relative flex items-start min-h-screen py-32 xl:py-32 lg:py-38 md:py-24 sm:py-20 overflow-hidden">
       <Image
         src={imageUrl}
         alt={imageAlt}

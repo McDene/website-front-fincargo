@@ -6,75 +6,91 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 export default function Footer() {
   return (
-    <footer className="pt-32 xl:pt-32 lg:pt-38 md:pt-24 sm:pt-20 pb-10 bg-gray-300 text-gray-900 px-8">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-        {/* Colonne 1: Logo + Adresse + Réseaux sociaux */}
-        <div>
-          <Image
-            src="/logo/logo_fincargo_blue.svg"
-            alt="Fincargo Logo"
-            width={150}
-            height={40}
-          />
-          <p className="mt-4">
-            Rue de L&rsquo;industrie 23
-            <br />
-            1950 Sion
-            <br />
-            Switzerland
-          </p>
-          <div className="flex space-x-4 mt-6">
-            <a
-              href="https://facebook.com"
-              aria-label="Facebook"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <XIcon className="w-6 h-6 text-gray-900 hover:text-blue-400" />
-            </a>
-            <a
-              href="https://twitter.com"
-              aria-label="Twitter"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <LinkedInIcon className=" text-gray-900 hover:text-blue-400" />
-            </a>
+    <footer className="pt-32 xl:pt-32 lg:pt-38 md:pt-24 sm:pt-20 pb-10 bg-darkBlue text-gray-50 px-8">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <div className="flex flex-col justify-between h-full">
+          {/* Logo and Address */}
+          <div>
+            <Image
+              src="/logo/logo_fincargo_white.svg"
+              alt="Fincargo Logo"
+              width={150}
+              height={40}
+            />
+            <p className="mt-4 text-gray-400">
+              Rue de L&rsquo;industrie 23
+              <br />
+              1950 Sion
+              <br />
+              Switzerland
+            </p>
+
+            {/* Social Icons */}
+            <div className="flex space-x-4 mt-6">
+              <a
+                href="https://facebook.com"
+                aria-label="Facebook"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-blue-400 transition-colors"
+              >
+                <XIcon className="w-6 h-6 text-gray-400" />
+              </a>
+              <a
+                href="https://linkedin.com"
+                aria-label="LinkedIn"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-blue-400 transition-colors"
+              >
+                <LinkedInIcon className="w-6 h-6 text-gray-400" />
+              </a>
+            </div>
+          </div>
+
+          {/* Label Image at the Bottom */}
+          <div className="mt-8">
+            <Image
+              src="/images/swiss-made-software.svg"
+              alt="Swiss Made Software Label"
+              width={1000}
+              height={1000}
+            />
           </div>
         </div>
 
         {/* Colonne 2: Company + Liens */}
         <div>
-          <h4 className="text-lg font-bold text-blue-900 mb-4 uppercase">
+          <h4 className="text-lg font-bold text-blue-200 mb-4 uppercase">
             Company
           </h4>
           <ul className="space-y-2">
             <li>
-              <Link href="/about" className="hover:text-blue-900">
+              <Link href="/about" className="hover:text-gray-400">
                 About Us
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="hover:text-blue-900">
+              <Link href="/contact" className="hover:text-gray-400">
                 Contact
               </Link>
             </li>
             <li>
               <Link
                 href="/confidentiality-security-notice"
-                className="hover:text-blue-900"
+                className="hover:text-gray-400"
               >
                 Confidentialitity & secutiity
               </Link>
             </li>
             <br />
             <li>
-              <Link href="/legal-notice" className="hover:text-blue-900">
+              <Link href="/legal-notice" className="hover:text-gray-400">
                 Legal notice
               </Link>
             </li>
             <li>
-              <Link href="/cookies" className="hover:text-blue-900">
+              <Link href="/cookies" className="hover:text-gray-400">
                 Cookies policy
               </Link>
             </li>
@@ -108,7 +124,7 @@ export default function Footer() {
 
         {/* Colonne 3: Carriers + Liens */}
         <div>
-          <h4 className="text-lg font-bold text-blue-900 mb-4 uppercase">
+          <h4 className="text-lg font-bold text-blue-200 mb-4 uppercase">
             Carriers
           </h4>
           <ul className="space-y-2">
@@ -150,7 +166,7 @@ export default function Footer() {
 
         {/* Colonne 4: Freight Forwarders + Liens */}
         <div>
-          <h4 className="text-lg font-bold text-blue-900 mb-4 uppercase">
+          <h4 className="text-lg font-bold text-blue-200 mb-4 uppercase">
             Freight Forwarders
           </h4>
           <ul className="space-y-2">
@@ -206,8 +222,8 @@ export default function Footer() {
         </div>
 
         {/* Colonne 5: Liquidity Providers + Liens */}
-        <div>
-          <h4 className="text-lg font-bold text-blue-900 mb-4 uppercase">
+        {/* <div>
+          <h4 className="text-lg font-bold text-blue-200 mb-4 uppercase">
             Liquidity Providers
           </h4>
           <ul className="space-y-2">
@@ -249,7 +265,7 @@ export default function Footer() {
               </Link>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
       <div className="mt-12 text-center text-gray-500 text-sm">
         &copy; {new Date().getFullYear()} Fincargo. All rights reserved.

@@ -34,7 +34,7 @@ export default function SectionFaq({ title, subtitle, faqs }: FaqProps) {
         <h4 className="text-gray-500 text-xl pb-8 text-center">{subtitle}</h4>
 
         {/* Affichage du titre */}
-        <h2 className="text-3xl md:text-7xl font-bold text-center text-blue-400 uppercase mb-10 tracking-wide">
+        <h2 className="text-3xl md:text-7xl font-bold text-center text-darkBlue uppercase mb-10 tracking-wide">
           {title}
         </h2>
 

@@ -63,7 +63,7 @@ export default function SectionKeyFeature({
       <div className="max-w-7xl mx-auto">
         <h2
           ref={titleRef}
-          className={`text-5xl md:text-6xl font-bold text-black uppercase text-center mb-14 transform transition-all duration-1000 ease-out ${
+          className={`text-5xl md:text-6xl font-bold text-darkBlue uppercase text-center mb-14 transform transition-all duration-1000 ease-out ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
           }`}
         >

@@ -1,9 +1,6 @@
 "use client";
 
 import SectionHeroImage from "@/components/Common/SectionHeroImage";
-import { useState, useEffect } from "react";
-import { fetchAPI } from "@/lib/utils";
-import SkeletonLoader from "@/components/SkeletonLoader";
 
 interface Image {
   id: number;
@@ -19,45 +16,17 @@ interface HeroData {
   Image: Image;
 }
 
-export default function HeroAbout() {
-  const [heroData, setHeroData] = useState<HeroData | null>(null);
-  const [loading, setLoading] = useState(true);
+interface HeroAboutProps {
+  heroData: HeroData | null;
+}
 
-  useEffect(() => {
-    const getHeroData = async () => {
-      try {
-        const response = await fetchAPI(
-          "/api/hero-images?filters[Page][$eq]=About&populate[Hero][populate]=Image"
-        );
-
-        if (response && response.data && response.data.length > 0) {
-          setHeroData(response.data[0].Hero);
-        }
-      } catch (error) {
-        console.error("Error fetching hero data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getHeroData();
-  }, []);
+export default function HeroAbout({ heroData }: HeroAboutProps) {
+  if (!heroData) return null;
 
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-  const imageUrl =
-    heroData && heroData.Image && heroData.Image.url
-      ? heroData.Image.url.startsWith("http")
-        ? heroData.Image.url
-        : `${baseUrl}${heroData.Image.url}`
-      : "";
-
-  if (loading) {
-    return <SkeletonLoader />;
-  }
-
-  if (!heroData) {
-    return <div>No hero data available.</div>;
-  }
+  const imageUrl = heroData.Image.url.startsWith("http")
+    ? heroData.Image.url
+    : `${baseUrl}${heroData.Image.url}`;
 
   return (
     <SectionHeroImage
