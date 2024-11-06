@@ -307,3 +307,17 @@ h6 {
   color: red;
   font-weight: bold;
 }
+
+/* Carrousel pagination */
+
+/* CSS pour les puces de pagination */
+.custom-pagination .swiper-pagination-bullet {
+  background-color: #3333;
+  opacity: 1;
+}
+
+.custom-pagination .swiper-pagination-bullet-active {
+  background-color: #223c60;
+}
+
+/* Flipe benefit  */

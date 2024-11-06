@@ -67,7 +67,7 @@ export default function SectionHero({
 
       <div className="absolute top-0 left-0 w-full h-full bg-blue-900 opacity-30 z-0"></div>
 
-      <div className="flex flex-col max-w-7xl justify-center m-auto md:mt-[150px] mt-[100px] w-full">
+      <div className="flex flex-col max-w-7xl justify-center m-auto md:mt-[100px] mt-[100px] w-full">
         <div
           ref={titleRef}
           className={`relative z-10 flex justify-start px-4 sm:px-6 lg:px-8 transition-transform duration-1000 ease-out ${
@@ -75,7 +75,7 @@ export default function SectionHero({
           }`}
         >
           <div className="max-w-7xl mb-10">
-            <h1 className="text-6xl md:text-8xl uppercase font-bold text-start text-white">
+            <h1 className="text-7xl md:text-9xl uppercase font-bold text-start text-white">
               {title}
             </h1>
           </div>

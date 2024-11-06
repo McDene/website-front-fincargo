@@ -3,7 +3,6 @@
 import SectionHero from "@/components/Common/SectionHero";
 import { useState, useEffect } from "react";
 import { fetchAPI } from "@/lib/utils";
-import SkeletonLoader from "@/components/SkeletonLoader";
 
 interface HeroData {
   Title: string;
@@ -46,7 +45,7 @@ export default function HeroC() {
       : "";
 
   if (loading) {
-    return <SkeletonLoader />;
+    return null;
   }
 
   if (!heroData) {

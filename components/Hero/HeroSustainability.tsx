@@ -3,7 +3,6 @@
 import SectionHeroImage from "@/components/Common/SectionHeroImage";
 import { useState, useEffect } from "react";
 import { fetchAPI } from "@/lib/utils";
-import SkeletonLoader from "@/components/SkeletonLoader";
 
 interface Image {
   id: number;
@@ -50,7 +49,7 @@ export default function HeroSustainability() {
       : "";
 
   if (loading) {
-    return <SkeletonLoader />;
+    return null;
   }
 
   if (!heroData) {

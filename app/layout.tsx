@@ -30,7 +30,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${prompt.variable} ${inter.variable} antialiased`}>
+      <body
+        className={`${prompt.variable} ${inter.variable} antialiased bg-darkBlue`}
+      >
         <Providers>
           <main>{children}</main>
         </Providers>

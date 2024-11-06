@@ -59,12 +59,12 @@ export default function SectionKeyFeature({
   return (
     <section
       id="feature"
-      className="py-24 bg-gradient-to-b from-white to-gray-300 px-4 relative"
+      className="py-20 md:py-28 bg-gradient-to-b from-white to-gray-300 px-4 relative"
     >
       <div className="max-w-7xl mx-auto">
         <h2
           ref={titleRef}
-          className={`text-5xl md:text-6xl font-bold text-darkBlue uppercase text-center mb-20 transform transition-all duration-1000 ease-out ${
+          className={`text-6xl md:text-8xl font-bold text-darkBlue uppercase text-center mb-20 transform transition-all duration-1000 ease-out ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
           }`}
         >
@@ -75,9 +75,17 @@ export default function SectionKeyFeature({
           grabCursor
           centeredSlides
           slidesPerView={2}
+          breakpoints={{
+            "@0.00": {
+              slidesPerView: 1,
+            },
+            "@0.5": {
+              slidesPerView: 2,
+            },
+          }}
           effect="coverflow"
           loop
-          pagination={{ clickable: true }}
+          pagination={{ clickable: true, el: ".custom-pagination" }}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
           coverflowEffect={{
             rotate: 0,
@@ -97,7 +105,7 @@ export default function SectionKeyFeature({
             return (
               <SwiperSlide
                 key={card.id}
-                className="relative flex items-end justify-center rounded-3xl overflow-hidden shadow-lg transition-transform transform hover:scale-105"
+                className="relative flex items-end justify-center rounded-3xl overflow-hidden transition-transform transform hover:scale-105"
               >
                 <Image
                   src={imageUrl}
@@ -107,26 +115,21 @@ export default function SectionKeyFeature({
                   className="w-full h-full object-cover rounded-3xl absolute inset-0 -z-10"
                   unoptimized
                 />
+                <div className="absolute top-0 left-0 right-0 h-[16rem] pointer-events-none bg-gradient-to-b from-black/40 via-black/30 to-transparent backdrop-blur-sm"></div>
 
-                {/* Gradient Blur Overlay for Smooth Transition */}
-                <div className="absolute top-0 left-0 right-0 h-2/5 pointer-events-none bg-gradient-to-b from-black/40 via-black/10 to-transparent backdrop-blur-sm"></div>
-
-                {/* Text Overlay */}
-                <div className="relative z-20 text-center text-white w-full px-2">
-                  <h2 className="relative text-4xl text-darkBlue py-10 font-semibold tracking-wide mb-1 text-gold">
+                <div className="relative z-20 w-full px-5">
+                  <h2 className="relative text-center text-3xl md:text-5xl text-gray-100 py-10  tracking-wide ">
                     {card.Title}
                   </h2>
-                  <p className="relative text-xl text-gray-100 font-light">
+                  <p className="relative text-lg text-gray-100 font-light">
                     {card.Content}
                   </p>
                 </div>
-
-                {/* Border Effect */}
-                <div className="absolute  opacity-75 shadow-lg"></div>
               </SwiperSlide>
             );
           })}
         </Swiper>
+        <div className="custom-pagination text-center mt-4"></div>
       </div>
     </section>
   );

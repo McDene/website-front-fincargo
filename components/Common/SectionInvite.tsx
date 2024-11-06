@@ -24,11 +24,11 @@ export default function SectionInvite({ inviteData }: SectionInviteProps) {
   return (
     <section
       id="invite"
-      className="py-28 px-6 bg-gradient-to-b from-gray-300 to-white"
+      className="py-20 md:py-28 px-6 bg-gradient-to-b from-gray-300 to-white"
     >
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12">
-        <div className="lg:w-1/2 text-center lg:text-left space-y-6">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-semibold leading-tight text-darkBlue uppercase">
+        <div className="lg:w-1/2 text-center lg:text-left space-y-8">
+          <h2 className="text-6xl sm:text-5xl md:text-8xl font-semibold leading-tight mb-10 md:mb-20 text-darkBlue uppercase">
             <span className="text-gray-900">Invite your</span>{" "}
             {inviteData.Title}
           </h2>
