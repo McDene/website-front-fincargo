@@ -7,6 +7,7 @@ import HeroFF from "@/components/Hero/HeroFF";
 import FeatureFF from "@/components/Feature/FeatureFF";
 // import BenefitFF from "@/components/Benefit/BenefitFF";
 import InviteFF from "@/components/Invite/InviteFF";
+import FaqFF from "@/components/FAQs/FaqFF";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
 import Grid from "@/components/Gride/Gride";
@@ -16,7 +17,7 @@ export default function FreightForwardersPage() {
   const [featureData, setFeatureData] = useState(null);
   // const [benefitData, setBenefitData] = useState(null);
   const [inviteData, setInviteData] = useState(null);
-  // const [faqData, setFaqData] = useState(null);
+  const [faqData, setFaqData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showLoader, setShowLoader] = useState(false);
 
@@ -32,7 +33,7 @@ export default function FreightForwardersPage() {
           featureResponse,
           // benefitResponse,
           inviteResponse,
-          // faqResponse,
+          faqResponse,
         ] = await Promise.all([
           fetchAPI(
             "/api/hero-videos?filters[Page][$eq]=FreightForwarders&populate[Hero][populate]=Video"
@@ -46,16 +47,16 @@ export default function FreightForwardersPage() {
           fetchAPI(
             "/api/invites?filters[Page][$eq]=FreightForwarders&populate=Image"
           ),
-          // fetchAPI(
-          //   "/api/faqs?filters[Page][$eq]=FreightForwarder&populate[FAQ][populate]=Accordion"
-          // ),
+          fetchAPI(
+            "/api/faqs?filters[Page][$eq]=FreightForwarder&populate[FAQ][populate]=Accordion"
+          ),
         ]);
 
         setHeroData(heroResponse?.data?.[0]?.Hero || null);
         setFeatureData(featureResponse?.data?.[0] || null);
         // setBenefitData(benefitResponse?.data?.[0] || null);
         setInviteData(inviteResponse?.data?.[0] || null);
-        // setFaqData(faqResponse?.data?.[0] || null);
+        setFaqData(faqResponse?.data?.[0] || null);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -87,8 +88,7 @@ export default function FreightForwardersPage() {
 
         {/* {benefitData && <BenefitFF benefitData={benefitData} />} */}
         {inviteData && <InviteFF inviteData={inviteData} />}
-        {/* {faqData && <FaqFF faqData={faqData} />}  */}
-
+        {faqData && <FaqFF faqData={faqData} />}
         <Footer />
       </>
     )
