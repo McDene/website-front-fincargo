@@ -78,16 +78,33 @@ export default function FreightForwardersPage() {
     );
   }
 
+  // Vérifiez chaque donnée avant de rendre les composants enfants
   return (
     !loading && (
       <>
         <Header />
-        {heroData && <HeroFF heroData={heroData} />}
-        {featureData && <FeatureFF featureData={featureData} />}
+        {heroData ? (
+          <HeroFF heroData={heroData} />
+        ) : (
+          <p>Hero data unavailable.</p>
+        )}
+        {featureData ? (
+          <FeatureFF featureData={featureData} />
+        ) : (
+          <p>Feature data unavailable.</p>
+        )}
         <Grid />
-        {benefitData && <BenefitFF benefitData={benefitData} />}
-        {inviteData && <InviteFF inviteData={inviteData} />}
-        {faqData && <FaqFF faqData={faqData} />}
+        {benefitData ? (
+          <BenefitFF benefitData={benefitData} />
+        ) : (
+          <p>Benefit data unavailable.</p>
+        )}
+        {inviteData ? (
+          <InviteFF inviteData={inviteData} />
+        ) : (
+          <p>Invite data unavailable.</p>
+        )}
+        {faqData ? <FaqFF faqData={faqData} /> : <p>FAQ data unavailable.</p>}
         <Footer />
       </>
     )
