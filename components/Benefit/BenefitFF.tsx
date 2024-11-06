@@ -33,9 +33,12 @@ const formatBenefitData = (benefitData: BenefitData | null) => {
 
   return benefitData.Benefit.Card.map((card) => ({
     id: card.id,
-    image: card.Image.url.startsWith("http")
-      ? card.Image.url
-      : `${process.env.NEXT_PUBLIC_API_URL}${card.Image.url}`,
+    image:
+      card.Image && card.Image.url
+        ? card.Image.url.startsWith("http")
+          ? card.Image.url
+          : `${process.env.NEXT_PUBLIC_API_URL}${card.Image.url}`
+        : "/images/truck_fincargo_carrier.jpeg",
     title: card.Title,
     description: card.Content,
   }));
