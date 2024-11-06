@@ -10,7 +10,6 @@ import FaqFF from "@/components/FAQs/FaqFF";
 import InviteFF from "@/components/Invite/InviteFF";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
-
 import Grid from "@/components/Gride/Gride";
 
 export default function FreightForwardersPage() {
@@ -33,7 +32,7 @@ export default function FreightForwardersPage() {
           heroResponse,
           featureResponse,
           benefitResponse,
-          inviteRespnse,
+          inviteResponse,
           faqResponse,
         ] = await Promise.all([
           fetchAPI(
@@ -53,25 +52,11 @@ export default function FreightForwardersPage() {
           ),
         ]);
 
-        if (heroResponse?.data?.length > 0) {
-          setHeroData(heroResponse.data[0].Hero || {});
-        }
-
-        if (featureResponse?.data?.length > 0) {
-          setFeatureData(featureResponse.data[0] || {});
-        }
-
-        if (benefitResponse?.data?.length > 0) {
-          setBenefitData(benefitResponse.data[0] || {});
-        }
-
-        if (inviteRespnse?.data?.length > 0) {
-          setInviteData(inviteRespnse.data[0] || {});
-        }
-
-        if (faqResponse?.data?.length > 0) {
-          setFaqData(faqResponse.data[0] || {});
-        }
+        setHeroData(heroResponse?.data?.[0]?.Hero || null);
+        setFeatureData(featureResponse?.data?.[0] || null);
+        setBenefitData(benefitResponse?.data?.[0] || null);
+        setInviteData(inviteResponse?.data?.[0] || null);
+        setFaqData(faqResponse?.data?.[0] || null);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
