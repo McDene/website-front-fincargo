@@ -101,7 +101,7 @@ export default function SectionHero({
         >
           <button
             ref={buttonRef}
-            className="bg-lightBlue text-white px-6 py-3 border-2 border-lightBlue rounded-full font-semibold hover:bg-darkBlue hover:border-darkBlue transition duration-300"
+            className="mt-6 px-6 py-3 bg-lightBlue text-white rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:bg-darkBlue "
           >
             {buttonText}
           </button>

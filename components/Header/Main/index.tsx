@@ -23,17 +23,17 @@ export default function Header() {
       : "Carrier";
 
   const carrierMenu = [
-    { name: "What is Fincargo", anchor: "../#whatisfincargo" },
-    { name: "Benefits", anchor: "../#fincargo" },
-    { name: "How to use", anchor: "../#aide" },
-    { name: "FAQ's", anchor: "../#aide" },
+    { name: "Features", anchor: "../#feature" },
+    { name: "Benefits", anchor: "../#benefit" },
+    { name: "Invite your freight forwarder", anchor: "../#invite" },
+    { name: "FAQ's", anchor: "../#faqs" },
   ];
 
   const freightforwarderMenu = [
-    { name: "Whats is Fincargo", anchor: "#whatisfincargo" },
-    { name: "Benefits", anchor: "#prerequis" },
-    { name: "How it works", anchor: "#prerequis" },
-    { name: "Invite your subcontractors", anchor: "#prerequis" },
+    { name: "Features", anchor: "#feature" },
+    { name: "Benefits", anchor: "#benefit" },
+    { name: "Invite your subcontractors", anchor: "#invite" },
+    { name: "FAQ's", anchor: "#faqs" },
   ];
 
   const liquidityprovidersMenu = [

@@ -44,7 +44,10 @@ export default function SectionBenefits({
   }, [carouselApi, onSelect]);
 
   return (
-    <section className="py-32 xl:py-32 lg:py-38 md:py-24 sm:py-20 bg-gray-300 px-4">
+    <section
+      id="benefit"
+      className="py-32 xl:py-32 lg:py-38 md:py-24 sm:py-20  bg-gray-300  px-4"
+    >
       <div className="max-w-7xl mx-auto relative">
         <h2 className="text-5xl md:text-7xl font-bold text-darkBlue mb-3 uppercase tracking-wide">
           {title}

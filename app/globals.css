@@ -146,3 +146,164 @@ h6 {
 .line-break {
   white-space: pre-wrap;
 }
+
+/* Carousel */
+
+.carousel .swiper-wrapper,
+.preview .swiper-wrapper,
+.breakpoint .swiper-wrapper,
+.coverflow .swiper-wrapper {
+  padding-bottom: 3rem;
+}
+
+/* rewind */
+.fade,
+.rewind {
+  margin-left: initial !important;
+  margin-right: initial !important;
+}
+
+.fade .swiper-button-next::after,
+.fade .swiper-button-prev::after,
+.rewind .swiper-button-next::after,
+.rewind .swiper-button-prev::after {
+  content: "";
+}
+
+.fade .swiper-button-prev::before,
+.rewind .swiper-button-prev::before {
+  content: ">";
+}
+
+.fade .swiper-button-next::before,
+.rewind .swiper-button-next::before {
+  content: "<";
+}
+
+.fade .swiper-button-prev,
+.fade .swiper-button-next,
+.rewind .swiper-button-prev,
+.rewind .swiper-button-next {
+  position: absolute;
+  top: initial;
+  bottom: 0;
+  color: white;
+}
+
+.rewind .swiper-button-next {
+  left: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  background-color: crimson;
+  right: initial;
+}
+
+.rewind .swiper-button-prev {
+  right: initial;
+  width: 3rem;
+  height: 3rem;
+  background-color: crimson;
+  left: 6rem;
+}
+
+/* fade */
+
+.fade .swiper-button-prev,
+.fade .swiper-button-next {
+  background-color: cadetblue;
+}
+
+.fade .swiper-button-next {
+  left: initial;
+  width: 3rem;
+  height: 3rem;
+  background-color: indigo;
+  right: 6rem;
+}
+
+.fade .swiper-button-prev {
+  right: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  background-color: indigo;
+  left: initial;
+}
+
+.fade .swiper-pagination {
+  position: absolute;
+  bottom: initial;
+  left: initial;
+  top: 0;
+  right: 1.5rem;
+  width: initial;
+  font-weight: bold;
+}
+
+@keyframes fadeIn {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}
+
+.fade .date,
+.fade .title,
+.fade .btn {
+  opacity: 0;
+}
+
+.fade .swiper-slide-active .date {
+  opacity: 1;
+  animation: fadeIn 0.4s cubic-bezier(0.54, 1.3, 0.63, 1.34) 0.3s backwards;
+}
+
+.fade .swiper-slide-active .title {
+  opacity: 1;
+  animation: fadeIn 0.4s cubic-bezier(0.64, 1.3, 0.63, 1.34) 0.5s backwards;
+}
+
+.fade .swiper-slide-active .btn {
+  opacity: 1;
+  animation: fadeIn 0.4s cubic-bezier(0.54, 1.3, 0.63, 1.34) 0.7s backwards;
+}
+
+/* Preview slide */
+
+@keyframes zoomOut {
+  0% {
+    transform: translateY(-25px) scale(0);
+    opacity: 0;
+  }
+}
+
+.preview .swiper-pagination-bullet-active {
+  background: red;
+}
+
+.preview .swiper-slide-active {
+  box-shadow: 1px 4px 4px #f5f5f5;
+  background-color: #fff;
+  border: 1px solid gray;
+  transform: none;
+  border-radius: 10px;
+  animation: zoomOut 0.4s backwards;
+}
+
+/* Grid */
+.gridCol .swiper-wrapper {
+  flex-direction: row !important;
+}
+
+.gridCol .swiper-slide {
+  align-self: flex-end;
+  font-size: 18px;
+  background: #fff;
+  /* Change column as you want by calc 3 <== examble */
+  height: calc((100% - 30px) / 3) !important;
+}
+
+.gridCol .swiper-button-prev,
+.gridCol .swiper-button-next {
+  color: red;
+  font-weight: bold;
+}
