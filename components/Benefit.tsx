@@ -22,7 +22,7 @@ interface BenefitData {
   Benefit: Benefit;
 }
 
-interface BenefitFFProps {
+interface BenefitProps {
   benefitData: BenefitData | null;
 }
 
@@ -44,7 +44,7 @@ const formatBenefitData = (benefitData: BenefitData | null) => {
   }));
 };
 
-export default function BenefitFF({ benefitData }: BenefitFFProps) {
+export default function Benefit({ benefitData }: BenefitProps) {
   if (!benefitData || !Array.isArray(benefitData.Benefit.Card)) {
     return null;
   }

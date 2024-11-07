@@ -8,7 +8,7 @@ interface InviteData {
   Paragraph: string;
   ButtonText: string;
   ButtonLink: string | null;
-  Image: {
+  Image?: {
     url: string;
   };
 }
@@ -21,9 +21,12 @@ export default function SectionInvite({ inviteData }: SectionInviteProps) {
   const [isVisible, setIsVisible] = useState(false);
   const contentRef = useRef<HTMLDivElement | null>(null);
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
-  const imageUrl = inviteData.Image.url.startsWith("http")
-    ? inviteData.Image.url
-    : `${API_URL}${inviteData.Image.url}`;
+  const imageUrl =
+    inviteData.Image && inviteData.Image.url.startsWith("http")
+      ? inviteData.Image.url
+      : inviteData.Image
+      ? `${API_URL}${inviteData.Image.url}`
+      : ""; // Default to an empty string if Image or url is undefined
 
   useEffect(() => {
     const observerOptions = {
@@ -80,16 +83,18 @@ export default function SectionInvite({ inviteData }: SectionInviteProps) {
           </button>
         </div>
 
-        <div className="lg:w-1/2 overflow-hidden rounded-3xl shadow-lg transform transition duration-500 hover:scale-105">
-          <Image
-            src={imageUrl}
-            alt={inviteData.Title}
-            width={700}
-            height={700}
-            className="w-full h-full object-cover rounded-3xl"
-            unoptimized
-          />
-        </div>
+        {imageUrl && (
+          <div className="lg:w-1/2 overflow-hidden rounded-3xl shadow-lg transform transition duration-500 hover:scale-105">
+            <Image
+              src={imageUrl}
+              alt={inviteData.Title}
+              width={700}
+              height={700}
+              className="w-full h-full object-cover rounded-3xl"
+              unoptimized
+            />
+          </div>
+        )}
       </div>
     </section>
   );

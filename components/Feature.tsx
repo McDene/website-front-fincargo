@@ -19,11 +19,11 @@ interface FeatureData {
   Feature: Feature;
 }
 
-interface FeatureFFProps {
+interface FeatureProps {
   featureData: FeatureData | null;
 }
 
-export default function FeatureFF({ featureData }: FeatureFFProps) {
+export default function Feature({ featureData }: FeatureProps) {
   if (!featureData || !Array.isArray(featureData.Feature.Card)) {
     return null;
   }

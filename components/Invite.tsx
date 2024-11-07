@@ -1,4 +1,3 @@
-// InviteFF.tsx
 import SectionInvite from "@/components/Common/SectionInvite";
 
 interface Invite {
@@ -11,10 +10,10 @@ interface Invite {
   };
 }
 
-interface InviteFFProps {
+interface InviteProps {
   inviteData: Invite | null;
 }
 
-export default function InviteFF({ inviteData }: InviteFFProps) {
+export default function Invite({ inviteData }: InviteProps) {
   return inviteData ? <SectionInvite inviteData={inviteData} /> : null;
 }

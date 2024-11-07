@@ -17,11 +17,11 @@ interface FaqData {
   };
 }
 
-interface FaqFFProps {
+interface FaqProps {
   faqData: FaqData | null;
 }
 
-export default function FaqFF({ faqData }: FaqFFProps) {
+export default function Faq({ faqData }: FaqProps) {
   if (!faqData || !faqData.FAQ || !Array.isArray(faqData.FAQ.Accordion)) {
     return null;
   }

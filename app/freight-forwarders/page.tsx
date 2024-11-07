@@ -3,14 +3,13 @@
 import { useEffect, useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import Header from "@/components/Header/Main";
-import HeroFF from "@/components/Hero/HeroFF";
-import FeatureFF from "@/components/Feature/FeatureFF";
-import BenefitFF from "@/components/Benefit/BenefitFF";
-import InviteFF from "@/components/Invite/InviteFF";
-import FaqFF from "@/components/FAQs/FaqFF";
+import Hero from "@/components/Hero";
+import Feature from "@/components/Feature";
+import Benefit from "@/components/Benefit";
+import Invite from "@/components/Invite";
+import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
-// import Grid from "@/components/Gride/Gride";
 
 export default function FreightForwardersPage() {
   const [heroData, setHeroData] = useState(null);
@@ -82,13 +81,11 @@ export default function FreightForwardersPage() {
     !loading && (
       <>
         <Header />
-        {heroData && <HeroFF heroData={heroData} />}
-        {featureData && <FeatureFF featureData={featureData} />}
-        {/* <Grid /> */}
-
-        {benefitData && <BenefitFF benefitData={benefitData} />}
-        {inviteData && <InviteFF inviteData={inviteData} />}
-        {faqData && <FaqFF faqData={faqData} />}
+        {heroData && <Hero heroData={heroData} />}
+        {featureData && <Feature featureData={featureData} />}
+        {benefitData && <Benefit benefitData={benefitData} />}
+        {inviteData && <Invite inviteData={inviteData} />}
+        {faqData && <Faq faqData={faqData} />}
         <Footer />
       </>
     )
