@@ -3,41 +3,14 @@
 import { useState, useEffect } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import HeaderSecondary from "@/components/Header/Secondary";
-import HeroAbout from "@/components/Hero/HeroAbout";
-import About from "@/components/About/About";
+import HeroImage from "@/components/HeroImage";
+import About from "@/components/About";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
 
-interface ContentChild {
-  text: string;
-}
-
-interface Content {
-  type: string;
-  children: ContentChild[];
-}
-
-interface AboutData {
-  id: number;
-  Title: string;
-  Content: Content[];
-}
-
-interface HeroData {
-  Title: string;
-  SecondeTitle: string;
-  Paragraph: string;
-  ButtonText: string;
-  ButtonLink: string | null;
-  Image: {
-    id: number;
-    url: string;
-  };
-}
-
 export default function AboutPage() {
-  const [aboutData, setAboutData] = useState<AboutData[]>([]);
-  const [heroData, setHeroData] = useState<HeroData | null>(null);
+  const [heroData, setHeroData] = useState(null);
+  const [aboutData, setAboutData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showLoader, setShowLoader] = useState(false);
 
@@ -55,13 +28,8 @@ export default function AboutPage() {
           fetchAPI("/api/abouts"),
         ]);
 
-        if (heroResponse?.data?.length > 0) {
-          setHeroData(heroResponse.data[0].Hero);
-        }
-
-        if (aboutResponse?.data) {
-          setAboutData(aboutResponse.data);
-        }
+        setHeroData(heroResponse?.data?.[0]?.Hero || null);
+        setAboutData(aboutResponse?.data || []);
       } catch (error) {
         console.error("Error fetching about data:", error);
       } finally {
@@ -87,8 +55,8 @@ export default function AboutPage() {
     !loading && (
       <>
         <HeaderSecondary />
-        <HeroAbout heroData={heroData} />
-        <About aboutData={aboutData} />
+        {heroData && <HeroImage heroImageData={heroData} />}
+        {aboutData && <About aboutData={aboutData} />}
         <Footer />
       </>
     )

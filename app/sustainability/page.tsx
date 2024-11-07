@@ -43,8 +43,7 @@ export default function SustainabilityPage() {
   if (loading && showLoader) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <ClipLoader color="#000" loading={showLoader} size={150} />
-        <p>Loading data...</p>
+        <ClipLoader color="#3b82f6" size={50} />
       </div>
     );
   }

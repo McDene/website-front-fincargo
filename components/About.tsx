@@ -52,7 +52,7 @@ export default function About({ aboutData = [] }: AboutProps) {
                 viewport={{ once: true, amount: 0.5 }}
               >
                 <motion.h2
-                  className="text-5xl md:text-7xl font-semibold uppercase tracking-wide text-center lg:text-left"
+                  className="text-5xl md:text-7xl text-darkBlue font-semibold uppercase tracking-wide text-center lg:text-left"
                   variants={index % 2 === 0 ? fadeInFromLeft : fadeInFromRight}
                 >
                   {section.Title}
