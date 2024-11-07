@@ -55,7 +55,10 @@ export default function SectionHero({
   }, []);
 
   return (
-    <section className="relative flex items-start min-h-screen py-32 xl:py-32 lg:py-38 md:py-24 sm:py-20 overflow-hidden">
+    <section
+      className="relative flex items-start min-h-screen py-32 xl:py-32 lg:py-38 md:py-24 sm:py-20 overflow-hidden"
+      style={{ height: "90dvh" }} // Utilisation de 100dvh pour les appareils mobiles
+    >
       <video
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
         src={videoUrl}
@@ -65,9 +68,9 @@ export default function SectionHero({
         playsInline
       />
 
-      <div className="absolute top-0 left-0 w-full h-full bg-blue-900 opacity-30 z-0"></div>
+      <div className="absolute top-0 left-0 w-full h-full bg-blue-900 opacity-30 z-0 overflow-hidden"></div>
 
-      <div className="flex flex-col max-w-7xl justify-center m-auto md:mt-[100px] mt-[100px] w-full">
+      <div className="flex flex-col max-w-7xl justify-center m-auto md:mt-[100px] mt-[30px] w-full">
         <div
           ref={titleRef}
           className={`relative z-10 flex justify-start px-4 sm:px-6 lg:px-8 transition-transform duration-1000 ease-out ${

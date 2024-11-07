@@ -162,7 +162,7 @@ export default function Header() {
               <button
                 className={`px-4 py-2 rounded-3xl border-2 transition duration-300 ${
                   sticky
-                    ? "border-blue-400 bg-blue-400 text-white hover:bg-gray-200 hover:border-gray-200 hover:text-blue-950"
+                    ? "border-darkBlue bg-darkBlue text-white hover:bg-lightBlue hover:border-lightBlue "
                     : "border-white bg-white text-blue-950 hover:bg-gray-200 hover:border-gray-200"
                 } `}
               >
@@ -171,7 +171,7 @@ export default function Header() {
               <button
                 className={`px-4 py-2 rounded-3xl transition duration-300 ${
                   sticky
-                    ? "border-blue-400 text-blue-400 hover:bg-gray-100"
+                    ? "border-blue-400 text-darkBlue hover:bg-gray-100"
                     : "border-white text-white hover:text-blue-950"
                 }`}
               >
