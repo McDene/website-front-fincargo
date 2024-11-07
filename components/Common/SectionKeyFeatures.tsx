@@ -66,7 +66,7 @@ export default function SectionKeyFeature({
     <section
       ref={sectionRef}
       id="feature"
-      className={`py-20 md:py-28 bg-gradient-to-b from-white to-gray-300 px-4 relative transform transition-all duration-1000 ease-out ${
+      className={`py-16 md:py-28 bg-gradient-to-b from-white to-gray-300 px-4 relative transform transition-all duration-1000 ease-out ${
         isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
       }`}
     >

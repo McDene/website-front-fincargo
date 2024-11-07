@@ -54,7 +54,7 @@ export default function SectionFaq({ title, subtitle, faqs }: FaqProps) {
   }, []);
 
   return (
-    <section id="faqs" className="py-20 md:py-28 bg-white px-6">
+    <section id="faqs" className="pt-16 pb-28 md:py-28 bg-white px-6">
       <div
         ref={contentRef}
         className={`max-w-5xl mx-auto transition-transform duration-1000 ease-out ${

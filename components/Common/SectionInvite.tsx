@@ -59,7 +59,7 @@ export default function SectionInvite({ inviteData }: SectionInviteProps) {
   return (
     <section
       id="invite"
-      className="py-20 md:py-28 px-6 bg-gradient-to-b from-gray-300 to-white"
+      className="py-16 md:py-28 px-6 bg-gradient-to-b from-gray-300 to-white"
     >
       <div
         ref={contentRef}
@@ -68,7 +68,7 @@ export default function SectionInvite({ inviteData }: SectionInviteProps) {
         }`}
       >
         <div className="lg:w-1/2 text-center lg:text-left space-y-8">
-          <h2 className="text-5xl md:text-7xl font-semibold leading-tight mb-10 md:mb-20 text-darkBlue uppercase">
+          <h2 className="text-4xl md:text-7xl font-semibold leading-tight mb-10 md:mb-20 text-darkBlue uppercase">
             <span className="text-gray-900">Invite your</span>{" "}
             {inviteData.Title}
           </h2>

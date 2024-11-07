@@ -75,7 +75,7 @@ export default function SectionBenefits({
   return (
     <section
       id="benefit"
-      className="relative py-20 md:py-28 bg-gray-300 px-4 overflow-hidden"
+      className="relative py-16 md:py-28 bg-gray-300 px-4 overflow-hidden"
     >
       <div
         className="absolute top-0 right-0 h-full w-1/3 hidden md:block bg-no-repeat bg-cover opacity-10"
