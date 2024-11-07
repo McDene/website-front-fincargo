@@ -31,6 +31,9 @@ export default function SectionBenefits({
         rows.push(benefits.slice(i, i + 3));
         i += 3;
       } else if (rows.length % 2 !== 0 && i + 2 <= benefits.length) {
+        rows.push(benefits.slice(i, i + 2));
+        i += 2;
+      } else {
         rows.push(benefits.slice(i));
         break;
       }
@@ -40,48 +43,33 @@ export default function SectionBenefits({
   };
 
   useEffect(() => {
-    const observerOptions = {
-      threshold: 0.2,
-    };
-
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      });
-    };
-
     const observer = new IntersectionObserver(
-      observerCallback,
-      observerOptions
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
     );
 
     const currentContentRef = contentRef.current;
-
-    if (currentContentRef) {
-      observer.observe(currentContentRef);
-    }
+    if (currentContentRef) observer.observe(currentContentRef);
 
     return () => {
-      if (currentContentRef) {
-        observer.unobserve(currentContentRef);
-      }
+      if (currentContentRef) observer.unobserve(currentContentRef);
     };
   }, []);
 
   const rows = getGridRows(benefits);
 
   return (
-    <section
-      id="benefit"
-      className="relative py-16 md:py-28 bg-gray-300 px-4 overflow-hidden"
-    >
+    <section className="relative py-16 md:py-28 bg-gray-300 px-4 overflow-hidden">
       <div
         className="absolute top-0 right-0 h-full w-1/3 hidden md:block bg-no-repeat bg-cover opacity-10"
         style={{ backgroundImage: `url('/logo/logo_fincargo_blue.svg')` }}
       />
-
       <div
         ref={contentRef}
         className={`max-w-7xl mx-auto relative z-10 transition-transform duration-1000 ease-out ${
@@ -94,7 +82,6 @@ export default function SectionBenefits({
         <h3 className="text-2xl md:text-4xl text-lightBlue mb-10 md:mb-20">
           {subtitle}
         </h3>
-
         <div className="space-y-6">
           {rows.map((row, rowIndex) => (
             <div
