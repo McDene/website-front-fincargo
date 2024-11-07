@@ -5,7 +5,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import Header from "@/components/Header/Main";
 import Hero from "@/components/Hero";
 import Feature from "@/components/Feature";
-import Benefit from "@/components/Benefit";
+// import Benefit from "@/components/Benefit";
 import Invite from "@/components/Invite";
 import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
@@ -14,7 +14,7 @@ import { fetchAPI } from "@/lib/utils";
 export default function FreightForwardersPage() {
   const [heroData, setHeroData] = useState(null);
   const [featureData, setFeatureData] = useState(null);
-  const [benefitData, setBenefitData] = useState(null);
+  // const [benefitData, setBenefitData] = useState(null);
   const [inviteData, setInviteData] = useState(null);
   const [faqData, setFaqData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -30,7 +30,7 @@ export default function FreightForwardersPage() {
         const [
           heroResponse,
           featureResponse,
-          benefitResponse,
+          // benefitResponse,
           inviteResponse,
           faqResponse,
         ] = await Promise.all([
@@ -40,9 +40,9 @@ export default function FreightForwardersPage() {
           fetchAPI(
             "/api/features?filters[Page][$eq]=FreightForwarders&populate[Feature][populate][Card][populate]=Image"
           ),
-          fetchAPI(
-            "/api/benefits?filters[Page][$eq]=FreightForwarders&populate[Benefit][populate][Card][populate]=Image"
-          ),
+          // fetchAPI(
+          //   "/api/benefits?filters[Page][$eq]=FreightForwarders&populate[Benefit][populate]=Benefit"
+          // ),
           fetchAPI(
             "/api/invites?filters[Page][$eq]=FreightForwarders&populate=Image"
           ),
@@ -53,7 +53,7 @@ export default function FreightForwardersPage() {
 
         setHeroData(heroResponse?.data?.[0]?.Hero || null);
         setFeatureData(featureResponse?.data?.[0] || null);
-        setBenefitData(benefitResponse?.data?.[0] || null);
+        // setBenefitData(benefitResponse?.data?.[0] || null);
         setInviteData(inviteResponse?.data?.[0] || null);
         setFaqData(faqResponse?.data?.[0] || null);
       } catch (error) {
@@ -83,7 +83,7 @@ export default function FreightForwardersPage() {
         <Header />
         {heroData && <Hero heroData={heroData} />}
         {featureData && <Feature featureData={featureData} />}
-        {benefitData && <Benefit benefitData={benefitData} />}
+        {/* {benefitData && <Benefit benefitData={benefitData} />} */}
         {inviteData && <Invite inviteData={inviteData} />}
         {faqData && <Faq faqData={faqData} />}
         <Footer />

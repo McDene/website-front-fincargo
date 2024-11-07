@@ -48,7 +48,7 @@ export default function Home() {
             "/api/features?filters[Page][$eq]=Carriers&populate[Feature][populate][Card][populate]=Image"
           ),
           fetchAPI(
-            "/api/benefits?filters[Page][$eq]=Carriers&populate[Benefit][populate][Card][populate]=Image"
+            "/api/benefits?filters[Page][$eq]=Carriers&populate[Benefit][populate]=Benefit"
           ),
           fetchAPI("/api/invites?filters[Page][$eq]=Carrier&populate=Image"),
           fetchAPI(

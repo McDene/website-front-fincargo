@@ -2,19 +2,21 @@
 
 import SectionBenefits from "@/components/Common/SectionBenefits";
 
+interface ContentItem {
+  type: string;
+  children: Array<{ text: string; type: string }>;
+}
+
 interface Card {
   id: number;
   Title: string;
-  Content: string;
-  Image: {
-    url: string;
-  };
+  Content: ContentItem[];
 }
 
 interface Benefit {
   Title: string;
   Subtitle: string;
-  Card: Card[];
+  Benefit: Card[];
 }
 
 interface BenefitData {
@@ -27,25 +29,24 @@ interface BenefitProps {
 }
 
 const formatBenefitData = (benefitData: BenefitData | null) => {
-  if (!benefitData || !Array.isArray(benefitData.Benefit.Card)) {
+  if (!benefitData || !Array.isArray(benefitData.Benefit.Benefit)) {
     return [];
   }
 
-  return benefitData.Benefit.Card.map((card) => ({
+  return benefitData.Benefit.Benefit.map((card) => ({
     id: card.id,
-    image:
-      card.Image && card.Image.url
-        ? card.Image.url.startsWith("http")
-          ? card.Image.url
-          : `${process.env.NEXT_PUBLIC_API_URL}${card.Image.url}`
-        : "/images/truck_fincargo_carrier.jpeg",
-    title: card.Title,
-    description: card.Content,
+    title: card.Title || "Default Title", // Provide a default title if Title is missing
+    description: card.Content
+      ? card.Content.map((content) =>
+          content.children.map((child) => child.text).join(" ")
+        ).join(" ")
+      : "No content available", // Provide default content if Content is missing
   }));
 };
 
 export default function Benefit({ benefitData }: BenefitProps) {
-  if (!benefitData || !Array.isArray(benefitData.Benefit.Card)) {
+  if (!benefitData || !Array.isArray(benefitData.Benefit.Benefit)) {
+    console.warn("Benefit data is missing or incorrectly formatted.");
     return null;
   }
 
