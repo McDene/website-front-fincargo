@@ -9,11 +9,11 @@ interface HeroData {
   };
 }
 
-interface HeroCProps {
+interface HeroProps {
   heroData: HeroData | null;
 }
 
-export default function HeroC({ heroData }: HeroCProps) {
+export default function Hero({ heroData }: HeroProps) {
   const videoUrl = heroData?.Video?.url?.startsWith("http")
     ? heroData.Video.url
     : `${process.env.NEXT_PUBLIC_API_URL || ""}${heroData?.Video?.url || ""}`;

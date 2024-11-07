@@ -23,9 +23,7 @@ export default function SectionHeroImage({
   imageAlt,
 }: SectionHeroImageProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const titleRef = useRef<HTMLDivElement | null>(null);
-  const textRef = useRef<HTMLDivElement | null>(null);
-  const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const contentRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const observerOptions = {
@@ -45,18 +43,11 @@ export default function SectionHeroImage({
       observerOptions
     );
 
-    const currentTitleRef = titleRef.current;
-    const currentTextRef = textRef.current;
-    const currentButtonRef = buttonRef.current;
-
-    if (currentTitleRef) observer.observe(currentTitleRef);
-    if (currentTextRef) observer.observe(currentTextRef);
-    if (currentButtonRef) observer.observe(currentButtonRef);
+    const currentContentRef = contentRef.current;
+    if (currentContentRef) observer.observe(currentContentRef);
 
     return () => {
-      if (currentTitleRef) observer.unobserve(currentTitleRef);
-      if (currentTextRef) observer.unobserve(currentTextRef);
-      if (currentButtonRef) observer.unobserve(currentButtonRef);
+      if (currentContentRef) observer.unobserve(currentContentRef);
     };
   }, []);
 
@@ -67,13 +58,15 @@ export default function SectionHeroImage({
         alt={imageAlt}
         width={1920}
         height={1080}
-        unoptimized={true}
+        unoptimized
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
       />
       <div className="absolute top-0 left-0 w-full h-full bg-blue-800 opacity-30 z-0"></div>
-      <div className="flex flex-col max-w-7xl justify-center m-auto mt-[120px] w-full">
+      <div
+        className="flex flex-col max-w-7xl justify-center m-auto mt-[40px] w-full"
+        ref={contentRef}
+      >
         <div
-          ref={titleRef}
           className={`relative z-10 flex justify-start px-4 sm:px-6 lg:px-8 transition-transform duration-1000 ease-out ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
           }`}
@@ -82,14 +75,13 @@ export default function SectionHeroImage({
             <h2 className="text-4xl md:text-5xl text-gray-200 font-bold mb-3 pb-10">
               {title}
             </h2>
-            <h1 className="text-5xl md:text-8xl uppercase font-bold text-start text-white">
+            <h1 className="text-5xl md:text-9xl uppercase font-bold text-start text-white">
               {subtitle}
             </h1>
           </div>
         </div>
 
         <div
-          ref={textRef}
           className={`relative z-10 flex justify-start px-4 sm:px-6 lg:px-8 transition-transform duration-1000 ease-out delay-200 ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
           }`}
@@ -101,7 +93,6 @@ export default function SectionHeroImage({
           </div>
         </div>
 
-        {/* Bouton facultatif avec lien si buttonLink est défini */}
         {buttonLink && (
           <div
             className={`relative z-10 flex justify-start px-4 sm:px-6 lg:px-8 transition-transform duration-1000 ease-out delay-400 ${
@@ -111,10 +102,7 @@ export default function SectionHeroImage({
             }`}
           >
             <a href={buttonLink}>
-              <button
-                ref={buttonRef}
-                className="bg-blue-400 text-white px-6 py-3 border-2 border-blue-400 rounded-3xl font-semibold hover:bg-blue-500 hover:border-blue-500 transition duration-300"
-              >
+              <button className="bg-blue-400 text-white px-6 py-3 border-2 border-blue-400 rounded-3xl font-semibold hover:bg-blue-500 hover:border-blue-500 transition duration-300">
                 {buttonText}
               </button>
             </a>

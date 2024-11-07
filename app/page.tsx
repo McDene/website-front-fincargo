@@ -56,8 +56,6 @@ export default function Home() {
           ),
         ]);
 
-        console.log("Benefit Response:", benefitResponse);
-
         setHeroData(heroResponse?.data?.[0]?.Hero || null);
         setFeatureData(featureResponse?.data?.[0] || null);
         setBenefitData(benefitResponse?.data?.[0] || null);
