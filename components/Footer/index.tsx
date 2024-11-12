@@ -223,52 +223,6 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-
-        {/* Colonne 5: Liquidity Providers + Liens */}
-        {/* <div>
-          <h4 className="text-lg font-bold text-blue-200 mb-4 uppercase">
-            Liquidity Providers
-          </h4>
-          <ul className="space-y-2">
-            <li>
-              <Link href="/liquidity-providers" className="hover:text-blue-900">
-                Get started
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/liquidity-providers/how-it-works"
-                className="hover:text-blue-900"
-              >
-                Why invest with Fincargo
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/liquidity-providers/faq"
-                className="hover:text-blue-900"
-              >
-                Log-in
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/liquidity-providers/contact"
-                className="hover:text-blue-900"
-              >
-                API Integration
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/liquidity-providers/contact"
-                className="hover:text-blue-900"
-              >
-                FAQ&lsquo;s
-              </Link>
-            </li>
-          </ul>
-        </div> */}
       </div>
       <div className="mt-12 text-center text-gray-500 text-sm">
         &copy; {new Date().getFullYear()} Fincargo. All rights reserved.
