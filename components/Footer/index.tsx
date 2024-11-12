@@ -152,7 +152,10 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/carriers/contact" className="hover:text-blue-900">
+              <Link
+                href="/carrier-protection-policy"
+                className="hover:text-blue-900"
+              >
                 Carriers protection policy
               </Link>
             </li>
