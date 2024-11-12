@@ -56,7 +56,8 @@ export default function PartenerPage() {
       <>
         <HeaderSecondary />
         {heroData && <HeroImage heroImageData={heroData} />}
-        {partnerData && <Partner partnerData={partnerData} />} <Footer />
+        {partnerData && <Partner partnerData={partnerData} />}
+        <Footer />
       </>
     )
   );

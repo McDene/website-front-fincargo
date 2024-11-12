@@ -1,36 +1,29 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 
-interface ContentChild {
+interface TextChild {
   text: string;
+  type: string;
 }
 
-interface ParagraphItem {
+interface Paragraph {
   type: string;
-  children: ContentChild[];
+  children: TextChild[];
 }
 
 interface TextSection {
   id: number;
   Title: string;
-  Paragraph: ParagraphItem[];
+  Paragraph: Paragraph[];
 }
 
-interface GalleryImage {
-  id: number;
-  url: string;
-  alternativeText?: string;
-}
-
-interface PartnerData {
+interface InvestorData {
   MultipleText: TextSection[];
-  Gallery: GalleryImage[];
 }
 
-interface PartnerProps {
-  partnerData: PartnerData;
+interface InvestorProps {
+  investorData: InvestorData;
 }
 
 const fadeInFromLeft = {
@@ -43,13 +36,11 @@ const fadeInFromRight = {
   visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
 };
 
-export default function Partner({ partnerData }: PartnerProps) {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
+export default function Investor({ investorData }: InvestorProps) {
   return (
     <section className="pt-24 md:pt-32 bg-gradient-to-b from-gray-300 to-white px-8">
       <div className="max-w-7xl mx-auto">
-        {partnerData.MultipleText.map((section, index) => (
+        {investorData.MultipleText.map((section, index) => (
           <motion.div
             key={section.id}
             className={`flex flex-col lg:flex-row md:items-center pb-24 md:pb-32 gap-8 ${
@@ -60,7 +51,7 @@ export default function Partner({ partnerData }: PartnerProps) {
             viewport={{ once: true, amount: 0.5 }}
           >
             <motion.h2
-              className="text-5xl md:text-7xl hidden md:block text-darkBlue font-semibold uppercase tracking-wide"
+              className="text-5xl md:text-6xl hidden md:block text-darkBlue font-semibold uppercase tracking-wide"
               variants={index % 2 === 0 ? fadeInFromLeft : fadeInFromRight}
             >
               {section.Title}
@@ -90,38 +81,6 @@ export default function Partner({ partnerData }: PartnerProps) {
             </motion.p>
           </motion.div>
         ))}
-      </div>
-
-      {/* Défilement horizontal des images */}
-      <div className="overflow-hidden w-full py-10">
-        <motion.div
-          className="flex gap-4 animate-marquee"
-          style={{ display: "flex", animation: "marquee 20s linear infinite" }}
-        >
-          {[...partnerData.Gallery, ...partnerData.Gallery].map(
-            (image, index) => {
-              const imageUrl = image.url.startsWith("http")
-                ? image.url
-                : `${API_URL}${image.url}`;
-
-              return (
-                <div
-                  key={`${image.id}-${index}`}
-                  className="flex-shrink-0 w-2/5 md:w-1/5"
-                >
-                  <Image
-                    src={imageUrl}
-                    alt={image.alternativeText || "Gallery Image"}
-                    width={200}
-                    height={200}
-                    className="object-contain"
-                    unoptimized
-                  />
-                </div>
-              );
-            }
-          )}
-        </motion.div>
       </div>
     </section>
   );
