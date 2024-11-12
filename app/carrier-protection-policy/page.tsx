@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
-// import HeaderSecondary from "@/components/Header/Secondary";
+import HeaderSecondary from "@/components/Header/Secondary";
 import HeroImage from "@/components/HeroImage";
 import ProtectionPolicyC from "@/components/ProtectionPolicyC";
 import Footer from "@/components/Footer";
@@ -55,7 +55,7 @@ export default function CarrierProtectionPolicyPage() {
   return (
     !loading && (
       <>
-        {/* <HeaderSecondary /> */}
+        <HeaderSecondary />
         {heroData && <HeroImage heroImageData={heroData} />}
         {carrierProtectionPolicyData && (
           <ProtectionPolicyC

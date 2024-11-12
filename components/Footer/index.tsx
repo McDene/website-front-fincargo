@@ -66,18 +66,27 @@ export default function Footer() {
           </h4>
           <ul className="space-y-2">
             <li>
-              <Link href="/about" className="hover:text-gray-400">
+              <Link
+                href="/about"
+                scroll={false}
+                className="hover:text-gray-400"
+              >
                 About Us
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="hover:text-gray-400">
+              <Link
+                href="/contact"
+                scroll={false}
+                className="hover:text-gray-400"
+              >
                 Contact
               </Link>
             </li>
             <li>
               <Link
                 href="/confidentiality-security-notice"
+                scroll={false}
                 className="hover:text-gray-400"
               >
                 Confidentialitity & secutiity
@@ -85,27 +94,47 @@ export default function Footer() {
             </li>
             <br />
             <li>
-              <Link href="/legal-notice" className="hover:text-gray-400">
+              <Link
+                href="/legal-notice"
+                scroll={false}
+                className="hover:text-gray-400"
+              >
                 Legal notice
               </Link>
             </li>
             <li>
-              <Link href="/cookies" className="hover:text-gray-400">
+              <Link
+                href="/cookies"
+                scroll={false}
+                className="hover:text-gray-400"
+              >
                 Cookies policy
               </Link>
             </li>
             <li>
-              <Link href="/sustainability" className="hover:text-blue-900">
+              <Link
+                href="/sustainability"
+                scroll={false}
+                className="hover:text-blue-900"
+              >
                 Sustainability
               </Link>
             </li>
             <li>
-              <Link href="/partener" className="hover:text-blue-900">
+              <Link
+                href="/partener"
+                scroll={false}
+                className="hover:text-blue-900"
+              >
                 Parteners
               </Link>
             </li>
             <li>
-              <Link href="/investor" className="hover:text-blue-900">
+              <Link
+                href="/investor"
+                scroll={false}
+                className="hover:text-blue-900"
+              >
                 Investors
               </Link>
             </li>
