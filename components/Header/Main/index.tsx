@@ -129,7 +129,7 @@ export default function Header() {
                       } hover:bg-blue-100 hover:text-blue-950`
                 } transition duration-300 ease-in-out`}
               >
-                Freight Forwarders
+                For Freight Forwarders
               </Link>
             </div>
           </div>

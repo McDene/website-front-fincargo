@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface MobileMenuProps {
   menuOpen: boolean;
@@ -16,12 +17,11 @@ export default function MobileMenu({
   menuItems,
   pathname,
 }: MobileMenuProps) {
-  // Bloquer le scroll lorsque le menu est ouvert
   useEffect(() => {
     if (menuOpen) {
-      document.body.style.overflow = ""; // Désactiver le scroll
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = ""; // Réactiver le scroll
+      document.body.style.overflow = "";
     }
 
     return () => {
@@ -29,78 +29,100 @@ export default function MobileMenu({
     };
   }, [menuOpen]);
 
+  const menuVariants = {
+    hidden: { opacity: 0, y: "-100%" },
+    visible: { opacity: 1, y: "0%" },
+    exit: { opacity: 0, y: "-100%" },
+  };
+
   return (
-    <div
-      className={`fixed inset-0 bg-gray-50 z-50 flex flex-col items-center text-center h-screen transition-transform duration-500 ease-in-out ${
-        menuOpen ? "scale-100 opacity-100" : "scale-0 opacity-0"
-      } transform origin-top-right`}
-    >
-      {/* Header avec logo et bouton de fermeture */}
-      <div className="w-full flex justify-between items-center px-5 pt-5">
-        {/* Logo */}
-        <div className="flex-shrink-0">
-          <Link href="/">
-            <Image
-              src="/logo/logo_fincargo_blue.svg"
-              alt="Fincargo Logo"
-              width={150}
-              height={40}
-            />
-          </Link>
-        </div>
-
-        {/* Bouton de fermeture */}
-        <button onClick={toggleMenu}>
-          <XMarkIcon className="w-8 h-8 text-black" />
-        </button>
-      </div>
-
-      {/* Liens */}
-      <div className="flex space-x-4 pt-10 pb-32 text-xl">
-        <Link
-          href="/"
-          className={`px-4 py-2 text-gray-700 font-bold transition-all duration-300 ease-in-out rounded-3xl ${
-            pathname === "/" ? "bg-blue-100 " : "hover:bg-gray-100"
-          }`}
+    <AnimatePresence>
+      {menuOpen && (
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          variants={menuVariants}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="fixed inset-0 bg-gradient-to-b from-lightBlue to-darkBlue z-50 flex flex-col items-center text-center h-screen"
         >
-          For carriers
-        </Link>
+          <div className="w-full flex justify-between items-center px-5 pt-8">
+            {/* Logo */}
+            <div className="flex-shrink-0">
+              <Link href="/">
+                <Image
+                  src="/logo/logo_fincargo_white.svg"
+                  alt="Fincargo Logo"
+                  width={150}
+                  height={40}
+                />
+              </Link>
+            </div>
 
-        <Link
-          href="/freight-forwarders"
-          className={`px-4 py-2 text-gray-700 font-bold transition-all duration-300 ease-in-out rounded-3xl ${
-            pathname === "/freight-forwarders"
-              ? "bg-blue-100 "
-              : "hover:bg-gray-100"
-          }`}
-        >
-          Freight Forwarders
-        </Link>
-      </div>
+            {/* Bouton de fermeture */}
+            <button onClick={toggleMenu}>
+              <XMarkIcon className="w-10 h-10 text-gray-50" />
+            </button>
+          </div>
 
-      {/* Menu dynamique */}
-      <div className="flex flex-col pb-32 space-y-6">
-        {menuItems.map((item) => (
-          <Link
-            key={item.name}
-            href={item.anchor}
-            className="text-gray-700 text-xl hover:text-gray-300"
-            onClick={toggleMenu}
+          {/* Liens */}
+          <motion.div className="flex space-x-4 pt-20 pb-32 text-xl">
+            <Link
+              href="/"
+              className={`px-6 py-2 text-gray-700 font-bold transition-all duration-300 ease-in-out rounded-full ${
+                pathname === "/" ? "bg-blue-100 " : "hover:bg-gray-100"
+              }`}
+            >
+              Carriers
+            </Link>
+
+            <Link
+              href="/freight-forwarders"
+              className={`px-6 py-2 text-gray-800 font-bold transition-all duration-300 ease-in-out rounded-full ${
+                pathname === "/freight-forwarders"
+                  ? "bg-blue-100 "
+                  : "hover:bg-gray-100"
+              }`}
+            >
+              Freight Forwarders
+            </Link>
+          </motion.div>
+
+          {/* Menu dynamique */}
+          <motion.div
+            className="flex flex-col pb-32 space-y-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.4 }}
           >
-            {item.name}
-          </Link>
-        ))}
-      </div>
+            {menuItems.map((item) => (
+              <Link
+                key={item.name}
+                href={item.anchor}
+                className="text-gray-100 text-2xl hover:text-gray-300"
+                onClick={toggleMenu}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </motion.div>
 
-      {/* Boutons Register et Login */}
-      <div className="flex space-x-4">
-        <button className="text-white bg-gray-900 px-4 py-2 rounded-3xl hover:bg-gray-800">
-          Register
-        </button>
-        <button className="text-gray-900 bg-gray-200 px-4 py-2 rounded-3xl hover:bg-gray-100">
-          Login
-        </button>
-      </div>
-    </div>
+          {/* Boutons Register et Login */}
+          <motion.div
+            className="flex space-x-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
+            <button className="text-white text-xl bg-gray-900 px-8 py-4 rounded-full hover:bg-gray-800">
+              Register
+            </button>
+            <button className="text-gray-900 text-xl bg-gray-200 px-8 py-4 rounded-full hover:bg-gray-100">
+              Login
+            </button>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

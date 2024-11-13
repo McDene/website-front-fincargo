@@ -62,7 +62,7 @@ export default function SectionInvite({ inviteData }: SectionInviteProps) {
   return (
     <section
       id="invite"
-      className="py-16 md:py-28 px-6 bg-gradient-to-b from-gray-300 to-white"
+      className="py-20 md:py-28 px-6 bg-gradient-to-b from-gray-300 to-white"
     >
       <div
         ref={contentRef}
