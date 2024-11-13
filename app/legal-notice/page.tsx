@@ -30,7 +30,7 @@ export default function LegalNoticePage() {
         if (response?.data) {
           setLegalNoticeData({
             title: response.data.Title,
-            content: response.data.Paragraph, // Directement le texte en Markdown
+            content: response.data.Paragraph,
           });
         }
       } catch (error) {
@@ -67,7 +67,32 @@ export default function LegalNoticePage() {
                   </h2>
                 </div>
                 <div className="prose prose-lg">
-                  <ReactMarkdown className="text-lg line-break text-justify">
+                  <ReactMarkdown
+                    className="text-lg text-justify"
+                    components={{
+                      h3: ({ children }) => (
+                        <h3 className="pt-5 pb-2 text-xl">{children}</h3>
+                      ),
+                      ul: ({ children }) => (
+                        <ul className="list-disc list-inside">{children}</ul>
+                      ),
+                      ol: ({ children }) => (
+                        <ol className="list-decimal list-inside">{children}</ol>
+                      ),
+                      li: ({ children }) => (
+                        <li className="my-0">{children}</li>
+                      ),
+                      p: ({ children }) => <p className="mb-4">{children}</p>,
+                      a: ({ children, href }) => (
+                        <a
+                          href={href}
+                          className="text-darkBlue hover:underline"
+                        >
+                          {children}
+                        </a>
+                      ),
+                    }}
+                  >
                     {legalNoticeData.content || "Content not available."}
                   </ReactMarkdown>
                 </div>

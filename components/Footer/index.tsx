@@ -55,10 +55,9 @@ export default function Footer() {
                 scroll={false}
                 className="hover:text-gray-400"
               >
-                Confidentialitity & secutiity
+                Confidentialitity & secutity
               </Link>
             </li>
-            <br />
             <li>
               <Link
                 href="/legal-notice"
@@ -88,11 +87,11 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                href="/partener"
+                href="/partner"
                 scroll={false}
                 className="hover:text-gray-400"
               >
-                Parteners
+                Partners
               </Link>
             </li>
             <li>

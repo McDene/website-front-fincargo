@@ -73,10 +73,10 @@ export default function ConfidentialitySecurityNoticePage() {
 
                 <div className="prose prose-lg">
                   <ReactMarkdown
-                    className="text-lg line-break text-justify prose-ul:list-disc prose-ul:list-inside"
+                    className="text-lg text-justify"
                     components={{
                       h3: ({ children }) => (
-                        <h3 className="text-xl">{children}</h3>
+                        <h3 className="pt-5">{children}</h3>
                       ),
                       ul: ({ children }) => (
                         <ul className="list-disc list-inside">{children}</ul>
@@ -86,6 +86,15 @@ export default function ConfidentialitySecurityNoticePage() {
                       ),
                       li: ({ children }) => (
                         <li className="my-0">{children}</li>
+                      ),
+                      p: ({ children }) => <p className="my-4">{children}</p>,
+                      a: ({ children, href }) => (
+                        <a
+                          href={href}
+                          className="text-darkBlue hover:underline"
+                        >
+                          {children}
+                        </a>
                       ),
                     }}
                   >

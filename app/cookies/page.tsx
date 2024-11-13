@@ -4,15 +4,13 @@ import { useState, useEffect } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import HeaderSecondary from "@/components/Header/Secondary";
 import SectionHeroSmall from "@/components/Common/SectionHeroSmall";
-import BlockRendererClient from "@/components/BlockRendererClient";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
-import { BlocksContent } from "@strapi/blocks-react-renderer";
+import ReactMarkdown from "react-markdown";
 
-// Définir le type des données du contenu de cookies
 interface CookiesData {
   title: string;
-  content: BlocksContent; // Utilisez directement BlocksContent ici pour éviter les erreurs de compatibilité
+  content: string;
 }
 
 export default function CookiesPage() {
@@ -31,7 +29,7 @@ export default function CookiesPage() {
         if (response?.data) {
           setCookiesData({
             title: response.data.Title,
-            content: response.data.Paragraph as BlocksContent, // Cast to BlocksContent for compatibility
+            content: response.data.Paragraph,
           });
         }
       } catch (error) {
@@ -67,7 +65,29 @@ export default function CookiesPage() {
                   {cookiesData.title || "Cookeies"}
                 </h2>
               </div>
-              <BlockRendererClient content={cookiesData.content} />
+              <ReactMarkdown
+                className="text-lg text-justify"
+                components={{
+                  h3: ({ children }) => (
+                    <h3 className="pt-5 pb-2 text-xl">{children}</h3>
+                  ),
+                  ul: ({ children }) => (
+                    <ul className="list-disc list-inside">{children}</ul>
+                  ),
+                  ol: ({ children }) => (
+                    <ol className="list-decimal list-inside">{children}</ol>
+                  ),
+                  li: ({ children }) => <li className="my-0">{children}</li>,
+                  p: ({ children }) => <p className="mt-1 mb-4">{children}</p>,
+                  a: ({ children, href }) => (
+                    <a href={href} className="text-darkBlue hover:underline">
+                      {children}
+                    </a>
+                  ),
+                }}
+              >
+                {cookiesData.content || "Content not available."}
+              </ReactMarkdown>
             </div>
           </section>
         )}

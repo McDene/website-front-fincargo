@@ -27,16 +27,8 @@ export default function SectionBenefits({
     let i = 0;
 
     while (i < benefits.length) {
-      if (rows.length % 2 === 0 && i + 3 <= benefits.length) {
-        rows.push(benefits.slice(i, i + 3));
-        i += 3;
-      } else if (rows.length % 2 !== 0 && i + 2 <= benefits.length) {
-        rows.push(benefits.slice(i, i + 2));
-        i += 2;
-      } else {
-        rows.push(benefits.slice(i));
-        break;
-      }
+      rows.push(benefits.slice(i, i + 3));
+      i += 3;
     }
 
     return rows;
@@ -89,16 +81,18 @@ export default function SectionBenefits({
           {rows.map((row, rowIndex) => (
             <div
               key={rowIndex}
-              className={`grid gap-6 ${
-                rowIndex % 2 === 0
-                  ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-                  : "grid-cols-1 sm:grid-cols-2"
-              }`}
+              className="grid gap-6 grid-cols-1 lg:grid-cols-12"
             >
-              {row.map((benefit) => (
+              {row.map((benefit, index) => (
                 <div
                   key={benefit.id}
-                  className="bg-white rounded-3xl p-6 shadow-lg min-h-[200px] flex flex-col"
+                  className={`bg-white rounded-3xl p-6 shadow-lg min-h-[200px] flex flex-col ${
+                    rowIndex % 2 === 0
+                      ? "lg:col-span-4" // Premier étage : 4/12, 4/12, 4/12 sur grand écran
+                      : index === 1
+                      ? "lg:col-span-6" // Deuxième étage : 3/12, 6/12, 3/12 sur grand écran
+                      : "lg:col-span-3"
+                  }`}
                 >
                   <h3 className="text-3xl text-gray-800 mb-4">
                     {benefit.title}
