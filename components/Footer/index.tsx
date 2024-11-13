@@ -143,11 +143,11 @@ export default function Footer() {
                 Career
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="/contact" className="hover:text-blue-900">
                 Blog
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
 
@@ -163,11 +163,6 @@ export default function Footer() {
                 className="hover:text-blue-900"
               >
                 Get started
-              </Link>
-            </li>
-            <li>
-              <Link href="/carriers/benefits" className="hover:text-blue-900">
-                Customer service
               </Link>
             </li>
             <li>
@@ -208,14 +203,6 @@ export default function Footer() {
                 className="hover:text-blue-900"
               >
                 Get started
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/freight-forwarders/benefits"
-                className="hover:text-blue-900"
-              >
-                Forwarders support
               </Link>
             </li>
             <li>

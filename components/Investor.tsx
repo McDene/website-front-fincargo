@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import BlockRendererClient from "@/components/BlockRendererClient";
 
 interface TextChild {
   text: string;
@@ -66,19 +67,15 @@ export default function Investor({ investorData }: InvestorProps) {
                 visible: { scaleY: 1, transition: { duration: 0.5 } },
               }}
             ></motion.span>
-            <motion.p
-              className="text-xl md:text-2xl hidden md:block leading-relaxed text-justify"
+            <motion.div
+              className="text-xl-children-desktop hidden md:block "
               variants={index % 2 === 0 ? fadeInFromRight : fadeInFromLeft}
             >
-              {section.Paragraph.map((paragraph) =>
-                paragraph.children.map((child) => child.text).join(" ")
-              )}
-            </motion.p>
-            <motion.p className="text-xl md:text-2xl leading-relaxed text-justify  md:hidden">
-              {section.Paragraph.map((paragraph) =>
-                paragraph.children.map((child) => child.text).join(" ")
-              )}
-            </motion.p>
+              <BlockRendererClient content={section.Paragraph} />
+            </motion.div>
+            <motion.div className="text-xl-children-mobile md:hidden">
+              <BlockRendererClient content={section.Paragraph} />
+            </motion.div>
           </motion.div>
         ))}
       </div>

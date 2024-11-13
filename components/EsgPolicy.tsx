@@ -43,7 +43,7 @@ export default function EsgPolicy({ esgPolicyData }: EsgPolicyProps) {
       <motion.div
         className="absolute inset-0 w-full h-full"
         style={{
-          y: scrollY * 0.2,
+          y: scrollY * 0.1,
         }}
       >
         <Image
@@ -66,7 +66,7 @@ export default function EsgPolicy({ esgPolicyData }: EsgPolicyProps) {
               key={section.id}
               title={section.Title}
               paragraph={combinedParagraph}
-              delay={index * 0.2}
+              delay={index * 0.1}
             />
           );
         })}
@@ -82,7 +82,7 @@ interface SectionProps {
 }
 
 function Section({ title, paragraph, delay }: SectionProps) {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.8 });
   const controls = useAnimation();
 
   useEffect(() => {
@@ -97,11 +97,13 @@ function Section({ title, paragraph, delay }: SectionProps) {
       initial="hidden"
       animate={controls}
       variants={parallaxVariants}
-      transition={{ duration: 0.8, delay }}
+      transition={{ duration: 0.5, delay }}
       className="max-w-7xl mx-auto pb-20 flex flex-col gap-4"
     >
       <h2 className="text-4xl md:text-5xl text-darkBlue">{title}</h2>
-      <p className="text-lg text-gray-700 leading-relaxed">{paragraph}</p>
+      <p className="text-lg text-gray-700 leading-relaxed text-justify">
+        {paragraph}
+      </p>
     </motion.div>
   );
 }

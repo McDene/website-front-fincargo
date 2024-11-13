@@ -17,7 +17,6 @@ export default function BlockRendererClient({
     <BlocksRenderer
       content={content}
       blocks={{
-        // Gestion des images avec Next.js Image
         image: ({ image }) => (
           <Image
             src={image.url}
@@ -28,22 +27,19 @@ export default function BlockRendererClient({
             style={{ maxWidth: "100%", height: "auto" }}
           />
         ),
-        // Gestion des paragraphes
         paragraph: ({ children }) => (
-          <p className="text-lg leading-relaxed my-2">{children}</p>
+          <p className="text-lg leading-relaxed my-4 whitespace-pre-line">
+            {children}
+          </p>
         ),
-        // Gestion des titres H1 à H4
+
         heading: ({ level, children }) => {
           const Tag = `h${level}` as keyof JSX.IntrinsicElements;
+          const textSize = `text-${Math.max(5 - level, 2)}xl`;
           return (
-            <Tag
-              className={`text-${Math.max(5 - level, 2)}xl font-semibold my-4`}
-            >
-              {children}
-            </Tag>
+            <Tag className={`${textSize} font-semibold my-6`}>{children}</Tag>
           );
         },
-        // Gestion des listes
         list: ({ format, children }) => {
           const ListTag = format === "unordered" ? "ul" : "ol";
           return (
@@ -52,15 +48,13 @@ export default function BlockRendererClient({
             </ListTag>
           );
         },
-        // Utiliser "list-item" pour les éléments de liste
         "list-item": ({ children }) => <li className="my-2">{children}</li>,
-        // Gestion des liens hypertexte
         link: ({ url, children }) => (
           <a
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-500 underline"
+            className="text-lightBlue "
           >
             {children}
           </a>

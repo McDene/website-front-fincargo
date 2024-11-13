@@ -86,6 +86,14 @@ h6 {
   }
 }
 
+.text-xl-children-desktop > * {
+  @apply text-xl md:text-2xl leading-relaxed text-justify;
+}
+
+.text-xl-children-mobile > * {
+  @apply text-xl leading-relaxed text-justify;
+}
+
 .menu-slide-in {
   animation: slide-in-left-right 0.8s forwards ease-in-out;
 }
