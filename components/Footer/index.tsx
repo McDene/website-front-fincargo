@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="pt-32 xl:pt-32 lg:pt-38 md:pt-24 sm:pt-20 pb-10 bg-darkBlue text-gray-50 px-8">
+    <footer className="pt-32 xl:pt-32 lg:pt-38 md:pt-24 sm:pt-20 pb-10 bg-gradient-to-b from-darkBlue to-black text-gray-50 px-8">
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         <div className="flex flex-col justify-between h-full">
           {/* Logo and Address */}
@@ -105,11 +105,7 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link
-                href="/careers"
-                scroll={false}
-                className="hover:text-gray-400"
-              >
+              <Link href="/careers" className="hover:text-gray-400">
                 Career
               </Link>
             </li>

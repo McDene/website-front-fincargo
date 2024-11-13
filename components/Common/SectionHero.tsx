@@ -91,20 +91,20 @@ export default function SectionHero({
           }`}
         >
           <div className="max-w-xl mb-10">
-            <p className="text-xl md:text-2xl text-white font-medium mb-6 leading-8">
+            <p className="text-xl md:text-2xl text-white font-medium mb-2 md:mb-6 leading-8">
               {paragraph}
             </p>
           </div>
         </div>
 
         <div
-          className={`relative z-10 flex justify-start px-4 sm:px-6 lg:px-8 transition-transform duration-1000 ease-out delay-400 ${
+          className={`relative z-10 flex justify-start px-4 md:px-8 transition-transform duration-1000 ease-out delay-400 ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
           }`}
         >
           <button
             ref={buttonRef}
-            className="mt-6 px-6 py-3 bg-lightBlue text-white rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:bg-darkBlue "
+            className="mt-0 md:mt-6 px-6 py-3 bg-lightBlue text-white rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:bg-darkBlue "
           >
             {buttonText}
           </button>
