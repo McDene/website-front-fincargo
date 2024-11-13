@@ -4,16 +4,12 @@ import React, { useState, useEffect } from "react";
 import { motion, useAnimation, Variants } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Image from "next/image";
-
-interface ParagraphItem {
-  type: string;
-  children: Array<{ text: string; type: string }>;
-}
+import ReactMarkdown from "react-markdown";
 
 interface TextSection {
   id: number;
   Title: string;
-  Paragraph: ParagraphItem[];
+  Paragraph: string;
 }
 
 interface EsgPolicyProps {
@@ -56,20 +52,14 @@ export default function EsgPolicy({ esgPolicyData }: EsgPolicyProps) {
       </motion.div>
 
       <div className="relative z-10 px-4 sm:px-6 lg:px-8">
-        {esgPolicyData.MultipleText.map((section, index) => {
-          const combinedParagraph = section.Paragraph.map((paragraph) =>
-            paragraph.children.map((child) => child.text).join(" ")
-          ).join("\n");
-
-          return (
-            <Section
-              key={section.id}
-              title={section.Title}
-              paragraph={combinedParagraph}
-              delay={index * 0.1}
-            />
-          );
-        })}
+        {esgPolicyData.MultipleText.map((section, index) => (
+          <Section
+            key={section.id}
+            title={section.Title}
+            paragraph={section.Paragraph}
+            delay={index * 0.1}
+          />
+        ))}
       </div>
     </section>
   );
@@ -101,9 +91,9 @@ function Section({ title, paragraph, delay }: SectionProps) {
       className="max-w-7xl mx-auto pb-20 flex flex-col gap-4"
     >
       <h2 className="text-4xl md:text-5xl text-darkBlue">{title}</h2>
-      <p className="text-lg text-gray-700 leading-relaxed text-justify">
+      <ReactMarkdown className="text-lg text-gray-700 leading-relaxed text-justify">
         {paragraph}
-      </p>
+      </ReactMarkdown>
     </motion.div>
   );
 }

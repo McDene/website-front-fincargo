@@ -78,7 +78,7 @@ export default function SectionHero({
           }`}
         >
           <div className="max-w-7xl mb-10">
-            <h1 className="text-7xl md:text-9xl uppercase font-bold text-start text-white">
+            <h1 className="text-6xl md:text-9xl uppercase font-bold text-start text-white">
               {title}
             </h1>
           </div>

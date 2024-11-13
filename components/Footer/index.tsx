@@ -1,8 +1,6 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import XIcon from "@mui/icons-material/X";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 export default function Footer() {
   return (
@@ -18,44 +16,12 @@ export default function Footer() {
               height={40}
             />
             <p className="mt-4 text-gray-400">
-              Rue de L&rsquo;industrie 23
+              Rue de L&rsquo;Industrie 23
               <br />
               1950 Sion
               <br />
               Switzerland
             </p>
-
-            {/* Social Icons */}
-            <div className="flex space-x-4 mt-6">
-              <a
-                href="https://facebook.com"
-                aria-label="Facebook"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-blue-400 transition-colors"
-              >
-                <XIcon className="w-6 h-6 text-gray-400" />
-              </a>
-              <a
-                href="https://linkedin.com"
-                aria-label="LinkedIn"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-blue-400 transition-colors"
-              >
-                <LinkedInIcon className="w-6 h-6 text-gray-400" />
-              </a>
-            </div>
-          </div>
-
-          {/* Label Image at the Bottom */}
-          <div className="mt-8">
-            <Image
-              src="/images/swiss-made-software.svg"
-              alt="Swiss Made Software Label"
-              width={1000}
-              height={1000}
-            />
           </div>
         </div>
 
@@ -115,7 +81,7 @@ export default function Footer() {
               <Link
                 href="/sustainability"
                 scroll={false}
-                className="hover:text-blue-900"
+                className="hover:text-gray-400"
               >
                 Sustainability
               </Link>
@@ -124,7 +90,7 @@ export default function Footer() {
               <Link
                 href="/partener"
                 scroll={false}
-                className="hover:text-blue-900"
+                className="hover:text-gray-400"
               >
                 Parteners
               </Link>
@@ -133,13 +99,17 @@ export default function Footer() {
               <Link
                 href="/investor"
                 scroll={false}
-                className="hover:text-blue-900"
+                className="hover:text-gray-400"
               >
                 Investors
               </Link>
             </li>
             <li>
-              <Link href="/careers" className="hover:text-blue-900">
+              <Link
+                href="/careers"
+                scroll={false}
+                className="hover:text-gray-400"
+              >
                 Career
               </Link>
             </li>
@@ -158,33 +128,35 @@ export default function Footer() {
           </h4>
           <ul className="space-y-2">
             <li>
-              <Link
-                href="/carriers/how-it-works"
-                className="hover:text-blue-900"
-              >
+              <Link href="/#" scroll={false} className="hover:text-gray-400">
                 Get started
               </Link>
             </li>
             <li>
-              <Link href="/carriers/faq" className="hover:text-blue-900">
+              <Link href="/#" scroll={false} className="hover:text-gray-400">
                 Log-in
               </Link>
             </li>
             <li>
-              <Link href="/carriers/contact" className="hover:text-blue-900">
+              <Link href="/#" scroll={false} className="hover:text-gray-400">
                 Explore freight forwarding partners
               </Link>
             </li>
             <li>
               <Link
                 href="/carrier-protection-policy"
-                className="hover:text-blue-900"
+                scroll={false}
+                className="hover:text-gray-400"
               >
                 Carriers protection policy
               </Link>
             </li>
             <li>
-              <Link href="/carriers/contact" className="hover:text-blue-900">
+              <Link
+                href="/#faqs"
+                scroll={false}
+                className="hover:text-gray-400"
+              >
                 FAQ&lsquo;s
               </Link>
             </li>
@@ -198,41 +170,30 @@ export default function Footer() {
           </h4>
           <ul className="space-y-2">
             <li>
-              <Link
-                href="/freight-forwarders/solutions"
-                className="hover:text-blue-900"
-              >
+              <Link href="/#" scroll={false} className="hover:text-gray-400">
                 Get started
               </Link>
             </li>
             <li>
-              <Link
-                href="/freight-forwarders/resources"
-                className="hover:text-blue-900"
-              >
+              <Link href="/#" scroll={false} className="hover:text-gray-400">
                 Log-in
               </Link>
             </li>
             <li>
-              <Link
-                href="/freight-forwarders/contact"
-                className="hover:text-blue-900"
-              >
+              <Link href="/#" scroll={false} className="hover:text-gray-400">
                 Pay carrier early
               </Link>
             </li>
             <li>
-              <Link
-                href="/freight-forwarders/contact"
-                className="hover:text-blue-900"
-              >
+              <Link href="/#" scroll={false} className="hover:text-gray-400">
                 API Intergration
               </Link>
             </li>
             <li>
               <Link
-                href="/freight-forwarders/contact"
-                className="hover:text-blue-900"
+                href="/freight-forwarders/#faqs"
+                scroll={false}
+                className="hover:text-gray-400"
               >
                 FAQ&lsquo;s
               </Link>

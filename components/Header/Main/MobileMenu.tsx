@@ -66,7 +66,7 @@ export default function MobileMenu({
           </div>
 
           {/* Liens */}
-          <motion.div className="flex space-x-4 pt-20 pb-32 text-xl">
+          <motion.div className="flex space-x-4 pt-16 pb-24 text-xl">
             <Link
               href="/"
               className={`px-6 py-2 text-gray-700 font-bold transition-all duration-300 ease-in-out rounded-full ${
@@ -90,7 +90,7 @@ export default function MobileMenu({
 
           {/* Menu dynamique */}
           <motion.div
-            className="flex flex-col pb-32 space-y-6"
+            className="flex flex-col pb-24 space-y-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.4 }}

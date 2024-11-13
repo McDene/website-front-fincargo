@@ -74,6 +74,15 @@ export default function Home() {
     return () => clearTimeout(loaderTimeout);
   }, []);
 
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.location.hash === "#faqs") {
+      const faqsSection = document.getElementById("faqs");
+      if (faqsSection) {
+        faqsSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [loading]);
+
   if (loading && showLoader) {
     return (
       <div className="flex justify-center items-center h-screen">

@@ -90,7 +90,7 @@ export default function SectionKeyFeature({
           effect="coverflow"
           loop
           pagination={{ clickable: true, el: ".custom-pagination" }}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          autoplay={{ delay: 10000, disableOnInteraction: false }}
           coverflowEffect={{
             rotate: 0,
             stretch: 0,
@@ -119,13 +119,13 @@ export default function SectionKeyFeature({
                   className="w-full h-full object-cover rounded-3xl absolute inset-0 -z-10"
                   unoptimized
                 />
-                <div className="absolute top-0 left-0 right-0 h-[16rem] pointer-events-none bg-gradient-to-b from-black/40 via-black/30 to-transparent backdrop-blur-sm"></div>
+                <div className="absolute top-0 left-0 right-0 h-[30rem] pointer-events-none bg-gradient-to-b from-darkBlue/100 via-darkBlue/60 to-transparent "></div>
 
                 <div className="relative z-20 w-full px-5">
                   <h2 className="relative text-center text-3xl md:text-5xl text-gray-100 py-10 tracking-wide">
                     {card.Title}
                   </h2>
-                  <p className="relative text-lg text-gray-100 font-light">
+                  <p className="relative text-xl text-gray-100 font-light">
                     {card.Content}
                   </p>
                 </div>
