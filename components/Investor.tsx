@@ -1,22 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import BlockRendererClient from "@/components/BlockRendererClient";
-
-interface TextChild {
-  text: string;
-  type: string;
-}
-
-interface Paragraph {
-  type: string;
-  children: TextChild[];
-}
+import ReactMarkdown from "react-markdown";
 
 interface TextSection {
   id: number;
   Title: string;
-  Paragraph: Paragraph[];
+  Paragraph: string;
 }
 
 interface InvestorData {
@@ -41,7 +31,7 @@ export default function Investor({ investorData }: InvestorProps) {
   return (
     <section className="pt-24 md:pt-32 bg-gradient-to-b from-gray-300 to-white px-8">
       <div className="max-w-7xl mx-auto">
-        {investorData.MultipleText.map((section, index) => (
+        {investorData?.MultipleText?.map((section, index) => (
           <motion.div
             key={section.id}
             className={`flex flex-col lg:flex-row md:items-center pb-24 md:pb-32 gap-8 ${
@@ -68,13 +58,46 @@ export default function Investor({ investorData }: InvestorProps) {
               }}
             ></motion.span>
             <motion.div
-              className="text-xl-children-desktop hidden md:block "
+              className="text-xl-children-desktop hidden md:block"
               variants={index % 2 === 0 ? fadeInFromRight : fadeInFromLeft}
             >
-              <BlockRendererClient content={section.Paragraph} />
+              <ReactMarkdown
+                className="prose prose-lg leading-relaxed text-justify"
+                components={{
+                  a: ({ href, children }) => (
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-lightBlue"
+                    >
+                      {children}
+                    </a>
+                  ),
+                }}
+              >
+                {section.Paragraph}
+              </ReactMarkdown>
             </motion.div>
+
             <motion.div className="text-xl-children-mobile md:hidden">
-              <BlockRendererClient content={section.Paragraph} />
+              <ReactMarkdown
+                className="prose prose-lg leading-relaxed text-justify"
+                components={{
+                  a: ({ href, children }) => (
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-lightBlue"
+                    >
+                      {children}
+                    </a>
+                  ),
+                }}
+              >
+                {section.Paragraph}
+              </ReactMarkdown>
             </motion.div>
           </motion.div>
         ))}

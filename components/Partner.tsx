@@ -2,20 +2,12 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-
-interface ContentChild {
-  text: string;
-}
-
-interface ParagraphItem {
-  type: string;
-  children: ContentChild[];
-}
+import ReactMarkdown from "react-markdown";
 
 interface TextSection {
   id: number;
   Title: string;
-  Paragraph: ParagraphItem[];
+  Paragraph: string;
 }
 
 interface GalleryImage {
@@ -75,19 +67,19 @@ export default function Partner({ partnerData }: PartnerProps) {
                 visible: { scaleY: 1, transition: { duration: 0.5 } },
               }}
             ></motion.span>
-            <motion.p
-              className="text-xl md:text-2xl hidden md:block leading-relaxed text-justify"
+            <motion.div
+              className="text-xl-children-desktop hidden md:block"
               variants={index % 2 === 0 ? fadeInFromRight : fadeInFromLeft}
             >
-              {section.Paragraph.map((paragraph) =>
-                paragraph.children.map((child) => child.text).join(" ")
-              )}
-            </motion.p>
-            <motion.p className="text-xl md:text-2xl leading-relaxed text-justify  md:hidden">
-              {section.Paragraph.map((paragraph) =>
-                paragraph.children.map((child) => child.text).join(" ")
-              )}
-            </motion.p>
+              <ReactMarkdown className="prose prose-lg">
+                {section.Paragraph}
+              </ReactMarkdown>
+            </motion.div>
+            <motion.div className="text-xl-children-mobile md:hidden">
+              <ReactMarkdown className="prose prose-lg">
+                {section.Paragraph}
+              </ReactMarkdown>
+            </motion.div>
           </motion.div>
         ))}
       </div>
