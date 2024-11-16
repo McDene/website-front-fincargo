@@ -1,7 +1,8 @@
 "use client";
-import { useEffect, useState } from "react";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { fetchAPI, cn } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 interface Department {
   id: number;
@@ -18,9 +19,15 @@ interface Job {
   };
 }
 
-export default function CareerOverview() {
-  const [jobs, setJobs] = useState<Job[]>([]);
-  const [departments, setDepartments] = useState<Department[]>([]);
+interface CareerOverviewProps {
+  departments: Department[];
+  jobs: Job[];
+}
+
+export default function CareerOverview({
+  departments,
+  jobs,
+}: CareerOverviewProps) {
   const [selectedDepartment, setSelectedDepartment] = useState<number | null>(
     null
   );
@@ -30,63 +37,27 @@ export default function CareerOverview() {
   >({});
   const [showDropdown, setShowDropdown] = useState(false);
 
-  // Fetch all departments and jobs initially
   useEffect(() => {
-    const getInitialData = async () => {
-      try {
-        const [departmentsRes, jobsRes] = await Promise.all([
-          fetchAPI("/api/departments"),
-          fetchAPI("/api/careers?populate=Department"),
-        ]);
-
-        // Set departments data
-        if (departmentsRes && departmentsRes.data) {
-          setDepartments(departmentsRes.data);
-        }
-
-        // Set jobs data
-        if (jobsRes && jobsRes.data) {
-          setJobs(jobsRes.data);
-
-          // Calculate job counts per department
-          const counts: Record<number, number> = {};
-          jobsRes.data.forEach((job: Job) => {
-            const deptId = job.Department?.id;
-            if (deptId) {
-              counts[deptId] = (counts[deptId] || 0) + 1;
-            }
-          });
-          setJobCountsByDepartment(counts);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
+    // Calculate job counts per department
+    const counts: Record<number, number> = {};
+    jobs.forEach((job) => {
+      const deptId = job.Department?.id;
+      if (deptId) {
+        counts[deptId] = (counts[deptId] || 0) + 1;
       }
-    };
-    getInitialData();
-  }, []);
+    });
+    setJobCountsByDepartment(counts);
+  }, [jobs]);
 
-  // Fetch jobs based on selected department and search term
-  useEffect(() => {
-    const getFilteredJobs = async () => {
-      try {
-        const endpoint = selectedDepartment
-          ? `/api/careers?filters[Department][id][$eq]=${selectedDepartment}&populate=Department`
-          : "/api/careers?populate=Department";
-        const response = await fetchAPI(endpoint);
-        if (response && response.data) {
-          setJobs(response.data);
-        }
-      } catch (error) {
-        console.error("Error fetching careers:", error);
-      }
-    };
-    getFilteredJobs();
-  }, [selectedDepartment]);
-
-  // Filter jobs based on search term
-  const filteredJobs = jobs.filter((job) =>
-    job.Title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Filter jobs based on selected department and search term
+  const filteredJobs = jobs.filter((job) => {
+    const matchesDepartment =
+      !selectedDepartment || job.Department?.id === selectedDepartment;
+    const matchesSearchTerm = job.Title.toLowerCase().includes(
+      searchTerm.toLowerCase()
+    );
+    return matchesDepartment && matchesSearchTerm;
+  });
 
   return (
     <section className={cn("py-24 xl:py-32 lg:py-38 md:py-38 bg-white px-4")}>
@@ -123,14 +94,7 @@ export default function CareerOverview() {
                 >
                   <span>{department.Name}</span>
                   {jobCountsByDepartment[department.id] != null && (
-                    <span
-                      className={cn(
-                        "p-2 text-gray-600 ml-auto",
-                        selectedDepartment === department.id
-                          ? "font-bold text-gray-900"
-                          : ""
-                      )}
-                    >
+                    <span className="ml-2 text-sm text-gray-500">
                       - {jobCountsByDepartment[department.id]}
                     </span>
                   )}
@@ -153,7 +117,7 @@ export default function CareerOverview() {
             </div>
 
             {/* Dropdown for Department Filters on Mobile */}
-            <div className="relative mb-4 md:hidden">
+            <div className="relative mb-6 md:hidden w-full">
               <button
                 onClick={() => setShowDropdown(!showDropdown)}
                 className="w-full p-4 text-left border rounded-full bg-gray-100 focus:outline-none"

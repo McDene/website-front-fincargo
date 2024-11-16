@@ -1,9 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { fetchAPI, cn } from "@/lib/utils";
 import Image from "next/image";
-import ClipLoader from "react-spinners/ClipLoader";
+import { cn } from "@/lib/utils";
 
 interface JobDescriptionChild {
   text: string;
@@ -28,52 +26,10 @@ interface Job {
 }
 
 interface CareerItemProps {
-  slug: string;
+  job: Job;
 }
 
-export default function CareerItem({ slug }: CareerItemProps) {
-  const [job, setJob] = useState<Job | null>(null);
-  const [showLoader, setShowLoader] = useState(false);
-
-  useEffect(() => {
-    const loaderTimeout = setTimeout(() => {
-      setShowLoader(true);
-    }, 500);
-
-    const fetchJob = async () => {
-      if (slug) {
-        try {
-          const data = await fetchAPI(
-            `/api/careers?filters[Slug][$eq]=${slug}`
-          );
-          if (data && data.data.length > 0) {
-            setJob(data.data[0]);
-          }
-        } catch (error) {
-          console.error("Error fetching job:", error);
-        } finally {
-          clearTimeout(loaderTimeout);
-        }
-      }
-    };
-    fetchJob();
-
-    // Cleanup
-    return () => clearTimeout(loaderTimeout);
-  }, [slug]);
-
-  if (!job && showLoader) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <ClipLoader color="#3b82f6" size={50} />
-      </div>
-    );
-  }
-
-  if (!job) {
-    return null;
-  }
-
+export default function CareerItem({ job }: CareerItemProps) {
   const customLoader = ({ src }: { src: string }) => src;
 
   return (
@@ -96,9 +52,10 @@ export default function CareerItem({ slug }: CareerItemProps) {
 
         <div className={cn("flex justify-center mt-8")}>
           <a
+            href={`/contact`}
             rel="noopener noreferrer"
             className={cn(
-              "bg-blue-950 text-white px-6 py-3 border-2 border-blue-950 rounded-3xl font-semibold hover:bg-blue-900 hover:border-blue-900 transition duration-300"
+              "bg-blue-950 text-white px-6 py-3 border-2 border-blue-950 rounded-full font-semibold hover:bg-blue-900 hover:border-blue-900 transition duration-300"
             )}
           >
             Postuler
@@ -124,15 +81,6 @@ export default function CareerItem({ slug }: CareerItemProps) {
                 >
                   {desc.children[0].text}
                 </h3>
-              );
-            } else if (desc.type === "heading" && desc.level === 3) {
-              return (
-                <h4
-                  key={index}
-                  className={`text-xl md:text-2xl font-semibold pt-4`}
-                >
-                  {desc.children[0].text}
-                </h4>
               );
             } else if (desc.type === "paragraph") {
               return (
