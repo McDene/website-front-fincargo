@@ -55,7 +55,7 @@ export default function Footer() {
                 scroll={false}
                 className="hover:text-gray-400"
               >
-                Confidentialitity & secutity
+                Confidentialitity & security
               </Link>
             </li>
             <li>
@@ -180,7 +180,7 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/#" scroll={false} className="hover:text-gray-400">
+              <Link href="/api" scroll={false} className="hover:text-gray-400">
                 API Intergration
               </Link>
             </li>

@@ -38,7 +38,7 @@ export default function MobileMenu({ menuOpen, toggleMenu }: MobileMenuProps) {
           exit="exit"
           variants={menuVariants}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="fixed inset-0 bg-gradient-to-b from-lightBlue to-darkBlue z-50 flex flex-col items-center text-center h-screen"
+          className="fixed inset-0 bg-gradient-to-b from-darkBlue to-black z-50 flex flex-col items-center text-center h-screen"
         >
           <div className="w-full flex justify-between items-center px-5 pt-8">
             {/* Logo */}
@@ -63,7 +63,7 @@ export default function MobileMenu({ menuOpen, toggleMenu }: MobileMenuProps) {
           <motion.div className="flex flex-col space-x-4 pt-32 pb-32 text-xl">
             <Link
               href="/"
-              className={`px-6 py-2 mb-16 text-5xl text-gray-50 font-bold transition-all duration-300 ease-in-out rounded-full}`}
+              className={`px-6 py-2 mb-12 text-5xl text-gray-50 font-bold transition-all duration-300 ease-in-out rounded-full}`}
             >
               Carriers
             </Link>

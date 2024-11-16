@@ -44,7 +44,7 @@ export default function MobileMenu({
           exit="exit"
           variants={menuVariants}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="fixed inset-0 bg-gradient-to-b from-lightBlue to-darkBlue z-50 flex flex-col items-center text-center h-screen"
+          className="fixed inset-0 bg-gradient-to-b from-darkBlue to-black z-50 flex flex-col items-center text-center h-screen"
         >
           <div className="w-full flex justify-between items-center px-5 pt-8">
             {/* Logo */}
@@ -69,8 +69,10 @@ export default function MobileMenu({
           <motion.div className="flex space-x-4 pt-16 pb-24 text-xl">
             <Link
               href="/"
-              className={`px-6 py-2 text-gray-700 font-bold transition-all duration-300 ease-in-out rounded-full ${
-                pathname === "/" ? "bg-blue-100 " : "hover:bg-gray-100"
+              className={`px-6 py-2  font-bold transition-all duration-300 ease-in-out rounded-full ${
+                pathname === "/"
+                  ? "bg-blue-100 text-gray-700"
+                  : "text-blue-100 hover:bg-gray-100"
               }`}
             >
               Carriers
@@ -78,10 +80,10 @@ export default function MobileMenu({
 
             <Link
               href="/freight-forwarders"
-              className={`px-6 py-2 text-gray-800 font-bold transition-all duration-300 ease-in-out rounded-full ${
+              className={`px-6 py-2 font-bold transition-all duration-300 ease-in-out rounded-full ${
                 pathname === "/freight-forwarders"
-                  ? "bg-blue-100 "
-                  : "hover:bg-gray-100"
+                  ? "bg-blue-100 text-gray-700"
+                  : "text-blue-100 hover:bg-gray-100"
               }`}
             >
               Freight Forwarders
