@@ -84,7 +84,7 @@ export default function CareerIdPage({ params }: { params: { slug: string } }) {
         </>
       ) : (
         <div className="flex justify-center items-center h-screen">
-          <p className="text-gray-500">Job not found.</p>
+          <ClipLoader color="#3b82f6" size={50} />
         </div>
       )}
     </>

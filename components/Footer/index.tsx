@@ -181,7 +181,7 @@ export default function Footer() {
             </li>
             <li>
               <Link href="/api" scroll={false} className="hover:text-gray-400">
-                API Intergration
+                API Integration
               </Link>
             </li>
             <li>
