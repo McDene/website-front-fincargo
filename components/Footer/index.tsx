@@ -128,7 +128,12 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/#" scroll={false} className="hover:text-gray-400">
+              <Link
+                target="_blanck"
+                href="https://frontend-fincargo-180162974123.europe-west6.run.app/login"
+                scroll={false}
+                className="hover:text-gray-400"
+              >
                 Log-in
               </Link>
             </li>
@@ -170,7 +175,12 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/#" scroll={false} className="hover:text-gray-400">
+              <Link
+                target="_blanck"
+                href="https://frontend-fincargo-180162974123.europe-west6.run.app/login"
+                scroll={false}
+                className="hover:text-gray-400"
+              >
                 Log-in
               </Link>
             </li>

@@ -168,15 +168,20 @@ export default function Header() {
               >
                 Register
               </button>
-              <button
-                className={`px-4 py-2 rounded-3xl transition duration-300 ${
-                  sticky
-                    ? "border-blue-400 text-darkBlue hover:bg-gray-100"
-                    : "border-white text-white hover:text-blue-950"
-                }`}
+              <a
+                target="_blank"
+                href="https://frontend-fincargo-180162974123.europe-west6.run.app/login"
               >
-                Login
-              </button>
+                <button
+                  className={`px-4 py-2 rounded-3xl transition duration-300 ${
+                    sticky
+                      ? "border-blue-400 text-darkBlue hover:bg-gray-100"
+                      : "border-white text-white hover:text-blue-950"
+                  }`}
+                >
+                  Login
+                </button>
+              </a>
             </div>
           </div>
         </div>

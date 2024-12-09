@@ -119,9 +119,14 @@ export default function MobileMenu({
             <button className="text-white text-xl bg-gray-900 px-8 py-4 rounded-full hover:bg-gray-800">
               Register
             </button>
-            <button className="text-gray-900 text-xl bg-gray-200 px-8 py-4 rounded-full hover:bg-gray-100">
-              Login
-            </button>
+            <a
+              target="_blank"
+              href="https://frontend-fincargo-180162974123.europe-west6.run.app/login"
+            >
+              <button className="text-gray-900 text-xl bg-gray-200 px-8 py-4 rounded-full hover:bg-gray-100">
+                Login
+              </button>
+            </a>
           </motion.div>
         </motion.div>
       )}
