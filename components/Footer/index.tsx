@@ -9,19 +9,33 @@ export default function Footer() {
         <div className="flex flex-col justify-between h-full">
           {/* Logo and Address */}
           <div>
+            {/* Premier logo */}
             <Image
               src="/logo/logo_fincargo_white.svg"
               alt="Fincargo Logo"
               width={150}
               height={40}
             />
-            <p className="mt-4 text-gray-400">
+            <p className="my-5 text-gray-400">
               Rue de L&rsquo;Industrie 23
               <br />
               1950 Sion
               <br />
               Switzerland
             </p>
+            {/* Deuxième logo avec un lien */}
+            <a
+              href="https://www.swissmadesoftware.org/home.html" // Remplacez par le lien correct si besoin
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src="/logo/swiss-made-software.svg"
+                alt="Swiss Made Software Logo"
+                width={200}
+                height={40}
+              />
+            </a>
           </div>
         </div>
 
