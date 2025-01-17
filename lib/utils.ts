@@ -15,7 +15,9 @@ export const fetchAPI = async (endpoint: string) => {
       headers: {
         Accept: "application/json",
         "Cache-Control": "no-cache",
+        "Content-Type": "application/json", // En-tête important pour certaines configurations CORS
       },
+      withCredentials: true, // Permet l'envoi des cookies si nécessaire
     });
     return res.data;
   } catch (error) {
@@ -31,9 +33,14 @@ export const fetchAPI = async (endpoint: string) => {
  * @returns - The response data from the Strapi API
  */
 export const postAPI = async <T>(endpoint: string, data: T) => {
-  // Utilisation de <T> pour un type générique
   try {
-    const res = await axios.post(`${API_URL}${endpoint}`, { data });
+    const res = await axios.post(`${API_URL}${endpoint}`, data, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      withCredentials: true, // Permet l'envoi des cookies si nécessaire
+    });
     return res.data;
   } catch (error) {
     console.error("Error posting data to Strapi:", error);
