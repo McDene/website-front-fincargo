@@ -1,7 +1,3 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import ClipLoader from "react-spinners/ClipLoader";
 import HeaderSecondary from "@/components/Header/Secondary";
 import SectionHeroSmall from "@/components/Common/SectionHeroSmall";
 import CareerItem from "@/components/Career/CareerItem";
@@ -30,67 +26,38 @@ interface Job {
   Slug: string;
 }
 
-export default function CareerIdPage({
+// Fonction pour récupérer les données côté serveur
+async function getJobData(slug: string): Promise<Job | null> {
+  const response = await fetchAPI(
+    `/api/careers?filters[Slug][$eq]=${slug}&populate=*`
+  );
+  if (response?.data?.length > 0) {
+    const fetchedJob = response.data[0];
+    return {
+      Title: fetchedJob.Title,
+      Location: fetchedJob.Location,
+      Description: fetchedJob.Description,
+      Slug: fetchedJob.Slug,
+    };
+  }
+  return null;
+}
+
+// Composant pour afficher la page carrière
+export default async function CareerIdPage({
   params,
 }: {
-  params: { slug: string }; // Type explicite pour params
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = params;
-  const [job, setJob] = useState<Job | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [showLoader, setShowLoader] = useState(false);
-
-  useEffect(() => {
-    const loaderTimeout = setTimeout(() => {
-      setShowLoader(true); // Activer le loader après 500ms
-    }, 500);
-
-    const fetchJobData = async () => {
-      try {
-        const response = await fetchAPI(
-          `/api/careers?filters[Slug][$eq]=${slug}&populate=*`
-        );
-        if (response?.data?.length > 0) {
-          const fetchedJob = response.data[0];
-          setJob({
-            Title: fetchedJob.Title,
-            Location: fetchedJob.Location,
-            Description: fetchedJob.Description,
-            Slug: fetchedJob.Slug,
-          });
-        }
-      } catch (error) {
-        console.error("Error fetching job data:", error);
-      } finally {
-        setLoading(false); // Indique que le chargement est terminé
-        clearTimeout(loaderTimeout); // Nettoyer le timeout
-      }
-    };
-
-    fetchJobData();
-
-    // Cleanup du timeout
-    return () => clearTimeout(loaderTimeout);
-  }, [slug]);
+  const { slug } = await params; // Attendre la résolution de params
+  const job = await getJobData(slug);
 
   return (
     <>
-      {loading && showLoader ? (
-        <div className="flex justify-center items-center h-screen">
-          <ClipLoader color="#3b82f6" size={50} />
-        </div>
-      ) : job ? (
-        <>
-          <HeaderSecondary />
-          <SectionHeroSmall />
-          <CareerItem job={job} />
-          <Footer />
-        </>
-      ) : (
-        <div className="flex justify-center items-center h-screen">
-          <ClipLoader color="#3b82f6" size={50} />
-        </div>
-      )}
+      <HeaderSecondary />
+      <SectionHeroSmall />
+      {job ? <CareerItem job={job} /> : <p>Job not found</p>}
+      <Footer />
     </>
   );
 }
