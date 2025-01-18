@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Prompt, Inter } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
-import { Providers } from "./providers";
 
 const prompt = Prompt({
   weight: ["400", "700", "900"],
@@ -33,9 +33,9 @@ export default function RootLayout({
       <body
         className={`${prompt.variable} ${inter.variable} antialiased bg-white`}
       >
-        <Providers>
-          <main>{children}</main>
-        </Providers>
+        <main>{children}</main>
+        {/* Inclure Google Analytics */}
+        <GoogleAnalytics gaId="G-VGSWFSGPXZ" />
       </body>
     </html>
   );
