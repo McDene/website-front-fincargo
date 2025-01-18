@@ -1,6 +1,8 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { trackEvent } from "@/lib/analytics";
 
 export default function Footer() {
   return (
@@ -9,7 +11,6 @@ export default function Footer() {
         <div className="flex flex-col justify-between h-full">
           {/* Logo and Address */}
           <div>
-            {/* Premier logo */}
             <Image
               src="/logo/logo_fincargo_white.svg"
               alt="Fincargo Logo"
@@ -23,11 +24,17 @@ export default function Footer() {
               <br />
               Switzerland
             </p>
-            {/* Deuxième logo avec un lien */}
             <a
-              href="https://www.swissmadesoftware.org/home.html" // Remplacez par le lien correct si besoin
+              href="https://www.swissmadesoftware.org/home.html"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() =>
+                trackEvent({
+                  action: "click_footer_link",
+                  category: "Footer",
+                  label: "Swiss Made Software",
+                })
+              }
             >
               <Image
                 src="/logo/swiss-made-software.svg"
@@ -50,6 +57,13 @@ export default function Footer() {
                 href="/about"
                 scroll={false}
                 className="hover:text-gray-400"
+                onClick={() =>
+                  trackEvent({
+                    action: "click_footer_link",
+                    category: "Footer",
+                    label: "About Us",
+                  })
+                }
               >
                 About Us
               </Link>
@@ -59,6 +73,13 @@ export default function Footer() {
                 href="/contact"
                 scroll={false}
                 className="hover:text-gray-400"
+                onClick={() =>
+                  trackEvent({
+                    action: "click_footer_link",
+                    category: "Footer",
+                    label: "Contact",
+                  })
+                }
               >
                 Contact
               </Link>
@@ -68,8 +89,15 @@ export default function Footer() {
                 href="/confidentiality-security-notice"
                 scroll={false}
                 className="hover:text-gray-400"
+                onClick={() =>
+                  trackEvent({
+                    action: "click_footer_link",
+                    category: "Footer",
+                    label: "Confidentiality & Security",
+                  })
+                }
               >
-                Confidentialitity & security
+                Confidentiality & Security
               </Link>
             </li>
             <li>
@@ -77,8 +105,15 @@ export default function Footer() {
                 href="/legal-notice"
                 scroll={false}
                 className="hover:text-gray-400"
+                onClick={() =>
+                  trackEvent({
+                    action: "click_footer_link",
+                    category: "Footer",
+                    label: "Legal Notice",
+                  })
+                }
               >
-                Legal notice
+                Legal Notice
               </Link>
             </li>
             <li>
@@ -86,8 +121,15 @@ export default function Footer() {
                 href="/cookies"
                 scroll={false}
                 className="hover:text-gray-400"
+                onClick={() =>
+                  trackEvent({
+                    action: "click_footer_link",
+                    category: "Footer",
+                    label: "Cookies Policy",
+                  })
+                }
               >
-                Cookies policy
+                Cookies Policy
               </Link>
             </li>
             <li>
@@ -95,6 +137,13 @@ export default function Footer() {
                 href="/sustainability"
                 scroll={false}
                 className="hover:text-gray-400"
+                onClick={() =>
+                  trackEvent({
+                    action: "click_footer_link",
+                    category: "Footer",
+                    label: "Sustainability",
+                  })
+                }
               >
                 Sustainability
               </Link>
@@ -104,6 +153,13 @@ export default function Footer() {
                 href="/partner"
                 scroll={false}
                 className="hover:text-gray-400"
+                onClick={() =>
+                  trackEvent({
+                    action: "click_footer_link",
+                    category: "Footer",
+                    label: "Partners",
+                  })
+                }
               >
                 Partners
               </Link>
@@ -113,20 +169,33 @@ export default function Footer() {
                 href="/investor"
                 scroll={false}
                 className="hover:text-gray-400"
+                onClick={() =>
+                  trackEvent({
+                    action: "click_footer_link",
+                    category: "Footer",
+                    label: "Investors",
+                  })
+                }
               >
                 Investors
               </Link>
             </li>
             <li>
-              <Link href="/careers" className="hover:text-gray-400">
-                Career
+              <Link
+                href="/careers"
+                scroll={false}
+                className="hover:text-gray-400"
+                onClick={() =>
+                  trackEvent({
+                    action: "click_footer_link",
+                    category: "Footer",
+                    label: "Careers",
+                  })
+                }
+              >
+                Careers
               </Link>
             </li>
-            {/* <li>
-              <Link href="/contact" className="hover:text-blue-900">
-                Blog
-              </Link>
-            </li> */}
           </ul>
         </div>
 
@@ -137,23 +206,53 @@ export default function Footer() {
           </h4>
           <ul className="space-y-2">
             <li>
-              <Link href="/#" scroll={false} className="hover:text-gray-400">
-                Get started
+              <Link
+                href="/#"
+                scroll={false}
+                className="hover:text-gray-400"
+                onClick={() =>
+                  trackEvent({
+                    action: "click_footer_link",
+                    category: "Footer",
+                    label: "Get Started - Carriers",
+                  })
+                }
+              >
+                Get Started
               </Link>
             </li>
             <li>
               <Link
-                target="_blanck"
                 href="https://frontend-fincargo-180162974123.europe-west6.run.app/login"
                 scroll={false}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-gray-400"
+                onClick={() =>
+                  trackEvent({
+                    action: "click_footer_link",
+                    category: "Footer",
+                    label: "Log In - Carriers",
+                  })
+                }
               >
                 Log-in
               </Link>
             </li>
             <li>
-              <Link href="/#" scroll={false} className="hover:text-gray-400">
-                Explore freight forwarding partners
+              <Link
+                href="/#"
+                scroll={false}
+                className="hover:text-gray-400"
+                onClick={() =>
+                  trackEvent({
+                    action: "click_footer_link",
+                    category: "Footer",
+                    label: "Explore Freight Forwarding Partners",
+                  })
+                }
+              >
+                Explore Freight Forwarding Partners
               </Link>
             </li>
             <li>
@@ -161,8 +260,15 @@ export default function Footer() {
                 href="/carrier-protection-policy"
                 scroll={false}
                 className="hover:text-gray-400"
+                onClick={() =>
+                  trackEvent({
+                    action: "click_footer_link",
+                    category: "Footer",
+                    label: "Carriers Protection Policy",
+                  })
+                }
               >
-                Carriers protection policy
+                Carriers Protection Policy
               </Link>
             </li>
             <li>
@@ -170,6 +276,13 @@ export default function Footer() {
                 href="/#faqs"
                 scroll={false}
                 className="hover:text-gray-400"
+                onClick={() =>
+                  trackEvent({
+                    action: "click_footer_link",
+                    category: "Footer",
+                    label: "FAQ - Carriers",
+                  })
+                }
               >
                 FAQ&lsquo;s
               </Link>
@@ -184,27 +297,68 @@ export default function Footer() {
           </h4>
           <ul className="space-y-2">
             <li>
-              <Link href="/#" scroll={false} className="hover:text-gray-400">
-                Get started
+              <Link
+                href="/#"
+                scroll={false}
+                className="hover:text-gray-400"
+                onClick={() =>
+                  trackEvent({
+                    action: "click_footer_link",
+                    category: "Footer",
+                    label: "Get Started - Freight Forwarders",
+                  })
+                }
+              >
+                Get Started
               </Link>
             </li>
             <li>
               <Link
-                target="_blanck"
                 href="https://frontend-fincargo-180162974123.europe-west6.run.app/login"
                 scroll={false}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-gray-400"
+                onClick={() =>
+                  trackEvent({
+                    action: "click_footer_link",
+                    category: "Footer",
+                    label: "Log In - Freight Forwarders",
+                  })
+                }
               >
                 Log-in
               </Link>
             </li>
             <li>
-              <Link href="/#" scroll={false} className="hover:text-gray-400">
-                Pay carrier early
+              <Link
+                href="/#"
+                scroll={false}
+                className="hover:text-gray-400"
+                onClick={() =>
+                  trackEvent({
+                    action: "click_footer_link",
+                    category: "Footer",
+                    label: "Pay Carrier Early",
+                  })
+                }
+              >
+                Pay Carrier Early
               </Link>
             </li>
             <li>
-              <Link href="/api" scroll={false} className="hover:text-gray-400">
+              <Link
+                href="/api"
+                scroll={false}
+                className="hover:text-gray-400"
+                onClick={() =>
+                  trackEvent({
+                    action: "click_footer_link",
+                    category: "Footer",
+                    label: "API Integration",
+                  })
+                }
+              >
                 API Integration
               </Link>
             </li>
@@ -213,6 +367,13 @@ export default function Footer() {
                 href="/freight-forwarders/#faqs"
                 scroll={false}
                 className="hover:text-gray-400"
+                onClick={() =>
+                  trackEvent({
+                    action: "click_footer_link",
+                    category: "Footer",
+                    label: "FAQ - Freight Forwarders",
+                  })
+                }
               >
                 FAQ&lsquo;s
               </Link>
