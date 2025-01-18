@@ -30,7 +30,11 @@ interface Job {
   Slug: string;
 }
 
-export default function CareerIdPage({ params }: { params: { slug: string } }) {
+export default function CareerIdPage({
+  params,
+}: {
+  params: { slug: string }; // Type explicite pour params
+}) {
   const { slug } = params;
   const [job, setJob] = useState<Job | null>(null);
   const [loading, setLoading] = useState(true);
