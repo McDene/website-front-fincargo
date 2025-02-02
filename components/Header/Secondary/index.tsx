@@ -7,6 +7,7 @@ import { useEffect, useState, useCallback } from "react";
 import MenuButton from "./MenuButton";
 import MobileMenu from "./MobileMenu";
 import NavLinks from "./NavLinks";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export default function Header() {
   const pathname = usePathname();
@@ -112,6 +113,7 @@ export default function Header() {
               >
                 Login
               </button>
+              <LanguageSwitcher />
             </div>
           </div>
         </div>

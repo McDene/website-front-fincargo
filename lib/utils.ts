@@ -9,16 +9,20 @@ export const API_URL = process.env.NEXT_PUBLIC_API_URL;
  * @param endpoint - The Strapi API endpoint (e.g., /api/hero)
  * @returns - The data from the Strapi API
  */
-export const fetchAPI = async (endpoint: string) => {
+export const fetchAPI = async (endpoint: string, locale: string = "en") => {
   try {
-    const res = await axios.get(`${API_URL}${endpoint}`, {
+    const separator = endpoint.includes("?") ? "&" : "?";
+    const fullUrl = `${API_URL}${endpoint}${separator}locale=${locale}`;
+
+    console.log("Requête envoyée à Strapi :", fullUrl);
+
+    const res = await axios.get(fullUrl, {
       headers: {
         Accept: "application/json",
         "Cache-Control": "no-cache",
-        "Content-Type": "application/json", // En-tête important pour certaines configurations CORS
       },
-      withCredentials: true, // Permet l'envoi des cookies si nécessaire
     });
+
     return res.data;
   } catch (error) {
     console.error("Error fetching data from Strapi:", error);

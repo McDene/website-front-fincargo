@@ -3,6 +3,7 @@ import { Prompt, Inter } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { Providers } from "./providers";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 const prompt = Prompt({
   weight: ["400", "700", "900"],
@@ -35,7 +36,9 @@ export default function RootLayout({
         className={`${prompt.variable} ${inter.variable} antialiased bg-white`}
       >
         <Providers>
-          <main>{children}</main>
+          <LanguageProvider key={Math.random()}>
+            <main>{children}</main>
+          </LanguageProvider>
         </Providers>
         {/* Google Analytics */}
         <GoogleAnalytics gaId="G-VGSWFSGPXZ" />

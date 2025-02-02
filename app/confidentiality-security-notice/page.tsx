@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import HeaderSecondary from "@/components/Header/Secondary";
 import SectionHeroSmall from "@/components/Common/SectionHeroSmall";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
+import { LanguageContext } from "@/context/LanguageContext";
 
 interface ConfidentialityData {
   title: string;
@@ -14,6 +15,7 @@ interface ConfidentialityData {
 }
 
 export default function ConfidentialitySecurityNoticePage() {
+  const { language } = useContext(LanguageContext);
   const [confidentialityData, setConfidentialityData] =
     useState<ConfidentialityData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -27,7 +29,8 @@ export default function ConfidentialitySecurityNoticePage() {
     const fetchData = async () => {
       try {
         const response = await fetchAPI(
-          "/api/confidentiality-and-security-notice"
+          "/api/confidentiality-and-security-notice",
+          language
         );
         if (response?.data) {
           setConfidentialityData({
@@ -45,7 +48,7 @@ export default function ConfidentialitySecurityNoticePage() {
     fetchData();
 
     return () => clearTimeout(loaderTimeout);
-  }, []);
+  }, [language]);
 
   if (loading && showLoader) {
     return (

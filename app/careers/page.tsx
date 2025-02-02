@@ -1,14 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import HeaderSecondary from "@/components/Header/Secondary";
 import SectionHeroSmall from "@/components/Common/SectionHeroSmall";
 import CareerOverview from "@/components/Career/CareerOverview";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
+import { LanguageContext } from "@/context/LanguageContext";
 
 export default function CareerPage() {
+  const { language } = useContext(LanguageContext);
   const [departments, setDepartments] = useState([]);
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -23,8 +25,8 @@ export default function CareerPage() {
       try {
         // Fetch departments and jobs in parallel
         const [departmentsRes, jobsRes] = await Promise.all([
-          fetchAPI("/api/departments"),
-          fetchAPI("/api/careers?populate=Department"),
+          fetchAPI("/api/departments", language),
+          fetchAPI("/api/careers?populate=Department", language),
         ]);
 
         if (departmentsRes?.data) setDepartments(departmentsRes.data);
@@ -38,7 +40,7 @@ export default function CareerPage() {
 
     fetchData();
     return () => clearTimeout(loaderTimeout);
-  }, []);
+  }, [language]);
 
   if (loading && showLoader) {
     return (

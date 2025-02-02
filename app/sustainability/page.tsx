@@ -1,14 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import HeaderSecondary from "@/components/Header/Secondary";
 import HeroImage from "@/components/HeroImage";
 import EsgPolicy from "@/components/EsgPolicy";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
+import { LanguageContext } from "@/context/LanguageContext";
 
 export default function SustainabilityPage() {
+  const { language } = useContext(LanguageContext);
   const [heroData, setHeroData] = useState(null);
   const [sustainabilityData, setSustainabilityData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -21,9 +23,10 @@ export default function SustainabilityPage() {
       try {
         const [heroResponse, sustainabilityResponse] = await Promise.all([
           fetchAPI(
-            "/api/hero-images?filters[Page][$eq]=Sustainability&populate[Hero][populate]=Image"
+            "/api/hero-images?filters[Page][$eq]=Sustainability&populate[Hero][populate]=Image",
+            language
           ),
-          fetchAPI("/api/esg-policy?populate=MultipleText"),
+          fetchAPI("/api/esg-policy?populate=MultipleText", language),
         ]);
 
         setHeroData(heroResponse?.data?.[0]?.Hero || null);
@@ -38,7 +41,7 @@ export default function SustainabilityPage() {
 
     fetchData();
     return () => clearTimeout(loaderTimeout);
-  }, []);
+  }, [language]);
 
   if (loading && showLoader) {
     return (

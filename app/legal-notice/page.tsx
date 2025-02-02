@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import HeaderSecondary from "@/components/Header/Secondary";
 import SectionHeroSmall from "@/components/Common/SectionHeroSmall";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
+import { LanguageContext } from "@/context/LanguageContext";
 
 interface LegalNoticeData {
   title: string;
@@ -14,6 +15,7 @@ interface LegalNoticeData {
 }
 
 export default function LegalNoticePage() {
+  const { language } = useContext(LanguageContext);
   const [legalNoticeData, setLegalNoticeData] =
     useState<LegalNoticeData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -26,7 +28,7 @@ export default function LegalNoticePage() {
 
     const fetchData = async () => {
       try {
-        const response = await fetchAPI("/api/legal-notice");
+        const response = await fetchAPI("/api/legal-notice", language);
         if (response?.data) {
           setLegalNoticeData({
             title: response.data.Title,
@@ -42,7 +44,7 @@ export default function LegalNoticePage() {
 
     fetchData();
     return () => clearTimeout(loaderTimeout);
-  }, []);
+  }, [language]);
 
   if (loading && showLoader) {
     return (

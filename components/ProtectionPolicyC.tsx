@@ -47,12 +47,13 @@ export default function ProtectionPolicyC({
       { threshold: 1 }
     );
 
-    imageRefs.current.forEach((image) => {
+    const currentImageRefs = imageRefs.current;
+    currentImageRefs.forEach((image) => {
       if (image) observer.observe(image);
     });
 
     return () => {
-      imageRefs.current.forEach((image) => {
+      currentImageRefs.forEach((image) => {
         if (image) observer.unobserve(image);
       });
     };

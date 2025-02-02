@@ -1,14 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import HeaderSecondary from "@/components/Header/Secondary";
 import HeroImage from "@/components/HeroImage";
 import ProtectionPolicyC from "@/components/ProtectionPolicyC";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
+import { LanguageContext } from "@/context/LanguageContext";
 
 export default function CarrierProtectionPolicyPage() {
+  const { language } = useContext(LanguageContext);
   const [heroData, setHeroData] = useState(null);
   const [carrierProtectionPolicyData, setCarrierProtectionPolicyData] =
     useState(null);
@@ -23,10 +25,12 @@ export default function CarrierProtectionPolicyPage() {
         const [heroResponse, carrierProtectionPolicyResponse] =
           await Promise.all([
             fetchAPI(
-              "/api/hero-images?filters[Page][$eq]=CarrierProtectionPolicy&populate[Hero][populate]=Image"
+              "/api/hero-images?filters[Page][$eq]=CarrierProtectionPolicy&populate[Hero][populate]=Image",
+              language
             ),
             fetchAPI(
-              "/api/c-protection-policy?populate[Content][populate]=Image"
+              "/api/c-protection-policy?populate[Content][populate]=Image",
+              language
             ),
           ]);
 
@@ -43,7 +47,7 @@ export default function CarrierProtectionPolicyPage() {
     };
     fetchData();
     return () => clearTimeout(loaderTimeout);
-  }, []);
+  }, [language]);
 
   if (loading && showLoader) {
     return (

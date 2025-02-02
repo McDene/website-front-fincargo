@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import Header from "@/components/Header/Main";
 import Hero from "@/components/Hero";
@@ -10,6 +10,7 @@ import Invite from "@/components/Invite";
 import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
+import { LanguageContext } from "@/context/LanguageContext";
 
 // import { Metadata } from "next";
 
@@ -19,6 +20,7 @@ import { fetchAPI } from "@/lib/utils";
 // };
 
 export default function Home() {
+  const { language } = useContext(LanguageContext);
   const [heroData, setHeroData] = useState(null);
   const [featureData, setFeatureData] = useState(null);
   const [benefitData, setBenefitData] = useState(null);
@@ -42,17 +44,24 @@ export default function Home() {
           faqResponse,
         ] = await Promise.all([
           fetchAPI(
-            "/api/hero-videos?filters[Page][$eq]=Carriers&populate[Hero][populate]=Video"
+            "/api/hero-videos?filters[Page][$eq]=Carriers&populate[Hero][populate]=Video",
+            language
           ),
           fetchAPI(
-            "/api/features?filters[Page][$eq]=Carriers&populate[Feature][populate][Card][populate]=Image"
+            "/api/features?filters[Page][$eq]=Carriers&populate[Feature][populate][Card][populate]=Image",
+            language
           ),
           fetchAPI(
-            "/api/benefits?filters[Page][$eq]=Carriers&populate[Benefit][populate]=Benefit"
+            "/api/benefits?filters[Page][$eq]=Carriers&populate[Benefit][populate]=Benefit",
+            language
           ),
-          fetchAPI("/api/invites?filters[Page][$eq]=Carrier&populate=Image"),
           fetchAPI(
-            "/api/faqs?filters[Page][$eq]=Carrier&populate[FAQ][populate]=Accordion"
+            "/api/invites?filters[Page][$eq]=Carrier&populate=Image",
+            language
+          ),
+          fetchAPI(
+            "/api/faqs?filters[Page][$eq]=Carrier&populate[FAQ][populate]=Accordion",
+            language
           ),
         ]);
 
@@ -72,7 +81,7 @@ export default function Home() {
     fetchData();
 
     return () => clearTimeout(loaderTimeout);
-  }, []);
+  }, [language]);
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.location.hash === "#faqs") {

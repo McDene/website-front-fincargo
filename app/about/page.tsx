@@ -1,14 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import HeaderSecondary from "@/components/Header/Secondary";
 import HeroImage from "@/components/HeroImage";
 import About from "@/components/About";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
+import { LanguageContext } from "@/context/LanguageContext";
 
 export default function AboutPage() {
+  const { language } = useContext(LanguageContext);
   const [heroData, setHeroData] = useState(null);
   const [aboutData, setAboutData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -23,9 +25,10 @@ export default function AboutPage() {
       try {
         const [heroResponse, aboutResponse] = await Promise.all([
           fetchAPI(
-            "/api/hero-images?filters[Page][$eq]=About&populate[Hero][populate]=Image"
+            "/api/hero-images?filters[Page][$eq]=About&populate[Hero][populate]=Image",
+            language
           ),
-          fetchAPI("/api/abouts"),
+          fetchAPI("/api/abouts", language),
         ]);
 
         setHeroData(heroResponse?.data?.[0]?.Hero || null);
@@ -41,7 +44,7 @@ export default function AboutPage() {
     fetchData();
 
     return () => clearTimeout(loaderTimeout);
-  }, []);
+  }, [language]);
 
   if (loading && showLoader) {
     return (

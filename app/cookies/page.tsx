@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import HeaderSecondary from "@/components/Header/Secondary";
 import SectionHeroSmall from "@/components/Common/SectionHeroSmall";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
+import { LanguageContext } from "@/context/LanguageContext";
 
 interface CookiesData {
   title: string;
@@ -14,6 +15,7 @@ interface CookiesData {
 }
 
 export default function CookiesPage() {
+  const { language } = useContext(LanguageContext);
   const [cookiesData, setCookiesData] = useState<CookiesData | null>(null);
   const [loading, setLoading] = useState(true);
   const [showLoader, setShowLoader] = useState(false);
@@ -25,7 +27,7 @@ export default function CookiesPage() {
 
     const fetchData = async () => {
       try {
-        const response = await fetchAPI("/api/cookie");
+        const response = await fetchAPI("/api/cookie", language);
         if (response?.data) {
           setCookiesData({
             title: response.data.Title,
@@ -42,7 +44,7 @@ export default function CookiesPage() {
     fetchData();
 
     return () => clearTimeout(loaderTimeout);
-  }, []);
+  }, [language]);
 
   if (loading && showLoader) {
     return (

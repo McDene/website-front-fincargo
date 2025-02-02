@@ -7,6 +7,8 @@ import { useEffect, useState, useCallback } from "react";
 import MenuButton from "./MenuButton";
 import MobileMenu from "./MobileMenu";
 import NavLinks from "./NavLinks";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import LanguageSwitcherMobile from "@/components/LanguageSwitcherMobile";
 
 export default function Header() {
   const pathname = usePathname();
@@ -103,7 +105,13 @@ export default function Header() {
               </Link>
             </div>
             {/* Menu Button for Mobile */}
-            <MenuButton menuOpen={menuOpen} toggleMenu={toggleMenu} />
+            <div className="flex lg:hidden ">
+              <div className="pr-4">
+                <LanguageSwitcherMobile />
+              </div>
+
+              <MenuButton menuOpen={menuOpen} toggleMenu={toggleMenu} />
+            </div>
 
             {/* Carriers/Freight Forwarders Navigation for Desktop */}
             <div className="hidden lg:block space-x-4">
@@ -132,6 +140,7 @@ export default function Header() {
                 For Freight Forwarders
               </Link>
             </div>
+            <LanguageSwitcher />
           </div>
 
           {/* Second Level (Desktop): Logo, Navigation, Register/Login */}
@@ -147,7 +156,6 @@ export default function Header() {
                 />
               </Link>
             </div>
-
             {/* Menu anchor (NavLinks component) */}
             <div className="flex justify-center space-x-6">
               <NavLinks
@@ -156,7 +164,6 @@ export default function Header() {
                 pathname={pathname}
               />
             </div>
-
             {/* Register and Login buttons for Desktop */}
             <div className="flex space-x-4">
               <button

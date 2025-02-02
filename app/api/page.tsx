@@ -1,14 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import HeaderSecondary from "@/components/Header/Secondary";
 import HeroImage from "@/components/HeroImage";
 import Api from "@/components/Api";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
+import { LanguageContext } from "@/context/LanguageContext";
 
 export default function ApiPage() {
+  const { language } = useContext(LanguageContext);
   const [heroData, setHeroData] = useState(null);
   const [apiData, setApiData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -23,9 +25,10 @@ export default function ApiPage() {
       try {
         const [heroResponse, apiResponse] = await Promise.all([
           fetchAPI(
-            "/api/hero-images?filters[Page][$eq]=Api&populate[Hero][populate]=Image"
+            "/api/hero-images?filters[Page][$eq]=Api&populate[Hero][populate]=Image",
+            language
           ),
-          fetchAPI("/api/api?populate=MultipleText"),
+          fetchAPI("/api/api?populate=MultipleText", language),
         ]);
 
         setHeroData(heroResponse?.data?.[0]?.Hero || null);
@@ -41,7 +44,7 @@ export default function ApiPage() {
     fetchData();
 
     return () => clearTimeout(loaderTimeout);
-  }, []);
+  }, [language]);
 
   if (loading && showLoader) {
     return (

@@ -6,8 +6,10 @@ import HeaderSecondary from "@/components/Header/Secondary";
 import SectionHeroSmall from "@/components/Common/SectionHeroSmall";
 import Footer from "@/components/Footer";
 import { postAPI } from "@/lib/utils";
+// import { LanguageContext } from "@/context/LanguageContext";
 
 export default function ContactPage() {
+  // const { language } = useContext(LanguageContext);
   const [loading, setLoading] = useState(true);
   const [showLoader, setShowLoader] = useState(false);
   const [formData, setFormData] = useState({
