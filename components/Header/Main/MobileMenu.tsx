@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useTranslation } from "@/hooks/useTranslation";
 import Link from "next/link";
 import Image from "next/image";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -28,6 +29,8 @@ export default function MobileMenu({
       document.body.style.overflow = "";
     };
   }, [menuOpen]);
+
+  const t = useTranslation();
 
   const menuVariants = {
     hidden: { opacity: 0, y: "-100%" },
@@ -75,7 +78,7 @@ export default function MobileMenu({
                   : "text-blue-100 hover:bg-gray-100"
               }`}
             >
-              Carriers
+              {t("for_carriers")}
             </Link>
 
             <Link
@@ -86,7 +89,7 @@ export default function MobileMenu({
                   : "text-blue-100 hover:bg-gray-100"
               }`}
             >
-              Freight Forwarders
+              {t("for_freight_forwarders")}
             </Link>
           </motion.div>
 
@@ -117,14 +120,14 @@ export default function MobileMenu({
             transition={{ delay: 0.3, duration: 0.5 }}
           >
             <button className="text-white text-xl bg-gray-900 px-8 py-4 rounded-full hover:bg-gray-800">
-              Register
+              {t("register")}
             </button>
             <a
               target="_blank"
               href="https://frontend-fincargo-180162974123.europe-west6.run.app/login"
             >
               <button className="text-gray-900 text-xl bg-gray-200 px-8 py-4 rounded-full hover:bg-gray-100">
-                Login
+                {t("login")}
               </button>
             </a>
           </motion.div>

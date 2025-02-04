@@ -6,6 +6,8 @@ import { LanguageContext } from "@/context/LanguageContext";
 const LANGUAGES = [
   { code: "en", label: "EN" },
   { code: "es-ES", label: "ES" },
+  { code: "fr", label: "FR" },
+  { code: "de", label: "DE" },
 ];
 
 export default function LanguageSwitcherMobile() {

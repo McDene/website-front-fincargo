@@ -69,7 +69,7 @@ export default function CareerOverview({
         </div>
         <div className="flex">
           {/* Sidebar for Department Filters */}
-          <aside className="hidden md:block w-1/4 pr-8">
+          {/* <aside className="hidden md:block w-1/4 pr-8">
             <h2 className="text-2xl p-3 font-semibold mb-6">Departments</h2>
             <ul>
               <li
@@ -101,10 +101,10 @@ export default function CareerOverview({
                 </li>
               ))}
             </ul>
-          </aside>
+          </aside> */}
 
           {/* Job Listings */}
-          <div className="md:w-3/4 w-full">
+          <div className="md:w-4/4 w-full">
             {/* Search Bar */}
             <div className="flex justify-center mb-4 md:mb-8">
               <input

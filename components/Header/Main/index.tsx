@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslation } from "@/hooks/useTranslation";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { useEffect, useState, useCallback } from "react";
@@ -11,6 +12,7 @@ import LanguageSwitcher from "@/components/LanguageSwitcher";
 import LanguageSwitcherMobile from "@/components/LanguageSwitcherMobile";
 
 export default function Header() {
+  const t = useTranslation();
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [sticky, setSticky] = useState(false);
@@ -25,17 +27,17 @@ export default function Header() {
       : "Carrier";
 
   const carrierMenu = [
-    { name: "Features", anchor: "../#feature" },
-    { name: "Benefits", anchor: "../#benefit" },
-    { name: "Invite your freight forwarder", anchor: "../#invite" },
-    { name: "FAQ's", anchor: "../#faqs" },
+    { name: t("features"), anchor: "../#feature" },
+    { name: t("benefits"), anchor: "../#benefit" },
+    { name: t("invite_your_subcontractors"), anchor: "../#invite" },
+    { name: t("faq"), anchor: "../#faqs" },
   ];
 
   const freightforwarderMenu = [
-    { name: "Features", anchor: "#feature" },
-    { name: "Benefits", anchor: "#benefit" },
-    { name: "Invite your subcontractors", anchor: "#invite" },
-    { name: "FAQ's", anchor: "#faqs" },
+    { name: t("features"), anchor: "#feature" },
+    { name: t("benefits"), anchor: "#benefit" },
+    { name: t("invite_your_subcontractors"), anchor: "#invite" },
+    { name: t("faq"), anchor: "#faqs" },
   ];
 
   const liquidityprovidersMenu = [
@@ -125,7 +127,7 @@ export default function Header() {
                       } hover:bg-blue-100 hover:text-blue-950`
                 } transition duration-300 ease-in-out`}
               >
-                For Carriers
+                {t("for_carriers")}
               </Link>
               <Link
                 href="/freight-forwarders"
@@ -137,7 +139,7 @@ export default function Header() {
                       } hover:bg-blue-100 hover:text-blue-950`
                 } transition duration-300 ease-in-out`}
               >
-                For Freight Forwarders
+                {t("for_freight_forwarders")}
               </Link>
             </div>
             <LanguageSwitcher />
@@ -177,7 +179,7 @@ export default function Header() {
                       : "border-white bg-white text-blue-950 hover:bg-gray-200 hover:border-gray-200"
                   } `}
                 >
-                  Register
+                  {t("register")}
                 </button>
               </a>
 
@@ -192,7 +194,7 @@ export default function Header() {
                       : "border-white text-white hover:text-blue-950"
                   }`}
                 >
-                  Login
+                  {t("login")}
                 </button>
               </a>
             </div>
