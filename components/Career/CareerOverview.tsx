@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface Department {
   id: number;
@@ -36,6 +37,7 @@ export default function CareerOverview({
     Record<number, number>
   >({});
   const [showDropdown, setShowDropdown] = useState(false);
+  const t = useTranslation();
 
   useEffect(() => {
     // Calculate job counts per department
@@ -64,7 +66,7 @@ export default function CareerOverview({
       <div className="max-w-7xl mx-auto">
         <div className="pb-12">
           <h1 className="text-5xl md:text-7xl font-semibold uppercase text-center mb-1 md:mb-12">
-            Our open posts
+            {t("our_open_positions")}
           </h1>
         </div>
         <div className="flex">

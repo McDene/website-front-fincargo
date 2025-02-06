@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslation } from "@/hooks/useTranslation";
 import Image from "next/image";
 import { useEffect, useState, useCallback } from "react";
 import MenuButton from "./MenuButton";
@@ -11,14 +12,15 @@ import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export default function Header() {
   const pathname = usePathname();
+  const t = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [sticky, setSticky] = useState(false);
   const [visible, setVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
   const menuItems = [
-    { name: "For Carriers", href: "/" },
-    { name: "For Freight Forwarders", href: "/freight-forwarders" },
+    { name: t("for_carriers"), href: "/" },
+    { name: t("for_freight_forwarders"), href: "/freight-forwarders" },
   ];
 
   const SCROLL_THRESHOLD = 5;
@@ -102,7 +104,7 @@ export default function Header() {
                     : "border-blue-950 bg-blue-950 text-white hover:bg-blue-900 hover:border-blue-900"
                 } `}
               >
-                Register
+                {t("register")}
               </button>
               <button
                 className={`px-4 py-2 rounded-3xl border-2 transition duration-300 ${
@@ -111,7 +113,7 @@ export default function Header() {
                     : "border-blue-950 text-blue-950 hover:bg-gray-100"
                 }`}
               >
-                Login
+                {t("login")}
               </button>
               <LanguageSwitcher />
             </div>

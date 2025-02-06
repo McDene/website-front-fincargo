@@ -2,9 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslation } from "@/hooks/useTranslation";
 import { trackEvent } from "@/lib/analytics";
 
 export default function Footer() {
+  const t = useTranslation();
+
   return (
     <footer className="pt-32 xl:pt-32 lg:pt-38 md:pt-24 sm:pt-20 pb-10 bg-gradient-to-b from-darkBlue to-black text-gray-50 px-8">
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
@@ -49,7 +52,7 @@ export default function Footer() {
         {/* Colonne 2: Company + Liens */}
         <div>
           <h4 className="text-lg font-bold text-blue-200 mb-4 uppercase">
-            Company
+            {t("company")}
           </h4>
           <ul className="space-y-2">
             <li>
@@ -65,7 +68,7 @@ export default function Footer() {
                   })
                 }
               >
-                About Us
+                {t("about_us")}
               </Link>
             </li>
             <li>
@@ -81,7 +84,7 @@ export default function Footer() {
                   })
                 }
               >
-                Contact
+                {t("contact")}
               </Link>
             </li>
             <li>
@@ -97,7 +100,7 @@ export default function Footer() {
                   })
                 }
               >
-                Confidentiality & Security
+                {t("Confidentiality")}
               </Link>
             </li>
             <li>
@@ -113,7 +116,7 @@ export default function Footer() {
                   })
                 }
               >
-                Legal Notice
+                {t("legal_notice")}
               </Link>
             </li>
             <li>
@@ -129,7 +132,7 @@ export default function Footer() {
                   })
                 }
               >
-                Cookies Policy
+                {t("cookies")}
               </Link>
             </li>
             <li>
@@ -145,7 +148,7 @@ export default function Footer() {
                   })
                 }
               >
-                Sustainability
+                {t("sustainability")}
               </Link>
             </li>
             <li>
@@ -161,7 +164,7 @@ export default function Footer() {
                   })
                 }
               >
-                Partners
+                {t("partners")}
               </Link>
             </li>
             <li>
@@ -177,7 +180,7 @@ export default function Footer() {
                   })
                 }
               >
-                Investors
+                {t("investors")}
               </Link>
             </li>
             <li>
@@ -193,7 +196,7 @@ export default function Footer() {
                   })
                 }
               >
-                Careers
+                {t("careers")}
               </Link>
             </li>
           </ul>
@@ -202,7 +205,7 @@ export default function Footer() {
         {/* Colonne 3: Carriers + Liens */}
         <div>
           <h4 className="text-lg font-bold text-blue-200 mb-4 uppercase">
-            Carriers
+            {t("carriers")}
           </h4>
           <ul className="space-y-2">
             <li>
@@ -218,7 +221,7 @@ export default function Footer() {
                   })
                 }
               >
-                Get Started
+                {t("get_started")}
               </Link>
             </li>
             <li>
@@ -236,7 +239,7 @@ export default function Footer() {
                   })
                 }
               >
-                Log-in
+                {t("login")}
               </Link>
             </li>
             <li>
@@ -252,7 +255,7 @@ export default function Footer() {
                   })
                 }
               >
-                Explore Freight Forwarding Partners
+                {t("explore_freight_forwarders_partners")}
               </Link>
             </li>
             <li>
@@ -268,7 +271,7 @@ export default function Footer() {
                   })
                 }
               >
-                Carriers Protection Policy
+                {t("carriers_protection_policy")}
               </Link>
             </li>
             <li>
@@ -284,7 +287,7 @@ export default function Footer() {
                   })
                 }
               >
-                FAQ&lsquo;s
+                {t("faq")}
               </Link>
             </li>
           </ul>
@@ -293,7 +296,7 @@ export default function Footer() {
         {/* Colonne 4: Freight Forwarders + Liens */}
         <div>
           <h4 className="text-lg font-bold text-blue-200 mb-4 uppercase">
-            Freight Forwarders
+            {t("freight_forwarders")}
           </h4>
           <ul className="space-y-2">
             <li>
@@ -309,7 +312,7 @@ export default function Footer() {
                   })
                 }
               >
-                Get Started
+                {t("get_started")}
               </Link>
             </li>
             <li>
@@ -327,7 +330,7 @@ export default function Footer() {
                   })
                 }
               >
-                Log-in
+                {t("login")}
               </Link>
             </li>
             <li>
@@ -343,7 +346,7 @@ export default function Footer() {
                   })
                 }
               >
-                Pay Carrier Early
+                {t("pay_carrier_early")}
               </Link>
             </li>
             <li>
@@ -359,7 +362,7 @@ export default function Footer() {
                   })
                 }
               >
-                API Integration
+                {t("api_integration")}
               </Link>
             </li>
             <li>
@@ -375,7 +378,7 @@ export default function Footer() {
                   })
                 }
               >
-                FAQ&lsquo;s
+                {t("faq")}
               </Link>
             </li>
           </ul>

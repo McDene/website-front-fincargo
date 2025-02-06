@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface InviteData {
   Title: string;
@@ -18,6 +19,7 @@ interface SectionInviteProps {
 }
 
 export default function SectionInvite({ inviteData }: SectionInviteProps) {
+  const t = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const contentRef = useRef<HTMLDivElement | null>(null);
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -72,7 +74,7 @@ export default function SectionInvite({ inviteData }: SectionInviteProps) {
       >
         <div className="lg:w-1/2 text-center lg:text-left space-y-8">
           <h2 className="text-4xl md:text-7xl font-semibold leading-tight mb-10 md:mb-20 text-darkBlue uppercase">
-            <span className="text-gray-900">Invite your</span>{" "}
+            <span className="text-gray-900">{t("invite_your")}</span>{" "}
             {inviteData.Title}
           </h2>
           <p className="text-lg md:text-xl text-gray-700 leading-relaxed">

@@ -29,14 +29,14 @@ export default function Header() {
   const carrierMenu = [
     { name: t("features"), anchor: "../#feature" },
     { name: t("benefits"), anchor: "../#benefit" },
-    { name: t("invite_your_subcontractors"), anchor: "../#invite" },
+    { name: t("invite_your_freight_forwarder"), anchor: "../#invite" },
     { name: t("faq"), anchor: "../#faqs" },
   ];
 
   const freightforwarderMenu = [
     { name: t("features"), anchor: "#feature" },
     { name: t("benefits"), anchor: "#benefit" },
-    { name: t("invite_your_subcontractors"), anchor: "#invite" },
+    { name: t("invite_your_carriers"), anchor: "#invite" },
     { name: t("faq"), anchor: "#faqs" },
   ];
 
