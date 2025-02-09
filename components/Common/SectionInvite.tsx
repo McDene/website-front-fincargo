@@ -89,7 +89,7 @@ export default function SectionInvite({ inviteData }: SectionInviteProps) {
           <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
             {inviteData.Paragraph}
           </p>
-          <a href={inviteData.ButtonLink} target="_blank">
+          <a href={inviteData.ButtonLink ?? "#"} target="_blank">
             <button className="mt-6 px-6 py-3 bg-lightBlue text-white rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:bg-darkBlue ">
               {inviteData.ButtonText}
             </button>
