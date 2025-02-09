@@ -29,6 +29,17 @@ const TRANSLATIONS: Record<string, Record<string, string>> = {
     api_integration: "API Integration",
     invite_your: "Invite your",
     our_open_positions: "Our open positions",
+    contact_us: "Contact us",
+    contact_text:
+      "Do you have a question or want to get in touch with us? Fill out the form below to contact us.",
+    contact_subtext: "You can also reach us at this email address:",
+    where_to_find_us: "Where to find us",
+    email: "Email",
+    name: "Name",
+    subject: "Subject",
+    message: "Message",
+    send: "Send",
+    sending: "Sending...",
   },
   es: {
     register: "Registrar",
@@ -60,6 +71,18 @@ const TRANSLATIONS: Record<string, Record<string, string>> = {
     api_integration: "Integración de API",
     invite_your: "Invite a sus",
     our_open_positions: "Ofertas de empleo",
+    contact_us: "Contáctenos",
+    contact_text:
+      "¿Tienes alguna pregunta o quieres ponerte en contacto con nosotros? Completa el formulario a continuación para contactarnos.",
+    contact_subtext:
+      "También puedes escribirnos a esta dirección de correo electrónico:",
+    where_to_find_us: "Donde encontrarnos",
+    email: "Correo electrónico",
+    name: "Nombre",
+    subject: "Asunto",
+    message: "Mensaje",
+    send: "Enviar",
+    sending: "Enviando...",
   },
   fr: {
     register: "S'inscrire",
@@ -92,6 +115,18 @@ const TRANSLATIONS: Record<string, Record<string, string>> = {
     api_integration: "Intégration API",
     invite_your: "Invitez vos",
     our_open_positions: "Nos postes vacants",
+    contact_us: "Contactez-nous",
+    contact_text:
+      "Vous avez une question ou souhaitez nous contacter? Remplissez le formulaire ci-dessous pour nous joindre",
+    contact_subtext:
+      "Vous pouvez également nous écrire à cette adresse e-mail :",
+    where_to_find_us: "Où nous trouver",
+    email: "Email",
+    name: "Nom",
+    subject: "Sujet",
+    message: "Message",
+    send: "Envoyer",
+    sending: "Envoi en cours...",
   },
   de: {
     register: "Registrieren",
@@ -122,6 +157,18 @@ const TRANSLATIONS: Record<string, Record<string, string>> = {
     pay_carrier_early: "Zahle den Transporteur frühzeitig",
     api_integration: "API-Integration",
     our_open_positions: "Unsere offenen Stellen",
+    contact_us: "Kontaktiere uns",
+    contact_text:
+      "Haben Sie eine Frage oder möchten Sie mit uns in Kontakt treten? Füllen Sie das untenstehende Formular aus, um uns zu erreichen.",
+    contact_subtext:
+      "Sie können uns auch unter dieser E-Mail-Adresse erreichen:",
+    where_to_find_us: "Wo Sie uns finden",
+    email: "Email",
+    name: "Name",
+    subject: "Betreff",
+    message: "Nachricht",
+    send: "Senden",
+    sending: "Senden...",
   },
 };
 

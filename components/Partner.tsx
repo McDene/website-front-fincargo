@@ -38,13 +38,15 @@ const fadeInFromRight = {
 export default function Partner({ partnerData }: PartnerProps) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
+  const images = [...partnerData.Gallery, ...partnerData.Gallery];
+
   return (
     <section className="pt-24 md:pt-32 bg-gradient-to-b from-gray-300 to-white px-8">
       <div className="max-w-7xl mx-auto">
         {partnerData.MultipleText.map((section, index) => (
           <motion.div
             key={section.id}
-            className={`flex flex-col lg:flex-row md:items-center pb-24 md:pb-32 gap-8 ${
+            className={`flex flex-col lg:flex-row md:items-center pb-24 md:pb-32 gap-0 ${
               index % 2 === 1 ? "lg:flex-row-reverse" : ""
             }`}
             initial="hidden"
@@ -84,35 +86,38 @@ export default function Partner({ partnerData }: PartnerProps) {
         ))}
       </div>
 
-      {/* Défilement horizontal des images */}
-      <div className="overflow-hidden w-full py-10">
+      <div className="overflow-hidden w-full py-10 relative">
         <motion.div
-          className="flex gap-4 animate-marquee"
-          style={{ display: "flex", animation: "marquee 20s linear infinite" }}
+          className="flex gap-0 w-max flex-nowrap"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{
+            ease: "linear",
+            duration: 20,
+            repeat: Infinity,
+            repeatType: "loop",
+          }}
         >
-          {[...partnerData.Gallery, ...partnerData.Gallery].map(
-            (image, index) => {
-              const imageUrl = image.url.startsWith("http")
-                ? image.url
-                : `${API_URL}${image.url}`;
+          {images.map((image, index) => {
+            const imageUrl = image.url.startsWith("http")
+              ? image.url
+              : `${API_URL}${image.url}`;
 
-              return (
-                <div
-                  key={`${image.id}-${index}`}
-                  className="flex-shrink-0 w-2/5 md:w-1/5"
-                >
-                  <Image
-                    src={imageUrl}
-                    alt={image.alternativeText || "Gallery Image"}
-                    width={200}
-                    height={200}
-                    className="object-contain"
-                    unoptimized
-                  />
-                </div>
-              );
-            }
-          )}
+            return (
+              <div
+                key={`${image.id}-${index}`}
+                className="flex-shrink-0 w-1/12 md:w-1/12"
+              >
+                <Image
+                  src={imageUrl}
+                  alt={image.alternativeText || "Gallery Image"}
+                  width={200}
+                  height={200}
+                  className="object-contain"
+                  unoptimized
+                />
+              </div>
+            );
+          })}
         </motion.div>
       </div>
     </section>
