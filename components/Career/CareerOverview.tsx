@@ -37,7 +37,7 @@ export default function CareerOverview({
     Record<number, number>
   >({});
   const [showDropdown, setShowDropdown] = useState(false);
-  const t = useTranslation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     // Calculate job counts per department

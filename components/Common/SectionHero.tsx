@@ -6,6 +6,7 @@ interface SectionHeroProps {
   title: string;
   paragraph: string;
   buttonText: string;
+  buttonLink: string;
   videoUrl: string;
   imageAlt: string;
 }
@@ -14,6 +15,7 @@ export default function SectionHero({
   title,
   paragraph,
   buttonText,
+  buttonLink,
   videoUrl,
 }: SectionHeroProps) {
   const [isVisible, setIsVisible] = useState(false);
@@ -42,6 +44,8 @@ export default function SectionHero({
     const currentTitleRef = titleRef.current;
     const currentTextRef = textRef.current;
     const currentButtonRef = buttonRef.current;
+
+    console.log(buttonLink);
 
     if (currentTitleRef) observer.observe(currentTitleRef);
     if (currentTextRef) observer.observe(currentTextRef);
@@ -102,12 +106,11 @@ export default function SectionHero({
             isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
           }`}
         >
-          <button
-            ref={buttonRef}
-            className="mt-0 md:mt-6 px-6 py-3 bg-lightBlue text-white rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:bg-darkBlue"
-          >
-            {buttonText}
-          </button>
+          <a href={buttonLink} target="_blank">
+            <button className="mt-0 md:mt-6 px-6 py-3 bg-lightBlue text-white rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:bg-darkBlue">
+              {buttonText}
+            </button>
+          </a>
         </div>
       </div>
     </section>

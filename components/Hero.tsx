@@ -4,6 +4,7 @@ interface HeroData {
   Title: string;
   Paragraph: string;
   ButtonText: string;
+  ButtonLink: string;
   Video: {
     url: string;
   };
@@ -26,6 +27,7 @@ export default function Hero({ heroData }: HeroProps) {
     <SectionHero
       title={heroData.Title}
       paragraph={heroData.Paragraph}
+      buttonLink={heroData.ButtonLink}
       buttonText={heroData.ButtonText}
       videoUrl={videoUrl}
       imageAlt="Image de logistique"

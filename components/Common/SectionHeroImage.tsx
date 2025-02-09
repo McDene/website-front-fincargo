@@ -102,7 +102,7 @@ export default function SectionHeroImage({
             }`}
           >
             <a href={buttonLink}>
-              <button className="bg-blue-400 text-white px-6 py-3 border-2 border-blue-400 rounded-3xl font-semibold hover:bg-blue-500 hover:border-blue-500 transition duration-300">
+              <button className="mt-0 md:mt-6 px-6 py-3 bg-lightBlue text-white rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:bg-darkBlue">
                 {buttonText}
               </button>
             </a>

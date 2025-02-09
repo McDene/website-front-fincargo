@@ -19,7 +19,7 @@ interface SectionInviteProps {
 }
 
 export default function SectionInvite({ inviteData }: SectionInviteProps) {
-  const t = useTranslation();
+  const { t, language } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const contentRef = useRef<HTMLDivElement | null>(null);
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -74,15 +74,26 @@ export default function SectionInvite({ inviteData }: SectionInviteProps) {
       >
         <div className="lg:w-1/2 text-center lg:text-left space-y-8">
           <h2 className="text-4xl md:text-7xl font-semibold leading-tight mb-10 md:mb-20 text-darkBlue uppercase">
-            <span className="text-gray-900">{t("invite_your")}</span>{" "}
-            {inviteData.Title}
+            {language === "de" ? (
+              <>
+                {inviteData.Title}{" "}
+                <span className="text-gray-900">{t("invite_your")}</span>
+              </>
+            ) : (
+              <>
+                <span className="text-gray-900">{t("invite_your")}</span>{" "}
+                {inviteData.Title}
+              </>
+            )}
           </h2>
           <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
             {inviteData.Paragraph}
           </p>
-          <button className="mt-6 px-6 py-3 bg-lightBlue text-white rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:bg-darkBlue ">
-            {inviteData.ButtonText}
-          </button>
+          <a href={inviteData.ButtonLink} target="_blank">
+            <button className="mt-6 px-6 py-3 bg-lightBlue text-white rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:bg-darkBlue ">
+              {inviteData.ButtonText}
+            </button>
+          </a>
         </div>
 
         {imageUrl && (

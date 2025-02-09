@@ -12,7 +12,7 @@ import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export default function Header() {
   const pathname = usePathname();
-  const t = useTranslation();
+  const { t } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [sticky, setSticky] = useState(false);
   const [visible, setVisible] = useState(true);
@@ -97,24 +97,28 @@ export default function Header() {
             </div>
 
             <div className="flex space-x-4">
-              <button
-                className={`px-4 py-2 rounded-3xl border-2 transition duration-300 ${
-                  sticky
-                    ? "border-blue-950 bg-blue-950 text-white hover:bg-blue-900 hover:border-blue-900"
-                    : "border-blue-950 bg-blue-950 text-white hover:bg-blue-900 hover:border-blue-900"
-                } `}
-              >
-                {t("register")}
-              </button>
-              <button
-                className={`px-4 py-2 rounded-3xl border-2 transition duration-300 ${
-                  sticky
-                    ? "border-blue-950 text-blue-950 hover:bg-gray-150"
-                    : "border-blue-950 text-blue-950 hover:bg-gray-100"
-                }`}
-              >
-                {t("login")}
-              </button>
+              <a href="https://app.fincargo.ai/register" target="_blank">
+                <button
+                  className={`px-4 py-2 rounded-3xl border-2 transition duration-300 ${
+                    sticky
+                      ? "border-blue-950 bg-blue-950 text-white hover:bg-blue-900 hover:border-blue-900"
+                      : "border-blue-950 bg-blue-950 text-white hover:bg-blue-900 hover:border-blue-900"
+                  } `}
+                >
+                  {t("register")}
+                </button>
+              </a>
+              <a target="_blank" href="https://app.fincargo.ai/login">
+                <button
+                  className={`px-4 py-2 rounded-3xl border-2 transition duration-300 ${
+                    sticky
+                      ? "border-blue-950 text-blue-950 hover:bg-gray-150"
+                      : "border-blue-950 text-blue-950 hover:bg-gray-100"
+                  }`}
+                >
+                  {t("login")}
+                </button>
+              </a>
               <LanguageSwitcher />
             </div>
           </div>

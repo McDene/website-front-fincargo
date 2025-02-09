@@ -14,8 +14,6 @@ export const fetchAPI = async (endpoint: string, locale: string = "en") => {
     const separator = endpoint.includes("?") ? "&" : "?";
     const fullUrl = `${API_URL}${endpoint}${separator}locale=${locale}`;
 
-    console.log("Requête envoyée à Strapi :", fullUrl);
-
     const res = await axios.get(fullUrl, {
       headers: {
         Accept: "application/json",

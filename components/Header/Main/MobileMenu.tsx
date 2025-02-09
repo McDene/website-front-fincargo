@@ -30,7 +30,7 @@ export default function MobileMenu({
     };
   }, [menuOpen]);
 
-  const t = useTranslation();
+  const { t } = useTranslation();
 
   const menuVariants = {
     hidden: { opacity: 0, y: "-100%" },

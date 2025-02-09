@@ -6,7 +6,7 @@ import { useTranslation } from "@/hooks/useTranslation";
 import { trackEvent } from "@/lib/analytics";
 
 export default function Footer() {
-  const t = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <footer className="pt-32 xl:pt-32 lg:pt-38 md:pt-24 sm:pt-20 pb-10 bg-gradient-to-b from-darkBlue to-black text-gray-50 px-8">
@@ -210,7 +210,8 @@ export default function Footer() {
           <ul className="space-y-2">
             <li>
               <Link
-                href="/#"
+                href="https://app.fincargo.ai/register"
+                target="_blank"
                 scroll={false}
                 className="hover:text-gray-400"
                 onClick={() =>
@@ -226,7 +227,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                href="https://frontend-fincargo-180162974123.europe-west6.run.app/login"
+                href="https://app.fincargo.ai/login"
                 scroll={false}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -301,7 +302,8 @@ export default function Footer() {
           <ul className="space-y-2">
             <li>
               <Link
-                href="/#"
+                href="https://app.fincargo.ai/register"
+                target="_blank"
                 scroll={false}
                 className="hover:text-gray-400"
                 onClick={() =>
@@ -317,7 +319,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                href="https://frontend-fincargo-180162974123.europe-west6.run.app/login"
+                href="https://app.fincargo.ai/login"
                 scroll={false}
                 target="_blank"
                 rel="noopener noreferrer"

@@ -12,7 +12,7 @@ import LanguageSwitcher from "@/components/LanguageSwitcher";
 import LanguageSwitcherMobile from "@/components/LanguageSwitcherMobile";
 
 export default function Header() {
-  const t = useTranslation();
+  const { t } = useTranslation();
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [sticky, setSticky] = useState(false);
@@ -168,10 +168,7 @@ export default function Header() {
             </div>
             {/* Register and Login buttons for Desktop */}
             <div className="flex space-x-4">
-              <a
-                href="https://frontend-fincargo-180162974123.europe-west6.run.app/register"
-                target="_blank"
-              >
+              <a href="https://app.fincargo.ai/register" target="_blank">
                 <button
                   className={`px-4 py-2 rounded-3xl border-2 transition duration-300 ${
                     sticky
@@ -183,10 +180,7 @@ export default function Header() {
                 </button>
               </a>
 
-              <a
-                target="_blank"
-                href="https://frontend-fincargo-180162974123.europe-west6.run.app/login"
-              >
+              <a target="_blank" href="https://app.fincargo.ai/login">
                 <button
                   className={`px-4 py-2 rounded-3xl transition duration-300 ${
                     sticky
