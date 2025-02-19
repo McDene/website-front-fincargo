@@ -69,10 +69,10 @@ export default function MobileMenu({
           </div>
 
           {/* Liens */}
-          <motion.div className="flex space-x-4 pt-16 pb-24 text-xl">
+          <motion.div className="flex space-x-4 pt-16 pb-24 text-lg">
             <Link
               href="/"
-              className={`px-6 py-2  font-bold transition-all duration-300 ease-in-out rounded-full ${
+              className={`px-4 py-2  font-bold transition-all duration-300 ease-in-out rounded-full ${
                 pathname === "/"
                   ? "bg-blue-100 text-gray-700"
                   : "text-blue-100 hover:bg-gray-100"
@@ -83,7 +83,7 @@ export default function MobileMenu({
 
             <Link
               href="/freight-forwarders"
-              className={`px-6 py-2 font-bold transition-all duration-300 ease-in-out rounded-full ${
+              className={`px-4 py-2 font-bold transition-all duration-300 ease-in-out rounded-full ${
                 pathname === "/freight-forwarders"
                   ? "bg-blue-100 text-gray-700"
                   : "text-blue-100 hover:bg-gray-100"
@@ -119,13 +119,13 @@ export default function MobileMenu({
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
-            <button className="text-white text-xl bg-gray-900 px-8 py-4 rounded-full hover:bg-gray-800">
-              {t("register")}
-            </button>
-            <a
-              target="_blank"
-              href="https://frontend-fincargo-180162974123.europe-west6.run.app/login"
-            >
+            <a href="https://app.fincargo.ai/register" target="_blank">
+              <button className="text-white text-xl bg-gray-900 px-8 py-4 rounded-full hover:bg-gray-800">
+                {t("register")}
+              </button>
+            </a>
+
+            <a target="_blank" href="https://app.fincargo.ai/login">
               <button className="text-gray-900 text-xl bg-gray-200 px-8 py-4 rounded-full hover:bg-gray-100">
                 {t("login")}
               </button>

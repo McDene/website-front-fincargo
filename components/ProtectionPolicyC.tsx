@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import Image from "next/image";
+import { LanguageContext } from "@/context/LanguageContext";
 
 interface ContentItem {
   id: number;
@@ -24,6 +25,7 @@ interface ProtectionPolicyCProps {
 export default function ProtectionPolicyC({
   carrierProtectionPolicyData,
 }: ProtectionPolicyCProps) {
+  const { language } = useContext(LanguageContext);
   const [activeIndex, setActiveIndex] = useState(0);
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
   const textSectionRef = useRef<HTMLDivElement>(null);
@@ -35,6 +37,8 @@ export default function ProtectionPolicyC({
 
   // Logique pour le mode desktop avec IntersectionObserver
   useEffect(() => {
+    setActiveIndex(0);
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -56,8 +60,9 @@ export default function ProtectionPolicyC({
       currentImageRefs.forEach((image) => {
         if (image) observer.unobserve(image);
       });
+      observer.disconnect();
     };
-  }, []);
+  }, [carrierProtectionPolicyData, language]);
 
   const activeContent = carrierProtectionPolicyData.Content[activeIndex];
 

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useTranslation } from "@/hooks/useTranslation";
 import Link from "next/link";
 import Image from "next/image";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -22,6 +23,8 @@ export default function MobileMenu({ menuOpen, toggleMenu }: MobileMenuProps) {
       document.body.style.overflow = "";
     };
   }, [menuOpen]);
+
+  const { t } = useTranslation();
 
   const menuVariants = {
     hidden: { opacity: 0, y: "-100%" },
@@ -60,19 +63,19 @@ export default function MobileMenu({ menuOpen, toggleMenu }: MobileMenuProps) {
           </div>
 
           {/* Liens */}
-          <motion.div className="flex flex-col space-x-4 pt-32 pb-32 text-xl">
+          <motion.div className="flex flex-col space-x-4 pt-36 pb-36 text-lg">
             <Link
               href="/"
-              className={`px-6 py-2 mb-12 text-5xl text-gray-50 font-bold transition-all duration-300 ease-in-out rounded-full}`}
+              className={`px-4 py-2 mb-12 text-3xl text-gray-50 font-bold transition-all duration-300 ease-in-out rounded-full}`}
             >
-              Carriers
+              {t("for_carriers")}
             </Link>
 
             <Link
               href="/freight-forwarders"
-              className={`px-6 py-2 text-5xl text-gray-50 font-bold transition-all duration-300 ease-in-out rounded-full `}
+              className={`px-4 py-2 text-3xl text-gray-50 font-bold transition-all duration-300 ease-in-out rounded-full `}
             >
-              Freight Forwarders
+              {t("for_freight_forwarders")}
             </Link>
           </motion.div>
 
@@ -83,12 +86,17 @@ export default function MobileMenu({ menuOpen, toggleMenu }: MobileMenuProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
-            <button className="text-white text-xl bg-gray-900 px-8 py-4 rounded-full hover:bg-gray-800">
-              Register
-            </button>
-            <button className="text-gray-900 text-xl bg-gray-200 px-8 py-4 rounded-full hover:bg-gray-100">
-              Login
-            </button>
+            <a href="https://app.fincargo.ai/register" target="_blank">
+              <button className="text-white text-xl bg-gray-900 px-8 py-4 rounded-full hover:bg-gray-800">
+                {t("register")}
+              </button>
+            </a>
+
+            <a href="https://app.fincargo.ai/login" target="_blank">
+              <button className="text-gray-900 text-xl bg-gray-200 px-8 py-4 rounded-full hover:bg-gray-100">
+                {t("login")}
+              </button>
+            </a>
           </motion.div>
         </motion.div>
       )}

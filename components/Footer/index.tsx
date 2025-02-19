@@ -19,13 +19,26 @@ export default function Footer() {
               alt="Fincargo Logo"
               width={150}
               height={40}
+              className="mb-5"
             />
-            <p className="my-5 text-gray-400">
+
+            <p className="font-bold">Fincargo SA</p>
+            <p className="mb-5 text-gray-400">
               Rue de L&rsquo;Industrie 23
               <br />
               1950 Sion
               <br />
               Switzerland
+            </p>
+
+            <p className="font-bold">Fincargo Iberia SL</p>
+
+            <p className="mb-5 text-gray-400">
+              Avenida Diagonal, 598
+              <br />
+              08021 Barcelona
+              <br />
+              Spain
             </p>
             <a
               href="https://www.swissmadesoftware.org/home.html"
@@ -51,7 +64,7 @@ export default function Footer() {
 
         {/* Colonne 2: Company + Liens */}
         <div>
-          <h4 className="text-lg font-bold text-blue-200 mb-4 uppercase">
+          <h4 className="text-lg font-bold text-blue-200 mb-4 md:mb-7 uppercase">
             {t("company")}
           </h4>
           <ul className="space-y-2">
@@ -204,7 +217,7 @@ export default function Footer() {
 
         {/* Colonne 3: Carriers + Liens */}
         <div>
-          <h4 className="text-lg font-bold text-blue-200 mb-4 uppercase">
+          <h4 className="text-lg font-bold text-blue-200 mb-4 md:mb-7 uppercase">
             {t("carriers")}
           </h4>
           <ul className="space-y-2">
@@ -245,7 +258,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                href="/#"
+                href="/explore-freight-forwarders-partners"
                 scroll={false}
                 className="hover:text-gray-400"
                 onClick={() =>
@@ -296,7 +309,7 @@ export default function Footer() {
 
         {/* Colonne 4: Freight Forwarders + Liens */}
         <div>
-          <h4 className="text-lg font-bold text-blue-200 mb-4 uppercase">
+          <h4 className="text-lg font-bold text-blue-200 mb-4 md:mb-7 uppercase">
             {t("freight_forwarders")}
           </h4>
           <ul className="space-y-2">

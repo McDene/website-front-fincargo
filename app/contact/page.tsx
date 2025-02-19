@@ -8,6 +8,7 @@ import SectionHeroSmall from "@/components/Common/SectionHeroSmall";
 import Footer from "@/components/Footer";
 import { postAPI } from "@/lib/utils";
 import { useTranslation } from "@/hooks/useTranslation";
+// import ReCAPTCHA from "react-google-recaptcha";
 
 export default function ContactPage() {
   const { t } = useTranslation();
@@ -21,6 +22,7 @@ export default function ContactPage() {
     message: "",
   });
   const [status, setStatus] = useState("");
+  // const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
 
   useEffect(() => {
     const loaderTimeout = setTimeout(() => {
@@ -39,6 +41,10 @@ export default function ContactPage() {
     setFormData({ ...formData, [name]: value });
   };
 
+  // const handleRecaptchaChange = (token: string | null) => {
+  //   setRecaptchaToken(token);
+  // };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -48,7 +54,7 @@ export default function ContactPage() {
 
     try {
       const response = await postAPI("/api/contact-submissions", {
-        Name: formData.name, // ✅ Ajout du champ Name
+        Name: formData.name,
         Email: formData.email,
         Subject: formData.subject,
         Message: formData.message,
@@ -161,6 +167,10 @@ export default function ContactPage() {
                       className="w-full h-44 border border-darkBlue rounded-md px-4 py-3 mt-1"
                     ></textarea>
                   </div>
+                  {/* <ReCAPTCHA
+                    sitekey="6Lf73tIqAAAAAFjBlmZRVXydoUU79tUBVRHxJ602"
+                    onChange={handleRecaptchaChange}
+                  /> */}
                   <div className="text-right">
                     <button
                       type="submit"
@@ -174,6 +184,7 @@ export default function ContactPage() {
                 </form>
               </div>
             </div>
+            {/* where */}
             <div className="mt-32 ">
               <h2 className="text-4xl md:text-6xl font-bold my-14 text-center">
                 {t("where_to_find_us")}
