@@ -29,14 +29,14 @@ export const metadata: Metadata = {
 // ✅ Récupération des données de cookies côté serveur
 async function getCookieData() {
   try {
-    const cookieData = await fetchAPI("/api/cookies?populate=*");
+    const cookieData = await fetchAPI("/api/cookie-setting?populate=*");
 
     // Vérifier si on a bien les données attendues
     if (!cookieData?.data) {
       return {
         message:
           "This site uses cookies to provide you with a better user experience, analyze traffic, and improve our services. By continuing to browse, you agree to their use. For more information, please refer to our Privacy Policy.",
-        policyLink: "/privacy-policy",
+        policyLink: "/cookies",
         acceptText: "Accept",
         rejectText: "Reject",
         moreInfoText: "Learn more",
@@ -58,7 +58,7 @@ async function getCookieData() {
     return {
       message:
         "This site uses cookies to provide you with a better user experience, analyze traffic, and improve our services. By continuing to browse, you agree to their use. For more information, please refer to our Privacy Policy.",
-      policyLink: "/privacy-policy",
+      policyLink: "/cookies",
       acceptText: "Accept",
       rejectText: "Reject",
       moreInfoText: "Learn more",
