@@ -92,7 +92,7 @@ export default function SectionHero({
           }`}
         >
           <div className="max-w-3xl mb-10">
-            <p className="text-xl md:text-2xl text-white font-medium mb-2 md:mb-6 leading-8">
+            <p className="text-xl md:text-3xl text-white font-medium mb-2 md:mb-6 leading-8">
               {paragraph}
             </p>
           </div>
