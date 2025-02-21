@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getCookie } from "cookies-next";
 import CookieBanner from "./CookieBanner";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { fetchAPI } from "@/lib/utils";
+import { LanguageContext } from "@/context/LanguageContext";
 
 interface CookieData {
   message: string;
@@ -14,6 +15,7 @@ interface CookieData {
 }
 
 export default function ClientWrapper() {
+  const { language } = useContext(LanguageContext);
   const [cookieData, setCookieData] = useState<CookieData | null>(null);
   const [consent, setConsent] = useState<string | null>(null);
   const [isBannerVisible, setIsBannerVisible] = useState(false);
@@ -22,7 +24,10 @@ export default function ClientWrapper() {
     // Récupérer les données des cookies depuis Strapi côté client
     const fetchCookieData = async () => {
       try {
-        const response = await fetchAPI("/api/cookie-setting?populate=*");
+        const response = await fetchAPI(
+          "/api/cookie-setting?populate=*",
+          language
+        );
 
         console.log("Data:", response);
 
@@ -55,7 +60,7 @@ export default function ClientWrapper() {
       setIsBannerVisible(true);
     }
     setConsent(cookieConsent ? String(cookieConsent) : null);
-  }, []);
+  }, [language]);
 
   if (!cookieData) return null;
 
