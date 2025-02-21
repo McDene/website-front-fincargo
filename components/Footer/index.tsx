@@ -212,6 +212,22 @@ export default function Footer() {
                 {t("careers")}
               </Link>
             </li>
+            <li>
+              <Link
+                href="/blog"
+                scroll={false}
+                className="hover:text-gray-400"
+                onClick={() =>
+                  trackEvent({
+                    action: "click_footer_link",
+                    category: "Footer",
+                    label: "Blog",
+                  })
+                }
+              >
+                Blog
+              </Link>
+            </li>
           </ul>
         </div>
 

@@ -28,7 +28,7 @@ export default function InvestorPage() {
             "/api/hero-images?filters[Page][$eq]=Investor&populate[Hero][populate]=Image",
             language
           ),
-          fetchAPI("/api/investor?populate=MultipleText"),
+          fetchAPI("/api/investor?populate=MultipleText", language),
         ]);
 
         setHeroData(heroResponse?.data?.[0]?.Hero || null);
@@ -42,6 +42,7 @@ export default function InvestorPage() {
     };
 
     fetchData();
+    return () => clearTimeout(loaderTimeout);
   }, [language]);
 
   if (loading && showLoader) {

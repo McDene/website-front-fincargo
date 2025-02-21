@@ -71,11 +71,11 @@ export default function SectionHeroImage({
             isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
           }`}
         >
-          <div className="max-w-7xl mb-10">
+          <div className="max-w-7xl mb-6">
             <h2 className="text-4xl md:text-5xl text-gray-200 font-bold mb-3 pb-10">
               {title}
             </h2>
-            <h1 className="text-5xl md:text-9xl uppercase font-bold text-start text-white">
+            <h1 className="text-5xl md:text-8xl uppercase font-bold text-start text-white">
               {subtitle}
             </h1>
           </div>

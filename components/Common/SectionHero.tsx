@@ -59,10 +59,7 @@ export default function SectionHero({
   }, []);
 
   return (
-    <section
-      className="relative flex items-start min-h-screen py-32 xl:py-32 lg:py-38 md:py-24 sm:py-20 overflow-hidden"
-      style={{ height: "90dvh" }}
-    >
+    <section className="relative flex items-start min-h-screen py-32 xl:py-32 lg:py-38 md:py-24 sm:py-20 overflow-hidden">
       <video
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
         src={videoUrl}
@@ -81,7 +78,7 @@ export default function SectionHero({
             isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
           }`}
         >
-          <div className="max-w-7xl mb-10">
+          <div className="max-w-7xl mb-6">
             <h1 className="text-4xl md:text-8xl uppercase font-bold text-start text-white">
               {title}
             </h1>
@@ -94,7 +91,7 @@ export default function SectionHero({
             isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
           }`}
         >
-          <div className="max-w-xl mb-10">
+          <div className="max-w-3xl mb-10">
             <p className="text-xl md:text-2xl text-white font-medium mb-2 md:mb-6 leading-8">
               {paragraph}
             </p>

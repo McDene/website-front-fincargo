@@ -141,7 +141,7 @@ const TRANSLATIONS: Record<string, Record<string, string>> = {
     invite_your_subcontractors: "Laden Sie Ihre Subunternehmer ein",
     company: "Unternehmen",
     about_us: "Über uns",
-    contact: "Kontact",
+    contact: "Kontakt",
     Confidentiality: "Vertraulichkeit & Sicherheit",
     legal_notice: "Impressum",
     cookies: "Cookie-Richtlinien",
