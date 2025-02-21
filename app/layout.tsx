@@ -3,7 +3,6 @@ import { Prompt, Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import { LanguageProvider } from "@/context/LanguageContext";
-import { fetchAPI } from "@/lib/utils";
 import ClientWrapper from "@/components/ClientWrapper";
 
 const prompt = Prompt({
@@ -26,53 +25,11 @@ export const metadata: Metadata = {
   },
 };
 
-// ✅ Récupération des données de cookies côté serveur
-async function getCookieData() {
-  try {
-    const cookieData = await fetchAPI("/api/cookie-setting?populate=*");
-
-    // Vérifier si on a bien les données attendues
-    if (!cookieData?.data) {
-      return {
-        message:
-          "This site uses cookies to provide you with a better user experience, analyze traffic, and improve our services. By continuing to browse, you agree to their use. For more information, please refer to our Privacy Policy.",
-        policyLink: "/cookies",
-        acceptText: "Accept",
-        rejectText: "Reject",
-        moreInfoText: "Learn more",
-      };
-    }
-
-    const attributes = cookieData.data; // Correction : Strapi renvoie directement `data`
-    return {
-      message:
-        attributes.Message ||
-        "This site uses cookies to provide you with a better user experience, analyze traffic, and improve our services. By continuing to browse, you agree to their use. For more information, please refer to our Privacy Policy.",
-      policyLink: attributes.MoreInfoLink || "/privacy-policy",
-      acceptText: attributes.AcceptButtonText || "Accept",
-      rejectText: attributes.RejectButtonText || "Reject",
-      moreInfoText: "Learn more",
-    };
-  } catch (error) {
-    console.error("Erreur lors de la récupération des cookies:", error);
-    return {
-      message:
-        "This site uses cookies to provide you with a better user experience, analyze traffic, and improve our services. By continuing to browse, you agree to their use. For more information, please refer to our Privacy Policy.",
-      policyLink: "/cookies",
-      acceptText: "Accept",
-      rejectText: "Reject",
-      moreInfoText: "Learn more",
-    };
-  }
-}
-
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const cookieData = await getCookieData();
-
   return (
     <html lang="en">
       <body
@@ -84,7 +41,8 @@ export default async function RootLayout({
           </LanguageProvider>
         </Providers>
 
-        <ClientWrapper {...cookieData} />
+        {/* ✅ Déplacement de la récupération des cookies dans un composant client */}
+        <ClientWrapper />
       </body>
     </html>
   );

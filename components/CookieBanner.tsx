@@ -6,18 +6,16 @@ import Link from "next/link";
 
 interface CookieBannerProps {
   message: string;
-  policyLink: string;
   acceptText: string;
   rejectText: string;
-  moreInfoText: string;
+  moreInfoLink: string;
 }
 
 export default function CookieBanner({
   message,
-  policyLink,
   acceptText,
   rejectText,
-  moreInfoText,
+  moreInfoLink,
 }: CookieBannerProps) {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -62,10 +60,10 @@ export default function CookieBanner({
             {rejectText}
           </button>
           <Link
-            href={policyLink}
+            href="/cookies"
             className="text-sm text-gray-900 underline hover:text-darkBlue text-center"
           >
-            {moreInfoText}
+            {moreInfoLink}
           </Link>
         </div>
       </div>
