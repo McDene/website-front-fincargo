@@ -23,7 +23,7 @@ const TRANSLATIONS: Record<string, Record<string, string>> = {
     carriers: "Carriers",
     freight_forwarders: "Freight Forwarders",
     get_started: "Get started",
-    explore_freight_forwarders_partners: "Explore Freight Forwarders Partners",
+    explore_freight_forwarders_partners: "Explore Freight Forwarding Partners",
     carriers_protection_policy: "Carriers Protection Policy",
     pay_carrier_early: "Pay Carrier Early",
     api_integration: "API Integration",

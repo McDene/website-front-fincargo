@@ -20,26 +20,31 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "AI-Powered Invoice Financing for Road Freight Carriers",
   description:
-    "Fincargo streamlines cash flow for road freight carriers with AI-powered invoice financing and automated debt recovery.",
+    "AI-powered Invoice-to-Cash solution for the transportation industry.",
+  icons: {
+    icon: "/favicon.png",
+  },
   openGraph: {
     title: "AI-Powered Invoice Financing for Road Freight Carriers",
     description:
-      "Fincargo streamlines cash flow for road freight carriers with AI-powered invoice financing and automated debt recovery.",
+      "AI-powered Invoice-to-Cash solution for the transportation industry.",
     url: "https://www.fincargo.ai",
     siteName: "Fincargo",
+    locale: "en_US",
     images: [
       {
         url: "https://www.fincargo.ai/logo/logo-fincargo.png",
         width: 1200,
         height: 630,
-        alt: "Fincargo AI-driven freight forwarding",
+        alt: "Fincargo AI-driven freight financing",
       },
     ],
     type: "website",
   },
+
   twitter: {
     card: "summary_large_image",
-    title: "Fincargo - AI-powered Freight Forwarding",
+    title: "Fincargo - AI-powered Freight Financing",
     description:
       "Fincargo leverages AI to improve efficiency in freight forwarding. Join us today!",
     images: ["https://www.fincargo.ai/meta/twitter-image.jpg"],
@@ -62,7 +67,6 @@ export default function RootLayout({
           </LanguageProvider>
         </Providers>
 
-        {/* ✅ Déplacement de la récupération des cookies dans un composant client */}
         <ClientWrapper />
       </body>
     </html>

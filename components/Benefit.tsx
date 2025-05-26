@@ -10,6 +10,7 @@ interface ContentItem {
 interface Card {
   id: number;
   Title: string;
+  Subtitle: string;
   Content: ContentItem[];
 }
 
@@ -36,6 +37,7 @@ export default function Benefit({ benefitData }: BenefitProps) {
   const formattedBenefits = benefitData.Benefit.Benefit.map((card) => ({
     id: card.id,
     title: card.Title,
+    subtitle: card.Subtitle,
     description: card.Content.map((content) =>
       content.children.map((child) => child.text).join(" ")
     ).join(" "),

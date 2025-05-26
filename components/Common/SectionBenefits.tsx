@@ -5,6 +5,7 @@ import React, { useState, useEffect, useRef } from "react";
 interface Benefit {
   id: number;
   title: string;
+  subtitle: string | null;
   description: string;
 }
 
@@ -77,6 +78,7 @@ export default function SectionBenefits({
         <h3 className="text-2xl md:text-4xl text-lightBlue mb-10 md:mb-20">
           {subtitle}
         </h3>
+
         <div className="space-y-6">
           {rows.map((row, rowIndex) => (
             <div
@@ -86,18 +88,27 @@ export default function SectionBenefits({
               {row.map((benefit, index) => (
                 <div
                   key={benefit.id}
-                  className={`bg-white rounded-3xl p-6 shadow-lg min-h-[200px] flex flex-col ${
+                  className={`relative bg-white hover:bg-gray-100 rounded-3xl p-6 shadow-lg min-h-[250px] max-h-[250px] flex flex-col justify-start  transition-all duration-500 group overflow-hidden cursor-pointer ${
                     rowIndex % 2 === 0
-                      ? "lg:col-span-4" // Premier étage : 4/12, 4/12, 4/12 sur grand écran
+                      ? "lg:col-span-4"
                       : index === 1
-                      ? "lg:col-span-6" // Deuxième étage : 3/12, 6/12, 3/12 sur grand écran
+                      ? "lg:col-span-6"
                       : "lg:col-span-3"
                   }`}
                 >
-                  <h3 className="text-3xl text-gray-800 mb-4">
+                  <h3 className="text-5xl text-gray-800 font-bold mb-2 transition-all duration-500 group-hover:text-3xl">
                     {benefit.title}
                   </h3>
-                  <p className="text-xl text-gray-600">{benefit.description}</p>
+                  {benefit.subtitle && (
+                    <p className="text-xl text-gray-600 mb-2 transition-all duration-500 group-hover:text-base">
+                      {benefit.subtitle}
+                    </p>
+                  )}
+                  <div className="overflow-hidden max-h-0 group-hover:max-h-32 transition-all duration-500 ease-in-out">
+                    <p className="text-gray-600 text-sm mt-2">
+                      {benefit.description}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
