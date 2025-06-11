@@ -23,17 +23,17 @@ export default function SectionBenefits({
   const [isVisible, setIsVisible] = useState(false);
   const contentRef = useRef<HTMLDivElement | null>(null);
 
-  const getGridRows = (benefits: Benefit[]) => {
-    const rows = [];
-    let i = 0;
+  // const getGridRows = (benefits: Benefit[]) => {
+  //   const rows = [];
+  //   let i = 0;
 
-    while (i < benefits.length) {
-      rows.push(benefits.slice(i, i + 3));
-      i += 3;
-    }
+  //   while (i < benefits.length) {
+  //     rows.push(benefits.slice(i, i + 3));
+  //     i += 3;
+  //   }
 
-    return rows;
-  };
+  //   return rows;
+  // };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -55,7 +55,7 @@ export default function SectionBenefits({
     };
   }, []);
 
-  const rows = getGridRows(benefits);
+  // const rows = getGridRows(benefits);
 
   return (
     <section
@@ -79,39 +79,26 @@ export default function SectionBenefits({
           {subtitle}
         </h3>
 
-        <div className="space-y-6">
-          {rows.map((row, rowIndex) => (
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          {benefits.map((benefit) => (
             <div
-              key={rowIndex}
-              className="grid gap-6 grid-cols-1 lg:grid-cols-12"
+              key={benefit.id}
+              className="relative bg-white hover:bg-gray-100 rounded-3xl p-6 shadow-lg min-h-[370px] flex flex-col justify-start transition-all duration-500 group overflow-hidden cursor-pointer"
             >
-              {row.map((benefit, index) => (
-                <div
-                  key={benefit.id}
-                  className={`relative bg-white hover:bg-gray-100 rounded-3xl p-6 shadow-lg min-h-[360px] max-h-[360px] flex flex-col justify-start  transition-all duration-500 group overflow-hidden cursor-pointer ${
-                    rowIndex % 2 === 0
-                      ? "lg:col-span-4"
-                      : index === 1
-                      ? "lg:col-span-6"
-                      : "lg:col-span-3"
-                  }`}
-                >
-                  <h3 className="text-5xl text-darkBlue font-bold mb-2 transition-all duration-500 group-hover:text-2xl group-hover:mb-1">
-                    {benefit.title}
-                  </h3>
+              <h3 className="text-4xl md:text-5xl text-darkBlue font-bold mb-2 transition-all duration-500 group-hover:text-2xl group-hover:mb-1">
+                {benefit.title}
+              </h3>
 
-                  {benefit.subtitle && (
-                    <h3 className="text-2xl text-gray-800  mb-2 transition-all duration-500 group-hover:text-lg group-hover:mb-1">
-                      {benefit.subtitle}
-                    </h3>
-                  )}
-                  <div className="opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-in-out">
-                    <p className="text-gray-600 text-sm mt-2">
-                      {benefit.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
+              {benefit.subtitle && (
+                <h3 className="text-xl md:text-2xl text-gray-800 mb-2 transition-all duration-500 group-hover:text-lg group-hover:mb-1">
+                  {benefit.subtitle}
+                </h3>
+              )}
+              <div className="opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-in-out">
+                <p className="text-gray-600 text-sm mt-2">
+                  {benefit.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>
