@@ -105,7 +105,7 @@ export default function SectionBenefits({
                       {benefit.subtitle}
                     </h3>
                   )}
-                  <div className="overflow-hidden max-h-0 group-hover:max-h-32 transition-all duration-500 ease-in-out">
+                  <div className="opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-in-out">
                     <p className="text-gray-600 text-sm mt-2">
                       {benefit.description}
                     </p>
