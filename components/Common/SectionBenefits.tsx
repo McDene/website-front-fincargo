@@ -88,7 +88,7 @@ export default function SectionBenefits({
               {row.map((benefit, index) => (
                 <div
                   key={benefit.id}
-                  className={`relative bg-white hover:bg-gray-100 rounded-3xl p-6 shadow-lg min-h-[370px] max-h-[370px] flex flex-col justify-start  transition-all duration-500 group overflow-hidden cursor-pointer ${
+                  className={`relative bg-white hover:bg-gray-100 rounded-3xl p-6 shadow-lg min-h-[340px] max-h-[340px] flex flex-col justify-start  transition-all duration-500 group overflow-hidden cursor-pointer ${
                     rowIndex % 2 === 0
                       ? "lg:col-span-4"
                       : index === 1
