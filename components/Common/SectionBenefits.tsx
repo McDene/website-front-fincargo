@@ -88,7 +88,7 @@ export default function SectionBenefits({
               {row.map((benefit, index) => (
                 <div
                   key={benefit.id}
-                  className={`relative bg-white hover:bg-gray-100 rounded-3xl p-6 shadow-lg min-h-[270px] max-h-[270px] flex flex-col justify-start  transition-all duration-500 group overflow-hidden cursor-pointer ${
+                  className={`relative bg-white hover:bg-gray-100 rounded-3xl p-6 shadow-lg min-h-[370px] max-h-[370px] flex flex-col justify-start  transition-all duration-500 group overflow-hidden cursor-pointer ${
                     rowIndex % 2 === 0
                       ? "lg:col-span-4"
                       : index === 1
@@ -96,12 +96,12 @@ export default function SectionBenefits({
                       : "lg:col-span-3"
                   }`}
                 >
-                  <h3 className="text-5xl text-darkBlue font-bold mb-2 transition-all duration-500 group-hover:text-3xl">
+                  <h3 className="text-5xl text-darkBlue font-bold mb-2 transition-all duration-500 group-hover:text-2xl group-hover:mb-1">
                     {benefit.title}
                   </h3>
 
                   {benefit.subtitle && (
-                    <h3 className="text-2xl text-gray-600  mb-2 transition-all duration-500 group-hover:text-xl">
+                    <h3 className="text-2xl text-gray-800  mb-2 transition-all duration-500 group-hover:text-xl group-hover:mb-1">
                       {benefit.subtitle}
                     </h3>
                   )}
