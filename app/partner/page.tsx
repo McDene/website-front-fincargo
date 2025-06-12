@@ -23,15 +23,12 @@ export default function PartenerPage() {
 
     const fetchData = async () => {
       try {
+        const heroURL = `/api/hero-images?filters[Page][$eq]=Partener&populate[Hero][populate]=Image`;
+        const partnerURL = `/api/partner?populate[MultipleText]=true&populate[Gallery]=true`;
+
         const [heroResponse, partnerResponse] = await Promise.all([
-          fetchAPI(
-            "/api/hero-images?filters[Page][$eq]=Partener&populate[Hero][populate]=Image",
-            language
-          ),
-          fetchAPI(
-            "/api/partner?populate[MultipleText]=*&populate[Gallery]=*",
-            language
-          ),
+          fetchAPI(heroURL, language),
+          fetchAPI(partnerURL, language),
         ]);
 
         setHeroData(heroResponse?.data?.[0]?.Hero || null);
@@ -45,7 +42,6 @@ export default function PartenerPage() {
     };
 
     fetchData();
-
     return () => clearTimeout(loaderTimeout);
   }, [language]);
 
