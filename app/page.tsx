@@ -9,6 +9,7 @@ import Benefit from "@/components/Benefit";
 import Invite from "@/components/Invite";
 import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
+import Testimonals from "@/components/Testimonials";
 import { fetchAPI } from "@/lib/utils";
 import { LanguageContext } from "@/context/LanguageContext";
 
@@ -109,6 +110,7 @@ export default function Home() {
         {benefitData && <Benefit benefitData={benefitData} />}
         {inviteData && <Invite inviteData={inviteData} />}
         {faqData && <Faq faqData={faqData} />}
+        <Testimonals />
         <Footer />
       </>
     )

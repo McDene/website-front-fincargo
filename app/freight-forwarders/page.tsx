@@ -8,6 +8,7 @@ import Feature from "@/components/Feature";
 import Benefit from "@/components/Benefit";
 import Invite from "@/components/Invite";
 import Faq from "@/components/Faq";
+import TestimonialsFF from "@/components/TestimonialsFF";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
 import { LanguageContext } from "@/context/LanguageContext";
@@ -102,6 +103,7 @@ export default function FreightForwardersPage() {
         {benefitData && <Benefit benefitData={benefitData} />}
         {inviteData && <Invite inviteData={inviteData} />}
         {faqData && <Faq faqData={faqData} />}
+        <TestimonialsFF />
         <Footer />
       </>
     )
