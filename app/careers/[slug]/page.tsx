@@ -1,4 +1,4 @@
-import HeaderSecondary from "@/components/Header/Secondary";
+import Header from "@/components/Header/Secondary";
 import SectionHeroSmall from "@/components/Common/SectionHeroSmall";
 import CareerItem from "@/components/Career/CareerItem";
 import Footer from "@/components/Footer";
@@ -54,7 +54,7 @@ export default async function CareerIdPage({
 
   return (
     <>
-      <HeaderSecondary />
+      <Header />
       <SectionHeroSmall />
       {job ? <CareerItem job={job} /> : <p>Job not found</p>}
       <Footer />

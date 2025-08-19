@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useContext } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
-import HeaderSecondary from "@/components/Header/Secondary";
+import Header from "@/components/Header/Secondary";
 import SectionHeroSmall from "@/components/Common/SectionHeroSmall";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
@@ -57,7 +57,7 @@ export default function CookiesPage() {
   return (
     !loading && (
       <>
-        <HeaderSecondary />
+        <Header />
         <SectionHeroSmall />
         {cookiesData && (
           <section className="py-32 xl:py-32 lg:py-38 md:py-24 sm:py-20 bg-white px-4">

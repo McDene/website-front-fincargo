@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useContext } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
-import HeaderSecondary from "@/components/Header/Secondary";
+import Header from "@/components/Header/Main";
 import HeroImage from "@/components/HeroImage";
 import Api from "@/components/Api";
 import Footer from "@/components/Footer";
@@ -57,7 +57,7 @@ export default function ApiPage() {
   return (
     !loading && (
       <>
-        <HeaderSecondary />
+        <Header />
         {heroData && <HeroImage heroImageData={heroData} />}
         {apiData && <Api apiData={apiData} />}
         <Footer />

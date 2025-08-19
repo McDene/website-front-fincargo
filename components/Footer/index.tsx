@@ -2,421 +2,240 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useMemo } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackEvent } from "@/lib/analytics";
 
+interface FooterLink {
+  labelKey: string | "Blog"; // allows raw labels like "Blog"
+  href: string;
+  trackLabel: string;
+}
+
+interface FooterSection {
+  titleKey: string; // i18n key for the section title
+  links: FooterLink[];
+}
+
 export default function Footer() {
   const { t } = useTranslation();
+  const year = useMemo(() => new Date().getFullYear(), []);
+
+  // Centralized config so it’s easier to maintain / reorder
+  const sections: FooterSection[] = [
+    {
+      titleKey: "company",
+      links: [
+        { href: "/about", labelKey: "about_us", trackLabel: "About Us" },
+        { href: "/contact", labelKey: "contact", trackLabel: "Contact" },
+        {
+          href: "/confidentiality-security-notice",
+          labelKey: "Confidentiality",
+          trackLabel: "Confidentiality & Security",
+        },
+        {
+          href: "/legal-notice",
+          labelKey: "legal_notice",
+          trackLabel: "Legal Notice",
+        },
+        { href: "/cookies", labelKey: "cookies", trackLabel: "Cookies Policy" },
+        {
+          href: "/sustainability",
+          labelKey: "sustainability",
+          trackLabel: "Sustainability",
+        },
+        { href: "/partner", labelKey: "partners", trackLabel: "Partners" },
+        { href: "/investor", labelKey: "investors", trackLabel: "Investors" },
+        { href: "/careers", labelKey: "careers", trackLabel: "Careers" },
+        { href: "/blog", labelKey: "Blog", trackLabel: "Blog" },
+      ],
+    },
+    {
+      titleKey: "carriers",
+      links: [
+        {
+          href: "https://app.fincargo.ai/register",
+          labelKey: "get_started",
+          trackLabel: "Get Started - Carriers",
+        },
+        {
+          href: "https://app.fincargo.ai/login",
+          labelKey: "login",
+          trackLabel: "Log In - Carriers",
+        },
+        {
+          href: "/explore-freight-forwarders-partners",
+          labelKey: "explore_freight_forwarders_partners",
+          trackLabel: "Explore Freight Forwarding Partners",
+        },
+        {
+          href: "/carrier-protection-policy",
+          labelKey: "carriers_protection_policy",
+          trackLabel: "Carriers Protection Policy",
+        },
+        { href: "/#faqs", labelKey: "faq", trackLabel: "FAQ - Carriers" },
+      ],
+    },
+    {
+      titleKey: "freight_forwarders",
+      links: [
+        {
+          href: "https://app.fincargo.ai/register",
+          labelKey: "get_started",
+          trackLabel: "Get Started - Freight Forwarders",
+        },
+        {
+          href: "https://app.fincargo.ai/login",
+          labelKey: "login",
+          trackLabel: "Log In - Freight Forwarders",
+        },
+        {
+          href: "/#",
+          labelKey: "pay_carrier_early",
+          trackLabel: "Pay Carrier Early",
+        },
+        {
+          href: "/api",
+          labelKey: "api_integration",
+          trackLabel: "API Integration",
+        },
+        {
+          href: "/freight-forwarders/#faqs",
+          labelKey: "faq",
+          trackLabel: "FAQ - Freight Forwarders",
+        },
+      ],
+    },
+  ];
+
+  const handleTrack = (label: string) => () =>
+    trackEvent({ action: "click_footer_link", category: "Footer", label });
+
+  const isExternal = (href: string) => /^https?:\/\//i.test(href);
 
   return (
-    <footer className="pt-32 xl:pt-32 lg:pt-38 md:pt-24 sm:pt-20 pb-10 bg-gradient-to-b from-darkBlue to-black text-gray-50 px-8">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        <div className="flex flex-col justify-between h-full">
-          {/* Logo and Address */}
+    <footer className="relative pt-28 md:pt-32 pb-10 bg-gradient-to-b from-darkBlue to-black text-gray-100">
+      {/* subtle top divider */}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-white/10 via-white/20 to-white/10" />
+
+      <div className="mx-auto w-full max-w-7xl px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+        {/* Logo + Addresses */}
+        <div className="flex flex-col gap-6">
           <div>
             <Image
               src="/logo/logo_fincargo_white.svg"
               alt="Fincargo Logo"
-              width={150}
-              height={40}
+              width={180}
+              height={44}
+              priority={false}
               className="mb-5"
             />
 
-            <p className="font-bold">Fincargo SA</p>
-            <p className="mb-5 text-gray-400">
-              Rue de L&rsquo;Industrie 23
-              <br />
-              1950 Sion
-              <br />
-              Switzerland
-            </p>
+            {/* Organization + addresses with schema.org microdata */}
+            <div itemScope itemType="https://schema.org/Organization">
+              <meta itemProp="name" content="Fincargo" />
 
-            <p className="font-bold">Fincargo Iberia SL</p>
+              <p className="font-semibold">Fincargo SA</p>
+              <address
+                className="not-italic text-gray-300"
+                itemProp="address"
+                itemScope
+                itemType="https://schema.org/PostalAddress"
+              >
+                <span itemProp="streetAddress">Rue de L’Industrie 23</span>
+                <br />
+                <span>
+                  <span itemProp="postalCode">1950</span>{" "}
+                  <span itemProp="addressLocality">Sion</span>
+                </span>
+                <br />
+                <span itemProp="addressCountry">Switzerland</span>
+              </address>
 
-            <p className="mb-5 text-gray-400">
-              Avenida Diagonal, 598
-              <br />
-              08021 Barcelona
-              <br />
-              Spain
-            </p>
-            <a
-              href="https://www.swissmadesoftware.org/home.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() =>
-                trackEvent({
-                  action: "click_footer_link",
-                  category: "Footer",
-                  label: "Swiss Made Software",
-                })
-              }
-            >
-              <Image
-                src="/logo/swiss-made-software.svg"
-                alt="Swiss Made Software Logo"
-                width={200}
-                height={40}
-              />
-            </a>
+              <p className="mt-5 font-semibold">Fincargo Iberia SL</p>
+              <address
+                className="not-italic text-gray-300"
+                itemProp="address"
+                itemScope
+                itemType="https://schema.org/PostalAddress"
+              >
+                <span itemProp="streetAddress">Avenida Diagonal, 598</span>
+                <br />
+                <span>
+                  <span itemProp="postalCode">08021</span>{" "}
+                  <span itemProp="addressLocality">Barcelona</span>
+                </span>
+                <br />
+                <span itemProp="addressCountry">Spain</span>
+              </address>
+            </div>
           </div>
+
+          <a
+            href="https://www.swissmadesoftware.org/home.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={handleTrack("Swiss Made Software")}
+            className="inline-flex max-w-[200px] opacity-90 hover:opacity-100 transition"
+          >
+            <Image
+              src="/logo/swiss-made-software.svg"
+              alt="Swiss Made Software Logo"
+              width={200}
+              height={40}
+            />
+          </a>
         </div>
 
-        {/* Colonne 2: Company + Liens */}
-        <div>
-          <h4 className="text-lg font-bold text-blue-200 mb-4 md:mb-7 uppercase">
-            {t("company")}
-          </h4>
-          <ul className="space-y-2">
-            <li>
-              <Link
-                href="/about"
-                scroll={false}
-                className="hover:text-gray-400"
-                onClick={() =>
-                  trackEvent({
-                    action: "click_footer_link",
-                    category: "Footer",
-                    label: "About Us",
-                  })
-                }
-              >
-                {t("about_us")}
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/contact"
-                scroll={false}
-                className="hover:text-gray-400"
-                onClick={() =>
-                  trackEvent({
-                    action: "click_footer_link",
-                    category: "Footer",
-                    label: "Contact",
-                  })
-                }
-              >
-                {t("contact")}
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/confidentiality-security-notice"
-                scroll={false}
-                className="hover:text-gray-400"
-                onClick={() =>
-                  trackEvent({
-                    action: "click_footer_link",
-                    category: "Footer",
-                    label: "Confidentiality & Security",
-                  })
-                }
-              >
-                {t("Confidentiality")}
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/legal-notice"
-                scroll={false}
-                className="hover:text-gray-400"
-                onClick={() =>
-                  trackEvent({
-                    action: "click_footer_link",
-                    category: "Footer",
-                    label: "Legal Notice",
-                  })
-                }
-              >
-                {t("legal_notice")}
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/cookies"
-                scroll={false}
-                className="hover:text-gray-400"
-                onClick={() =>
-                  trackEvent({
-                    action: "click_footer_link",
-                    category: "Footer",
-                    label: "Cookies Policy",
-                  })
-                }
-              >
-                {t("cookies")}
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/sustainability"
-                scroll={false}
-                className="hover:text-gray-400"
-                onClick={() =>
-                  trackEvent({
-                    action: "click_footer_link",
-                    category: "Footer",
-                    label: "Sustainability",
-                  })
-                }
-              >
-                {t("sustainability")}
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/partner"
-                scroll={false}
-                className="hover:text-gray-400"
-                onClick={() =>
-                  trackEvent({
-                    action: "click_footer_link",
-                    category: "Footer",
-                    label: "Partners",
-                  })
-                }
-              >
-                {t("partners")}
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/investor"
-                scroll={false}
-                className="hover:text-gray-400"
-                onClick={() =>
-                  trackEvent({
-                    action: "click_footer_link",
-                    category: "Footer",
-                    label: "Investors",
-                  })
-                }
-              >
-                {t("investors")}
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/careers"
-                scroll={false}
-                className="hover:text-gray-400"
-                onClick={() =>
-                  trackEvent({
-                    action: "click_footer_link",
-                    category: "Footer",
-                    label: "Careers",
-                  })
-                }
-              >
-                {t("careers")}
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/blog"
-                scroll={false}
-                className="hover:text-gray-400"
-                onClick={() =>
-                  trackEvent({
-                    action: "click_footer_link",
-                    category: "Footer",
-                    label: "Blog",
-                  })
-                }
-              >
-                Blog
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* Colonne 3: Carriers + Liens */}
-        <div>
-          <h4 className="text-lg font-bold text-blue-200 mb-4 md:mb-7 uppercase">
-            {t("carriers")}
-          </h4>
-          <ul className="space-y-2">
-            <li>
-              <Link
-                href="https://app.fincargo.ai/register"
-                target="_blank"
-                scroll={false}
-                className="hover:text-gray-400"
-                onClick={() =>
-                  trackEvent({
-                    action: "click_footer_link",
-                    category: "Footer",
-                    label: "Get Started - Carriers",
-                  })
-                }
-              >
-                {t("get_started")}
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://app.fincargo.ai/login"
-                scroll={false}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-gray-400"
-                onClick={() =>
-                  trackEvent({
-                    action: "click_footer_link",
-                    category: "Footer",
-                    label: "Log In - Carriers",
-                  })
-                }
-              >
-                {t("login")}
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/explore-freight-forwarders-partners"
-                scroll={false}
-                className="hover:text-gray-400"
-                onClick={() =>
-                  trackEvent({
-                    action: "click_footer_link",
-                    category: "Footer",
-                    label: "Explore Freight Forwarding Partners",
-                  })
-                }
-              >
-                {t("explore_freight_forwarders_partners")}
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/carrier-protection-policy"
-                scroll={false}
-                className="hover:text-gray-400"
-                onClick={() =>
-                  trackEvent({
-                    action: "click_footer_link",
-                    category: "Footer",
-                    label: "Carriers Protection Policy",
-                  })
-                }
-              >
-                {t("carriers_protection_policy")}
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/#faqs"
-                scroll={false}
-                className="hover:text-gray-400"
-                onClick={() =>
-                  trackEvent({
-                    action: "click_footer_link",
-                    category: "Footer",
-                    label: "FAQ - Carriers",
-                  })
-                }
-              >
-                {t("faq")}
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* Colonne 4: Freight Forwarders + Liens */}
-        <div>
-          <h4 className="text-lg font-bold text-blue-200 mb-4 md:mb-7 uppercase">
-            {t("freight_forwarders")}
-          </h4>
-          <ul className="space-y-2">
-            <li>
-              <Link
-                href="https://app.fincargo.ai/register"
-                target="_blank"
-                scroll={false}
-                className="hover:text-gray-400"
-                onClick={() =>
-                  trackEvent({
-                    action: "click_footer_link",
-                    category: "Footer",
-                    label: "Get Started - Freight Forwarders",
-                  })
-                }
-              >
-                {t("get_started")}
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://app.fincargo.ai/login"
-                scroll={false}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-gray-400"
-                onClick={() =>
-                  trackEvent({
-                    action: "click_footer_link",
-                    category: "Footer",
-                    label: "Log In - Freight Forwarders",
-                  })
-                }
-              >
-                {t("login")}
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/#"
-                scroll={false}
-                className="hover:text-gray-400"
-                onClick={() =>
-                  trackEvent({
-                    action: "click_footer_link",
-                    category: "Footer",
-                    label: "Pay Carrier Early",
-                  })
-                }
-              >
-                {t("pay_carrier_early")}
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/api"
-                scroll={false}
-                className="hover:text-gray-400"
-                onClick={() =>
-                  trackEvent({
-                    action: "click_footer_link",
-                    category: "Footer",
-                    label: "API Integration",
-                  })
-                }
-              >
-                {t("api_integration")}
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/freight-forwarders/#faqs"
-                scroll={false}
-                className="hover:text-gray-400"
-                onClick={() =>
-                  trackEvent({
-                    action: "click_footer_link",
-                    category: "Footer",
-                    label: "FAQ - Freight Forwarders",
-                  })
-                }
-              >
-                {t("faq")}
-              </Link>
-            </li>
-          </ul>
-        </div>
+        {/* Link sections */}
+        {sections.map((section) => (
+          <nav
+            key={section.titleKey}
+            aria-labelledby={`footer-${section.titleKey}`}
+          >
+            <h2
+              id={`footer-${section.titleKey}`}
+              className="text-sm font-bold text-blue-200 mb-4 md:mb-6 uppercase tracking-wide"
+            >
+              {t(section.titleKey)}
+            </h2>
+            <ul className="space-y-2">
+              {section.links.map((link) => (
+                <li key={link.trackLabel}>
+                  {isExternal(link.href) ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={handleTrack(link.trackLabel)}
+                      className="hover:text-white/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded"
+                    >
+                      {typeof link.labelKey === "string"
+                        ? t(link.labelKey as string)
+                        : link.labelKey}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      prefetch={false}
+                      scroll={false}
+                      onClick={handleTrack(link.trackLabel)}
+                      className="hover:text-white/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded"
+                    >
+                      {typeof link.labelKey === "string"
+                        ? t(link.labelKey as string)
+                        : link.labelKey}
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))}
       </div>
-      <div className="mt-12 text-center text-gray-500 text-sm">
-        &copy; {new Date().getFullYear()} Fincargo. All rights reserved.
+
+      <div className="mt-12 text-center text-gray-400 text-sm">
+        &copy; {year} Fincargo. All rights reserved.
       </div>
     </footer>
   );

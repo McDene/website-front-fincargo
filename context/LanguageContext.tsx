@@ -1,42 +1,35 @@
 "use client";
-
-import React, { createContext, useState, useEffect, ReactNode } from "react";
-import TRANSLATIONS from "@/lib/translations";
+import React, { createContext, useState, useEffect } from "react";
+import TRANSLATIONS from "@/lib/index";
 
 interface LanguageContextProps {
-  language: string;
-  switchLanguage: (lang: string) => void;
-  translations: Record<string, string>;
+  language: "en" | "fr" | "es" | "de";
+  switchLanguage: (lang: LanguageContextProps["language"]) => void;
+  translations: Record<string, string | readonly string[]>;
 }
 
 export const LanguageContext = createContext<LanguageContextProps>({
   language: "en",
   switchLanguage: () => {},
-  translations: TRANSLATIONS["en"],
+  translations: TRANSLATIONS.en,
 });
 
-interface LanguageProviderProps {
-  children: ReactNode;
-}
-
-export const LanguageProvider: React.FC<LanguageProviderProps> = ({
+export const LanguageProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
-  const [language, setLanguage] = useState<string>("en");
+  const [language, setLanguage] =
+    useState<LanguageContextProps["language"]>("en");
 
   useEffect(() => {
-    const savedLanguage = localStorage.getItem("language");
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
+    const saved = localStorage.getItem("language");
+    if (saved === "en" || saved === "fr" || saved === "es" || saved === "de") {
+      setLanguage(saved);
     }
   }, []);
 
-  const switchLanguage = (lang: string) => {
+  const switchLanguage = (lang: LanguageContextProps["language"]) => {
     localStorage.setItem("language", lang);
     setLanguage(lang);
-    // setTimeout(() => {
-    //   window.location.reload();
-    // }, 200);
   };
 
   return (
@@ -44,7 +37,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
       value={{
         language,
         switchLanguage,
-        translations: TRANSLATIONS[language] || TRANSLATIONS["es"],
+        translations: TRANSLATIONS[language] || TRANSLATIONS.en,
       }}
     >
       {children}

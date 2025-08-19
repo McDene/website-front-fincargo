@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useContext } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
-import HeaderSecondary from "@/components/Header/Secondary";
+import Header from "@/components/Header/Secondary";
 import SectionHeroSmall from "@/components/Common/SectionHeroSmall";
 import CareerOverview from "@/components/Career/CareerOverview";
 import Footer from "@/components/Footer";
@@ -53,7 +53,7 @@ export default function CareerPage() {
   return (
     !loading && (
       <>
-        <HeaderSecondary />
+        <Header />
         <SectionHeroSmall />
         {jobs && departments && (
           <CareerOverview departments={departments} jobs={jobs} />

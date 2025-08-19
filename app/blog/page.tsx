@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useContext } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
-import HeaderSecondary from "@/components/Header/Secondary";
+import Header from "@/components/Header/Main";
 import BlogOverview from "@/components/Blog/BlogOverview";
 import SectionHeroSmall from "@/components/Common/SectionHeroSmall";
 import Footer from "@/components/Footer";
@@ -49,7 +49,7 @@ export default function BlogPage() {
   return (
     !loading && (
       <>
-        <HeaderSecondary />
+        <Header />
         <SectionHeroSmall />
         {blogData.length > 0 ? (
           <BlogOverview blogData={blogData} />

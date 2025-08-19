@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useContext } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
-import HeaderSecondary from "@/components/Header/Secondary";
+import Header from "@/components/Header/Main";
 import HeroImage from "@/components/HeroImage";
 import FfParteners from "@/components/FfParteners";
 import Footer from "@/components/Footer";
@@ -55,7 +55,7 @@ export default function ExploreFreightForwardersPartenersPage() {
   return (
     !loading && (
       <>
-        <HeaderSecondary />
+        <Header />
         {heroData && <HeroImage heroImageData={heroData} />}
         {exploreFFPartnersData && (
           <FfParteners exploreFFPartnersData={exploreFFPartnersData} />

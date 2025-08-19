@@ -18,25 +18,52 @@ interface FaqData {
 }
 
 interface FaqProps {
-  faqData: FaqData | null;
+  /** Données côté Carriers */
+  carrier?: FaqData | null;
+  /** Données côté Forwarders & Shippers */
+  freight?: FaqData | null;
 }
 
-export default function Faq({ faqData }: FaqProps) {
-  if (!faqData || !faqData.FAQ || !Array.isArray(faqData.FAQ.Accordion)) {
-    return null;
+/**
+ * Wrapper : si les deux props sont fournies, on affiche le toggle intégré.
+ * Sinon, on affiche la FAQ simple.
+ */
+export default function Faq({ carrier, freight }: FaqProps) {
+  const toList = (data?: FaqData | null) =>
+    data?.FAQ?.Accordion?.map((a) => ({
+      id: a.id,
+      question: a.Question,
+      answer: a.Answer,
+    })) ?? [];
+
+  if (carrier && freight) {
+    return (
+      <SectionFaq
+        groups={{
+          carrier: {
+            title: carrier.FAQ.Title,
+            subtitle: carrier.FAQ.Subtitle,
+            faqs: toList(carrier),
+          },
+          freight: {
+            title: freight.FAQ.Title,
+            subtitle: freight.FAQ.Subtitle,
+            faqs: toList(freight),
+          },
+        }}
+        initialAudience="carrier"
+      />
+    );
   }
 
-  const formattedFaqs = faqData.FAQ.Accordion.map((accordion) => ({
-    id: accordion.id,
-    question: accordion.Question,
-    answer: accordion.Answer,
-  }));
+  const single = carrier ?? freight ?? null;
+  if (!single) return null;
 
   return (
     <SectionFaq
-      title={faqData.FAQ.Title}
-      subtitle={faqData.FAQ.Subtitle}
-      faqs={formattedFaqs}
+      title={single.FAQ.Title}
+      subtitle={single.FAQ.Subtitle}
+      faqs={toList(single)}
     />
   );
 }

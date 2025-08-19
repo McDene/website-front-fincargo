@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useContext } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
-import HeaderSecondary from "@/components/Header/Secondary";
+import Header from "@/components/Header/Main";
 import HeroImage from "@/components/HeroImage";
 import EsgPolicy from "@/components/EsgPolicy";
 import Footer from "@/components/Footer";
@@ -54,7 +54,7 @@ export default function SustainabilityPage() {
   return (
     !loading && (
       <>
-        <HeaderSecondary />
+        <Header />
         {heroData && <HeroImage heroImageData={heroData} />}
         {sustainabilityData && <EsgPolicy esgPolicyData={sustainabilityData} />}
         <Footer />

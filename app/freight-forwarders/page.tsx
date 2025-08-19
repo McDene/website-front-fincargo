@@ -7,7 +7,6 @@ import Hero from "@/components/Hero";
 import Feature from "@/components/Feature";
 import Benefit from "@/components/Benefit";
 import Invite from "@/components/Invite";
-import Faq from "@/components/Faq";
 import TestimonialsFF from "@/components/TestimonialsFF";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
@@ -19,7 +18,6 @@ export default function FreightForwardersPage() {
   const [featureData, setFeatureData] = useState(null);
   const [benefitData, setBenefitData] = useState(null);
   const [inviteData, setInviteData] = useState(null);
-  const [faqData, setFaqData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showLoader, setShowLoader] = useState(false);
 
@@ -30,40 +28,30 @@ export default function FreightForwardersPage() {
 
     const fetchData = async () => {
       try {
-        const [
-          heroResponse,
-          featureResponse,
-          benefitResponse,
-          inviteResponse,
-          faqResponse,
-        ] = await Promise.all([
-          fetchAPI(
-            "/api/hero-videos?filters[Page][$eq]=FreightForwarders&populate[Hero][populate]=Video",
-            language
-          ),
-          fetchAPI(
-            "/api/features?filters[Page][$eq]=FreightForwarders&populate[Feature][populate][Card][populate]=Image",
-            language
-          ),
-          fetchAPI(
-            "/api/benefits?filters[Page][$eq]=FreightForwarders&populate[Benefit][populate]=Benefit",
-            language
-          ),
-          fetchAPI(
-            "/api/invites?filters[Page][$eq]=FreightForwarders&populate=Image",
-            language
-          ),
-          fetchAPI(
-            "/api/faqs?filters[Page][$eq]=FreightForwarder&populate[FAQ][populate]=Accordion",
-            language
-          ),
-        ]);
+        const [heroResponse, featureResponse, benefitResponse, inviteResponse] =
+          await Promise.all([
+            fetchAPI(
+              "/api/hero-videos?filters[Page][$eq]=FreightForwarders&populate[Hero][populate]=Video",
+              language
+            ),
+            fetchAPI(
+              "/api/features?filters[Page][$eq]=FreightForwarders&populate[Feature][populate][Card][populate]=Image",
+              language
+            ),
+            fetchAPI(
+              "/api/benefits?filters[Page][$eq]=FreightForwarders&populate[Benefit][populate]=Benefit",
+              language
+            ),
+            fetchAPI(
+              "/api/invites?filters[Page][$eq]=FreightForwarders&populate=Image",
+              language
+            ),
+          ]);
 
         setHeroData(heroResponse?.data?.[0]?.Hero || null);
         setFeatureData(featureResponse?.data?.[0] || null);
         setBenefitData(benefitResponse?.data?.[0] || null);
         setInviteData(inviteResponse?.data?.[0] || null);
-        setFaqData(faqResponse?.data?.[0] || null);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -102,7 +90,6 @@ export default function FreightForwardersPage() {
         {featureData && <Feature featureData={featureData} />}
         {benefitData && <Benefit benefitData={benefitData} />}
         {inviteData && <Invite inviteData={inviteData} />}
-        {faqData && <Faq faqData={faqData} />}
         <TestimonialsFF />
         <Footer />
       </>
