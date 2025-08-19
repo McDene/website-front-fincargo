@@ -6,7 +6,7 @@ export const BENEFITS = {
     "benefits.carrier_1.title": "24-hour Guaranteed Payment",
     "benefits.carrier_1.description":
       "Get paid within 24 hours after invoice validation through our factoring partners. No more waiting 30-90 days for payment.",
-    "benefits.carrier_2.title": "€20K+ Working Capital Per Truck",
+    "benefits.carrier_2.title": "20K CHF+ Working Capital Per Truck",
     "benefits.carrier_2.description":
       "Unlock substantial working capital annually through our early payment solutions, freeing up cash for operations and growth.",
     "benefits.carrier_3.title": "75% Administrative Time Savings",
@@ -58,7 +58,8 @@ export const BENEFITS = {
     "benefits.carrier_1.title": "Paiement garanti en 24 heures",
     "benefits.carrier_1.description":
       "Recevez votre paiement dans les 24 heures suivant la validation de la facture grâce à nos partenaires de factoring. Fini d'attendre 30 à 90 jours pour être payé.",
-    "benefits.carrier_2.title": "Plus de 20K€ de fonds de roulement par camion",
+    "benefits.carrier_2.title":
+      "Plus de 20K CHF de fonds de roulement par camion",
     "benefits.carrier_2.description":
       "Libérez un fonds de roulement substantiel chaque année grâce à nos solutions de paiement anticipé, libérant ainsi des liquidités pour vos opérations et votre croissance.",
     "benefits.carrier_3.title": "Économies de temps administratives de 75%",
@@ -110,7 +111,8 @@ export const BENEFITS = {
     "benefits.carrier_1.title": "Pago garantizado en 24 horas",
     "benefits.carrier_1.description":
       "Recibe el pago en menos de 24 horas después de la validación de la factura a través de nuestros socios de factoring. Olvídate de esperar entre 30 y 90 días para recibir el pago.",
-    "benefits.carrier_2.title": "Más de 20K€ de capital de trabajo por camión",
+    "benefits.carrier_2.title":
+      "Más de 20K CHF de capital de trabajo por camión",
     "benefits.carrier_2.description":
       "Desbloquea un capital de trabajo sustancial anualmente a través de nuestras soluciones de pago anticipado, liberando efectivo para tus operaciones y crecimiento.",
     "benefits.carrier_3.title": "Ahorro del 75% en tiempo administrativo",
@@ -163,7 +165,7 @@ export const BENEFITS = {
     "benefits.carrier_1.title": "Garantierte Zahlung in 24 Stunden",
     "benefits.carrier_1.description":
       "Erhalten Sie Ihre Zahlung innerhalb von 24 Stunden nach Rechnungsvalidierung durch unsere Factoring-Partner. Kein Warten mehr auf Zahlungen von 30 bis 90 Tagen.",
-    "benefits.carrier_2.title": "Über 20.000€ Betriebskapital pro Lkw",
+    "benefits.carrier_2.title": "Über 20.000 CHF Betriebskapital pro Lkw",
     "benefits.carrier_2.description":
       "Schalten Sie erhebliches Betriebskapital jährlich frei durch unsere Frühzahlungsoptionen, die Liquidität für Betrieb und Wachstum bereitstellen.",
     "benefits.carrier_3.title": "75% Einsparung bei administrativen Zeiten",
