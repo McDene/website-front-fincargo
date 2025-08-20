@@ -420,9 +420,9 @@ export default function SectionInvoicing() {
                           {c.title}
                         </span>
                       </h3>
-                      <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-2 py-0.5 text-[11px] font-semibold ring-1 ring-white/15">
+                      {/* <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-2 py-0.5 text-[11px] font-semibold ring-1 ring-white/15">
                         {c.badge}
-                      </span>
+                      </span> */}
                     </div>
                     <p className="mt-2 text-sm text-white/80 leading-relaxed">
                       {c.content}

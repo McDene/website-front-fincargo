@@ -484,9 +484,9 @@ export default function SectionFactoring() {
                       <h3 className="text-lg font-bold text-slate-900">
                         {c.title}
                       </h3>
-                      <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-[11px] font-semibold text-blue-700 ring-1 ring-blue-200">
+                      {/* <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-[11px] font-semibold text-blue-700 ring-1 ring-blue-200">
                         {c.badge}
-                      </span>
+                      </span> */}
                     </div>
                     <p className="mt-2 text-sm md:text-base text-slate-700">
                       {c.content}
@@ -509,6 +509,7 @@ export default function SectionFactoring() {
         </div>
 
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          {/* Header */}
           <div
             className={`max-w-3xl transition-all duration-700 ${
               v[1] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
@@ -524,6 +525,7 @@ export default function SectionFactoring() {
             <p className="mt-3 text-lg md:text-xl text-white/80">{s2Desc}</p>
           </div>
 
+          {/* Steps */}
           <ol
             className={`mt-10 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 transition-all duration-700 ${
               v[1] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
@@ -532,127 +534,172 @@ export default function SectionFactoring() {
             {steps.map((s, i) => (
               <li
                 key={i}
-                className="relative overflow-hidden rounded-2xl bg-white/5 px-6 py-7 md:px-8 md:py-10 border border-white/10 ring-1 ring-white/10 shadow-2xl"
+                className="relative overflow-hidden rounded-2xl bg-white/5 px-6 py-8 md:px-8 md:py-10 border border-white/10 ring-1 ring-white/10 shadow-2xl text-center transition-transform duration-300 hover:-translate-y-0.5"
                 style={{ transitionDelay: `${120 + i * 80}ms` }}
+                aria-label={`Step ${s.n}: ${s.title}`}
               >
-                {/* step number */}
-                <div className="absolute -top-6 -left-6 h-16 w-16 rounded-full bg-white/10 ring-1 ring-white/15 flex items-center justify-center text-2xl font-black">
-                  {s.n}
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="flex size-10 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/15">
-                    {s.icon}
-                  </div>
-                  <div className="min-w-0">
-                    <h3 className="text-lg font-bold">{s.title}</h3>
-                    <p className="mt-2 text-sm md:text-base text-white/85">
-                      {s.content}
-                    </p>
+                {/* Number badge centered */}
+                <div className="relative mx-auto mb-5 h-16 w-16">
+                  <div
+                    className="absolute inset-0 rounded-full bg-cyan-400/20 blur-xl"
+                    aria-hidden
+                  />
+                  <div className="relative grid h-full w-full place-items-center rounded-full bg-white/10 ring-1 ring-white/20 text-2xl font-black">
+                    {s.n}
                   </div>
                 </div>
+
+                {/* Icon centered */}
+                <div className="mx-auto mb-3 flex size-12 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/15">
+                  {s.icon}
+                </div>
+
+                {/* Title + content */}
+                <h3 className="text-lg font-bold">{s.title}</h3>
+                <p className="mt-2 text-sm md:text-base text-white/85">
+                  {s.content}
+                </p>
+
+                {/* Subtle bottom sheen */}
+                <div
+                  className="pointer-events-none absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                  aria-hidden
+                />
               </li>
             ))}
           </ol>
+
+          {/* Optional: mini progress dots sous la grille (mobile only) */}
+          <div className="mt-6 flex items-center justify-center gap-2 md:hidden">
+            {steps.map((_, i) => (
+              <span
+                key={i}
+                className="h-1.5 w-6 rounded-full bg-white/15"
+                style={{ opacity: 0.9 }}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ========== Section 3 (WHITE) ========== */}
-      <section ref={refs[2]} className="relative bg-white py-20 md:py-28">
+
+      <section
+        ref={refs[2]}
+        className="relative bg-white py-24 md:py-28"
+        // Pour une césure correcte en allemand, assure-toi que <html lang="de"> ou ici lang="de" selon la langue courante
+      >
         <div className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(60%_50%_at_50%_0%,black,transparent)]">
           <div className="absolute right-12 -top-8 h-40 w-40 rounded-full bg-cyan-500/10 blur-3xl" />
           <div className="absolute left-1/3 bottom-0 h-56 w-56 rounded-full bg-blue-600/10 blur-3xl" />
         </div>
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10">
+          {/* Header */}
           <div
-            className={`max-w-3xl transition-all duration-700 ${
+            className={`max-w-4xl transition-all duration-700 ${
               v[2] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
             }`}
           >
             <span className="inline-flex items-center gap-2 rounded-full bg-slate-900/5 px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">
               PRICING
             </span>
-            <h2 className="mt-4 text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 uppercase">
+            <h2 className="mt-4 text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 uppercase [text-wrap:balance]">
               {s3Title}
             </h2>
-            <p className="mt-3 text-lg md:text-xl text-slate-700">{s3Desc}</p>
+            <p className="mt-4 text-base sm:text-lg md:text-xl text-slate-700 [text-wrap:balance]">
+              {s3Desc}
+            </p>
           </div>
 
-          {/* Pricing cards */}
+          {/* Cards */}
+          {/* Pricing cards (2 colonnes en haut, l'exemple plein large en dessous) */}
           <div
-            className={`mt-10 grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 transition-all duration-700 ${
+            className={`mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 transition-all duration-700 ${
               v[2] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
             {/* Rate */}
-            <div className="relative overflow-hidden rounded-2xl bg-white px-6 py-7 md:px-8 md:py-10 border border-slate-200 ring-1 ring-slate-900/5 shadow-sm">
-              <div className="flex items-start gap-3">
-                <div className="flex size-10 items-center justify-center rounded-xl bg-slate-50 ring-1 ring-slate-200 text-slate-700">
+            <div className="relative overflow-hidden rounded-2xl bg-white px-7 py-8 md:px-9 md:py-10 border border-slate-200 ring-1 ring-slate-900/5 shadow-sm">
+              <div className="flex items-start gap-4">
+                <div className="flex size-12 items-center justify-center rounded-xl bg-slate-50 ring-1 ring-slate-200 text-slate-700">
                   <IconPercent className="h-6 w-6" />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="text-xl font-bold text-slate-900">
+                  <h3 className="text-xl font-bold text-slate-900 break-words hyphens-auto">
                     {rateTitle}
                   </h3>
-                  <div className="mt-1 text-3xl md:text-4xl font-black tracking-tight">
-                    <span className="bg-gradient-to-r from-lightBlue to-black bg-clip-text text-transparent">
-                      {rateData}
-                    </span>{" "}
-                    <span className="text-base font-semibold text-slate-500">
+                  <div className="mt-2 flex flex-wrap items-end gap-x-2 gap-y-1">
+                    <div className="text-3xl md:text-4xl font-black tracking-tight">
+                      <span className="bg-gradient-to-r from-lightBlue to-black bg-clip-text text-transparent">
+                        {rateData}
+                      </span>
+                    </div>
+                    <span className="text-sm md:text-base font-semibold text-slate-500 break-words hyphens-auto">
                       {rateTime}
                     </span>
                   </div>
-                  <p className="mt-2 text-sm md:text-base text-slate-700">
+                  <p className="mt-3 text-sm md:text-base text-slate-700 leading-relaxed break-words hyphens-auto">
                     {rateText}
                   </p>
                 </div>
               </div>
             </div>
+
             {/* Service Fee */}
-            <div className="relative overflow-hidden rounded-2xl bg-white px-6 py-7 md:px-8 md:py-10 border border-slate-200 ring-1 ring-slate-900/5 shadow-sm">
-              <div className="flex items-start gap-3">
-                <div className="flex size-10 items-center justify-center rounded-xl bg-slate-50 ring-1 ring-slate-200 text-slate-700">
+            <div className="relative overflow-hidden rounded-2xl bg-white px-7 py-8 md:px-9 md:py-10 border border-slate-200 ring-1 ring-slate-900/5 shadow-sm">
+              <div className="flex items-start gap-4">
+                <div className="flex size-12 items-center justify-center rounded-xl bg-slate-50 ring-1 ring-slate-200 text-slate-700">
                   <IconDoc className="h-6 w-6" />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="text-xl font-bold text-slate-900">
+                  <h3 className="text-xl font-bold text-slate-900 break-words hyphens-auto">
                     {feeTitle}
                   </h3>
-                  <div className="mt-1 text-3xl md:text-4xl font-black tracking-tight">
-                    <span className="bg-gradient-to-r from-lightBlue to-black bg-clip-text text-transparent">
-                      {feeData}
-                    </span>{" "}
-                    <span className="text-base font-semibold text-slate-500">
+                  <div className="mt-2 flex flex-wrap items-end gap-x-2 gap-y-1">
+                    <div className="text-3xl md:text-4xl font-black tracking-tight">
+                      <span className="bg-gradient-to-r from-lightBlue to-black bg-clip-text text-transparent">
+                        {feeData}
+                      </span>
+                    </div>
+                    <span className="text-sm md:text-base font-semibold text-slate-500 break-words hyphens-auto">
                       {feeTime}
                     </span>
                   </div>
-                  <p className="mt-2 text-sm md:text-base text-slate-700">
+                  <p className="mt-3 text-sm md:text-base text-slate-700 leading-relaxed break-words hyphens-auto">
                     {feeText}
                   </p>
                 </div>
               </div>
             </div>
-            {/* Example */}
-            <div className="relative overflow-hidden rounded-2xl bg-white px-6 py-7 md:px-8 md:py-10 border border-slate-200 ring-1 ring-slate-900/5 shadow-sm">
-              <h3 className="text-xl font-bold text-slate-900">{exTitle}</h3>
-              <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
+
+            {/* Example — passe en dessous sur toute la largeur */}
+            <div className="relative overflow-hidden rounded-2xl bg-white px-7 py-8 md:px-9 md:py-10 border border-slate-200 ring-1 ring-slate-900/5 shadow-sm md:col-span-2">
+              <h3 className="text-xl font-bold text-slate-900 break-words hyphens-auto">
+                {exTitle}
+              </h3>
+
+              <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div className="rounded-xl bg-slate-50 p-4 ring-1 ring-slate-200">
-                  <div className="text-xs font-medium text-slate-600">
+                  <div className="text-xs font-medium text-slate-600 break-words hyphens-auto">
                     {exC1}
                   </div>
                   <div className="mt-1 text-2xl font-extrabold tracking-tight">
                     {exD1}
                   </div>
                 </div>
+
                 <div className="rounded-xl bg-slate-50 p-4 ring-1 ring-slate-200">
-                  <div className="text-xs font-medium text-slate-600">
+                  <div className="text-xs font-medium text-slate-600 break-words hyphens-auto">
                     {exC2}
                   </div>
                   <div className="mt-1 text-2xl font-extrabold tracking-tight">
                     {exD2}
                   </div>
                 </div>
+
                 <div className="rounded-xl bg-slate-50 p-4 ring-1 ring-slate-200">
-                  <div className="text-xs font-medium text-slate-600">
+                  <div className="text-xs font-medium text-slate-600 break-words hyphens-auto">
                     {exC3}
                   </div>
                   <div className="mt-1 text-2xl font-extrabold tracking-tight">
@@ -660,12 +707,13 @@ export default function SectionFactoring() {
                   </div>
                 </div>
               </div>
-              <div className="mt-3 flex items-center gap-2 text-xs text-slate-500">
-                <IconClock className="h-4 w-4" />
+
+              {/* <div className="mt-4 flex items-center gap-2 text-xs sm:text-sm text-slate-500 [text-wrap:balance] break-words hyphens-auto">
+                <IconClock className="h-4 w-4 flex-none" />
                 <span>
                   Illustrative example; actual pricing varies by risk profile.
                 </span>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

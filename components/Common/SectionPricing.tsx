@@ -181,7 +181,7 @@ export default function SectionPricing({
                 >
                   {freeCard.cta}
                 </a>
-                <p className="text-xs text-slate-500">{footnote}</p>
+                {/* <p className="text-xs text-slate-500">{footnote}</p> */}
               </div>
             </div>
           </div>
@@ -416,7 +416,7 @@ export default function SectionPricing({
         </div>
 
         {/* Footnote */}
-        <p className="mt-6 text-sm text-slate-500">{footnote}</p>
+        {/* <p className="mt-6 text-sm text-slate-500">{footnote}</p> */}
       </div>
     </section>
   );

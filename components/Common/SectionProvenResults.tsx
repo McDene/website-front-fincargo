@@ -251,7 +251,7 @@ function BenefitIcon({
     case 0:
       return <IconBolt className={className} />;
     case 1:
-      return <IconEuro className={className} />;
+      return <IconChf className={className} />;
     case 2:
       return <IconClock className={className} />;
     case 3:
@@ -278,7 +278,7 @@ function IconBolt(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-function IconEuro(props: React.SVGProps<SVGSVGElement>) {
+function IconChf(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -287,13 +287,21 @@ function IconEuro(props: React.SVGProps<SVGSVGElement>) {
       strokeWidth="1.8"
       strokeLinecap="round"
       strokeLinejoin="round"
+      aria-label="Swiss franc (CHF)"
       {...props}
     >
-      <path d="M4 10h8M4 14h8" />
-      <path d="M20 5a7 7 0 0 0-12 5 7 7 0 0 0 12 5" />
+      {/* Symbole franc (₣) */}
+      <path d="M6 3v18" />
+      <path d="M6 7h12" />
+      <path d="M6 12h9" />
+
+      {/* Petite croix suisse en haut à droite */}
+      <path d="M18 8v4" />
+      <path d="M16 10h4" />
     </svg>
   );
 }
+
 function IconClock(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg

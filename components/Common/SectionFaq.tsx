@@ -187,7 +187,7 @@ export default function SectionFaq({
         </div>
 
         {/* micro-note */}
-        <p className="mt-6 text-center text-sm text-slate-500">
+        {/* <p className="mt-6 text-center text-sm text-slate-500">
           Can’t find your answer?{" "}
           <a
             href="/contact-sales"
@@ -196,7 +196,7 @@ export default function SectionFaq({
             Contact sales
           </a>
           .
-        </p>
+        </p> */}
       </div>
     </section>
   );

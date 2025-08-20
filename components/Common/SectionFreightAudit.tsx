@@ -508,10 +508,10 @@ export default function SectionFreightAudit() {
                           {p.title}
                         </span>
                       </h3>
-                      <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-2 py-0.5 text-[11px] font-semibold ring-1 ring-white/15">
+                      {/* <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-2 py-0.5 text-[11px] font-semibold ring-1 ring-white/15">
                         {p.stat}{" "}
                         <span className="text-white/70">{p.statLabel}</span>
-                      </span>
+                      </span> */}
                     </div>
                     <p className="mt-2 text-sm text-white/80 leading-relaxed">
                       {p.content}
