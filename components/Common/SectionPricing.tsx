@@ -67,8 +67,8 @@ export default function SectionPricing({
     tf("pricing.feature3", "e-Invoicing"),
     tf("pricing.feature4", "Factoring"),
     tf("pricing.feature5", "Support"),
-    tf("pricing.feature6", "Transactional Fee"),
-    tf("pricing.feature7", "Integration & Calibration"),
+    // tf("pricing.feature6", "Transactional Fee"),
+    // tf("pricing.feature7", "Integration & Calibration"),
   ];
 
   // Values by plan & row (1..7)
@@ -105,6 +105,10 @@ export default function SectionPricing({
       [
         tf("princing.free.feature4.title", "Invoice Verification"),
         tf("princing.free.feature4.detail", "Basic AI-powered"),
+      ],
+      [
+        tf("princing.free.feature5.title", "Factoring"),
+        tf("princing.free.feature5.detail", "0.10-0.15%/day"),
       ],
     ],
     cta: tf("princing.starter.free_trial", "Start Free trial"),
@@ -221,11 +225,11 @@ export default function SectionPricing({
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
               <div>
-                {plans[activePlan].popular && (
+                {/* {plans[activePlan].popular && (
                   <div className="mb-2 inline-flex items-center rounded-full bg-blue-600 px-2.5 py-1 text-[11px] font-semibold text-white shadow">
                     {mostPopular}
                   </div>
-                )}
+                )} */}
                 <div className="text-base font-semibold text-slate-900">
                   {plans[activePlan].title}
                 </div>
@@ -328,11 +332,11 @@ export default function SectionPricing({
                         : ""
                     }`}
                   >
-                    {isPopular && (
+                    {/* {isPopular && (
                       <div className="mb-2 inline-flex items-center rounded-full bg-blue-600 px-2.5 py-1 text-[11px] font-semibold text-white shadow">
                         {mostPopular}
                       </div>
-                    )}
+                    )} */}
 
                     <div className="text-sm font-semibold text-slate-900">
                       {p.title}
@@ -416,7 +420,7 @@ export default function SectionPricing({
         </div>
 
         {/* Footnote */}
-        {/* <p className="mt-6 text-sm text-slate-500">{footnote}</p> */}
+        <p className="mt-6 text-sm text-slate-500">{footnote}</p>
       </div>
     </section>
   );

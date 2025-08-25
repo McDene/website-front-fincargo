@@ -182,7 +182,7 @@ export default function Header() {
 
               <div className="flex items-center gap-3">
                 <a
-                  href="https://app.fincargo.ai/register"
+                  href="https://platform.fincargo.ai/login"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -197,7 +197,7 @@ export default function Header() {
                   </button>
                 </a>
                 <a
-                  href="https://app.fincargo.ai/login"
+                  href="https://platform.fincargo.ai/login"
                   target="_blank"
                   rel="noreferrer"
                   className="hidden xl:inline-block"

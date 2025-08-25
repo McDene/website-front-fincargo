@@ -54,20 +54,20 @@ export default function Footer() {
       titleKey: "carriers",
       links: [
         {
-          href: "https://app.fincargo.ai/register",
+          href: "https://platform.fincargo.ai/login",
           labelKey: "get_started",
           trackLabel: "Get Started - Carriers",
         },
         {
-          href: "https://app.fincargo.ai/login",
+          href: "https://platform.fincargo.ai/login",
           labelKey: "login",
           trackLabel: "Log In - Carriers",
         },
-        {
-          href: "/explore-freight-forwarders-partners",
-          labelKey: "explore_freight_forwarders_partners",
-          trackLabel: "Explore Freight Forwarding Partners",
-        },
+        // {
+        //   href: "/explore-freight-forwarders-partners",
+        //   labelKey: "explore_freight_forwarders_partners",
+        //   trackLabel: "Explore Freight Forwarding Partners",
+        // },
         {
           href: "/carrier-protection-policy",
           labelKey: "carriers_protection_policy",
@@ -80,29 +80,29 @@ export default function Footer() {
       titleKey: "freight_forwarders",
       links: [
         {
-          href: "https://app.fincargo.ai/register",
+          href: "https://platform.fincargo.ai/login",
           labelKey: "get_started",
           trackLabel: "Get Started - Freight Forwarders",
         },
         {
-          href: "https://app.fincargo.ai/login",
+          href: "https://platform.fincargo.ai/login",
           labelKey: "login",
           trackLabel: "Log In - Freight Forwarders",
         },
-        {
-          href: "/#",
-          labelKey: "pay_carrier_early",
-          trackLabel: "Pay Carrier Early",
-        },
+        // {
+        //   href: "/#",
+        //   labelKey: "pay_carrier_early",
+        //   trackLabel: "Pay Carrier Early",
+        // },
         {
           href: "/api",
           labelKey: "api_integration",
           trackLabel: "API Integration",
         },
         {
-          href: "/freight-forwarders/#faqs",
+          href: "/#faqs",
           labelKey: "faq",
-          trackLabel: "FAQ - Freight Forwarders",
+          trackLabel: "FAQ",
         },
       ],
     },
