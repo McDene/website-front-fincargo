@@ -79,7 +79,7 @@ export default function SectionPricing({
   const ctaGetStarted = tf("pricing.get_started", "Get started");
   const badge7d = tf("princing.starter_7_days_free", "7 days free trial");
   const ctaContact = tf("prining.starter_contact_sales", "Contact sales");
-  const mostPopular = tf("pricing.most_popular", "Most popular");
+  // const mostPopular = tf("pricing.most_popular", "Most popular");
   const footnote = tf(
     "princing.more_details",
     "Credit card required for automated billing after trial"

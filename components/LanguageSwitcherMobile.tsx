@@ -3,9 +3,11 @@
 import { useContext, useState } from "react";
 import { LanguageContext } from "@/context/LanguageContext";
 
-const LANGUAGES = [
+type Language = "en" | "fr" | "es" | "de";
+
+const LANGUAGES: ReadonlyArray<{ code: Language; label: string }> = [
   { code: "en", label: "EN" },
-  { code: "es-ES", label: "ES" },
+  { code: "es", label: "ES" }, // ← remplace "es-ES" par "es"
   { code: "fr", label: "FR" },
   { code: "de", label: "DE" },
 ];
@@ -14,7 +16,7 @@ export default function LanguageSwitcherMobile() {
   const { language, switchLanguage } = useContext(LanguageContext);
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleLanguageChange = (lang: string) => {
+  const handleLanguageChange = (lang: Language) => {
     switchLanguage(lang);
     setIsOpen(false);
   };
@@ -46,7 +48,7 @@ export default function LanguageSwitcherMobile() {
           {LANGUAGES.map((lang) => (
             <button
               key={lang.code}
-              onClick={() => handleLanguageChange(lang.code)}
+              onClick={() => handleLanguageChange(lang.code)} // ✅ typé
               className={`flex items-center justify-center w-full px-2 py-2 rounded-lg text-gray-800 hover:bg-gray-100 transition ${
                 language === lang.code ? "font-semibold bg-gray-100" : ""
               }`}

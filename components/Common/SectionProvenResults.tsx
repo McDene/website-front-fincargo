@@ -234,10 +234,10 @@ export default function SectionBenefits({
 
 /* ---------------- Utils & Icons ---------------- */
 
-function getInitials(name: string) {
-  const parts = name.trim().split(/\s+/).slice(0, 2);
-  return parts.map((p) => p[0]?.toUpperCase() ?? "").join("");
-}
+// function getInitials(name: string) {
+//   const parts = name.trim().split(/\s+/).slice(0, 2);
+//   return parts.map((p) => p[0]?.toUpperCase() ?? "").join("");
+// }
 
 function BenefitIcon({
   index,

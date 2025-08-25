@@ -12,7 +12,7 @@ import SectionECMR from "@/components/Common/SectionEcmr";
 export default function ECMRPage() {
   const { language } = useContext(LanguageContext);
   const [heroData, setHeroData] = useState(null);
-  const [aboutData, setAboutData] = useState(null);
+  // const [aboutData, setAboutData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showLoader, setShowLoader] = useState(false);
 

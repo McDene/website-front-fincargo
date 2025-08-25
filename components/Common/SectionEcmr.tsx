@@ -198,6 +198,7 @@ export default function SectionECMR() {
   ]);
 
   // Appear on scroll
+  // Appear on scroll
   useEffect(() => {
     const mk = (setter: (v: boolean) => void, el: HTMLElement | null) => {
       if (!el) return;
@@ -208,13 +209,15 @@ export default function SectionECMR() {
       obs.observe(el);
       return () => obs.disconnect();
     };
+
     const a = mk(setVisA, refA.current);
     const b = mk(setVisB, refB.current);
     const c = mk(setVisC, refC.current);
+
     return () => {
-      a && a();
-      b && b();
-      c && c();
+      a?.();
+      b?.();
+      c?.();
     };
   }, []);
 

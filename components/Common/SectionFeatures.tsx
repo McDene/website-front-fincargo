@@ -171,10 +171,7 @@ function FeatureIcon({ name }: { name?: IconName }) {
 
 /* ---------------- Component (light theme / fond blanc) ---------------- */
 
-export default function SectionFeatures({
-  gradientFromClass,
-  gradientToClass,
-}: SectionFeaturesProps) {
+export default function SectionFeatures({}: SectionFeaturesProps) {
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLElement | null>(null);
 

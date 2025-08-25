@@ -3,13 +3,13 @@ import { Resend } from "resend";
 
 export const runtime = "nodejs";
 
-const parseList = (v?: string) =>
+const parseList = (v?: string): string[] =>
   (v || "")
     .split(/[;,]/)
     .map((s) => s.trim())
     .filter(Boolean);
 
-function escapeHtml(s: string) {
+function escapeHtml(s: string): string {
   return String(s).replace(
     /[&<>"']/g,
     (m) =>
@@ -18,6 +18,29 @@ function escapeHtml(s: string) {
       ]!)
   );
 }
+
+/* ---------- type guards & helpers ---------- */
+const isRecord = (val: unknown): val is Record<string, unknown> =>
+  typeof val === "object" && val !== null;
+
+const pickString = (
+  obj: Record<string, unknown>,
+  keys: readonly string[]
+): string | undefined => {
+  for (const k of keys) {
+    const v = obj[k];
+    if (typeof v === "string") return v;
+  }
+  return undefined;
+};
+
+const extractResendErrorMessage = (val: unknown): string | undefined => {
+  if (!isRecord(val)) return undefined;
+  const maybeErr = val["error"];
+  if (!isRecord(maybeErr)) return undefined;
+  const msg = maybeErr["message"];
+  return typeof msg === "string" ? msg : undefined;
+};
 
 export async function POST(req: Request) {
   try {
@@ -55,18 +78,21 @@ export async function POST(req: Request) {
     const startedAt = startedAtHeader ? Number(startedAtHeader) : now;
     const elapsed = now - startedAt;
 
-    const payload = await req.json();
+    const payloadUnknown = await req.json();
+    const payload = isRecord(payloadUnknown) ? payloadUnknown : {};
 
     // Accepte Name/Email/... et name/email/...
-    const name = payload.name ?? payload.Name;
-    const email = payload.email ?? payload.Email;
-    const subject = payload.subject ?? payload.Subject;
-    const message = payload.message ?? payload.Message;
-    const company = payload.company ?? payload.Company ?? "";
-    const phone = payload.phone ?? payload.Phone ?? "";
-    const hp = payload.hp ?? payload.HP ?? "";
+    const name = pickString(payload, ["name", "Name"]);
+    const email = pickString(payload, ["email", "Email"]);
+    const subject = pickString(payload, ["subject", "Subject"]);
+    const message = pickString(payload, ["message", "Message"]);
+    const company = pickString(payload, ["company", "Company"]) ?? "";
+    const phone = pickString(payload, ["phone", "Phone"]) ?? "";
+    const hp = pickString(payload, ["hp", "HP"]) ?? "";
 
-    if (hp || elapsed < 800) return NextResponse.json({ ok: true });
+    if (hp || elapsed < 800) {
+      return NextResponse.json({ ok: true });
+    }
 
     if (!name || !email || !subject || !message) {
       return NextResponse.json(
@@ -107,27 +133,24 @@ export async function POST(req: Request) {
       cc: CC.length ? CC : undefined,
       bcc: BCC.length ? BCC : undefined,
       subject: `[Contact] ${subject}`,
-      reply_to: email,
+      replyTo: email,
       text,
       html,
     });
 
-    // 🩺 remonter l'erreur exacte en dev
-    if ((res as any)?.error) {
-      const err = (res as any).error;
-      console.error("Resend error:", err);
+    const resendErrMsg = extractResendErrorMessage(res);
+    if (resendErrMsg) {
+      console.error("Resend error:", resendErrMsg);
       return NextResponse.json(
-        { ok: false, error: err?.message || "Send error" },
+        { ok: false, error: resendErrMsg },
         { status: 502 }
       );
     }
 
     return NextResponse.json({ ok: true });
-  } catch (err: any) {
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : "Server error";
     console.error(err);
-    return NextResponse.json(
-      { ok: false, error: err?.message || "Server error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ ok: false, error: msg }, { status: 500 });
   }
 }

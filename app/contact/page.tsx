@@ -25,6 +25,8 @@ interface FormState {
   hp?: string; // honeypot
 }
 
+type FormErrors = Partial<Record<keyof FormState, string>>;
+
 export default function ContactPage() {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(true);
@@ -317,8 +319,8 @@ function ContactForm({
   firstErrorRef,
   t,
 }: {
-  formData: any;
-  errors: any;
+  formData: FormState;
+  errors: FormErrors;
   isSubmitting: boolean;
   status: string;
   onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;

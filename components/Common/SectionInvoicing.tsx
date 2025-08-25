@@ -190,15 +190,17 @@ export default function SectionInvoicing() {
       obs.observe(el);
       return () => obs.disconnect();
     };
+
     const a = mk(setV1, r1.current);
     const b = mk(setV2, r2.current);
     const c = mk(setV3, r3.current);
     const d = mk(setV4, r4.current);
+
     return () => {
-      a && a();
-      b && b();
-      c && c();
-      d && d();
+      if (a) a();
+      if (b) b();
+      if (c) c();
+      if (d) d();
     };
   }, []);
 

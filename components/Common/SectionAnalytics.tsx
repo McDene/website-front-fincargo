@@ -230,31 +230,35 @@ export default function SectionAnalytics() {
 
   // visibility per section
   const [v, setV] = useState([false, false, false, false]);
-  const refs = [
-    useRef<HTMLElement | null>(null),
-    useRef<HTMLElement | null>(null),
-    useRef<HTMLElement | null>(null),
-    useRef<HTMLElement | null>(null),
-  ];
+
+  // refs stables
+  const r0 = useRef<HTMLElement | null>(null);
+  const r1 = useRef<HTMLElement | null>(null);
+  const r2 = useRef<HTMLElement | null>(null);
+  const r3 = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
+    const list = [r0, r1, r2, r3];
     const observers: IntersectionObserver[] = [];
-    refs.forEach((r, idx) => {
-      if (!r.current) return;
+
+    list.forEach((r, idx) => {
+      const el = r.current;
+      if (!el) return;
       const obs = new IntersectionObserver(
-        (es) =>
-          es.forEach(
+        (entries) =>
+          entries.forEach(
             (e) =>
               e.isIntersecting &&
               setV((old) => old.map((b, i) => (i === idx ? true : b)))
           ),
         { threshold: 0.15 }
       );
-      obs.observe(r.current);
+      obs.observe(el);
       observers.push(obs);
     });
+
     return () => observers.forEach((o) => o.disconnect());
-  }, []);
+  }, [r0, r1, r2, r3]); // ✅ deps stables, plus de warning
 
   /* ---------------- Section 1 (DARK) — Feature grid ---------------- */
   const s1Title = tf(
@@ -429,7 +433,7 @@ export default function SectionAnalytics() {
     <>
       {/* ========== Section 1 (DARK) ========== */}
       <section
-        ref={refs[0]}
+        ref={r0}
         className="relative bg-gradient-to-b from-darkBlue to-black py-20 md:py-28 text-white overflow-hidden"
       >
         <div className="pointer-events-none absolute inset-0 opacity-40 mix-blend-screen">
@@ -480,7 +484,7 @@ export default function SectionAnalytics() {
       </section>
 
       {/* ========== Section 2 (WHITE) ========== */}
-      <section ref={refs[1]} className="relative bg-white py-20 md:py-28">
+      <section ref={r1} className="relative bg-white py-20 md:py-28">
         <div className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(60%_50%_at_50%_0%,black,transparent)]">
           <div className="absolute right-12 -top-8 h-40 w-40 rounded-full bg-cyan-500/10 blur-3xl" />
           <div className="absolute left-1/3 bottom-0 h-56 w-56 rounded-full bg-blue-600/10 blur-3xl" />
@@ -533,7 +537,7 @@ export default function SectionAnalytics() {
 
       {/* ========== Section 3 (DARK) ========== */}
       <section
-        ref={refs[2]}
+        ref={r2}
         className="relative bg-gradient-to-b from-darkBlue to-black py-20 md:py-28 text-white overflow-hidden"
       >
         <div className="pointer-events-none absolute inset-0 opacity-40 mix-blend-screen">
@@ -608,7 +612,7 @@ export default function SectionAnalytics() {
       </section>
 
       {/* ========== Section 4 (WHITE) ========== */}
-      <section ref={refs[3]} className="relative bg-white py-20 md:py-28">
+      <section ref={r3} className="relative bg-white py-20 md:py-28">
         <div className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(60%_50%_at_50%_0%,black,transparent)]">
           <div className="absolute right-12 -top-8 h-40 w-40 rounded-full bg-cyan-500/10 blur-3xl" />
           <div className="absolute left-1/3 bottom-0 h-56 w-56 rounded-full bg-blue-600/10 blur-3xl" />

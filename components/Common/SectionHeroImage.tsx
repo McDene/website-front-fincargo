@@ -16,6 +16,8 @@ interface SectionHeroImageProps {
   secondaryCta?: CTA;
   imageUrl: string;
   imageAlt: string;
+  buttonText?: string;
+  buttonLink?: string | null;
   /** Layout controls */
   align?: "left" | "center"; // default left
   overlayStrength?: number; // 0..100, default 60 (as percent opacity)
