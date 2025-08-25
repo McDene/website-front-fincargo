@@ -180,7 +180,7 @@ export default function SectionPricing({
               </div>
               <div className="flex flex-col items-start md:items-end gap-2">
                 <a
-                  href="/signup?trial=free15"
+                  href="https://platform.fincargo.ai/login"
                   className="inline-flex items-center justify-center rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50"
                 >
                   {freeCard.cta}
@@ -261,14 +261,14 @@ export default function SectionPricing({
               <div className="sm:mt-0 mt-2">
                 {activePlan === "unlimited" ? (
                   <a
-                    href="/contact-sales"
+                    href="/contact"
                     className="inline-flex items-center justify-center rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50"
                   >
                     {ctaContact}
                   </a>
                 ) : (
                   <a
-                    href={`/signup?plan=${activePlan}`}
+                    href={`/https://platform.fincargo.ai/login`}
                     className={`inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50 ${
                       activePlan === "growth"
                         ? "bg-blue-600 text-white hover:bg-blue-500"
@@ -396,14 +396,14 @@ export default function SectionPricing({
                 <div key={key} className="px-4 py-5 sm:px-6">
                   {key === "unlimited" ? (
                     <a
-                      href="/contact-sales"
+                      href="/contact"
                       className="inline-flex w-full items-center justify-center rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50"
                     >
                       {ctaContact}
                     </a>
                   ) : (
                     <a
-                      href={`/signup?plan=${key}`}
+                      href={`https://platform.fincargo.ai/login`}
                       className={`inline-flex w-full items-center justify-center rounded-full px-5 py-3 text-sm font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50 ${
                         key === "growth"
                           ? "bg-blue-600 text-white hover:bg-blue-500"

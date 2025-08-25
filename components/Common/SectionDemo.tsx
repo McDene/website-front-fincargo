@@ -31,7 +31,7 @@ export default function SectionDemo({
   title,
   subtitle,
   videoUrl = "https://www.youtube.com/watch?v=UcwK1SGyDhg",
-  contactHref = "/contact-sales",
+  contactHref = "/contact",
   gradientFromClass = "from-darkBlue",
   gradientToClass = "to-black",
 }: SectionDemoProps) {

@@ -12,7 +12,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import Header from "@/components/Header/Main";
 import SectionHeroSmall from "@/components/Common/SectionHeroSmall";
 import Footer from "@/components/Footer";
-import { postAPI } from "@/lib/utils";
+
 import { useTranslation } from "@/hooks/useTranslation";
 
 interface FormState {
@@ -104,21 +104,30 @@ export default function ContactPage() {
     setStatus("");
 
     try {
-      // Append optional fields into message body to avoid backend changes
-      const mergedMessage = [
-        formData.message,
-        formData.company ? `\n\nCompany: ${formData.company}` : "",
-        formData.phone ? `\nPhone: ${formData.phone}` : "",
-      ].join("");
-
-      const res = await postAPI("/api/contact-submissions", {
-        Name: formData.name,
-        Email: formData.email,
-        Subject: formData.subject,
-        Message: mergedMessage,
+      const res = await fetch("/internal-api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-started-at": String(startedAt),
+        },
+        body: JSON.stringify({
+          // envoie en lower-case (le handler accepte aussi l'ancien format)
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: [
+            formData.message,
+            formData.company ? `\n\nCompany: ${formData.company}` : "",
+            formData.phone ? `\nPhone: ${formData.phone}` : "",
+          ].join(""),
+          company: formData.company,
+          phone: formData.phone,
+          hp: formData.hp,
+        }),
       });
 
-      if (res) {
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data?.ok) {
         setSuccess(true);
         setStatus("Message sent successfully! ✅");
         setFormData({
@@ -131,7 +140,7 @@ export default function ContactPage() {
           hp: "",
         });
       } else {
-        setStatus("Failed to send the message. ❌");
+        setStatus(data?.error || "Failed to send the message. ❌");
       }
     } catch (err) {
       console.error(err);
