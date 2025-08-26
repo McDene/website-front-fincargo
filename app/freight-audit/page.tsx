@@ -7,6 +7,7 @@ import HeroImage from "@/components/HeroImage";
 import SectionFreighAudit from "@/components/Common/SectionFreightAudit";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
+import { toStrapiLocale } from "@/lib/i18n";
 import { LanguageContext } from "@/context/LanguageContext";
 
 export default function FreightAudiPage() {
@@ -22,10 +23,11 @@ export default function FreightAudiPage() {
 
     const fetchData = async () => {
       try {
+        const locale = toStrapiLocale(language);
         const [heroResponse] = await Promise.all([
           fetchAPI(
             "/api/hero-images?filters[Page][$eq]=FreightAudit&populate[Hero][populate]=Image",
-            language
+            locale
           ),
         ]);
 

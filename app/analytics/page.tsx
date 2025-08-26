@@ -7,6 +7,7 @@ import HeroImage from "@/components/HeroImage";
 import SectionAnalytics from "@/components/Common/SectionAnalytics";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
+import { toStrapiLocale } from "@/lib/i18n";
 import { LanguageContext } from "@/context/LanguageContext";
 
 export default function AnalyticsPage() {
@@ -21,11 +22,12 @@ export default function AnalyticsPage() {
     }, 500);
 
     const fetchData = async () => {
+      const locale = toStrapiLocale(language);
       try {
         const [heroResponse] = await Promise.all([
           fetchAPI(
             "/api/hero-images?filters[Page][$eq]=Analytics&populate[Hero][populate]=Image",
-            language
+            locale
           ),
         ]);
 
