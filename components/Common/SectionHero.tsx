@@ -27,7 +27,7 @@ export default function SectionHero({
   buttonLink,
   videoUrl,
   imageAlt = "Product preview on a laptop mockup",
-  mockupSrc = "/images/login-mockup.png",
+  mockupSrc = "/images/hero_home_fincargo.png",
 }: SectionHeroProps) {
   const [isVisible, setIsVisible] = useState(false);
   const titleRef = useRef<HTMLDivElement | null>(null);
@@ -144,7 +144,6 @@ export default function SectionHero({
               </a>
             </div>
 
-            {/* advantages */}
             {/* advantages */}
             <div
               className={`mt-10 transition-all duration-700 ease-out delay-500 ${

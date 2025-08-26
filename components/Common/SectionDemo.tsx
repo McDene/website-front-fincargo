@@ -1,36 +1,24 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { useTranslation } from "@/hooks/useTranslation";
 
 interface SectionDemoProps {
   title?: string;
   subtitle?: string;
-  videoUrl?: string; // e.g. https://www.youtube.com/watch?v=UcwK1SGyDhg
-  contactHref?: string; // e.g. "/contact-sales"
+  imageUrl?: string; // ex: "/images/hero_home_fincargo.png"
+  imageAlt?: string; // ex: "Product screenshot"
+  contactHref?: string; // ex: "/contact"
   gradientFromClass?: string;
   gradientToClass?: string;
-}
-
-function extractYouTubeId(url?: string): string | null {
-  if (!url) return null;
-  const patterns = [
-    /youtu\.be\/([a-zA-Z0-9_-]{6,})/,
-    /[?&]v=([a-zA-Z0-9_-]{6,})/,
-    /embed\/([a-zA-Z0-9_-]{6,})/,
-  ];
-  for (const p of patterns) {
-    const m = url.match(p);
-    if (m && m[1]) return m[1];
-  }
-  if (/^[a-zA-Z0-9_-]{6,}$/.test(url)) return url;
-  return null;
 }
 
 export default function SectionDemo({
   title,
   subtitle,
-  videoUrl = "https://www.youtube.com/watch?v=UcwK1SGyDhg",
+  imageUrl = "/images/hero_home_fincargo.png",
+  imageAlt = "Product screenshot",
   contactHref = "/contact",
   gradientFromClass = "from-darkBlue",
   gradientToClass = "to-black",
@@ -48,13 +36,13 @@ export default function SectionDemo({
   const heading = title ?? tf("demo.title", "See Fincargo in action");
   const desc =
     subtitle ??
-    tf(
-      "demo.description",
-      "Book a live demo or watch the 2-minute product tour."
-    );
+    tf("demo.description", "Book a live demo and explore the product.");
+
   const ctaLive = tf("demo.button.live_demo", "Book a live demo");
-  const ctaWatch = tf("demo.button.watch_tour", "Watch product tour");
-  const bullets = tl("demo.list"); // array
+
+  // bullets: s'assure d'un tableau
+  const rawBullets = tl("demo.list");
+  const bullets: string[] = Array.isArray(rawBullets) ? rawBullets : [];
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -65,25 +53,20 @@ export default function SectionDemo({
     return () => obs.disconnect();
   }, []);
 
-  const videoId = useMemo(() => extractYouTubeId(videoUrl), [videoUrl]);
-  const embedSrc = videoId
-    ? `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&color=white`
-    : undefined;
-
   return (
     <section
       id="demo"
       ref={ref}
       className={`relative bg-gradient-to-b ${gradientFromClass} ${gradientToClass} py-24 md:py-32 text-white overflow-hidden`}
     >
-      {/* subtle background accents */}
+      {/* accents de fond */}
       <div className="pointer-events-none absolute inset-0 opacity-40 mix-blend-screen">
         <div className="absolute inset-0 bg-[radial-gradient(1000px_400px_at_10%_-10%,rgba(59,130,246,0.25),transparent),radial-gradient(800px_300px_at_90%_110%,rgba(34,211,238,0.2),transparent)]" />
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-16 items-center">
-          {/* Copy */}
+          {/* Texte */}
           <div
             className={`max-w-2xl transition-all duration-700 ease-out ${
               visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
@@ -118,20 +101,9 @@ export default function SectionDemo({
                   <path d="M5 12h14M13 5l7 7-7 7" />
                 </svg>
               </a>
-              {embedSrc && (
-                <a
-                  href={`https://www.youtube.com/watch?v=${videoId}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-white/80 hover:text-white ring-1 ring-white/15 hover:ring-white/30 transition"
-                  aria-label={ctaWatch}
-                >
-                  {ctaWatch}
-                </a>
-              )}
             </div>
 
-            {/* Bullets (translated list) */}
+            {/* Puces traduites */}
             {bullets.length > 0 && (
               <ul className="mt-8 space-y-2 text-white/80 text-sm">
                 {bullets.map((line, i) => (
@@ -155,7 +127,7 @@ export default function SectionDemo({
             )}
           </div>
 
-          {/* Video embed */}
+          {/* Image (à la place de la vidéo) */}
           <div
             className={`relative ${
               visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
@@ -163,23 +135,15 @@ export default function SectionDemo({
           >
             <div className="relative w-full max-w-[860px] mx-auto">
               <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/15 ring-1 ring-white/10 bg-black/40 shadow-2xl">
-                {embedSrc ? (
-                  <iframe
-                    src={embedSrc}
-                    title={heading}
-                    className="absolute inset-0 h-full w-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                  />
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center text-white/70">
-                    {/* fallback minimal i18n */}
-                    {tf("demo.invalid_url", "Invalid YouTube URL")}
-                  </div>
-                )}
-
-                {/* top window bar */}
+                <Image
+                  src={imageUrl}
+                  alt={imageAlt}
+                  fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-cover"
+                  priority
+                />
+                {/* barre de fenêtre en haut */}
                 <div className="absolute left-0 right-0 top-0 h-8 rounded-t-2xl bg-gradient-to-b from-white/10 to-white/0 flex items-center px-4 gap-2">
                   <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
                   <span className="h-2.5 w-2.5 rounded-full bg-yellow-300/70" />
