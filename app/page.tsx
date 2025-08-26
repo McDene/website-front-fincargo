@@ -8,6 +8,7 @@ import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
 import { LanguageContext } from "@/context/LanguageContext";
+import { toStrapiLocale } from "@/lib/i18n";
 import SectionBenefits from "@/components/Common/SectionProvenResults";
 import SectionFeatures from "@/components/Common/SectionFeatures";
 import SectionPricing from "@/components/Common/SectionPricing";
@@ -130,18 +131,19 @@ export default function Home() {
 
     const fetchData = async () => {
       try {
+        const locale = toStrapiLocale(language);
         const [heroResponse, faqCarrierRes, faqFreightRes] = await Promise.all([
           fetchAPI(
             "/api/hero-videos?filters[Page][$eq]=Carriers&populate[Hero][populate]=Video",
-            language
+            locale
           ),
           fetchAPI(
             "/api/faqs?filters[Page][$eq]=Carrier&populate[FAQ][populate]=Accordion",
-            language
+            locale
           ),
           fetchAPI(
             "/api/faqs?filters[Page][$eq]=FreightForwarder&populate[FAQ][populate]=Accordion",
-            language
+            locale
           ),
         ]);
 
