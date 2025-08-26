@@ -6,6 +6,7 @@ import Header from "@/components/Header/Main";
 import HeroImage from "@/components/HeroImage";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
+import { toStrapiLocale } from "@/lib/i18n";
 import { LanguageContext } from "@/context/LanguageContext";
 import SectionECMR from "@/components/Common/SectionEcmr";
 
@@ -23,10 +24,11 @@ export default function ECMRPage() {
 
     const fetchData = async () => {
       try {
+        const locale = toStrapiLocale(language);
         const [heroResponse] = await Promise.all([
           fetchAPI(
             "/api/hero-images?filters[Page][$eq]=ECMR&populate[Hero][populate]=Image",
-            language
+            locale
           ),
         ]);
 
