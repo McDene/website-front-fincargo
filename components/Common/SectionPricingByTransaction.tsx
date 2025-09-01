@@ -35,6 +35,10 @@ export default function SectionPricingByTransaction() {
 
   // copy
   const title = tf("pricing.by_transaction.title", "See Fincargo in ACTION");
+  const desc = tf(
+    "pricing.by_transaction.hero.caption",
+    "Transactional pricing is volume-dependent and starts from CHF 0.50 per module and shipment."
+  );
   const headers = ta("pricing.by_transaction.table.headers", [
     "Module / Service",
     "Fee for Forwarder & Shipper",
@@ -58,7 +62,7 @@ export default function SectionPricingByTransaction() {
 
   return (
     <section
-      id="pricing-by-transaction"
+      id="pricing"
       className="relative bg-white py-16 sm:py-24 md:py-32 overflow-x-hidden"
     >
       {/* soft accents */}
@@ -76,6 +80,7 @@ export default function SectionPricingByTransaction() {
         <h2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 uppercase">
           {title}
         </h2>
+        <p className="mt-3 text-lg md:text-xl text-slate-600">{desc}</p>
 
         {/* Mobile audience toggle */}
         <div className="mt-4 lg:hidden">
@@ -165,8 +170,12 @@ export default function SectionPricingByTransaction() {
                     <td className="px-6 py-4 text-sm font-medium text-slate-900">
                       {r[0]}
                     </td>
-                    <td className="px-6 py-4 text-sm text-slate-700 whitespace-normal break-words">{r[1]}</td>
-                    <td className="px-6 py-4 text-sm text-slate-700 whitespace-normal break-words">{r[2]}</td>
+                    <td className="px-6 py-4 text-sm text-slate-700 whitespace-normal break-words">
+                      {r[1]}
+                    </td>
+                    <td className="px-6 py-4 text-sm text-slate-700 whitespace-normal break-words">
+                      {r[2]}
+                    </td>
                   </tr>
                 ))}
               </tbody>
