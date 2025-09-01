@@ -8,7 +8,7 @@ type IconName =
   | "factoring"
   | "audit"
   | "ecmr"
-  | "payment"
+  | "tms"
   | "analytics";
 
 interface FeatureItem {
@@ -97,7 +97,8 @@ function IconECMR(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-function IconPayment(props: React.SVGProps<SVGSVGElement>) {
+
+function IconTMS(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -108,12 +109,15 @@ function IconPayment(props: React.SVGProps<SVGSVGElement>) {
       strokeLinejoin="round"
       {...props}
     >
-      <rect x="2" y="5" width="20" height="14" rx="2" />
-      <path d="M2 10h20" />
-      <path d="M6 15h4" />
+      {/* Camion */}
+      <rect x="2" y="12" width="12" height="5" rx="1" />
+      <path d="M13 12h4l3 3v2h-7z" />
+      <circle cx="7" cy="17" r="1.4" />
+      <circle cx="17" cy="17" r="1.4" />
     </svg>
   );
 }
+
 function IconAnalytics(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -160,8 +164,8 @@ function FeatureIcon({ name }: { name?: IconName }) {
       return <IconAudit className={common} />;
     case "ecmr":
       return <IconECMR className={common} />;
-    case "payment":
-      return <IconPayment className={common} />;
+    case "tms":
+      return <IconTMS className={common} />;
     case "analytics":
       return <IconAnalytics className={common} />;
     default:
@@ -191,6 +195,13 @@ export default function SectionFeatures({}: SectionFeaturesProps) {
   );
 
   const features: FeatureItem[] = [
+    {
+      name: t("services.tms.title"),
+      description: t("services.tms.description"),
+      href: "/tms",
+      points: tl("services.tms.points"),
+      icon: "tms",
+    },
     {
       name: t("services.ecmr.title"),
       description: t("services.ecmr.description"),

@@ -4,6 +4,15 @@ export const SERVICES = {
     "services.title": "Complete AI-Powered Transport Solution",
     "services.description":
       "Five integrated modules designed to digitalize, optimize, and accelerate your transport operations with full regulatory compliance.",
+    "services.tms.title": "AI-powered TMS",
+    "services.tms.description":
+      "Fincargo TMS optimizes routes, tracks every load, and digitizes documents in a single platform.",
+    "services.tms.points": [
+      "Plug & play connectivity with shippers and carriers ",
+      "AI-driven route & load optimization ",
+      "Native e-CMR & ViDA-ready e-invoicing",
+      "Iris AI assistance",
+    ],
     "services.ecmr.title": "e-CMR & e-PoD",
     "services.ecmr.description":
       "Digital freight documents fully compliant with eFTI regulation. Auto-completed, fraud-resistant, and based on IRU 2007 model.",
@@ -56,6 +65,15 @@ export const SERVICES = {
     "services.title": "Solution de transport complète alimentée par l'IA",
     "services.description":
       "Cinq modules intégrés conçus pour numériser, optimiser et accélérer vos opérations de transport tout en respectant la réglementation.",
+    "services.tms.title": "TMS alimenté par l'IA",
+    "services.tms.description":
+      "Fincargo TMS optimise les itinéraires, suit chaque chargement et numérise les documents sur une seule plateforme.",
+    "services.tms.points": [
+      "Connectivité plug & play avec expéditeurs et transporteurs",
+      "Optimisation des itinéraires et des chargements pilotée par l'IA",
+      "e-CMR natif et e-facturation conforme à ViDA",
+      "Assistance Iris IA",
+    ],
     "services.ecmr.title": "e-CMR & e-PoD",
     "services.ecmr.description":
       "Documents de fret numériques entièrement conformes à la réglementation eFTI. Champs auto-remplis, résistants à la fraude et basés sur le modèle IRU 2007.",
@@ -108,6 +126,15 @@ export const SERVICES = {
     "services.title": "Solución de transporte completa impulsada por IA",
     "services.description":
       "Cinco módulos integrados diseñados para digitalizar, optimizar y acelerar sus operaciones de transporte con total cumplimiento normativo.",
+    "services.tms.title": "TMS impulsado por IA",
+    "services.tms.description":
+      "Fincargo TMS optimiza rutas, rastrea cada carga y digitaliza documentos en una sola plataforma.",
+    "services.tms.points": [
+      "Conectividad plug & play con cargadores y transportistas",
+      "Optimización de rutas y cargas impulsada por IA",
+      "e-CMR nativo y e-facturación compatible con ViDA",
+      "Asistencia Iris IA",
+    ],
     "services.ecmr.title": "e-CMR & e-PoD",
     "services.ecmr.description":
       "Documentos de carga digitales totalmente conformes con la regulación eFTI. Campos autocompletados, resistentes al fraude y basados en el modelo IRU 2007.",
@@ -160,6 +187,15 @@ export const SERVICES = {
     "services.title": "Komplette KI-gestützte Transportlösung",
     "services.description":
       "Fünf integrierte Module, die entwickelt wurden, um Ihre Transportoperationen zu digitalisieren, zu optimieren und zu beschleunigen und dabei die gesetzlichen Anforderungen vollständig zu erfüllen.",
+    "services.tms.title": "KI-gestütztes TMS",
+    "services.tms.description":
+      "Fincargo TMS optimiert Routen, verfolgt jede Ladung und digitalisiert Dokumente in einer einzigen Plattform.",
+    "services.tms.points": [
+      "Plug & Play-Konnektivität mit Verladern und Spediteuren",
+      "KI-gesteuerte Routen- und Ladeoptimierung",
+      "Native e-CMR & ViDA-fähige e-Rechnungsstellung",
+      "Iris KI-Unterstützung",
+    ],
     "services.ecmr.title": "e-CMR & e-PoD",
     "services.ecmr.description":
       "Digitale Frachtpapiere, die vollständig den eFTI-Vorschriften entsprechen. Automatisch ausgefüllte Felder, betrugsresistent und basierend auf dem IRU-Modell 2007.",

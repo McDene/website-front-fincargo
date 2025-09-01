@@ -177,7 +177,7 @@ export default function MobileMenu({
             </nav>
 
             {/* CTA buttons */}
-            <div className="mt-10 flex items-center justify-center gap-4 p-6">
+            <div className="mt-2 flex items-center justify-center gap-4 p-6">
               <a
                 href="https://app.fincargo.ai/register"
                 target="_blank"

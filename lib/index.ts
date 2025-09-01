@@ -5,6 +5,8 @@ import { BENEFITS } from "./benefits";
 import { PRICINGS } from "./pricing";
 import { DEMO } from "./demo";
 import { ECMR } from "./ecmr";
+import { TMS } from "./tms";
+import { PRICINGS_BY_TRANSACTION } from "./pricing_by_transaction";
 import { FREIGHT_AUDIT } from "./freightaudit";
 import { INVOICING } from "./invoicing";
 import { ANALYTIC } from "./analytic";
@@ -22,6 +24,8 @@ const modules = [
   PRICINGS,
   DEMO,
   ECMR,
+  TMS,
+  PRICINGS_BY_TRANSACTION,
   FREIGHT_AUDIT,
   INVOICING,
   ANALYTIC,

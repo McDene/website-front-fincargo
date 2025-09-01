@@ -162,7 +162,7 @@ export default function MobileMenu({
             {/* Menu items */}
             <nav
               aria-label="Mobile primary"
-              className="flex flex-1 flex-col items-center gap-6 px-6 overflow-y-auto pt-16"
+              className="flex flex-col items-center gap-6 px-6 overflow-y-auto py-16"
             >
               {menuItems.map((item) => (
                 <Link
@@ -177,14 +177,14 @@ export default function MobileMenu({
             </nav>
 
             {/* CTA buttons */}
-            <div className="mt-10 flex items-center justify-center gap-4 p-6">
+            <div className="mt-2  items-center justify-center gap-4 p-6">
               <a
                 href="https://app.fincargo.ai/register"
                 target="_blank"
                 rel="noreferrer"
                 className="w-full max-w-xs text-center"
               >
-                <span className="inline-flex w-full items-center justify-center rounded-full px-6 py-4 text-lg font-semibold bg-white text-blue-950 hover:bg-slate-100 transition shadow-sm">
+                <span className="inline-flex w-full items-center justify-center rounded-full px-6 py-4 my-4 text-lg font-semibold bg-white text-blue-950 hover:bg-slate-100 transition shadow-sm">
                   {t("register")}
                 </span>
               </a>

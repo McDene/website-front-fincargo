@@ -11,7 +11,8 @@ import { LanguageContext } from "@/context/LanguageContext";
 import { toStrapiLocale } from "@/lib/i18n";
 import SectionBenefits from "@/components/Common/SectionProvenResults";
 import SectionFeatures from "@/components/Common/SectionFeatures";
-import SectionPricing from "@/components/Common/SectionPricing";
+
+import SectionPricingByTransaction from "@/components/Common/SectionPricingByTransaction";
 import SectionDemo from "@/components/Common/SectionDemo";
 
 /* ================== Types ================== */
@@ -216,7 +217,7 @@ export default function Home() {
         {heroData && <Hero heroData={heroData} />}
         <SectionFeatures />
         <SectionBenefits />
-        <SectionPricing />
+        <SectionPricingByTransaction />
         <SectionDemo />
         {/* Toggle intégré si les deux datasets sont fournis */}
         <Faq carrier={faqDataCarrier} freight={faqDataFreight} />
