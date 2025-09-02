@@ -17,18 +17,27 @@ interface FaqData {
   };
 }
 
-interface FaqProps {
-  /** Données côté Carriers */
-  carrier?: FaqData | null;
-  /** Données côté Forwarders & Shippers */
-  freight?: FaqData | null;
-}
+// interface FaqProps {
+//   /** Données côté Carriers */
+//   carrier?: FaqData | null;
+//   /** Données côté Forwarders & Shippers */
+//   freight?: FaqData | null;
+// }
 
 /**
  * Wrapper : si les deux props sont fournies, on affiche le toggle intégré.
  * Sinon, on affiche la FAQ simple.
  */
-export default function Faq({ carrier, freight }: FaqProps) {
+// Faq.tsx
+export default function Faq({
+  carrier,
+  freight,
+  initialAudience = "carrier", // <-- NEW
+}: {
+  carrier?: FaqData | null;
+  freight?: FaqData | null;
+  initialAudience?: "carrier" | "freight"; // <-- NEW
+}) {
   const toList = (data?: FaqData | null) =>
     data?.FAQ?.Accordion?.map((a) => ({
       id: a.id,
@@ -51,7 +60,7 @@ export default function Faq({ carrier, freight }: FaqProps) {
             faqs: toList(freight),
           },
         }}
-        initialAudience="carrier"
+        initialAudience={initialAudience} // <-- pass-through
       />
     );
   }

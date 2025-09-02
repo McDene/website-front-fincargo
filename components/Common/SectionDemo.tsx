@@ -17,7 +17,7 @@ interface SectionDemoProps {
 export default function SectionDemo({
   title,
   subtitle,
-  imageUrl = "/images/hero_home_fincargo.png",
+  imageUrl = "/images/fincargo_demo.png",
   imageAlt = "Product screenshot",
   contactHref = "/contact",
   gradientFromClass = "from-darkBlue",

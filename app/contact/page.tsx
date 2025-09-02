@@ -207,7 +207,7 @@ export default function ContactPage() {
                   className="group flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm ring-1 ring-slate-900/5 hover:border-blue-300 transition"
                 >
                   <PhoneIcon className="h-5 w-5 text-blue-700" />
-                  <span className="text-slate-800">+41 27 555 18 80</span>
+                  <span className="text-slate-800">+41 79 773 7224</span>
                 </a>
               </div>
 

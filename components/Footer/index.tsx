@@ -73,7 +73,11 @@ export default function Footer() {
           labelKey: "carriers_protection_policy",
           trackLabel: "Carriers Protection Policy",
         },
-        { href: "/#faqs", labelKey: "faq", trackLabel: "FAQ - Carriers" },
+        {
+          href: "/?aud=carrier#faqs",
+          labelKey: "faq",
+          trackLabel: "FAQ - Carriers",
+        },
       ],
     },
     {
@@ -99,11 +103,7 @@ export default function Footer() {
           labelKey: "api_integration",
           trackLabel: "API Integration",
         },
-        {
-          href: "/#faqs",
-          labelKey: "faq",
-          trackLabel: "FAQ",
-        },
+        { href: "/?aud=freight#faqs", labelKey: "faq", trackLabel: "FAQ" },
       ],
     },
   ];

@@ -126,6 +126,9 @@ export default function Home() {
   const [faqDataFreight, setFaqDataFreight] = useState<FaqData | null>(null);
   const [loading, setLoading] = useState(true);
   const [showLoader, setShowLoader] = useState(false);
+  const [initialAudience, setInitialAudience] = useState<"carrier" | "freight">(
+    "carrier"
+  );
 
   useEffect(() => {
     const loaderTimeout = setTimeout(() => setShowLoader(true), 500);
@@ -202,6 +205,26 @@ export default function Home() {
     }
   }, [loading]);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    // 1) Lecture du paramètre d’audience
+    const params = new URLSearchParams(window.location.search);
+    const aud = params.get("aud");
+    if (aud === "freight" || aud === "carrier") setInitialAudience(aud);
+
+    // 2) Scroll doux si on arrive avec #faqs
+    if (window.location.hash.startsWith("#faqs")) {
+      // petit délai pour s'assurer que la section est montée
+      setTimeout(
+        () =>
+          document
+            .getElementById("faqs")
+            ?.scrollIntoView({ behavior: "smooth" }),
+        0
+      );
+    }
+  }, [loading]); // quand la page a fini de charger
+
   if (loading && showLoader) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -220,7 +243,11 @@ export default function Home() {
         <SectionPricingByTransaction />
         <SectionDemo />
         {/* Toggle intégré si les deux datasets sont fournis */}
-        <Faq carrier={faqDataCarrier} freight={faqDataFreight} />
+        <Faq
+          carrier={faqDataCarrier}
+          freight={faqDataFreight}
+          initialAudience={initialAudience} // <-- ICI
+        />
         <Footer />
       </>
     )
