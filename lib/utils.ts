@@ -1,6 +1,7 @@
 import axios from "axios";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { toStrapiLocale, type UILocale } from "@/lib/i18n";
 
 export const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -9,10 +10,14 @@ export const API_URL = process.env.NEXT_PUBLIC_API_URL;
  * @param endpoint - The Strapi API endpoint (e.g., /api/hero)
  * @returns - The data from the Strapi API
  */
-export const fetchAPI = async (endpoint: string, locale: string = "en") => {
+export const fetchAPI = async (
+  endpoint: string,
+  locale: UILocale = "en"
+) => {
   try {
     const separator = endpoint.includes("?") ? "&" : "?";
-    const fullUrl = `${API_URL}${endpoint}${separator}locale=${locale}`;
+    const strapiLocale = toStrapiLocale(locale);
+    const fullUrl = `${API_URL}${endpoint}${separator}locale=${strapiLocale}`;
 
     const res = await axios.get(fullUrl, {
       headers: {
