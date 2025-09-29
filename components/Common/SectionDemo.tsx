@@ -1,14 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { useTranslation } from "@/hooks/useTranslation";
 
 interface SectionDemoProps {
   title?: string;
   subtitle?: string;
-  imageUrl?: string; // ex: "/images/hero_home_fincargo.png"
-  imageAlt?: string; // ex: "Product screenshot"
   contactHref?: string; // ex: "/contact"
   gradientFromClass?: string;
   gradientToClass?: string;
@@ -17,14 +14,14 @@ interface SectionDemoProps {
 export default function SectionDemo({
   title,
   subtitle,
-  imageUrl = "/images/fincargo_demo.png",
-  imageAlt = "Product screenshot",
   contactHref = "/contact",
   gradientFromClass = "from-darkBlue",
   gradientToClass = "to-black",
 }: SectionDemoProps) {
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLElement | null>(null);
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
+  const [muted, setMuted] = useState(true);
   const { t, tl } = useTranslation();
 
   const tf = (key: string, fallback: string) => {
@@ -39,6 +36,7 @@ export default function SectionDemo({
     tf("demo.description", "Book a live demo and explore the product.");
 
   const ctaLive = tf("demo.button.live_demo", "Book a live demo");
+  const ctaUnmute = tf("demo.button.video", "Activer le son");
 
   // bullets: s'assure d'un tableau
   const rawBullets = tl("demo.list");
@@ -52,6 +50,23 @@ export default function SectionDemo({
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
   }, []);
+
+  // Unmute handler: requires a user gesture
+  const handleUnmute = () => {
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+    const post = (func: string, args: unknown[] = []) => {
+      iframe.contentWindow?.postMessage(
+        JSON.stringify({ event: "command", func, args }),
+        "*"
+      );
+    };
+    // Ask player to unmute, set volume and play
+    post("unMute");
+    post("setVolume", [80]);
+    post("playVideo");
+    setMuted(false);
+  };
 
   return (
     <section
@@ -127,7 +142,7 @@ export default function SectionDemo({
             )}
           </div>
 
-          {/* Image (à la place de la vidéo) */}
+          {/* Vidéo YouTube en boucle (remplace l'image) */}
           <div
             className={`relative ${
               visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
@@ -135,14 +150,39 @@ export default function SectionDemo({
           >
             <div className="relative w-full max-w-[860px] mx-auto">
               <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/15 ring-1 ring-white/10 bg-black/40 shadow-2xl">
-                <Image
-                  src={imageUrl}
-                  alt={imageAlt}
-                  fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover"
-                  priority
+                <iframe
+                  ref={iframeRef}
+                  className="absolute inset-0 h-full w-full"
+                  src="https://www.youtube.com/embed/WkYHvEe8rEA?autoplay=1&mute=1&loop=1&playlist=WkYHvEe8rEA&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1"
+                  title="Fincargo Demo"
+                  frameBorder="0"
+                  allow="autoplay; encrypted-media; picture-in-picture"
+                  allowFullScreen
+                  loading="lazy"
                 />
+                {muted && (
+                  <button
+                    type="button"
+                    onClick={handleUnmute}
+                  className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors"
+                    aria-label={ctaUnmute}
+                  >
+                    <span className="inline-flex items-center gap-2 rounded-full bg-white/90 text-black px-4 py-2 text-sm font-medium shadow-lg">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className="h-5 w-5"
+                        aria-hidden
+                      >
+                        <path d="M11.25 5.25a.75.75 0 0 1 .75.75v11.25a.75.75 0 0 1-1.28.53L7.72 15H5.25A2.25 2.25 0 0 1 3 12.75v-1.5A2.25 2.25 0 0 1 5.25 9h2.47l3-2.78a.75.75 0 0 1 .53-.22Z" />
+                        <path d="M15.53 8.47a.75.75 0 0 1 1.06 0 4.5 4.5 0 0 1 0 6.36.75.75 0 1 1-1.06-1.06 3 3 0 0 0 0-4.24.75.75 0 0 1 0-1.06Z" />
+                        <path d="M17.65 6.35a.75.75 0 0 1 1.06 0 7.5 7.5 0 0 1 0 10.6.75.75 0 1 1-1.06-1.06 6 6 0 0 0 0-8.48.75.75 0 0 1 0-1.06Z" />
+                      </svg>
+                      {ctaUnmute}
+                    </span>
+                  </button>
+                )}
                 {/* barre de fenêtre en haut */}
                 <div className="absolute left-0 right-0 top-0 h-8 rounded-t-2xl bg-gradient-to-b from-white/10 to-white/0 flex items-center px-4 gap-2">
                   <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />

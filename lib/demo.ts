@@ -10,6 +10,7 @@ export const DEMO = {
       "Tailored to your workflows",
       "Q&A with a product specialist",
     ],
+    "demo.button.video": "Unmute",
   },
   fr: {
     "demo.section": "Démonstration",
@@ -23,6 +24,7 @@ export const DEMO = {
       "Adapté à vos flux de travail",
       "Questions-réponses avec un spécialiste du produit",
     ],
+    "demo.button.video": "Activer le son",
   },
   es: {
     "demo.section": "Demostración",
@@ -36,6 +38,7 @@ export const DEMO = {
       "Adaptado a sus flujos de trabajo",
       "Preguntas y respuestas con un especialista en productos",
     ],
+    "demo.button.video": "Activar sonido",
   },
   de: {
     "demo.section": "Demo",
@@ -49,5 +52,6 @@ export const DEMO = {
       "An Ihre Arbeitsabläufe angepasst",
       "Fragen und Antworten mit einem Produktspezialisten",
     ],
+    "demo.button.video": "Ton einschalten",
   },
 };
