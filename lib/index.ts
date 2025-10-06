@@ -11,6 +11,7 @@ import { FREIGHT_AUDIT } from "./freightaudit";
 import { INVOICING } from "./invoicing";
 import { ANALYTIC } from "./analytic";
 import { FACTORING } from "./factoring";
+import { INTEGRATION } from "./integration";
 
 type Lang = "en" | "fr" | "es" | "de";
 type Value = string | readonly string[];
@@ -30,6 +31,7 @@ const modules = [
   INVOICING,
   ANALYTIC,
   FACTORING,
+  INTEGRATION,
 ] as const;
 
 const merge = <T extends Record<string, unknown>>(a: T, b: T): T =>
