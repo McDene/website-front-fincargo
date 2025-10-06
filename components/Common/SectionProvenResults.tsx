@@ -164,7 +164,11 @@ export default function SectionBenefits({
 
               <h3 className="text-lg md:text-xl font-semibold tracking-tight text-slate-900 flex items-center gap-2">
                 <span className="inline-flex items-center justify-center h-9 w-9 rounded-lg bg-slate-50 ring-1 ring-slate-200 text-slate-700">
-                  <BenefitIcon index={i} className="h-5 w-5" />
+                  <BenefitIcon
+                    audience={audience}
+                    index={i}
+                    className="h-5 w-5"
+                  />
                 </span>
                 <span className="bg-gradient-to-r from-darkBlue to-slate-900 bg-clip-text text-transparent">
                   {b.title}
@@ -240,25 +244,59 @@ export default function SectionBenefits({
 // }
 
 function BenefitIcon({
+  audience,
   index,
   className = "h-5 w-5",
 }: {
+  audience: Audience;
   index: number;
   className?: string;
 }) {
-  const i = index % 6; // vitesse, €, horloge, bouclier, recherche, graphique
-  switch (i) {
+  // Map icons to the semantic meaning of each benefit item
+  if (audience === "carrier") {
+    switch (index) {
+      case 0:
+        // Get paid faster
+        return <IconBolt className={className} />;
+      case 1:
+        // Fewer invoice rejections
+        return <IconCheckCircle className={className} />;
+      case 2:
+        // Less admin, more driving
+        return <IconClock className={className} />;
+      case 3:
+        // Live invoice & payment status
+        return <IconEye className={className} />;
+      case 4:
+        // Simple onboarding
+        return <IconPlug className={className} />;
+      case 5:
+        // Border‑ready compliance
+        return <IconShield className={className} />;
+      default:
+        return <IconChart className={className} />;
+    }
+  }
+
+  // freight audience
+  switch (index) {
     case 0:
-      return <IconBolt className={className} />;
+      // Higher first‑pass acceptance
+      return <IconCheckCircle className={className} />;
     case 1:
-      return <IconChf className={className} />;
+      // Payment accuracy & control
+      return <IconReceiptCheck className={className} />;
     case 2:
-      return <IconClock className={className} />;
+      // Working‑capital agility
+      return <IconCard className={className} />;
     case 3:
-      return <IconShield className={className} />;
+      // End‑to‑end audit trail
+      return <IconDocumentSearch className={className} />;
     case 4:
-      return <IconSearch className={className} />;
+      // Single source of truth
+      return <IconDatabase className={className} />;
     default:
+      // Actionable analytics
       return <IconChart className={className} />;
   }
 }
@@ -278,29 +316,29 @@ function IconBolt(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-function IconChf(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-label="Swiss franc (CHF)"
-      {...props}
-    >
-      {/* Symbole franc (₣) */}
-      <path d="M6 3v18" />
-      <path d="M6 7h12" />
-      <path d="M6 12h9" />
+// function IconChf(props: React.SVGProps<SVGSVGElement>) {
+//   return (
+//     <svg
+//       viewBox="0 0 24 24"
+//       fill="none"
+//       stroke="currentColor"
+//       strokeWidth="1.8"
+//       strokeLinecap="round"
+//       strokeLinejoin="round"
+//       aria-label="Swiss franc (CHF)"
+//       {...props}
+//     >
+//       {/* Symbole franc (₣) */}
+//       <path d="M6 3v18" />
+//       <path d="M6 7h12" />
+//       <path d="M6 12h9" />
 
-      {/* Petite croix suisse en haut à droite */}
-      <path d="M18 8v4" />
-      <path d="M16 10h4" />
-    </svg>
-  );
-}
+//       {/* Petite croix suisse en haut à droite */}
+//       <path d="M18 8v4" />
+//       <path d="M16 10h4" />
+//     </svg>
+//   );
+// }
 
 function IconClock(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -315,6 +353,22 @@ function IconClock(props: React.SVGProps<SVGSVGElement>) {
     >
       <circle cx="12" cy="12" r="9" />
       <path d="M12 7v6l4 2" />
+    </svg>
+  );
+}
+function IconCheckCircle(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <circle cx="12" cy="12" r="9" />
+      <path d="M8.5 12.5l2.5 2.5 4.5-4.5" />
     </svg>
   );
 }
@@ -334,7 +388,7 @@ function IconShield(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-function IconSearch(props: React.SVGProps<SVGSVGElement>) {
+function IconEye(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -345,11 +399,46 @@ function IconSearch(props: React.SVGProps<SVGSVGElement>) {
       strokeLinejoin="round"
       {...props}
     >
-      <circle cx="11" cy="11" r="7" />
-      <path d="M21 21l-3.5-3.5" />
+      <path d="M1.5 12s3.5-6 10.5-6 10.5 6 10.5 6-3.5 6-10.5 6S1.5 12 1.5 12Z" />
+      <circle cx="12" cy="12" r="3" />
     </svg>
   );
 }
+function IconPlug(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M9 7v4" />
+      <path d="M15 7v4" />
+      <path d="M7 11h10" />
+      <path d="M12 15v6" />
+      <path d="M8 15h8a3 3 0 0 0 3-3v-1H5v1a3 3 0 0 0 3 3Z" />
+    </svg>
+  );
+}
+// function IconSearch(props: React.SVGProps<SVGSVGElement>) {
+//   return (
+//     <svg
+//       viewBox="0 0 24 24"
+//       fill="none"
+//       stroke="currentColor"
+//       strokeWidth="1.8"
+//       strokeLinecap="round"
+//       strokeLinejoin="round"
+//       {...props}
+//     >
+//       <circle cx="11" cy="11" r="7" />
+//       <path d="M21 21l-3.5-3.5" />
+//     </svg>
+//   );
+// }
 function IconChart(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -365,6 +454,79 @@ function IconChart(props: React.SVGProps<SVGSVGElement>) {
       <path d="M7 17v-6" />
       <path d="M12 17v-10" />
       <path d="M17 17v-3" />
+    </svg>
+  );
+}
+function IconReceiptCheck(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M6 3h12v16l-3-2-3 2-3-2-3 2V3Z" />
+      <path d="M8 7h8" />
+      <path d="M8 11h5" />
+      <path d="M9 14l2 2 4-4" />
+    </svg>
+  );
+}
+function IconCard(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <rect x="3" y="6" width="18" height="12" rx="2" />
+      <path d="M3 10h18" />
+      <path d="M7 15h5" />
+      <path d="M14 15h3" />
+    </svg>
+  );
+}
+function IconDocumentSearch(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" />
+      <path d="M14 3v5h5" />
+      <path d="M9 12h6" />
+      <path d="M9 16h3" />
+      <circle cx="15.5" cy="16.5" r="2.5" />
+      <path d="m19 20-2.2-2.2" />
+    </svg>
+  );
+}
+function IconDatabase(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <ellipse cx="12" cy="5" rx="8" ry="3" />
+      <path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5" />
+      <path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6" />
     </svg>
   );
 }

@@ -3,42 +3,42 @@ export const BENEFITS = {
     "benefits.title": "Benefits",
     "benefits.description":
       "Discover how Fincargo transforms your transportation business with AI-powered solutions",
-    "benefits.carrier_1.title": "24-hour Guaranteed Payment",
+    "benefits.carrier_1.title": "Get paid faster",
     "benefits.carrier_1.description":
-      "Get paid within 24 hours after invoice validation through our factoring partners. No more waiting 30-90 days for payment.",
-    "benefits.carrier_2.title": "20K CHF+ Working Capital Per Truck",
+      "Funding in ~24–48 hours on eligible receivables provides predictable cash flow for operations.",
+    "benefits.carrier_2.title": "Fewer invoice rejections",
     "benefits.carrier_2.description":
-      "Unlock substantial working capital annually through our early payment solutions, freeing up cash for operations and growth.",
-    "benefits.carrier_3.title": "75% Administrative Time Savings",
+      "Buyer‑aware validation and explainable checks help catch issues before sending.",
+    "benefits.carrier_3.title": "Less admin, more driving",
     "benefits.carrier_3.description":
-      "Automate e-CMR creation, invoice generation, and document processing with AI-powered tools, reducing manual work significantly.",
-    "benefits.carrier_4.title": "eFTI & ViDA Compliance",
+      "Automatic data checks and delivery acknowledgements reduce back‑and‑forth and rework.",
+    "benefits.carrier_4.title": "Live invoice & payment status",
     "benefits.carrier_4.description":
-      "Stay compliant with European transport regulations through automated e-CMR and e-Invoicing that meets all legal requirements",
-    "benefits.carrier_5.title": "Instant Freight Audit",
+      "Real‑time visibility from invoice creation through buyer acceptance to bank reconciliation.",
+    "benefits.carrier_5.title": "Simple onboarding",
     "benefits.carrier_5.description":
-      "AI-powered verification reduces invoice disputes and accelerates payment approval by catching discrepancies before they cause delays.",
-    "benefits.carrier_6.title": "Performance Analytics",
+      "Keep your current tools—connect via lightweight, standardized exchanges when needed.",
+    "benefits.carrier_6.title": "Border‑ready compliance",
     "benefits.carrier_6.description":
-      "Track your delivery performance, payment cycles, and business metrics to optimize operations and improve profitability.",
-    "benefits.freight_1.title": "Streamlined Carrier Management",
+      "Structured, EN 16931‑aligned invoices prepared for EU ViDA changes and cross‑border use.",
+    "benefits.freight_1.title": "Higher first‑pass acceptance",
     "benefits.freight_1.description":
-      "Centralized platform for managing carrier payments, invoice validation, and relationship building with improved transparency.",
-    "benefits.freight_2.title": "Flexible Payment Options",
+      "Fewer rejections and faster collection via buyer‑profile optimization and explainable checks.",
+    "benefits.freight_2.title": "Payment accuracy & control",
     "benefits.freight_2.description":
-      "Maintain control over payment authorization while offering carriers guaranteed 24-hour payments through our factoring network.",
-    "benefits.freight_3.title": "Automated Document Processings",
+      "Duplicate and anomaly detection with explainable verifications before money leaves the door.",
+    "benefits.freight_3.title": "Working‑capital agility",
     "benefits.freight_3.description":
-      "Reduce administrative burden with automated e-CMR validation, e-Invoicing, and freight audit processes that speed up workflows",
-    "benefits.freight_4.title": "Regulatory Compliance",
+      "Access fast funding on eligible invoices with transparent program limits (limit/used/available).",
+    "benefits.freight_4.title": "End‑to‑end audit trail",
     "benefits.freight_4.description":
-      "Ensure eFTI and ViDA compliance across all transport documents and invoices with automated validation and structured data.",
-    "benefits.freight_5.title": "Business Intelligence",
+      "Evidence bound to invoice lines delivers audit‑ready reviews and faster dispute resolution.",
+    "benefits.freight_5.title": "Single source of truth",
     "benefits.freight_5.description":
-      "Comprehensive analytics on carrier performance, payment patterns, and operational efficiency to optimize your logistics network.",
-    "benefits.freight_6.title": "Cost Savings",
+      "Reliable write‑back keeps ERP/accounting in sync, reducing month‑end reconciliation effort.",
+    "benefits.freight_6.title": "Actionable analytics",
     "benefits.freight_6.description":
-      "AI-powered freight audit identifies discrepancies and optimization opportunities, reducing transport costs and improving margins.",
+      "KPIs and conversational insights surface root causes and guide targeted improvements.",
     "benefits.carrier": "Carriers",
     "benefits.freight": "Forwarders & Shippers",
     "benefits.testimonial.carrier.title": "VISEOL LOGISTICA S.L.",
@@ -54,160 +54,160 @@ export const BENEFITS = {
   fr: {
     "benefits.title": "Avantages",
     "benefits.description":
-      "Découvrez comment Fincargo transforme votre entreprise de transport avec des solutions alimentées par l'IA",
-    "benefits.carrier_1.title": "Paiement garanti en 24 heures",
+      "Découvrez comment Fincargo transforme votre activité de transport avec des solutions propulsées par l'IA",
+    "benefits.carrier_1.title": "Être payé plus rapidement",
     "benefits.carrier_1.description":
-      "Recevez votre paiement dans les 24 heures suivant la validation de la facture grâce à nos partenaires de factoring. Fini d'attendre 30 à 90 jours pour être payé.",
-    "benefits.carrier_2.title":
-      "Plus de 20K CHF de fonds de roulement par camion",
+      "Un financement en ~24-48 heures sur les créances éligibles offre un flux de trésorerie prévisible pour les opérations.",
+    "benefits.carrier_2.title": "Moins de rejets de factures",
     "benefits.carrier_2.description":
-      "Libérez un fonds de roulement substantiel chaque année grâce à nos solutions de paiement anticipé, libérant ainsi des liquidités pour vos opérations et votre croissance.",
-    "benefits.carrier_3.title": "Économies de temps administratives de 75%",
+      "La validation tenant compte de l'acheteur et les contrôles explicables aident à détecter les problèmes avant l'envoi.",
+    "benefits.carrier_3.title": "Moins d'administration, plus de conduite",
     "benefits.carrier_3.description":
-      "Automatisez la création d'e-CMR, la génération de factures et le traitement des documents avec des outils alimentés par l'IA, réduisant ainsi considérablement le travail manuel.",
-    "benefits.carrier_4.title": "Conformité eFTI et ViDA",
+      "Les vérifications automatiques des données et les accusés de réception de livraison réduisent les allers-retours et le retravail.",
+    "benefits.carrier_4.title":
+      "Statut en direct des factures et des paiements",
     "benefits.carrier_4.description":
-      "Restez conforme aux réglementations européennes en matière de transport grâce à l'automatisation de l'e-CMR et de la facturation électronique qui répondent à toutes les exigences légales.",
-    "benefits.carrier_5.title": "Audit de fret instantané",
+      "Visibilité en temps réel depuis la création de la facture jusqu'à l'acceptation par l'acheteur et la réconciliation bancaire.",
+    "benefits.carrier_5.title": "Intégration simple",
     "benefits.carrier_5.description":
-      "La vérification alimentée par l'IA réduit les litiges de factures et accélère l'approbation des paiements en détectant les écarts avant qu'ils ne causent des retards.",
-    "benefits.carrier_6.title": "Analyse des performances",
+      "Conservez vos outils actuels : connectez-vous via des échanges légers et standardisés lorsque cela est nécessaire.",
+    "benefits.carrier_6.title": "Conformité prête pour les frontières",
     "benefits.carrier_6.description":
-      "Suivez vos performances de livraison, vos cycles de paiement et vos indicateurs commerciaux pour optimiser vos opérations et améliorer votre rentabilité.",
-    "benefits.freight_1.title": "Gestion simplifiée des transporteurs",
+      "Factures structurées, alignées sur la norme EN 16931, préparées pour les changements ViDA de l'UE et l'utilisation transfrontalière.",
+    "benefits.freight_1.title": "Acceptation au premier passage plus élevée",
     "benefits.freight_1.description":
-      "Plateforme centralisée pour gérer les paiements des transporteurs, la validation des factures et le renforcement des relations avec une transparence améliorée.",
-    "benefits.freight_2.title": "Options de paiement flexibles",
+      "Moins de rejets et une collecte plus rapide grâce à l'optimisation du profil de l'acheteur et à des contrôles explicables.",
+    "benefits.freight_2.title": "Précision et contrôle des paiements",
     "benefits.freight_2.description":
-      "Conservez le contrôle sur l'autorisation des paiements tout en offrant aux transporteurs des paiements garantis en 24 heures grâce à notre réseau de factoring.",
-    "benefits.freight_3.title": "Traitement automatisé des documents",
+      "Détection des doublons et des anomalies avec des vérifications explicables avant que l'argent ne quitte la porte.",
+    "benefits.freight_3.title": "Agilité du fonds de roulement",
     "benefits.freight_3.description":
-      "Réduisez la charge administrative avec l'automatisation de la validation de l'e-CMR, de la facturation électronique et des processus d'audit de fret qui accélèrent les flux de travail.",
-    "benefits.freight_4.title": "Conformité réglementaire",
+      "Accédez à un financement rapide sur les factures éligibles avec des limites de programme transparentes (limite/utilisé/disponible).",
+    "benefits.freight_4.title": "Piste d'audit de bout en bout",
     "benefits.freight_4.description":
-      "Assurez la conformité eFTI et ViDA sur tous les documents de transport et les factures grâce à une validation automatisée et des données structurées.",
-    "benefits.freight_5.title": "Intelligence d'affaires",
+      "Des preuves liées aux lignes de facture offrent des examens prêts pour l'audit et une résolution plus rapide des litiges.",
+    "benefits.freight_5.title": "Source unique de vérité",
     "benefits.freight_5.description":
-      "Analytique complète sur les performances des transporteurs, les modèles de paiement et l'efficacité opérationnelle pour optimiser votre réseau logistique.",
-    "benefits.freight_6.title": "Économies de coûts",
+      "Un retour fiable maintient l'ERP/comptabilité synchronisé, réduisant les efforts de réconciliation de fin de mois.",
+    "benefits.freight_6.title": "Analytique exploitable",
     "benefits.freight_6.description":
-      "L'audit de fret alimenté par l'IA identifie les écarts et les opportunités d'optimisation, réduisant ainsi les coûts de transport et améliorant les marges.",
+      "Les KPI et les insights conversationnels font ressortir les causes profondes et guident les améliorations ciblées.",
     "benefits.carrier": "Transporteurs",
-    "benefits.freight": "Expéditeurs & Chargeurs",
+    "benefits.freight": "Transitaires & Expéditeurs",
     "benefits.testimonial.carrier.title": "VISEOL LOGISTICA S.L.",
     "benefits.testimonial.carrier.location": "Barcelone — Transporteur routier",
     "benefits.testimonial.carrier.text":
-      "La soumission des factures est rapide et facile grâce au processus automatisé de Fincargo. Nous sommes désormais payés en moins de 24 heures, sans avoir à relancer les paiements ou à faire face à des retards, ce qui nous donne la liquidité nécessaire pour continuer à fonctionner en toute tranquillité.",
+      "La soumission des factures est rapide et facile grâce au processus automatisé de Fincargo. Nous sommes désormais payés en moins de 24 heures, sans avoir à courir après les paiements ou à gérer les retards, ce qui nous donne  la liquidité dont nous avons besoin pour continuer à fonctionner en toute tranquillité d'esprit.",
     "benefits.testimonial.freight.title": "OT Logistica",
     "benefits.testimonial.freight.location":
       "Barcelone — Entreposage & Distribution (Transitaire)",
     "benefits.testimonial.freight.text":
-      "Fincargo a rationalisé notre flux de factures de sous-traitants et nous a offert des options de paiement anticipé qui aident à équilibrer les conditions de paiement prolongées de nos expéditeurs, en particulier dans la logistique spot ou de projet. Cette flexibilité renforce notre flux de trésorerie et améliore notre capacité à nous engager sur une capacité de sous-traitance fiable.",
+      "Fincargo a rationalisé notre flux de factures de sous-traitants et nous a offert des options de paiement anticipé qui aident à équilibrer les conditions de paiement prolongées de nos expéditeurs, en particulier dans la logistique ponctuelle ou de projet. Cette flexibilité renforce notre flux de trésorerie et améliore notre capacité à nous engager à une capacité de sous-traitance fiable.",
   },
   es: {
     "benefits.title": "Beneficios",
     "benefits.description":
-      "Descubre cómo Fincargo transforma tu negocio de transporte con soluciones impulsadas por IA",
-    "benefits.carrier_1.title": "Pago garantizado en 24 horas",
+      "Descubra cómo Fincargo transforma su negocio de transporte con soluciones impulsadas por IA",
+    "benefits.carrier_1.title": "Reciba pagos más rápido",
     "benefits.carrier_1.description":
-      "Recibe el pago en menos de 24 horas después de la validación de la factura a través de nuestros socios de factoring. Olvídate de esperar entre 30 y 90 días para recibir el pago.",
-    "benefits.carrier_2.title":
-      "Más de 20K CHF de capital de trabajo por camión",
+      "El financiamiento en ~24-48 horas sobre cuentas por cobrar elegibles proporciona un flujo de efectivo predecible para las operaciones.",
+    "benefits.carrier_2.title": "Menos rechazos de facturas",
     "benefits.carrier_2.description":
-      "Desbloquea un capital de trabajo sustancial anualmente a través de nuestras soluciones de pago anticipado, liberando efectivo para tus operaciones y crecimiento.",
-    "benefits.carrier_3.title": "Ahorro del 75% en tiempo administrativo",
+      "La validación consciente del comprador y las verificaciones explicables ayudan a detectar problemas antes de enviar.",
+    "benefits.carrier_3.title": "Menos administración, más conducción",
     "benefits.carrier_3.description":
-      "Automatiza la creación de e-CMR, la generación de facturas y el procesamiento de documentos con herramientas impulsadas por IA, reduciendo significativamente el trabajo manual.",
-    "benefits.carrier_4.title": "Cumplimiento eFTI y ViDA",
+      "Las verificaciones automáticas de datos y los acuses de recibo de entrega reducen los idas y vueltas y el retrabajo.",
+    "benefits.carrier_4.title": "Estado en vivo de facturas y pagos",
     "benefits.carrier_4.description":
-      "Mantente conforme con las regulaciones europeas de transporte mediante la automatización de e-CMR y facturación electrónica que cumplen con todos los requisitos legales.",
-    "benefits.carrier_5.title": "Auditoría de flete instantánea",
+      "Visibilidad en tiempo real desde la creación de la factura hasta la aceptación del comprador y la conciliación bancaria.",
+    "benefits.carrier_5.title": "Incorporación simple",
     "benefits.carrier_5.description":
-      "La verificación impulsada por IA reduce las disputas de facturas y acelera la aprobación de pagos al detectar discrepancias antes de que causen retrasos.",
-    "benefits.carrier_6.title": "Análisis de rendimiento",
+      "Mantenga sus herramientas actuales: conéctese a través de intercambios livianos y estandarizados cuando sea necesario.",
+    "benefits.carrier_6.title": "Cumplimiento listo para la frontera",
     "benefits.carrier_6.description":
-      "Rastrea tu rendimiento de entrega, ciclos de pago y métricas comerciales para optimizar tus operaciones y mejorar la rentabilidad.",
-    "benefits.freight_1.title": "Gestión simplificada de transportistas",
+      "Facturas estructuradas alineadas con EN 16931 preparadas para los cambios ViDA de la UE y el uso transfronterizo.",
+    "benefits.freight_1.title": "Mayor aceptación en el primer intento",
     "benefits.freight_1.description":
-      "Plataforma centralizada para gestionar pagos a transportistas, validación de facturas y construcción de relaciones con mayor transparencia.",
-    "benefits.freight_2.title": "Opciones de pago flexibles",
+      "Menos rechazos y una cobranza más rápida a través de la optimización del perfil del comprador y verificaciones explicables.",
+    "benefits.freight_2.title": "Precisión y control de pagos",
     "benefits.freight_2.description":
-      "Mantén el control sobre la autorización de pagos mientras ofreces a los transportistas pagos garantizados en 24 horas a través de nuestra red de factoring.",
-    "benefits.freight_3.title": "Procesamiento automatizado de documentos",
+      "Detección de duplicados y anomalías con verificaciones explicables antes de que el dinero salga por la puerta.",
+    "benefits.freight_3.title": "Agilidad del capital de trabajo",
     "benefits.freight_3.description":
-      "Reduce la carga administrativa con la automatización de la validación de e-CMR, facturación electrónica y procesos de auditoría de flete que aceleran los flujos de trabajo.",
-    "benefits.freight_4.title": "Cumplimiento normativo",
+      "Acceda a financiamiento rápido sobre facturas elegibles con límites de programa transparentes (límite/usado/disponible).",
+    "benefits.freight_4.title": "Pista de auditoría de extremo a extremo",
     "benefits.freight_4.description":
-      "Asegura el cumplimiento eFTI y ViDA en todos los documentos de transporte y facturas mediante validación automatizada y datos estructurados.",
-    "benefits.freight_5.title": "Inteligencia empresarial",
+      "La evidencia vinculada a las líneas de factura ofrece revisiones listas para auditoría y una resolución de disputas más rápida.",
+    "benefits.freight_5.title": "Fuente única de verdad",
     "benefits.freight_5.description":
-      "Analítica integral sobre el rendimiento de transportistas, patrones de pago y eficiencia operativa para optimizar tu red logística.",
-    "benefits.freight_6.title": "Ahorro de costos",
+      "La escritura confiable mantiene el ERP/contabilidad sincronizado, reduciendo el esfuerzo de conciliación de fin de mes.",
+    "benefits.freight_6.title": "Análisis procesable",
     "benefits.freight_6.description":
-      "La auditoría de flete impulsada por IA identifica discrepancias y oportunidades de optimización, reduciendo los costos de transporte y mejorando los márgenes.",
+      "Los KPI y los insights conversacionales revelan las causas raíz y guían las mejoras específicas.",
     "benefits.carrier": "Transportistas",
-    "benefits.freight": "Expedidores & Cargadores",
+    "benefits.freight": "Transitarios y Remitentes",
     "benefits.testimonial.carrier.title": "VISEOL LOGISTICA S.L.",
     "benefits.testimonial.carrier.location":
       "Barcelona — Transportista por carretera",
     "benefits.testimonial.carrier.text":
-      "Enviar facturas es rápido y fácil gracias al proceso automatizado de Fincargo. Ahora nos pagan en menos de 24 horas, sin tener que perseguir pagos o lidiar con retrasos, lo que nos da la liquidez que necesitamos para seguir operando con tranquilidad.",
+      "Enviar facturas es rápido y fácil gracias al proceso automatizado de Fincargo. Ahora nos pagan en menos de 24 horas, sin tener que perseguir los pagos o lidiar con retrasos, lo que nos brinda la liquidez que necesitamos para seguir operando con tranquilidad.",
     "benefits.testimonial.freight.title": "OT Logistica",
     "benefits.testimonial.freight.location":
-      "Barcelona — Almacenamiento & Distribución (Transitario)",
+      "Barcelona — Almacenamiento y Distribución (Transitario)",
     "benefits.testimonial.freight.text":
-      "Fincargo ha agilizado nuestro flujo de facturas de subcontratistas y nos ha ofrecido opciones de pago anticipado que ayudan a equilibrar los términos de pago extendidos de nuestros cargadores, especialmente en logística spot o de proyectos. Esta flexibilidad fortalece nuestro flujo de caja y mejora nuestra capacidad para comprometernos con una capacidad de subcontratación confiable.",
+      "Fincargo ha optimizado nuestro flujo de entrada de facturas de subcontratistas y nos ha ofrecido opciones de pago anticipado que ayudan a equilibrar los términos de pago extendidos de nuestros remitentes, especialmente en logística puntual o de proyectos. Esta flexibilidad fortalece nuestro flujo de efectivo y mejora nuestra capacidad para comprometernos con una capacidad de subcontratación confiable.",
   },
   de: {
     "benefits.title": "Vorteile",
     "benefits.description":
-      "Entdecken Sie, wie Fincargo Ihr Transportunternehmen mit KI-gesteuerten Lösungen transformiert",
-    "benefits.carrier_1.title": "Garantierte Zahlung in 24 Stunden",
+      "Entdecken Sie, wie Fincargo Ihr Transportgeschäft mit KI-gestützten Lösungen transformiert",
+    "benefits.carrier_1.title": "Schneller bezahlt werden",
     "benefits.carrier_1.description":
-      "Erhalten Sie Ihre Zahlung innerhalb von 24 Stunden nach Rechnungsvalidierung durch unsere Factoring-Partner. Kein Warten mehr auf Zahlungen von 30 bis 90 Tagen.",
-    "benefits.carrier_2.title": "Über 20.000 CHF Betriebskapital pro Lkw",
+      "Finanzierung in ~24-48 Stunden für berechtigte Forderungen sorgt für einen planbaren Cashflow für den Betrieb.",
+    "benefits.carrier_2.title": "Weniger Rechnungsablehnungen",
     "benefits.carrier_2.description":
-      "Schalten Sie erhebliches Betriebskapital jährlich frei durch unsere Frühzahlungsoptionen, die Liquidität für Betrieb und Wachstum bereitstellen.",
-    "benefits.carrier_3.title": "75% Einsparung bei administrativen Zeiten",
+      "Käuferbewusste Validierung und erklärbare Prüfungen helfen, Probleme vor dem Versand zu erkennen.",
+    "benefits.carrier_3.title": "Weniger Verwaltung, mehr Fahrzeit",
     "benefits.carrier_3.description":
-      "Automatisieren Sie die Erstellung von e-CMR, die Generierung von Rechnungen und die Dokumentenverarbeitung mit KI-gesteuerten Tools, wodurch manueller Aufwand erheblich reduziert wird.",
-    "benefits.carrier_4.title": "eFTI & ViDA Konformität",
+      "Automatische Datenprüfungen und Lieferbestätigungen reduzieren Hin- und Her sowie Nacharbeit.",
+    "benefits.carrier_4.title": "Live-Rechnungs- & Zahlungsstatus",
     "benefits.carrier_4.description":
-      "Bleiben Sie konform mit europäischen Transportvorschriften durch automatisierte e-CMR und e-Rechnungsstellung, die alle gesetzlichen Anforderungen erfüllen.",
-    "benefits.carrier_5.title": "Sofortige Frachtprüfung",
+      "Echtzeit-Transparenz von der Rechnungserstellung über die Annahme durch den Käufer bis hin zur Bankabstimmung.",
+    "benefits.carrier_5.title": "Einfache Einarbeitung",
     "benefits.carrier_5.description":
-      "KI-gestützte Verifizierung reduziert Rechnungsstreitigkeiten und beschleunigt die Zahlungsfreigabe, indem Abweichungen erkannt werden, bevor sie zu Verzögerungen führen.",
-    "benefits.carrier_6.title": "Leistungsanalyse",
+      "Behalten Sie Ihre aktuellen Tools bei – verbinden Sie sich bei Bedarf über leichte, standardisierte Austausche.",
+    "benefits.carrier_6.title": "Grenzbereite Compliance",
     "benefits.carrier_6.description":
-      "Verfolgen Sie Ihre Lieferleistung, Zahlungszyklen und Geschäftsmesswerte, um Abläufe zu optimieren und die Rentabilität zu steigern.",
-    "benefits.freight_1.title": "Vereinfachtes Carrier-Management",
+      "Strukturierte, EN 16931-konforme Rechnungen, die für EU-ViDA-Änderungen und grenzüberschreitende Nutzung vorbereitet sind.",
+    "benefits.freight_1.title": "Höhere First-Pass-Akzeptanz",
     "benefits.freight_1.description":
-      "Zentralisierte Plattform zur Verwaltung von Carrier-Zahlungen, Rechnungsvalidierung und Beziehungsaufbau mit verbesserter Transparenz.",
-    "benefits.freight_2.title": "Flexible Zahlungsoptionen",
+      "Weniger Ablehnungen und schnellere Einziehung durch Käuferprofiloptimierung und erklärbare Prüfungen.",
+    "benefits.freight_2.title": "Zahlungsgenauigkeit & Kontrolle",
     "benefits.freight_2.description":
-      "Behalten Sie die Kontrolle über die Zahlungsautorisierung und bieten Sie Carriern garantierte Zahlungen in 24 Stunden über unser Factoring-Netzwerk.",
-    "benefits.freight_3.title": "Automatisierte Dokumentenverarbeitung",
+      "Duplikat- und Anomalieerkennung mit erklärbaren Prüfungen, bevor Geld das Haus verlässt.",
+    "benefits.freight_3.title": "Agilität des Betriebskapitals",
     "benefits.freight_3.description":
-      "Reduzieren Sie den administrativen Aufwand durch automatisierte e-CMR Validierung, e-Rechnungsstellung und Frachtprüfungsprozesse, die Arbeitsabläufe beschleunigen.",
-    "benefits.freight_4.title": "Regulatorische Konformität",
+      "Greifen Sie auf schnelle Finanzierungen für berechtigte Rechnungen mit transparenten Programmlimits zu (Limit/Verwendet/Verfügbar).",
+    "benefits.freight_4.title": "End-to-End-Prüfungspfad",
     "benefits.freight_4.description":
-      "Stellen Sie die eFTI und ViDA Konformität über alle Transportdokumente und Rechnungen hinweg sicher, mit automatisierter Validierung und strukturierten Daten.",
-    "benefits.freight_5.title": "Business Intelligence",
+      "Nachweise, die an Rechnungspositionen gebunden sind, liefern prüfungsbereite Überprüfungen und schnellere Streitbeilegung.",
+    "benefits.freight_5.title": "Single Source of Truth",
     "benefits.freight_5.description":
-      "Umfassende Analysen zur Carrier-Leistung, Zahlungsmustern und operativer Effizienz zur Optimierung Ihres Logistiknetzwerks.",
-    "benefits.freight_6.title": "Kosteneinsparungen",
+      "Zuverlässiges Zurückschreiben hält ERP/Buchhaltung synchron und reduziert den Aufwand für die Monatsabschlussabstimmung.",
+    "benefits.freight_6.title": "Umsetzbare Analysen",
     "benefits.freight_6.description":
-      "Die KI-gestützte Frachtprüfung identifiziert Abweichungen und Optimierungsmöglichkeiten, reduziert Transportkosten und verbessert die Margen.",
-    "benefits.carrier": "Transporteure",
-    "benefits.freight": "Spediteure & Verlader",
+      "KPIs und konversationelle Einblicke decken die Ursachen auf und leiten gezielte Verbesserungen an.",
+    "benefits.carrier": "Spediteure",
+    "benefits.freight": "Frachtführer & Verlader",
     "benefits.testimonial.carrier.title": "VISEOL LOGISTICA S.L.",
-    "benefits.testimonial.carrier.location": "Barcelona — Straßentransporteur",
+    "benefits.testimonial.carrier.location":
+      "Barcelona — Straßentransportunternehmen",
     "benefits.testimonial.carrier.text":
-      "Die Einreichung von Rechnungen ist dank des automatisierten Prozesses von Fincargo schnell und einfach. Wir werden jetzt in weniger als 24 Stunden bezahlt, ohne Zahlungen verfolgen oder Verzögerungen bewältigen zu müssen, was uns die Liquidität gibt, die wir benötigen, um mit Ruhe weiterzuarbeiten.",
+      "Das Einreichen von Rechnungen ist dank des automatisierten Prozesses von Fincargo schnell und einfach. Wir werden jetzt in weniger als 24 Stunden bezahlt, ohne dass wir Zahlungen verfolgen oder uns mit Verzögerungen auseinandersetzen müssen, was uns die Liquidität gibt, die wir benötigen, um mit ruhigem Gewissen weiter zu arbeiten.",
     "benefits.testimonial.freight.title": "OT Logistica",
     "benefits.testimonial.freight.location":
       "Barcelona — Lagerung & Distribution (Spediteur)",
     "benefits.testimonial.freight.text":
-      "Fincargo hat unseren Rechnungsfluss von Subunternehmern optimiert und uns Frühzahlungsoptionen angeboten, die helfen, die verlängerten Zahlungsbedingungen unserer Verlader auszugleichen, insbesondere in der Spot- oder Projektlogistik. Diese Flexibilität stärkt unseren Cashflow und verbessert unsere Fähigkeit, uns auf zuverlässige Subunternehmerkapazitäten zu verpflichten.",
+      "Fincargo hat unseren Eingangsrechnungsfluss von Subunternehmern rationalisiert und uns Frühzahlungsoptionen angeboten, die dazu beitragen, die verlängerten Zahlungsbedingungen unserer Verlader auszugleichen, insbesondere in der Spot- oder Projektlogistik. Diese Flexibilität stärkt unseren Cashflow und verbessert unsere Fähigkeit, uns auf eine zuverlässige Subunternehmerkapazität zu verpflichten.",
   },
 } as const;

@@ -3,13 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
 
-type IconName =
-  | "invoice"
-  | "factoring"
-  | "audit"
-  | "ecmr"
-  | "tms"
-  | "analytics";
+type IconName = "invoice" | "financial" | "analytics" | "integration";
 
 interface FeatureItem {
   name: string;
@@ -44,7 +38,8 @@ function IconInvoice(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-function IconFactoring(props: React.SVGProps<SVGSVGElement>) {
+function IconFinancial(props: React.SVGProps<SVGSVGElement>) {
+  // Credit card to reflect payments/factoring
   return (
     <svg
       viewBox="0 0 24 24"
@@ -55,14 +50,15 @@ function IconFactoring(props: React.SVGProps<SVGSVGElement>) {
       strokeLinejoin="round"
       {...props}
     >
-      <path d="M3 12h18" />
-      <path d="M5 7h14a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z" />
-      <path d="M8 16v-4a2 2 0 1 1 4 0v4" />
-      <path d="M12 16v-2a2 2 0 1 1 4 0v2" />
+      <rect x="3" y="6" width="18" height="12" rx="2" />
+      <path d="M3 10h18" />
+      <path d="M7 15h5" />
+      <path d="M14 15h3" />
     </svg>
   );
 }
-function IconAudit(props: React.SVGProps<SVGSVGElement>) {
+function IconIntegration(props: React.SVGProps<SVGSVGElement>) {
+  // Connected nodes to illustrate integrations/connectors
   return (
     <svg
       viewBox="0 0 24 24"
@@ -73,47 +69,12 @@ function IconAudit(props: React.SVGProps<SVGSVGElement>) {
       strokeLinejoin="round"
       {...props}
     >
-      <path d="M3 4h18" />
-      <path d="M6 4v16a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4" />
-      <path d="M9 10h6M9 14h6" />
-      <path d="m9 20 2-2 2 2 2-2" />
-    </svg>
-  );
-}
-function IconECMR(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <path d="M3 7h13l5 5v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z" />
-      <path d="M16 7v5h5" />
-      <path d="M7 13h7M7 17h5" />
-    </svg>
-  );
-}
-
-function IconTMS(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      {/* Camion */}
-      <rect x="2" y="12" width="12" height="5" rx="1" />
-      <path d="M13 12h4l3 3v2h-7z" />
-      <circle cx="7" cy="17" r="1.4" />
-      <circle cx="17" cy="17" r="1.4" />
+      <path d="M6 8h12" />
+      <path d="M6 8l6 10" />
+      <path d="M18 8l-6 10" />
+      <circle cx="6" cy="8" r="2" />
+      <circle cx="18" cy="8" r="2" />
+      <circle cx="12" cy="18" r="2" />
     </svg>
   );
 }
@@ -158,16 +119,12 @@ function FeatureIcon({ name }: { name?: IconName }) {
   switch (name) {
     case "invoice":
       return <IconInvoice className={common} />;
-    case "factoring":
-      return <IconFactoring className={common} />;
-    case "audit":
-      return <IconAudit className={common} />;
-    case "ecmr":
-      return <IconECMR className={common} />;
-    case "tms":
-      return <IconTMS className={common} />;
+    case "financial":
+      return <IconFinancial className={common} />;
     case "analytics":
       return <IconAnalytics className={common} />;
+    case "integration":
+      return <IconIntegration className={common} />;
     default:
       return <IconInvoice className={common} />;
   }
@@ -196,27 +153,6 @@ export default function SectionFeatures({}: SectionFeaturesProps) {
 
   const features: FeatureItem[] = [
     {
-      name: t("services.tms.title"),
-      description: t("services.tms.description"),
-      href: "/tms",
-      points: tl("services.tms.points"),
-      icon: "tms",
-    },
-    {
-      name: t("services.ecmr.title"),
-      description: t("services.ecmr.description"),
-      href: "/ecmr",
-      points: tl("services.ecmr.points"),
-      icon: "ecmr",
-    },
-    {
-      name: t("services.freight.title"),
-      description: t("services.freight.description"),
-      href: "/freight-audit",
-      points: tl("services.freight.points"),
-      icon: "audit",
-    },
-    {
       name: t("services.invoice.title"),
       description: t("services.invoice.description"),
       href: "/e-invoicing",
@@ -224,11 +160,11 @@ export default function SectionFeatures({}: SectionFeaturesProps) {
       icon: "invoice",
     },
     {
-      name: t("services.factoring.title"),
-      description: t("services.factoring.description"),
-      href: "/factoring",
-      points: tl("services.factoring.points"),
-      icon: "factoring",
+      name: t("services.financial.title"),
+      description: t("services.financial.description"),
+      href: "/financial-services",
+      points: tl("services.financial.points"),
+      icon: "financial",
     },
     {
       name: t("services.analytics.title"),
@@ -236,6 +172,13 @@ export default function SectionFeatures({}: SectionFeaturesProps) {
       href: "/analytics",
       points: tl("services.analytics.points"),
       icon: "analytics",
+    },
+    {
+      name: t("services.integration.title"),
+      description: t("services.integration.description"),
+      href: "/integration",
+      points: tl("services.integration.points"),
+      icon: "integration",
     },
   ];
 
@@ -278,7 +221,7 @@ export default function SectionFeatures({}: SectionFeaturesProps) {
         </div>
 
         {/* Features grid */}
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {features.map((f, i) => (
             <a
               key={f.name}
