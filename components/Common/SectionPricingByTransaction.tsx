@@ -1,6 +1,4 @@
 "use client";
-
-import { useState } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
 
 /* --------- Small inline icon --------- */
@@ -24,7 +22,6 @@ function IconInfo(props: React.SVGProps<SVGSVGElement>) {
 
 export default function SectionPricingByTransaction() {
   const { t, tl } = useTranslation();
-  const [audience, setAudience] = useState<"fs" | "carrier">("fs");
 
   // helpers + fallbacks
   const tf = (key: string, fb = "") => (t(key) === key ? fb : t(key));
@@ -40,24 +37,63 @@ export default function SectionPricingByTransaction() {
     "Transactional pricing is volume-dependent and starts from CHF 0.50 per module and shipment."
   );
   const headers = ta("pricing.by_transaction.table.headers", [
-    "Module / Service",
-    "Fee for Forwarder & Shipper",
-    "Fee for Carrier",
+    "Plan / Item",
+    "From‑Price",
+    "Unit",
+    "What’s included",
   ]);
-  const H0 = headers[0] ?? "Module / Service";
-  const H1 = headers[1] ?? "Fee for Forwarder & Shipper";
-  const H2 = headers[2] ?? "Fee for Carrier";
+  const H0 = headers[0] ?? "Plan / Item";
+  const H1 = headers[1] ?? "From‑Price";
+  const H2 = headers[2] ?? "Unit";
+  const H3 = headers[3] ?? "What’s included";
 
   // rows: string[][]
+  const fallbackRows: string[][] = [
+    [
+      "e‑Invoicing",
+      "CHF 0.50",
+      "per invoice",
+      "Collection & payment; authority‑ready formats; multi‑rail delivery",
+    ],
+    [
+      "Pre/Post‑Billing Audit",
+      "CHF 0.50",
+      "per invoice",
+      "AI‑assisted checks; buyer profile optimization; explainable reasons",
+    ],
+    [
+      "Financing — Factoring",
+      "0.10–0.15% / day + fixed CHF fee",
+      "per financed invoice",
+      "Advance rate and fee depend on buyer risk and ageing",
+    ],
+    [
+      "Financing — Reverse Factoring",
+      "0.10–0.15% / day + fixed CHF fee",
+      "per financed invoice",
+      "Program terms vary by buyer program",
+    ],
+    [
+      "Enterprise & Integrations",
+      "Custom",
+      "per month",
+      "Standardized connectors, SLA and support tiers",
+    ],
+  ];
   const rowsRaw = tl("pricing.by_transaction.table.rows");
-  const rows: string[][] =
+  const rowsTrans: string[][] =
     Array.isArray(rowsRaw) && rowsRaw.every((r) => Array.isArray(r))
       ? (rowsRaw as unknown as string[][])
       : [];
+  const rows: string[][] = rowsTrans.length ? rowsTrans : fallbackRows;
 
-  const disclaimer = tf(
-    "pricing.by_transaction.disclaimer",
-    "Transactional pricing is volume-dependent and starts from CHF 0.50 per module and shipment. Integration, calibration, and analytics services are optional add-ons; factoring available for carriers and small forwarders."
+  const example = tf(
+    "pricing.by_transaction.example",
+    "Illustrative example (simple‑interest): at 0.12%/day for 30 days, fees ≈ 3.6% of face value + fixed service fee. Actual costs depend on eligibility, program terms, and days outstanding."
+  );
+  const notes = tf(
+    "pricing.by_transaction.notes",
+    "Notes: Prices are indicative and subject to underwriting, volume, compliance and taxes. Financing subject to eligibility and program agreements."
   );
 
   return (
@@ -82,83 +118,51 @@ export default function SectionPricingByTransaction() {
         </h2>
         <p className="mt-3 text-lg md:text-xl text-slate-600">{desc}</p>
 
-        {/* Mobile audience toggle */}
-        <div className="mt-4 lg:hidden">
-          <div
-            role="tablist"
-            aria-label="Select audience"
-            className="inline-flex rounded-xl bg-slate-100 p-1 ring-1 ring-slate-200"
-          >
-            <button
-              type="button"
-              role="tab"
-              aria-selected={audience === "fs"}
-              onClick={() => setAudience("fs")}
-              className={`px-3 py-1.5 text-xs font-medium rounded-lg transition ${
-                audience === "fs"
-                  ? "bg-white text-slate-900 shadow"
-                  : "text-slate-600 hover:text-slate-900"
-              }`}
+        {/* ===== Mobile: stacked cards (no horizontal scroll) ===== */}
+        <div className="mt-8 grid gap-3 lg:hidden">
+          {rows.map((r, idx) => (
+            <div
+              key={idx}
+              className="rounded-2xl bg-white px-4 py-4 ring-1 ring-slate-200 border border-slate-200 shadow-sm"
             >
-              {H1}
-            </button>
-            <button
-              type="button"
-              role="tab"
-              aria-selected={audience === "carrier"}
-              onClick={() => setAudience("carrier")}
-              className={`ml-1 px-3 py-1.5 text-xs font-medium rounded-lg transition ${
-                audience === "carrier"
-                  ? "bg-white text-slate-900 shadow"
-                  : "text-slate-600 hover:text-slate-900"
-              }`}
-            >
-              {H2}
-            </button>
-          </div>
-        </div>
-
-        {/* ===== Compact table for mobile & tablet (< lg) ===== */}
-        <div className="mt-8 lg:hidden overflow-hidden rounded-2xl border border-slate-200 ring-1 ring-slate-900/5 bg-white shadow-sm">
-          {/* Mobile table header: shows module and selected audience label once */}
-          <div className="grid grid-cols-2 gap-2 bg-slate-50/70 px-4 py-2">
-            <div className="text-[11px] font-semibold uppercase text-slate-600">
-              {H0}
-            </div>
-            <div className="text-right text-[11px] font-semibold uppercase text-slate-600">
-              {audience === "fs" ? H1 : H2}
-            </div>
-          </div>
-          {/* Rows */}
-          <ul className="divide-y divide-slate-200">
-            {rows.map((r, idx) => (
-              <li key={idx} className="grid grid-cols-2 gap-3 px-4 py-3">
-                <div className="text-sm font-medium text-slate-900">{r[0]}</div>
-                <div className="text-sm text-slate-800 text-right break-words">
-                  {audience === "fs" ? r[1] : r[2]}
+              <div className="text-base font-semibold text-slate-900">{r[0]}</div>
+              <div className="mt-3 grid grid-cols-1 gap-2">
+                <div>
+                  <div className="text-[11px] font-semibold uppercase text-slate-500">{H1}</div>
+                  <div className="text-sm text-slate-700">{r[1]}</div>
                 </div>
-              </li>
-            ))}
-          </ul>
+                <div>
+                  <div className="text-[11px] font-semibold uppercase text-slate-500">{H2}</div>
+                  <div className="text-sm text-slate-700">{r[2]}</div>
+                </div>
+                <div>
+                  <div className="text-[11px] font-semibold uppercase text-slate-500">{H3}</div>
+                  <div className="text-sm text-slate-700">{r[3]}</div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
-        {/* ===== Table for large screens (>= lg) ===== */}
+        {/* ===== Desktop: 4-column table ===== */}
         <div className="mt-8 hidden lg:block overflow-hidden rounded-2xl border border-slate-200 ring-1 ring-slate-900/5 bg-white shadow-sm">
           <div className="pointer-events-none -mt-px h-px w-full bg-gradient-to-r from-transparent via-slate-400/40 to-transparent" />
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-slate-200">
               <thead className="bg-slate-50/60 sticky top-0 z-10 backdrop-blur supports-[backdrop-filter]:bg-slate-50/60">
                 <tr>
-                  {headers.map((h, i) => (
-                    <th
-                      key={i}
-                      className={`px-6 py-3 text-left text-xs font-semibold tracking-wide uppercase text-slate-700 ${
-                        i === 0 ? "w-[32%] min-w-[240px]" : "min-w-[280px]"
-                      }`}
-                    >
-                      {h}
-                    </th>
-                  ))}
+                  <th className="px-6 py-3 text-left text-[11px] font-semibold tracking-wide uppercase text-slate-700 w-[26%] min-w-[220px]">
+                    {H0}
+                  </th>
+                  <th className="px-6 py-3 text-left text-[11px] font-semibold tracking-wide uppercase text-slate-700 min-w-[160px]">
+                    {H1}
+                  </th>
+                  <th className="px-6 py-3 text-left text-[11px] font-semibold tracking-wide uppercase text-slate-700 min-w-[160px]">
+                    {H2}
+                  </th>
+                  <th className="px-6 py-3 text-left text-[11px] font-semibold tracking-wide uppercase text-slate-700 min-w-[360px]">
+                    {H3}
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200">
@@ -176,6 +180,9 @@ export default function SectionPricingByTransaction() {
                     <td className="px-6 py-4 text-sm text-slate-700 whitespace-normal break-words">
                       {r[2]}
                     </td>
+                    <td className="px-6 py-4 text-sm text-slate-700 whitespace-normal break-words">
+                      {r[3]}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -183,17 +190,19 @@ export default function SectionPricingByTransaction() {
           </div>
         </div>
 
-        {/* disclaimer */}
+        {/* Example */}
         <div className="mt-5 rounded-xl bg-slate-50 px-4 py-3 sm:px-5 sm:py-4 ring-1 ring-slate-200">
           <div className="flex items-start gap-3">
             <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white ring-1 ring-slate-200">
               <IconInfo className="h-4 w-4 text-slate-700" />
             </span>
             <p className="text-[13px] sm:text-sm md:text-[15px] leading-relaxed text-slate-700">
-              {disclaimer}
+              {example}
             </p>
           </div>
         </div>
+        {/* Notes */}
+        <p className="mt-3 text-[12px] sm:text-[13px] text-slate-600">{notes}</p>
       </div>
     </section>
   );

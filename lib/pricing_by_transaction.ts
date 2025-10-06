@@ -1,108 +1,201 @@
 // pricings_by_transaction.ts
 export const PRICINGS_BY_TRANSACTION = {
   en: {
-    "pricing.by_transaction.title": "Transparent and Variable Pricing",
+    "pricing.by_transaction.title": "Pricing by Transaction",
     "pricing.by_transaction.hero.caption":
-      "Transactional pricing is volume-dependent and starts from CHF 0.50 per module and shipment.",
+      "Clear, modular pricing with simple units and what's included.",
 
+    // 4-column table: Plan/Item, From-Price, Unit, What's included
     "pricing.by_transaction.table.headers": [
-      "Module / Service",
-      "Fee for Forwarder & Shipper",
-      "Fee for Carrier",
+      "Plan / Item",
+      "From‑Price",
+      "Unit",
+      "What’s included",
     ],
     "pricing.by_transaction.table.rows": [
-      ["TMS Core", "CHF 0.50 per transaction", "Free"],
-      ["e-CMR", "CHF 0.50 per document", "Free"],
-      ["Audit (Payables)", "CHF 0.50 per invoice", "Free"],
-      ["e-Invoicing", "CHF 0.50 per invoice", "Free"],
       [
-        "Factoring (Payables)",
-        "Free within agreed payment term",
-        "0.10–0.15% per day + CHF 20 service fee per financed invoice",
+        "e‑Invoicing",
+        "CHF 0.50",
+        "per invoice",
+        "Collection & payment; authority‑ready formats; multi‑rail delivery",
       ],
-      ["Support", "Iris Support", "Iris Support"],
+      [
+        "Pre/Post‑Billing Audit",
+        "CHF 0.50",
+        "per invoice",
+        "AI‑assisted checks; buyer profile optimization; explainable reasons",
+      ],
+      [
+        "Financing — Factoring",
+        "0.10–0.15% / day + fixed CHF fee",
+        "per financed invoice",
+        "Advance rate and fee depend on buyer risk and ageing",
+      ],
+      [
+        "Financing — Reverse Factoring",
+        "0.10–0.15% / day + fixed CHF fee",
+        "per financed invoice",
+        "Program terms vary by buyer program",
+      ],
+      [
+        "Enterprise & Integrations",
+        "Custom",
+        "per month",
+        "Standardized connectors, SLA and support tiers",
+      ],
     ],
-    "pricing.by_transaction.disclaimer":
-      "Integration, calibration, and analytics services are available as optional add-ons to tailor the platform to your business needs, while factoring is available for accounts receivable of carriers and small forwarders.",
+    "pricing.by_transaction.example":
+      "Illustrative example (simple‑interest): at 0.12%/day for 30 days, fees ≈ 3.6% of face value + fixed service fee. Actual costs depend on eligibility, program terms, and days outstanding.",
+    "pricing.by_transaction.notes":
+      "Notes: Prices are indicative and subject to underwriting, volume, compliance and taxes. Financing subject to eligibility and program agreements.",
   },
 
   fr: {
     "pricing.by_transaction.title":
-      "Transparente et variable pour le transport routier",
+      "Tarification par transaction",
     "pricing.by_transaction.hero.caption":
-      "Le prix transactionnel dépend des volumes et démarre à partir de CHF 0.50 par module et expédition. ",
+      "Tarifs clairs et modulaires avec unités simples et inclusions.",
 
     "pricing.by_transaction.table.headers": [
-      "Module / Service",
-      "Tarif pour transitaire & expéditeur",
-      "Tarif pour transporteur",
+      "Plan / Élément",
+      "À partir de",
+      "Unité",
+      "Inclus",
     ],
     "pricing.by_transaction.table.rows": [
-      ["TMS Core", "CHF 0.50 par transaction", "Free"],
-      ["e-CMR", "CHF 0.50 par document", "Free"],
-      ["Audit (Payables)", "CHF 0.50 par facture", "Free"],
-      ["e-facturation", "CHF 0.50 par facture", "Free"],
       [
-        "Affacturage (Payables)",
-        "Gratuit dans le délai de paiement convenu",
-        "0.10–0.15% par jour + CHF 20 de frais de service par facture financée",
+        "e‑facturation",
+        "CHF 0.50",
+        "par facture",
+        "Collecte & paiement; formats prêts pour les autorités; livraison multi‑canaux",
       ],
-      ["Support", "Iris Support", "Iris Support"],
+      [
+        "Audit pré/post‑facturation",
+        "CHF 0.50",
+        "par facture",
+        "Contrôles assistés par IA; optimisation du profil acheteur; motifs explicables",
+      ],
+      [
+        "Financement — Affacturage",
+        "0.10–0.15% / jour + frais CHF fixe",
+        "par facture financée",
+        "Taux d’avance et frais selon le risque acheteur et l’ancienneté",
+      ],
+      [
+        "Financement — Affacturage inversé",
+        "0.10–0.15% / jour + frais CHF fixe",
+        "par facture financée",
+        "Conditions selon le programme de l’acheteur",
+      ],
+      [
+        "Entreprise & Intégrations",
+        "Sur mesure",
+        "par mois",
+        "Connecteurs standardisés, SLA et paliers de support",
+      ],
     ],
-    "pricing.by_transaction.disclaimer":
-      "L’intégration, le calibrage et les services d’analytique sont disponibles en options pour adapter la plateforme à vos besoins, tandis que l’affacturage est proposé pour les créances des transporteurs et des petits transitaires.",
+    "pricing.by_transaction.example":
+      "Exemple illustratif (intérêt simple) : à 0.12%/jour pendant 30 jours, les frais ≈ 3.6% de la valeur faciale + frais de service fixe. Les coûts réels dépendent de l’éligibilité, des conditions du programme et des jours en circulation.",
+    "pricing.by_transaction.notes":
+      "Notes : les prix sont indicatifs et soumis à la souscription, au volume, à la conformité et aux taxes. Le financement est soumis à l’éligibilité et aux conventions de programme.",
   },
 
   es: {
     "pricing.by_transaction.title":
-      "Transparente y variable para el transporte por carretera",
+      "Precios por transacción",
     "pricing.by_transaction.hero.caption":
-      "La tarificación por transacción depende del volumen y parte de CHF 0.50 por módulo y envío.",
+      "Tarifas claras y modulares con unidades simples e inclusiones.",
 
     "pricing.by_transaction.table.headers": [
-      "Módulo / Servicio",
-      "Tarifa para transitario y cargador",
-      "Tarifa para transportista",
+      "Plan / Elemento",
+      "Desde",
+      "Unidad",
+      "Qué incluye",
     ],
     "pricing.by_transaction.table.rows": [
-      ["TMS Core", "CHF 0.50 por transacción", "Free"],
-      ["e-CMR", "CHF 0.50 por documento", "Free"],
-      ["Auditoría (Payables)", "CHF 0.50 por factura", "Free"],
-      ["e-Facturación", "CHF 0.50 por factura", "Free"],
       [
-        "Factoring (Payables)",
-        "Gratuito dentro del plazo de pago acordado",
-        "0.10–0.15% por día + CHF 20 de comisión por factura financiada",
+        "e‑Facturación",
+        "CHF 0.50",
+        "por factura",
+        "Cobro y pago; formatos listos para autoridades; entrega multicanal",
       ],
-      ["Soporte", "Iris Support", "Iris Support"],
+      [
+        "Auditoría Pre/Post‑facturación",
+        "CHF 0.50",
+        "por factura",
+        "Controles asistidos por IA; optimización del perfil del comprador; motivos explicables",
+      ],
+      [
+        "Financiación — Factoring",
+        "0.10–0.15% / día + tarifa CHF fija",
+        "por factura financiada",
+        "Tasa de anticipo y tarifa dependen del riesgo del comprador y la antigüedad",
+      ],
+      [
+        "Financiación — Reverse Factoring",
+        "0.10–0.15% / día + tarifa CHF fija",
+        "por factura financiada",
+        "Condiciones según el programa del comprador",
+      ],
+      [
+        "Enterprise e Integraciones",
+        "A medida",
+        "por mes",
+        "Conectores estandarizados, SLA y niveles de soporte",
+      ],
     ],
-    "pricing.by_transaction.disclaimer":
-      " La integración, calibración y analítica están disponibles como complementos opcionales para adaptar la plataforma a tu empresa, mientras que el factoring está disponible para cuentas por cobrar de transportistas y pequeños transitarios.",
+    "pricing.by_transaction.example":
+      "Ejemplo ilustrativo (interés simple): a 0.12%/día durante 30 días, tarifas ≈ 3.6% del valor nominal + tarifa de servicio fija. Los costos reales dependen de la elegibilidad, condiciones del programa y días pendientes.",
+    "pricing.by_transaction.notes":
+      "Notas: los precios son indicativos y están sujetos a suscripción, volumen, cumplimiento e impuestos. La financiación está sujeta a elegibilidad y acuerdos del programa.",
   },
 
   de: {
-    "pricing.by_transaction.title": "Transparente und variable Preisgestaltung",
+    "pricing.by_transaction.title": "Preisgestaltung pro Transaktion",
     "pricing.by_transaction.hero.caption":
-      "Die transaktionsbezogene Preisgestaltung ist volumenabhängig und beginnt bei CHF 0.50 pro Modul und Sendung.",
+      "Klare, modulare Preise mit einfachen Einheiten und Inhalten.",
 
     "pricing.by_transaction.table.headers": [
-      "Modul / Service",
-      "Gebühr für Spediteur & Verlader",
-      "Gebühr für Frachtführer",
+      "Plan / Element",
+      "Ab‑Preis",
+      "Einheit",
+      "Inklusive",
     ],
     "pricing.by_transaction.table.rows": [
-      ["TMS Core", "CHF 0.50 pro Transaktion", "Frei"],
-      ["e-CMR", "CHF 0.50 pro Dokument", "Frei"],
-      ["Audit (Payables)", "CHF 0.50 pro Rechnung", "Frei"],
-      ["e-Rechnungsstellung", "CHF 0.50 pro Rechnung", "Frei"],
       [
-        "Factoring (Payables)",
-        "Kostenfrei innerhalb der vereinbarten Zahlungsfrist",
-        "0.10–0.15% pro Tag + CHF 20 Servicegebühr pro finanzierter Rechnung",
+        "E‑Rechnung",
+        "CHF 0.50",
+        "pro Rechnung",
+        "Inkasso & Zahlung; behördenfähige Formate; Multi‑Rail‑Zustellung",
       ],
-      ["Support", "Iris Support", "Iris Support"],
+      [
+        "Pre/Post‑Billing Audit",
+        "CHF 0.50",
+        "pro Rechnung",
+        "KI‑gestützte Prüfungen; Optimierung des Käuferprofils; erklärbare Gründe",
+      ],
+      [
+        "Finanzierung — Factoring",
+        "0.10–0.15% / Tag + fixer CHF‑Gebühr",
+        "pro finanzierte Rechnung",
+        "Vorschussrate und Gebühr abhängig vom Käuferrisiko und der Fälligkeit",
+      ],
+      [
+        "Finanzierung — Reverse Factoring",
+        "0.10–0.15% / Tag + fixer CHF‑Gebühr",
+        "pro finanzierte Rechnung",
+        "Programmbedingungen je nach Käuferprogramm",
+      ],
+      [
+        "Enterprise & Integrationen",
+        "Individuell",
+        "pro Monat",
+        "Standardisierte Konnektoren, SLA und Support‑Stufen",
+      ],
     ],
-    "pricing.by_transaction.disclaimer":
-      "Integration, Kalibrierung und Analytics sind als optionale Add-ons verfügbar, um die Plattform an Ihre Bedürfnisse anzupassen; Factoring ist für Forderungen von Frachtführern und kleinen Spediteuren verfügbar.",
+    "pricing.by_transaction.example":
+      "Veranschaulichendes Beispiel (einfache Verzinsung): bei 0.12%/Tag über 30 Tage ≈ 3.6% des Nennwerts + feste Servicegebühr. Die tatsächlichen Kosten hängen von Berechtigung, Programmbedingungen und ausstehenden Tagen ab.",
+    "pricing.by_transaction.notes":
+      "Hinweise: Preise sind indikativ und unterliegen Zeichnung, Volumen, Compliance und Steuern. Finanzierung vorbehaltlich Berechtigung und Programmvereinbarungen.",
   },
 } as const;
