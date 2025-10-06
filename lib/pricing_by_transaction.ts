@@ -40,8 +40,8 @@ export const PRICINGS_BY_TRANSACTION = {
       [
         "Enterprise & Integrations",
         "Custom",
-        "per month",
-        "Standardized connectors, SLA and support tiers",
+        "one-off",
+        "Standardized connectors, bi-directional.",
       ],
     ],
     "pricing.by_transaction.example":
@@ -51,8 +51,7 @@ export const PRICINGS_BY_TRANSACTION = {
   },
 
   fr: {
-    "pricing.by_transaction.title":
-      "Tarification par transaction",
+    "pricing.by_transaction.title": "Tarification par transaction",
     "pricing.by_transaction.hero.caption":
       "Tarifs clairs et modulaires avec unités simples et inclusions.",
 
@@ -90,8 +89,8 @@ export const PRICINGS_BY_TRANSACTION = {
       [
         "Entreprise & Intégrations",
         "Sur mesure",
-        "par mois",
-        "Connecteurs standardisés, SLA et paliers de support",
+        "unique",
+        "Connecteurs standardisés, bidirectionnels",
       ],
     ],
     "pricing.by_transaction.example":
@@ -101,8 +100,7 @@ export const PRICINGS_BY_TRANSACTION = {
   },
 
   es: {
-    "pricing.by_transaction.title":
-      "Precios por transacción",
+    "pricing.by_transaction.title": "Precios por transacción",
     "pricing.by_transaction.hero.caption":
       "Tarifas claras y modulares con unidades simples e inclusiones.",
 
@@ -140,8 +138,8 @@ export const PRICINGS_BY_TRANSACTION = {
       [
         "Enterprise e Integraciones",
         "A medida",
-        "por mes",
-        "Conectores estandarizados, SLA y niveles de soporte",
+        "Única",
+        "Conectores estandarizados, bidireccionales",
       ],
     ],
     "pricing.by_transaction.example":
@@ -189,8 +187,8 @@ export const PRICINGS_BY_TRANSACTION = {
       [
         "Enterprise & Integrationen",
         "Individuell",
-        "pro Monat",
-        "Standardisierte Konnektoren, SLA und Support‑Stufen",
+        "einmalig",
+        "Standardisierte, bidirektionale Konnektoren",
       ],
     ],
     "pricing.by_transaction.example":
