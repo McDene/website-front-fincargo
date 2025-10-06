@@ -104,6 +104,7 @@ function IconNetwork(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 function IconSignature(props: React.SVGProps<SVGSVGElement>) {
+  // Document with signature line for clearer semantics
   return (
     <svg
       viewBox="0 0 24 24"
@@ -114,8 +115,11 @@ function IconSignature(props: React.SVGProps<SVGSVGElement>) {
       strokeLinejoin="round"
       {...props}
     >
-      <path d="M3 21s3-6 7-6 3 5 7 5 4-3 4-3" />
-      <path d="M3 17c2-3 4-5 7-5 3 0 4 2 6 2 2 0 5-2 5-2" />
+      <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" />
+      <path d="M14 3v5h5" />
+      {/* signature strokes */}
+      <path d="M7.5 16.5c1.2-.9 2.2-.5 3.1 0s1.8.7 3-.3 2.3-1 3.1-.7" />
+      <path d="M7.5 18.5c.9-.6 1.8-.4 2.6 0 .8.4 1.6.6 2.6-.2" />
     </svg>
   );
 }
@@ -135,6 +139,7 @@ function IconApi(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 function IconTranslate(props: React.SVGProps<SVGSVGElement>) {
+  // Two language tiles (A | 文) with swap chevrons to convey translation
   return (
     <svg
       viewBox="0 0 24 24"
@@ -145,8 +150,17 @@ function IconTranslate(props: React.SVGProps<SVGSVGElement>) {
       strokeLinejoin="round"
       {...props}
     >
-      <path d="M4 5h16M9 5c0 7-5 9-5 14" />
-      <path d="M12 12h7m-3-3 3 3-3 3" />
+      {/* left tile */}
+      <rect x="3" y="3" width="10" height="8" rx="2" />
+      {/* right tile */}
+      <rect x="11" y="13" width="10" height="8" rx="2" />
+      {/* letter A */}
+      <path d="M6 10l2-5 2 5M6.8 8h2.4" />
+      {/* simple 文-like cross */}
+      <path d="M15 17h4M17 15v4" />
+      {/* swap chevrons */}
+      <path d="M9 8h4m0 0-1-1m1 1-1 1" />
+      <path d="M15 14h-4m0 0 1-1m-1 1 1 1" />
     </svg>
   );
 }
@@ -162,6 +176,22 @@ function IconCheck(props: React.SVGProps<SVGSVGElement>) {
       {...props}
     >
       <path d="M20 6 9 17l-5-5" />
+    </svg>
+  );
+}
+
+function IconSquare(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      {/* <rect x="5" y="5" width="14" height="14" rx="2" /> */}
     </svg>
   );
 }
@@ -476,7 +506,11 @@ export default function SectionInvoicing() {
                     className="flex items-start gap-2 text-slate-700"
                   >
                     <span className="mt-0.5 inline-flex items-center justify-center rounded-md bg-slate-50 ring-1 ring-slate-200 p-1">
-                      <IconCheck className="h-3.5 w-3.5" />
+                      {idx === 0 ? (
+                        <IconSquare className="h-3.5 w-3.5 text-slate-400" />
+                      ) : (
+                        <IconCheck className="h-3.5 w-3.5" />
+                      )}
                     </span>
                     <span className="text-sm md:text-base">{li}</span>
                   </li>

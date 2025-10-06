@@ -20,7 +20,7 @@ export const INVOICING = {
       "Stay ahead of the European Union's digital invoicing requirements",
     "invocing.section2.vida.title": "What is ViDA?",
     "invocing.section2.vida.description":
-      "ViDA (VAT in the Digital Age) is the European Union's initiative to modernize VAT reporting and compliance. From 2028, businesses will be required to use structured e-invoicing for cross-border B2B transactions.",
+      "ViDA (VAT in the Digital Age) is the European Union's initiative to modernize VAT reporting and compliance. Business are required to use structured e-invoicing for B2B transactions.",
     "invocing.section2.vida.list": [
       "Mandatory for cross-border B2B transactions from 2028",
       "Structured data format requirements (EN 16931)",
@@ -93,7 +93,7 @@ export const INVOICING = {
       "Anticipez les exigences de facturation numérique de l'Union européenne",
     "invocing.section2.vida.title": "Qu'est-ce que ViDA ?",
     "invocing.section2.vida.description":
-      "ViDA (VAT in the Digital Age) est l'initiative de l'Union européenne pour moderniser la déclaration et la conformité de la TVA. À partir de 2028, les entreprises seront tenues d'utiliser la facturation électronique structurée pour les transactions B2B transfrontalières.",
+      "ViDA (VAT in the Digital Age) est l’initiative de l’Union européenne visant à moderniser la déclaration et la conformité en matière de TVA. Les entreprises sont tenues d’utiliser la facturation électronique structurée pour les transactions B2B.",
     "invocing.section2.vida.list": [
       "Obligatoire pour les transactions B2B transfrontalières à partir de 2028",
       "Exigences de format de données structurées (EN 16931)",
@@ -168,7 +168,7 @@ export const INVOICING = {
       "Manténgase a la vanguardia de los requisitos de facturación digital de la Unión Europea",
     "invocing.section2.vida.title": "¿Qué es ViDA?",
     "invocing.section2.vida.description":
-      "ViDA (VAT in the Digital Age) es la iniciativa de la Unión Europea para modernizar la declaración y el cumplimiento del IVA. A partir de 2028, las empresas deberán utilizar facturación electrónica estructurada para transacciones B2B transfronterizas.",
+      "ViDA (VAT in the Digital Age) es la iniciativa de la Unión Europea para modernizar la declaración y el cumplimiento del IVA. Las empresas están obligadas a utilizar la facturación electrónica estructurada para las transacciones B2B.",
     "invocing.section2.vida.list": [
       "Obligatorio para transacciones B2B transfronterizas a partir de 2028",
       "Requisitos de formato de datos estructurados (EN 16931)",
@@ -241,7 +241,7 @@ export const INVOICING = {
       "Bleiben Sie der digitalen Rechnungsanforderungen der Europäischen Union voraus",
     "invocing.section2.vida.title": "Was ist ViDA?",
     "invocing.section2.vida.description":
-      "ViDA (VAT in the Digital Age) ist die Initiative der Europäischen Union zur Modernisierung der Mehrwertsteuerberichterstattung und -konformität. Ab 2028 müssen Unternehmen strukturierte E-Rechnungen für grenzüberschreitende B2B-Transaktionen verwenden.",
+      "ViDA (VAT in the Digital Age) ist die Initiative der Europäischen Union zur Modernisierung der Mehrwertsteuer­meldung und -konformität. Unternehmen sind verpflichtet, für B2B-Transaktionen strukturierte E-Rechnungen zu verwenden.",
     "invocing.section2.vida.list": [
       "Verpflichtend für grenzüberschreitende B2B-Transaktionen ab 2028",
       "Anforderungen an strukturierte Datenformate (EN 16931)",
