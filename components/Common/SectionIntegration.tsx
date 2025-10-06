@@ -180,10 +180,10 @@ export default function SectionIntegration() {
     "integration.title",
     "Integration — Reliable Bi-Directional Sync"
   );
-  const subtitle = tf(
-    "integration.subtitle",
-    "Go live in weeks with unified, reliable connectivity to ERP, TMS, and Accounting—no CSVs, full write-back, enterprise-grade controls."
-  );
+  //   const subtitle = tf(
+  //     "integration.subtitle",
+  //     "Go live in weeks with unified, reliable connectivity to ERP, TMS, and Accounting—no CSVs, full write-back, enterprise-grade controls."
+  //   );
 
   //   const featTitle = tf("integration.section1_title", "Key features");
   const groups = [
@@ -299,7 +299,7 @@ export default function SectionIntegration() {
           <h2 className="mt-4 text-4xl md:text-5xl font-extrabold tracking-tight uppercase">
             {title}
           </h2>
-          <p className="mt-3 text-lg md:text-xl text-white/90">{subtitle}</p>
+          {/* <p className="mt-3 text-lg md:text-xl text-white/90">{subtitle}</p> */}
 
           {/* Feature grids */}
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">

@@ -1,6 +1,6 @@
 export const INTEGRATION = {
   en: {
-    "integration.title": "Integration — Reliable Bi-Directional Sync",
+    "integration.title": "Feature-rich Integration",
     "integration.subtitle":
       "Go live in weeks with unified, reliable connectivity to ERP, TMS, and Accounting—no CSVs, full write-back, enterprise-grade controls.",
     "integration.section1_title": "Key features",
@@ -56,8 +56,7 @@ export const INTEGRATION = {
     ],
   },
   fr: {
-    "integration.title":
-      "Intégration — Synchronisation bidirectionnelle fiable",
+    "integration.title": "Intégration riche en fonctionnalités",
     "integration.subtitle":
       "Mettez en service en quelques semaines une connectivité unifiée et fiable avec les ERP, TMS et la comptabilité—sans CSV, avec écriture complète, et des contrôles de niveau entreprise.",
     "integration.section1_title": "Fonctionnalités clés",
@@ -113,7 +112,7 @@ export const INTEGRATION = {
     ],
   },
   es: {
-    "integration.title": "Integración — Sincronización bidireccional confiable",
+    "integration.title": "Integración rica en funciones",
     "integration.subtitle":
       "Póngase en marcha en semanas con una conectividad unificada y confiable con ERP, TMS y Contabilidad—sin CSV, con escritura completa y controles de nivel empresarial.",
     "integration.section1_title": "Características clave",
@@ -169,8 +168,7 @@ export const INTEGRATION = {
     ],
   },
   de: {
-    "integration.title":
-      "Integration — Zuverlässige bidirektionale Synchronisierung",
+    "integration.title": "Funktionsreiche Integration",
     "integration.subtitle":
       "Inbetriebnahme in Wochen mit einheitlicher, zuverlässiger Konnektivität zu ERP, TMS und Buchhaltung—keine CSVs, vollständige Rückschreibung, unternehmensgerechte Kontrollen.",
     "integration.section1_title": "Hauptmerkmale",
