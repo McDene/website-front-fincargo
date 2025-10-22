@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { Linkedin } from "lucide-react";
 import { useMemo } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackEvent } from "@/lib/analytics";
@@ -169,7 +170,7 @@ export default function Footer() {
                 <span itemProp="addressCountry">Spain</span>
               </address>
             </div>
-          </div>
+        </div>
 
           <a
             href="https://www.swissmadesoftware.org/home.html"
@@ -185,6 +186,21 @@ export default function Footer() {
               height={40}
             />
           </a>
+
+          {/* Social icons */}
+          <div className="flex items-center gap-3">
+            <a
+              href="https://www.linkedin.com/company/fincargo/posts/?feedView=all"
+              aria-label="LinkedIn"
+              title="LinkedIn"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={handleTrack("LinkedIn")}
+              className="inline-flex items-center justify-center h-9 w-9 rounded-full bg-white/5 ring-1 ring-white/10 hover:bg-white/10 hover:ring-white/20 transition"
+            >
+              <Linkedin className="h-5 w-5 text-white" aria-hidden="true" />
+            </a>
+          </div>
         </div>
 
         {/* Link sections */}
