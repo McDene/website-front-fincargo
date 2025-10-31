@@ -178,14 +178,9 @@ export default function MobileMenu({
 
             {/* CTA buttons */}
             <div className="mt-2  items-center justify-center gap-4 p-6">
-              <a
-                href="https://app.fincargo.ai/register"
-                target="_blank"
-                rel="noreferrer"
-                className="w-full max-w-xs text-center"
-              >
+              <a href="/get-started" className="w-full max-w-xs text-center">
                 <span className="inline-flex w-full items-center justify-center rounded-full px-6 py-4 my-4 text-lg font-semibold bg-white text-blue-950 hover:bg-slate-100 transition shadow-sm">
-                  {t("register")}
+                  {t("get_started")}
                 </span>
               </a>
               <a

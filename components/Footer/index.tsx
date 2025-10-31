@@ -55,7 +55,7 @@ export default function Footer() {
       titleKey: "carriers",
       links: [
         {
-          href: "https://platform.fincargo.ai/login",
+          href: "/get-started",
           labelKey: "get_started",
           trackLabel: "Get Started - Carriers",
         },
@@ -85,7 +85,7 @@ export default function Footer() {
       titleKey: "freight_forwarders",
       links: [
         {
-          href: "https://platform.fincargo.ai/login",
+          href: "/get-started",
           labelKey: "get_started",
           trackLabel: "Get Started - Freight Forwarders",
         },
@@ -170,7 +170,7 @@ export default function Footer() {
                 <span itemProp="addressCountry">Spain</span>
               </address>
             </div>
-        </div>
+          </div>
 
           <a
             href="https://www.swissmadesoftware.org/home.html"

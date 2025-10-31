@@ -12,6 +12,7 @@ import { INVOICING } from "./invoicing";
 import { ANALYTIC } from "./analytic";
 import { FACTORING } from "./factoring";
 import { INTEGRATION } from "./integration";
+import { GETSTARTED } from "./get_started";
 
 type Lang = "en" | "fr" | "es" | "de";
 type Value = string | readonly string[];
@@ -32,6 +33,7 @@ const modules = [
   ANALYTIC,
   FACTORING,
   INTEGRATION,
+  GETSTARTED,
 ] as const;
 
 const merge = <T extends Record<string, unknown>>(a: T, b: T): T =>

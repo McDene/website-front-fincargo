@@ -242,8 +242,8 @@ export default function SectionHero({
                     {t("hero.b2b.label")}
                   </h3>
                 </div>
-                {/* inline, compact country chips with round flags */}
-                <ul className="flex flex-wrap gap-2 sm:gap-3">
+                {/* inline, compact country chips with round flags (equal widths) */}
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                   {[1, 2, 3, 4, 5].map((i) => {
                     const [country, date, model] = tl(`hero.country.data.${i}`);
                     const flagByIndex: { [key: number]: string } = {
@@ -255,8 +255,8 @@ export default function SectionHero({
                     };
                     const code = flagByIndex[i];
                     return (
-                      <li key={i}>
-                        <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-sm ring-1 ring-white/15">
+                      <li key={i} className="w-full">
+                        <span className="inline-flex w-full items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-sm ring-1 ring-white/15">
                           {/* round country flag */}
                           <img
                             src={`https://hatscripts.github.io/circle-flags/flags/${code}.svg`}
@@ -266,8 +266,7 @@ export default function SectionHero({
                             loading="lazy"
                           />
                           <span className="text-white/80">{date}</span>
-                          <span className="text-white/80">•</span>
-                          <span className="rounded bg-white/15 px-2 py-0.5 text-xs font-semibold ring-1 ring-white/20">
+                          <span className="rounded bg-white/15 px-2 py-0.5 text-xs font-semibold ring-1 ring-white/20 ml-auto">
                             {model}
                           </span>
                         </span>

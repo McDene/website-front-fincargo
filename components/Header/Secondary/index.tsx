@@ -180,11 +180,7 @@ export default function Header() {
               />
 
               <div className="flex items-center gap-3">
-                <a
-                  href="https://platform.fincargo.ai/login"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <a href="/get-started">
                   <button
                     className={`px-4 py-2 rounded-full text-sm font-semibold transition ring-1 ${
                       sticky
@@ -192,7 +188,7 @@ export default function Header() {
                         : "bg-white text-blue-950 ring-white hover:bg-slate-100"
                     }`}
                   >
-                    {t("register")}
+                    {t("get_started")}
                   </button>
                 </a>
                 <a
