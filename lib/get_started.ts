@@ -8,7 +8,7 @@ export const GETSTARTED = {
       "Our team will guide you through every step — from first contact to full onboarding.",
     "started.how.works": "How It Works",
     "started.how.works.desc":
-      "Working with FINCARGO is fast, transparent, and designed to integrate seamlessly with your operations.Our Business Process as a Service (BPaaS) model unites compliance, automation, and financing intelligence — allowing you to focus on growth while we handle complexity.",
+      "Working with FINCARGO is fast, transparent, and designed to integrate seamlessly with your operations. Our Business Process as a Service (BPaaS) model unites compliance, automation, and financing intelligence — allowing you to focus on growth while we handle complexity.",
     "started.how.works.step1": [
       "Initial Call",
       "A short discovery meeting to understand your scope, legal entities, and operational set-up.",

@@ -186,28 +186,24 @@ export default function GetStartedPage() {
               </div>
               {/* Colonne droite: Illustration style "coin" (token) avec bordure issue de l'image */}
               <div className="hidden md:flex justify-end">
-                {/* Groupe avec perspective pour tilt 3D */}
-                <div className="relative w-44 h-44 lg:w-60 lg:h-60 xl:w-72 xl:h-72 group [perspective:1200px] drop-shadow-2xl">
-                  <div className="absolute inset-0 transform-gpu [transform-style:preserve-3d] transition-transform duration-700 ease-out [transform:rotateX(10deg)_rotateY(-14deg)] group-hover:[transform:rotateX(4deg)_rotateY(-6deg)]">
-                    {/* Anneau externe utilisant l'image comme texture via mask en couronne */}
-                    <div className="absolute inset-0 rounded-full bg-[url('/images/fincargo-get-started.png')] bg-cover bg-center [mask-image:radial-gradient(closest-side,transparent_calc(100%_-_12px),#000_calc(100%_-_12px))]" />
-                    {/* Face interne contenant l'image */}
-                    <div className="absolute inset-[12px] rounded-full overflow-hidden ring-1 ring-white/10 [transform:translateZ(2px)]">
-                      <Image
-                        src="/images/fincargo-get-started.png"
-                        alt="Get started illustration"
-                        width={560}
-                        height={560}
-                        className="w-full h-full object-cover"
-                        priority
-                      />
-                    </div>
-                    {/* Faux volume: léger bord projeté en profondeur */}
-                    <div className="absolute inset-[10px] rounded-full ring-1 ring-black/10 opacity-30 [transform:translateZ(-8px)]" />
-                    {/* Reflets pour effet métal/brillance */}
-                    <div className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(80%_50%_at_25%_15%,rgba(255,255,255,0.45),rgba(255,255,255,0)_60%)]" />
-                    <div className="pointer-events-none absolute inset-0 rounded-full bg-[conic-gradient(from_200deg_at_50%_50%,rgba(255,255,255,0.25)_0deg,rgba(255,255,255,0.08)_110deg,rgba(0,0,0,0.0)_200deg,rgba(255,255,255,0.18)_360deg)] opacity-60" />
+                {/* Illustration style "coin" (token) — flat (pas d'effet 3D) */}
+                <div className="relative w-44 h-44 lg:w-60 lg:h-60 xl:w-72 xl:h-72 drop-shadow-2xl">
+                  {/* Anneau externe utilisant l'image comme texture via mask en couronne */}
+                  <div className="absolute inset-0 rounded-full bg-[url('/images/fincargo-get-started.png')] bg-cover bg-center [mask-image:radial-gradient(closest-side,transparent_calc(100%_-_12px),#000_calc(100%_-_12px))]" />
+                  {/* Face interne contenant l'image */}
+                  <div className="absolute inset-[12px] rounded-full overflow-hidden ring-1 ring-white/10">
+                    <Image
+                      src="/images/fincargo-get-started.png"
+                      alt="Get started illustration"
+                      width={560}
+                      height={560}
+                      className="w-full h-full object-cover"
+                      priority
+                    />
                   </div>
+                  {/* Reflets pour effet métal/brillance (subtils) */}
+                  <div className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(80%_50%_at_25%_15%,rgba(255,255,255,0.35),rgba(255,255,255,0)_60%)]" />
+                  <div className="pointer-events-none absolute inset-0 rounded-full bg-[conic-gradient(from_200deg_at_50%_50%,rgba(255,255,255,0.18)_0deg,rgba(255,255,255,0.06)_110deg,rgba(0,0,0,0.0)_200deg,rgba(255,255,255,0.14)_360deg)] opacity-60" />
                 </div>
               </div>
             </div>

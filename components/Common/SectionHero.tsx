@@ -212,8 +212,8 @@ export default function SectionHero({
             />
 
             {/* Mock laptop frame */}
-            <div className="relative w-full max-w-[680px] group [perspective:1200px]">
-              <div className="mx-auto aspect-[16/10] rounded-2xl border border-white/15 bg-white/5 shadow-2xl backdrop-blur ring-1 ring-white/10 origin-bottom will-change-transform transform-gpu transition-transform duration-700 ease-out [transform:rotateX(8deg)_rotateY(14deg)] group-hover:[transform:rotateX(6deg)_rotateY(10deg)]">
+            <div className="relative w-full max-w-[680px]">
+              <div className="mx-auto aspect-[16/10] rounded-2xl border border-white/15 bg-white/5 shadow-2xl backdrop-blur ring-1 ring-white/10">
                 {/* Bezel */}
                 <div className="absolute left-0 right-0 top-0 h-8 rounded-t-2xl bg-gradient-to-b from-white/15 to-white/5 flex items-center justify-start px-4 gap-2">
                   <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
@@ -226,7 +226,7 @@ export default function SectionHero({
                     alt={imageAlt}
                     width={500}
                     height={500}
-                    className="h-full w-full object-cover will-change-transform"
+                    className="h-full w-full object-cover"
                     loading="eager"
                     unoptimized
                   />
