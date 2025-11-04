@@ -182,6 +182,11 @@ export default function GetStartedPage() {
                   <p className="mt-2 text-lg md:text-xl text-slate-700">
                     {t("started.ous.team")}
                   </p>
+                  <div className="mt-3">
+                    <span className="inline-flex items-center gap-2 rounded-full bg-lightBlue/10 text-darkBlue px-3 py-1 text-sm font-semibold ring-1 ring-lightBlue/30">
+                      {t("started.tag")}
+                    </span>
+                  </div>
                 </div>
               </div>
               {/* Colonne droite: Illustration style "coin" (token) avec bordure issue de l'image */}

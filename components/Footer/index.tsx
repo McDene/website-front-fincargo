@@ -59,11 +59,6 @@ export default function Footer() {
           labelKey: "get_started",
           trackLabel: "Get Started - Carriers",
         },
-        {
-          href: "https://platform.fincargo.ai/login",
-          labelKey: "login",
-          trackLabel: "Log In - Carriers",
-        },
         // {
         //   href: "/explore-freight-forwarders-partners",
         //   labelKey: "explore_freight_forwarders_partners",
@@ -88,11 +83,6 @@ export default function Footer() {
           href: "/get-started",
           labelKey: "get_started",
           trackLabel: "Get Started - Freight Forwarders",
-        },
-        {
-          href: "https://platform.fincargo.ai/login",
-          labelKey: "login",
-          trackLabel: "Log In - Freight Forwarders",
         },
         // {
         //   href: "/#",

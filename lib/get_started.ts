@@ -6,6 +6,7 @@ export const GETSTARTED = {
       "Ready to increase control and accelerate compliance & cash?",
     "started.ous.team":
       "Our team will guide you through every step — from first contact to full onboarding.",
+    "started.tag": "6-8 weeks implementation",
     "started.how.works": "How It Works",
     "started.how.works.desc":
       "Working with FINCARGO is fast, transparent, and designed to integrate seamlessly with your operations. Our Business Process as a Service (BPaaS) model unites compliance, automation, and financing intelligence — allowing you to focus on growth while we handle complexity.",
@@ -48,6 +49,7 @@ export const GETSTARTED = {
       "¿Listo para aumentar el control y acelerar el cumplimiento y el efectivo?",
     "started.ous.team":
       "Nuestro equipo lo guiará en cada paso, desde el primer contacto hasta la incorporación completa.",
+    "started.tag": "Implementación de 6-8 semanas",
     "started.how.works": "Cómo Funciona",
     "started.how.works.desc":
       "Trabajar con FINCARGO es rápido, transparente y está diseñado para integrarse perfectamente con sus operaciones. Nuestro modelo de Proceso Comercial como Servicio (BPaaS) une cumplimiento, automatización e inteligencia financiera, lo que le permite centrarse en el crecimiento mientras nosotros manejamos la complejidad.",
@@ -90,6 +92,7 @@ export const GETSTARTED = {
       "Prêt à augmenter le contrôle et accélérer la conformité et la trésorerie ?",
     "started.ous.team":
       "Notre équipe vous guidera à chaque étape, du premier contact à l'intégration complète.",
+    "started.tag": "Mise en œuvre en 6-8 semaines",
     "started.how.works": "Comment ça marche",
     "started.how.works.desc":
       "Travailler avec FINCARGO est rapide, transparent et conçu pour s'intégrer parfaitement à vos opérations. Notre modèle de Processus Commercial en tant que Service (BPaaS) unit conformité, automatisation et intelligence financière, vous permettant de vous concentrer sur la croissance pendant que nous gérons la complexité.",
@@ -132,6 +135,7 @@ export const GETSTARTED = {
       "Bereit, die Kontrolle zu erhöhen und Compliance & Cash zu beschleunigen?",
     "started.ous.team":
       "Unser Team begleitet Sie bei jedem Schritt – vom Erstkontakt bis zur vollständigen Onboarding.",
+    "started.tag": "Implementierung in 6-8 Wochen",
     "started.how.works": "Wie es funktioniert",
     "started.how.works.desc":
       "Die Zusammenarbeit mit FINCARGO ist schnell, transparent und darauf ausgelegt, sich nahtlos in Ihre Abläufe zu integrieren. Unser Business Process as a Service (BPaaS)-Modell vereint Compliance, Automatisierung und Finanzierungskompetenz – so können Sie sich auf Wachstum konzentrieren, während wir die Komplexität übernehmen.",

@@ -192,22 +192,6 @@ export default function Header() {
                     {t("get_started")}
                   </button>
                 </a>
-                <a
-                  href="https://platform.fincargo.ai/login"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hidden xl:inline-block"
-                >
-                  <button
-                    className={`px-4 py-2 rounded-full text-sm font-semibold transition ${
-                      sticky
-                        ? "text-darkBlue hover:bg-slate-100"
-                        : "text-white hover:text-blue-950 hover:bg-white/90"
-                    }`}
-                  >
-                    {t("login")}
-                  </button>
-                </a>
                 <LanguageSwitcher />
               </div>
             </div>

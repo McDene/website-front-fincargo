@@ -176,21 +176,11 @@ export default function MobileMenu({
               ))}
             </nav>
 
-            {/* CTA buttons */}
-            <div className="mt-2 flex items-center justify-center gap-4 p-6">
+            {/* CTA button */}
+            <div className="mt-2 flex items-center justify-center p-6">
               <a href="/get-started" className="w-full max-w-xs text-center">
                 <span className="inline-flex w-full items-center justify-center rounded-full px-6 py-4 text-lg font-semibold bg-white text-blue-950 hover:bg-slate-100 transition shadow-sm">
                   {t("get_started")}
-                </span>
-              </a>
-              <a
-                href="https://app.fincargo.ai/login"
-                target="_blank"
-                rel="noreferrer"
-                className="w-full max-w-xs text-center"
-              >
-                <span className="inline-flex w-full items-center justify-center rounded-full px-6 py-4 text-lg font-semibold bg-white/10 ring-1 ring-white/20 text-white hover:bg-white/15 transition">
-                  {t("login")}
                 </span>
               </a>
             </div>
