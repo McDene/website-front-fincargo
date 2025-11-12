@@ -14,6 +14,11 @@ const nextConfig = {
         hostname: "fincargo-backend-website.onrender.com",
         pathname: "/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/**",
+      },
     ],
   },
   devIndicators: {

@@ -42,6 +42,9 @@ export const GENERAL = {
     message: "Message",
     send: "Send",
     sending: "Sending...",
+    share: "Share",
+    copy_link: "Copy link",
+    back_to_blog: "Back to blog",
   },
   es: {
     pricing: "Tarifas",
@@ -87,6 +90,9 @@ export const GENERAL = {
     message: "Mensaje",
     send: "Enviar",
     sending: "Enviando...",
+    share: "Compartir",
+    copy_link: "Copiar enlace",
+    back_to_blog: "Volver al blog",
   },
   fr: {
     pricing: "Tarifs",
@@ -133,6 +139,9 @@ export const GENERAL = {
     message: "Message",
     send: "Envoyer",
     sending: "Envoi en cours...",
+    share: "Partager",
+    copy_link: "Copier le lien",
+    back_to_blog: "Retour au blog",
   },
   de: {
     pricing: "Preise",
@@ -177,5 +186,8 @@ export const GENERAL = {
     message: "Nachricht",
     send: "Senden",
     sending: "Senden...",
+    share: "Teilen",
+    copy_link: "Link kopieren",
+    back_to_blog: "Zurück zum Blog",
   },
 } as const;

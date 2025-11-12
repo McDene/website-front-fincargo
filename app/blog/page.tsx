@@ -1,4 +1,4 @@
-import Header from "@/components/Header/Main";
+import Header from "@/components/Header/Secondary";
 import BlogOverview from "@/components/Blog/BlogOverview";
 import SectionHeroSmall from "@/components/Common/SectionHeroSmall";
 import Footer from "@/components/Footer";
