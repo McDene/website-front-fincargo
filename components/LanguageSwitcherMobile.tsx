@@ -2,8 +2,10 @@
 
 import { useContext, useEffect, useRef, useState } from "react";
 import { LanguageContext } from "@/context/LanguageContext";
+import { usePathname, useRouter } from "next/navigation";
+import { SUPPORTED_UI_LOCALES, type LanguageCore } from "@/lib/i18n";
 
-type Language = "en" | "fr" | "es" | "de";
+type Language = LanguageCore;
 
 const LANGUAGES: ReadonlyArray<{ code: Language; label: string }> = [
   { code: "en", label: "EN" },
@@ -16,9 +18,25 @@ export default function LanguageSwitcherMobile() {
   const { language, switchLanguage } = useContext(LanguageContext);
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const withLocalePath = (currentPath: string, lang: LanguageCore) => {
+    const parts = (currentPath || "/").split("/");
+    const first = parts[1];
+    if (SUPPORTED_UI_LOCALES.includes(first as LanguageCore)) {
+      parts.splice(1, 1);
+    }
+    const rest = parts.join("/") || "/";
+    if (lang === "en") return rest.startsWith("/") ? rest : `/${rest}`;
+    const base = rest.startsWith("/") ? rest : `/${rest}`;
+    return `/${lang}${base === "/" ? "" : base}`;
+  };
 
   const handleLanguageChange = (lang: Language) => {
     switchLanguage(lang);
+    const target = withLocalePath(pathname || "/", lang);
+    router.push(target);
     setIsOpen(false);
   };
 

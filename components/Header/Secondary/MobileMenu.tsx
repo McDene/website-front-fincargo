@@ -2,6 +2,8 @@
 
 import { useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { SUPPORTED_UI_LOCALES, type LanguageCore } from "@/lib/i18n";
 import Image from "next/image";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import {
@@ -37,6 +39,7 @@ export default function MobileMenu({
   menuItems,
 }: MobileMenuProps) {
   const { t } = useTranslation();
+  const pathname = usePathname();
   const reduceMotion = useReducedMotion();
 
   // Body scroll lock (defensive even if header handles it)
@@ -136,7 +139,13 @@ export default function MobileMenu({
             {/* Top bar */}
             <div className="w-full flex items-center justify-between px-5">
               <Link
-                href="/"
+                href={(() => {
+                  const parts = (pathname || "/").split("/");
+                  const first = parts[1];
+                  const hasLocale = (SUPPORTED_UI_LOCALES as readonly string[]).includes(first);
+                  const currentLocale = hasLocale ? (first as LanguageCore) : undefined;
+                  return currentLocale && currentLocale !== "en" ? `/${currentLocale}` : "/";
+                })()}
                 aria-label="Fincargo home"
                 onClick={toggleMenu}
                 className="flex-shrink-0"
@@ -178,11 +187,22 @@ export default function MobileMenu({
 
             {/* CTA button */}
             <div className="mt-2 flex items-center justify-center p-6">
-              <a href="/get-started" className="w-full max-w-xs text-center">
+              <Link
+                href={(() => {
+                  const parts = (pathname || "/").split("/");
+                  const first = parts[1];
+                  const hasLocale = (SUPPORTED_UI_LOCALES as readonly string[]).includes(first);
+                  const currentLocale = hasLocale ? (first as LanguageCore) : undefined;
+                  const base = currentLocale && currentLocale !== "en" ? `/${currentLocale}` : "";
+                  return `${base}/get-started`;
+                })()}
+                className="w-full max-w-xs text-center"
+                onClick={toggleMenu}
+              >
                 <span className="inline-flex w-full items-center justify-center rounded-full px-6 py-4 text-lg font-semibold bg-white text-blue-950 hover:bg-slate-100 transition shadow-sm">
                   {t("get_started")}
                 </span>
-              </a>
+              </Link>
             </div>
           </motion.div>
         </>

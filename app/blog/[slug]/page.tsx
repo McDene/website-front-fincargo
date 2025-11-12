@@ -1,6 +1,7 @@
 import BlogItem from "@/components/Blog/BlogItem";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
+import { detectServerUiLocale, toStrapiLocale } from "@/lib/i18n";
 
 export const revalidate = 3600;
 
@@ -33,9 +34,10 @@ const isRecord = (v: unknown): v is Record<string, unknown> =>
   typeof v === "object" && v !== null;
 
 async function getBlog(slug: string): Promise<Blog | null> {
+  const ui = await detectServerUiLocale();
   const response = await fetchAPI(
     `/api/blogs?filters[Slug][$eq]=${slug}&populate=*`,
-    "en"
+    toStrapiLocale(ui)
   );
   if (Array.isArray(response?.data) && response.data.length > 0) {
     const fetchedBlog = response.data[0] as unknown;
@@ -76,9 +78,10 @@ export default async function BlogIdPage({
 
 export async function generateStaticParams() {
   // Try to pre-render known slugs; fall back gracefully when API is offline
+  const ui = await detectServerUiLocale();
   const res = await fetchAPI(
     "/api/blogs?pagination[pageSize]=100&fields=Slug",
-    "en"
+    toStrapiLocale(ui)
   );
   type HasSlug = { Slug?: string };
   const slugs: string[] = Array.isArray(res?.data)

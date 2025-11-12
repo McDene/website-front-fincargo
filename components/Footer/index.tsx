@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { SUPPORTED_UI_LOCALES, type LanguageCore } from "@/lib/i18n";
 import { Linkedin } from "lucide-react";
 import { useMemo } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
@@ -21,6 +23,26 @@ interface FooterSection {
 export default function Footer() {
   const { t } = useTranslation();
   const year = useMemo(() => new Date().getFullYear(), []);
+  const pathname = usePathname();
+
+  const currentLocale = (() => {
+    const parts = (pathname || "/").split("/");
+    const first = parts[1];
+    return (SUPPORTED_UI_LOCALES as readonly string[]).includes(first)
+      ? (first as LanguageCore)
+      : undefined;
+  })();
+
+  const localizeHref = (href: string) => {
+    // external URLs unchanged
+    if (/^https?:\/\//i.test(href)) return href;
+    // already localized or no current locale or EN (default path has no prefix)
+    if (!currentLocale || currentLocale === "en") return href;
+    if (href.startsWith(`/${currentLocale}`)) return href;
+    // prepend current locale
+    if (href === "/") return `/${currentLocale}`;
+    return `/${currentLocale}${href}`;
+  };
 
   // Centralized config so it’s easier to maintain / reorder
   const sections: FooterSection[] = [
@@ -222,7 +244,7 @@ export default function Footer() {
                     </a>
                   ) : (
                     <Link
-                      href={link.href}
+                      href={localizeHref(link.href)}
                       prefetch={false}
                       scroll={false}
                       onClick={handleTrack(link.trackLabel)}

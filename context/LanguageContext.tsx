@@ -1,5 +1,6 @@
 "use client";
 import React, { createContext, useState, useEffect } from "react";
+import { getCookie, setCookie } from "cookies-next";
 import TRANSLATIONS from "@/lib/index";
 
 interface LanguageContextProps {
@@ -21,14 +22,27 @@ export const LanguageProvider: React.FC<React.PropsWithChildren> = ({
     useState<LanguageContextProps["language"]>("en");
 
   useEffect(() => {
-    const saved = localStorage.getItem("language");
+    // 1) If server set NEXT_LOCALE (via middleware), honor it on first load
+    const cookieLang = getCookie("NEXT_LOCALE");
+    if (cookieLang === "en" || cookieLang === "fr" || cookieLang === "es" || cookieLang === "de") {
+      setLanguage(cookieLang);
+      // keep localStorage in sync for later navigations
+      try { localStorage.setItem("language", cookieLang); } catch {}
+      return;
+    }
+
+    // 2) Fallback to saved local preference
+    const saved = typeof window !== "undefined" ? localStorage.getItem("language") : null;
     if (saved === "en" || saved === "fr" || saved === "es" || saved === "de") {
       setLanguage(saved);
+      // also write cookie so SSR fetch uses it on next navigation
+      try { setCookie("NEXT_LOCALE", saved, { path: "/" }); } catch {}
     }
   }, []);
 
   const switchLanguage = (lang: LanguageContextProps["language"]) => {
-    localStorage.setItem("language", lang);
+    try { localStorage.setItem("language", lang); } catch {}
+    try { setCookie("NEXT_LOCALE", lang, { path: "/" }); } catch {}
     setLanguage(lang);
   };
 

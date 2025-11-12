@@ -2,9 +2,11 @@
 
 import { useContext, useEffect, useRef, useState } from "react";
 import { LanguageContext } from "@/context/LanguageContext";
+import { usePathname, useRouter } from "next/navigation";
+import { SUPPORTED_UI_LOCALES, type LanguageCore } from "@/lib/i18n";
 
 /** Langues supportées par ton Context */
-export type LanguageCore = "en" | "fr" | "es" | "de";
+// moved to lib/i18n
 /** Locales attendues côté Strapi */
 export type StrapiLocale = "en" | "fr" | "es-ES" | "de";
 
@@ -25,16 +27,31 @@ const LANGUAGES: ReadonlyArray<{
 
 export default function LanguageSwitcher() {
   const { language, switchLanguage } = useContext(LanguageContext);
+  const router = useRouter();
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
+  const withLocalePath = (currentPath: string, lang: LanguageCore) => {
+    const parts = (currentPath || "/").split("/");
+    const first = parts[1];
+    if (SUPPORTED_UI_LOCALES.includes(first as LanguageCore)) {
+      parts.splice(1, 1); // remove existing locale segment
+    }
+    const rest = parts.join("/") || "/";
+    if (lang === "en") return rest.startsWith("/") ? rest : `/${rest}`;
+    const base = rest.startsWith("/") ? rest : `/${rest}`;
+    return `/${lang}${base === "/" ? "" : base}`;
+  };
+
   const handleLanguageChange = (lang: LanguageCore) => {
-    switchLanguage(lang); // ✅ typé
-    // (Optionnel) si tu veux mémoriser le locale Strapi côté client
+    switchLanguage(lang);
     try {
       const sel = LANGUAGES.find((l) => l.code === lang);
       if (sel) localStorage.setItem("strapiLocale", sel.strapi);
     } catch {}
+    const target = withLocalePath(pathname || "/", lang);
+    router.push(target);
     setIsOpen(false);
   };
 

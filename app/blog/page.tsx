@@ -3,11 +3,16 @@ import BlogOverview from "@/components/Blog/BlogOverview";
 import SectionHeroSmall from "@/components/Common/SectionHeroSmall";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
+import { detectServerUiLocale, toStrapiLocale } from "@/lib/i18n";
 
 export const revalidate = 3600;
 
 export default async function BlogPage() {
-  const blogRes = await fetchAPI("/api/blogs?[populate]=PrefaceImage", "en");
+  const uiLocale = await detectServerUiLocale();
+  const blogRes = await fetchAPI(
+    "/api/blogs?[populate]=PrefaceImage",
+    toStrapiLocale(uiLocale)
+  );
   const blogData = Array.isArray(blogRes?.data) ? blogRes.data : [];
 
   return (

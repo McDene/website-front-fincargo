@@ -9,6 +9,7 @@ import MenuButton from "./MenuButton";
 import MobileMenu from "./MobileMenu";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import LanguageSwitcherMobile from "@/components/LanguageSwitcherMobile";
+import { SUPPORTED_UI_LOCALES, type LanguageCore } from "@/lib/i18n";
 
 /**
  * Header with headroom behavior (hide on scroll down, show on scroll up),
@@ -107,8 +108,33 @@ export default function Header() {
 
   const toggleMenu = () => setMenuOpen((s) => !s);
 
-  // Resolve anchor href: on homepage, use hash; otherwise link to "/#id"
-  const resolveHref = (hash: string) => (pathname === "/" ? hash : `/${hash}`);
+  // Resolve anchor href respecting current locale prefix
+  const resolveHref = (hash: string) => {
+    const parts = (pathname || "/").split("/");
+    const first = parts[1];
+    const hasLocale = (SUPPORTED_UI_LOCALES as readonly string[]).includes(first);
+    const currentLocale = hasLocale ? (first as LanguageCore) : undefined;
+    const isHome =
+      pathname === "/" ||
+      (hasLocale && (parts.length === 2 || (parts.length === 3 && parts[2] === "")));
+
+    if (isHome) return hash; // in-page anchor
+
+    const prefix = currentLocale && currentLocale !== "en" ? `/${currentLocale}` : "";
+    return `${prefix}/${hash}`; // e.g. /fr/#benefit
+  };
+
+  const localizeHref = (href: string) => {
+    if (/^https?:\/\//i.test(href)) return href;
+    const parts = (pathname || "/").split("/");
+    const first = parts[1];
+    const hasLocale = (SUPPORTED_UI_LOCALES as readonly string[]).includes(first);
+    const currentLocale = hasLocale ? (first as LanguageCore) : undefined;
+    if (!currentLocale || currentLocale === "en") return href;
+    if (href.startsWith(`/${currentLocale}`)) return href;
+    if (href === "/") return `/${currentLocale}`;
+    return `/${currentLocale}${href}`;
+  };
 
   // Determine header skin near top
   const skinClass = sticky
@@ -137,7 +163,7 @@ export default function Header() {
             {/* Top bar (mobile) */}
             <div className="flex items-center justify-between h-16 lg:hidden">
               <Link
-                href="/"
+                href={localizeHref("/")}
                 className="flex-shrink-0"
                 aria-label="Fincargo home"
               >
@@ -157,7 +183,7 @@ export default function Header() {
             {/* Main bar (desktop) */}
             <div className="hidden lg:flex items-center justify-between py-3">
               <Link
-                href="/"
+                href={localizeHref("/")}
                 className="flex-shrink-0"
                 aria-label="Fincargo home"
               >
@@ -180,7 +206,7 @@ export default function Header() {
               />
 
               <div className="flex items-center gap-3">
-                <a href="/get-started">
+                <Link href={localizeHref("/get-started")}>
                   <button
                     className={`px-4 py-2 rounded-full text-sm font-semibold transition ring-1 ${
                       sticky
@@ -190,7 +216,7 @@ export default function Header() {
                   >
                     {t("get_started")}
                   </button>
-                </a>
+                </Link>
                 <LanguageSwitcher />
               </div>
             </div>
