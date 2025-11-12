@@ -226,12 +226,12 @@ export default function SectionFeatures({}: SectionFeaturesProps) {
             <a
               key={f.name}
               href={f.href}
-              className={`group relative overflow-hidden rounded-2xl bg-white px-6 py-8 md:px-7 md:py-10 border border-slate-200 shadow-sm ring-1 ring-slate-900/5 transition-all duration-700 ease-out ${
+              className={`group relative overflow-hidden rounded-2xl bg-white px-6 py-8 md:px-7 md:py-10 border border-slate-200 shadow-sm ring-1 ring-slate-900/5 transition-all duration-700 hover:duration-200 ease-out transform-gpu ${
                 visible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-6"
-              } hover:shadow-md`}
-              style={{ transitionDelay: `${150 + i * 120}ms` }}
+              } hover:shadow-md hover:scale-[1.02] hover:-translate-y-0.5`}
+              style={{ transitionDelay: `${50 + i * 50}ms` }}
               aria-label={`${f.name} – ${learnMore}`}
             >
               {/* subtle top edge sheen */}

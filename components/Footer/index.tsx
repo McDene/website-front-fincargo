@@ -246,7 +246,6 @@ export default function Footer() {
                     <Link
                       href={localizeHref(link.href)}
                       prefetch={false}
-                      scroll={false}
                       onClick={handleTrack(link.trackLabel)}
                       className="hover:text-white/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded"
                     >
