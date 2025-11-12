@@ -1,11 +1,8 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
-import ClipLoader from "react-spinners/ClipLoader";
 import BlogItem from "@/components/Blog/BlogItem";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
+
+export const revalidate = 3600;
 
 interface InlineNode {
   type?: string;
@@ -32,68 +29,110 @@ interface Blog {
   Gallery?: { url: string }[];
 }
 
-export default function BlogIdPage() {
-  const params = useParams();
-  const slug = params.slug as string;
-  const [blog, setBlog] = useState<Blog | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [showLoader, setShowLoader] = useState(false);
+const isRecord = (v: unknown): v is Record<string, unknown> =>
+  typeof v === "object" && v !== null;
 
-  useEffect(() => {
-    if (!slug) return;
-
-    const loaderTimeout = setTimeout(() => {
-      setShowLoader(true);
-    }, 500);
-
-    const fetchBlog = async () => {
-      try {
-        const response = await fetchAPI(
-          `/api/blogs?filters[Slug][$eq]=${slug}&populate=*`
-        );
-        if (response?.data?.length > 0) {
-          const fetchedBlog = response.data[0];
-
-          // Vérification et transformation des données si nécessaire
-          setBlog({
-            Title: fetchedBlog.Title,
-            Introduction: Array.isArray(fetchedBlog.Introduction)
-              ? fetchedBlog.Introduction
-              : [], // S'assure que c'est bien un tableau
-            Date: fetchedBlog.Date,
-            Content: Array.isArray(fetchedBlog.Content)
-              ? fetchedBlog.Content
-              : [], // S'assure que c'est bien un tableau
-            Gallery: fetchedBlog.Gallery || [],
-          });
-        } else {
-          setBlog(null);
-        }
-      } catch (error) {
-        console.error("Erreur API:", error);
-      } finally {
-        setLoading(false);
-      }
+async function getBlog(slug: string): Promise<Blog | null> {
+  const response = await fetchAPI(
+    `/api/blogs?filters[Slug][$eq]=${slug}&populate=*`,
+    "en"
+  );
+  if (Array.isArray(response?.data) && response.data.length > 0) {
+    const fetchedBlog = response.data[0] as unknown;
+    if (!isRecord(fetchedBlog)) return null;
+    return {
+      Title: String(fetchedBlog.Title ?? ""),
+      Introduction: Array.isArray((fetchedBlog as Record<string, unknown>).Introduction)
+        ? ((fetchedBlog as Record<string, unknown>).Introduction as ContentBlock[])
+        : [],
+      Date: String(fetchedBlog.Date ?? ""),
+      Content: Array.isArray((fetchedBlog as Record<string, unknown>).Content)
+        ? ((fetchedBlog as Record<string, unknown>).Content as ContentBlock[])
+        : [],
+      Gallery: (isRecord((fetchedBlog as Record<string, unknown>).Gallery) ||
+        Array.isArray((fetchedBlog as Record<string, unknown>).Gallery))
+        ? ((fetchedBlog as Record<string, unknown>).Gallery as { url: string }[])
+        : [],
     };
-
-    fetchBlog();
-    return () => clearTimeout(loaderTimeout);
-  }, [slug]);
-
-  if (loading && showLoader) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <ClipLoader color="#3b82f6" size={50} />
-      </div>
-    );
   }
+  return null;
+}
+
+export default async function BlogIdPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const blog = await getBlog(slug);
 
   return (
-    !loading && (
-      <>
-        {blog && <BlogItem blog={blog} />}
-        <Footer />
-      </>
-    )
+    <>
+      {blog ? <BlogItem blog={blog} /> : <p className="text-center">Article non trouvé.</p>}
+      <Footer />
+    </>
   );
+}
+
+export async function generateStaticParams() {
+  // Try to pre-render known slugs; fall back gracefully when API is offline
+  const res = await fetchAPI(
+    "/api/blogs?pagination[pageSize]=100&fields=Slug",
+    "en"
+  );
+  type HasSlug = { Slug?: string };
+  const slugs: string[] = Array.isArray(res?.data)
+    ? (res.data as HasSlug[])
+        .map((b) => b?.Slug)
+        .filter((s: unknown): s is string => typeof s === "string")
+    : [];
+  return slugs.map((slug) => ({ slug }));
+}
+
+// Build a safe text excerpt from Introduction blocks
+const excerptFromBlocks = (blocks: ContentBlock[] | undefined, max = 160) => {
+  if (!Array.isArray(blocks)) return "";
+  const text = blocks
+    .map((b) => (Array.isArray(b.children) ? b.children.map((c) => c.text || "").join(" ") : ""))
+    .join(" ")
+    .replace(/\s+/g, " ")
+    .trim();
+  return text.length > max ? `${text.slice(0, max - 1)}…` : text;
+};
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const blog = await getBlog(slug);
+  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const title = blog?.Title ? `${blog.Title}` : "Blog";
+  const description = excerptFromBlocks(blog?.Introduction) ||
+    "Article about freight finance, factoring and logistics by Fincargo.";
+
+  // Try to use a gallery image if available
+  const imageUrl = blog?.Gallery && blog.Gallery[0]?.url
+    ? blog.Gallery[0].url
+    : `${SITE_URL}/logo/logo-fincargo.png`;
+
+  return {
+    title,
+    description,
+    alternates: { canonical: `/blog/${slug}` },
+    openGraph: {
+      title,
+      description,
+      url: `${SITE_URL}/blog/${slug}`,
+      type: "article",
+      images: [imageUrl],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [imageUrl],
+    },
+  } as const;
 }

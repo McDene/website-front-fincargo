@@ -17,8 +17,14 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
 export const metadata: Metadata = {
-  title: "AI-Powered Invoice Financing for Road Freight Carriers",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "AI-Powered Invoice Financing for Road Freight Carriers",
+    template: "%s | Fincargo",
+  },
   description:
     "AI-powered Invoice-to-Cash solution for the transportation industry.",
   icons: {
@@ -28,12 +34,12 @@ export const metadata: Metadata = {
     title: "AI-Powered Invoice Financing for Road Freight Carriers",
     description:
       "AI-powered Invoice-to-Cash solution for the transportation industry.",
-    url: "https://www.fincargo.ai",
+    url: SITE_URL,
     siteName: "Fincargo",
     locale: "en_US",
     images: [
       {
-        url: "https://www.fincargo.ai/logo/logo-fincargo.png",
+        url: `${SITE_URL}/logo/logo-fincargo.png`,
         width: 1200,
         height: 630,
         alt: "Fincargo AI-driven freight financing",
@@ -47,7 +53,9 @@ export const metadata: Metadata = {
     title: "Fincargo - AI-powered Freight Financing",
     description:
       "Fincargo leverages AI to improve efficiency in freight forwarding. Join us today!",
-    images: ["https://www.fincargo.ai/meta/twitter-image.jpg"],
+    images: [
+      `${SITE_URL}/meta/twitter-image.jpg`,
+    ],
   },
 };
 

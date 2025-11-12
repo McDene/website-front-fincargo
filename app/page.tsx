@@ -1,21 +1,15 @@
-"use client";
-
-import { useEffect, useState, useContext } from "react";
-import ClipLoader from "react-spinners/ClipLoader";
 import Header from "@/components/Header/Main";
 import Hero from "@/components/Hero";
 import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
-import { LanguageContext } from "@/context/LanguageContext";
-import { toStrapiLocale } from "@/lib/i18n";
 import SectionBenefits from "@/components/Common/SectionProvenResults";
 import SectionFeatures from "@/components/Common/SectionFeatures";
-
 import SectionPricingByTransaction from "@/components/Common/SectionPricingByTransaction";
 import SectionDemo from "@/components/Common/SectionDemo";
 
-/* ================== Types ================== */
+export const revalidate = 3600; // revalidate every hour
+
 interface HeroData {
   Title: string;
   Paragraph: string;
@@ -39,7 +33,6 @@ interface FaqData {
   };
 }
 
-/* ============ Type guards & helpers ============ */
 const isRecord = (val: unknown): val is Record<string, unknown> =>
   typeof val === "object" && val !== null;
 
@@ -62,7 +55,6 @@ const pickNumber = (
   return typeof v === "number" ? v : undefined;
 };
 
-/* ============ Normalizers (Strapi) ============ */
 const normalizeHeroData = (raw: unknown): HeroData | null => {
   if (!isRecord(raw)) return null;
 
@@ -117,139 +109,69 @@ const normalizeFaqEntry = (raw: unknown): FaqData | null => {
   return { id, FAQ: { Title, Subtitle, Accordion } };
 };
 
-/* ================== Page ================== */
-export default function Home() {
-  const { language } = useContext(LanguageContext);
+export default async function Home() {
+  // SSR fetch in default language (en) for SEO
+  const [heroResponse, faqCarrierRes, faqFreightRes] = await Promise.all([
+    fetchAPI(
+      "/api/hero-videos?filters[Page][$eq]=Carriers&populate[Hero][populate]=Video",
+      "en"
+    ),
+    fetchAPI(
+      "/api/faqs?filters[Page][$eq]=Carrier&populate[FAQ][populate]=Accordion",
+      "en"
+    ),
+    fetchAPI(
+      "/api/faqs?filters[Page][$eq]=FreightForwarder&populate[FAQ][populate]=Accordion",
+      "en"
+    ),
+  ]);
 
-  const [heroData, setHeroData] = useState<HeroData | null>(null);
-  const [faqDataCarrier, setFaqDataCarrier] = useState<FaqData | null>(null);
-  const [faqDataFreight, setFaqDataFreight] = useState<FaqData | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [showLoader, setShowLoader] = useState(false);
-  const [initialAudience, setInitialAudience] = useState<"carrier" | "freight">(
-    "carrier"
-  );
+  const heroRaw = isRecord(heroResponse) ? heroResponse["data"] : undefined;
+  const heroArr = Array.isArray(heroRaw)
+    ? heroRaw
+    : isRecord(heroRaw) && Array.isArray((heroRaw as Record<string, unknown>)["data"])
+    ? (heroRaw as Record<string, unknown>)["data"]
+    : heroRaw;
+  const heroItem = Array.isArray(heroArr) ? heroArr[0] : undefined;
+  const heroObj = isRecord(heroItem) ? heroItem["Hero"] : undefined;
+  const heroData = normalizeHeroData(heroObj);
 
-  useEffect(() => {
-    const loaderTimeout = setTimeout(() => setShowLoader(true), 500);
+  const fcRaw = isRecord(faqCarrierRes) ? faqCarrierRes["data"] : undefined;
+  const fcArr = Array.isArray(fcRaw)
+    ? fcRaw
+    : isRecord(fcRaw) && Array.isArray((fcRaw as Record<string, unknown>)["data"])
+    ? (fcRaw as Record<string, unknown>)["data"]
+    : fcRaw;
+  const fcItem = Array.isArray(fcArr) ? fcArr[0] : undefined;
+  const faqDataCarrier = normalizeFaqEntry(fcItem);
 
-    const fetchData = async () => {
-      try {
-        const locale = toStrapiLocale(language);
-        const [heroResponse, faqCarrierRes, faqFreightRes] = await Promise.all([
-          fetchAPI(
-            "/api/hero-videos?filters[Page][$eq]=Carriers&populate[Hero][populate]=Video",
-            locale
-          ),
-          fetchAPI(
-            "/api/faqs?filters[Page][$eq]=Carrier&populate[FAQ][populate]=Accordion",
-            locale
-          ),
-          fetchAPI(
-            "/api/faqs?filters[Page][$eq]=FreightForwarder&populate[FAQ][populate]=Accordion",
-            locale
-          ),
-        ]);
-
-        const heroRaw = isRecord(heroResponse)
-          ? heroResponse["data"]
-          : undefined;
-        const heroArr = Array.isArray(heroRaw)
-          ? heroRaw
-          : isRecord(heroRaw) &&
-            Array.isArray((heroRaw as Record<string, unknown>)["data"])
-          ? (heroRaw as Record<string, unknown>)["data"]
-          : heroRaw;
-        const heroItem = Array.isArray(heroArr) ? heroArr[0] : undefined;
-        const heroObj = isRecord(heroItem) ? heroItem["Hero"] : undefined;
-        setHeroData(normalizeHeroData(heroObj));
-
-        const fcRaw = isRecord(faqCarrierRes)
-          ? faqCarrierRes["data"]
-          : undefined;
-        const fcArr = Array.isArray(fcRaw)
-          ? fcRaw
-          : isRecord(fcRaw) &&
-            Array.isArray((fcRaw as Record<string, unknown>)["data"])
-          ? (fcRaw as Record<string, unknown>)["data"]
-          : fcRaw;
-        const fcItem = Array.isArray(fcArr) ? fcArr[0] : undefined;
-        setFaqDataCarrier(normalizeFaqEntry(fcItem));
-
-        const ffRaw = isRecord(faqFreightRes)
-          ? faqFreightRes["data"]
-          : undefined;
-        const ffArr = Array.isArray(ffRaw)
-          ? ffRaw
-          : isRecord(ffRaw) &&
-            Array.isArray((ffRaw as Record<string, unknown>)["data"])
-          ? (ffRaw as Record<string, unknown>)["data"]
-          : ffRaw;
-        const ffItem = Array.isArray(ffArr) ? ffArr[0] : undefined;
-        setFaqDataFreight(normalizeFaqEntry(ffItem));
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        clearTimeout(loaderTimeout);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-    return () => clearTimeout(loaderTimeout);
-  }, [language]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.location.hash === "#faqs") {
-      document.getElementById("faqs")?.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [loading]);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    // 1) Lecture du paramètre d’audience
-    const params = new URLSearchParams(window.location.search);
-    const aud = params.get("aud");
-    if (aud === "freight" || aud === "carrier") setInitialAudience(aud);
-
-    // 2) Scroll doux si on arrive avec #faqs
-    if (window.location.hash.startsWith("#faqs")) {
-      // petit délai pour s'assurer que la section est montée
-      setTimeout(
-        () =>
-          document
-            .getElementById("faqs")
-            ?.scrollIntoView({ behavior: "smooth" }),
-        0
-      );
-    }
-  }, [loading]); // quand la page a fini de charger
-
-  if (loading && showLoader) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <ClipLoader color="#3b82f6" size={50} />
-      </div>
-    );
-  }
+  const ffRaw = isRecord(faqFreightRes) ? faqFreightRes["data"] : undefined;
+  const ffArr = Array.isArray(ffRaw)
+    ? ffRaw
+    : isRecord(ffRaw) && Array.isArray((ffRaw as Record<string, unknown>)["data"])
+    ? (ffRaw as Record<string, unknown>)["data"]
+    : ffRaw;
+  const ffItem = Array.isArray(ffArr) ? ffArr[0] : undefined;
+  const faqDataFreight = normalizeFaqEntry(ffItem);
 
   return (
-    !loading && (
-      <>
-        <Header />
-        {heroData && <Hero heroData={heroData} />}
-        <SectionFeatures />
-        <SectionBenefits />
-        <SectionPricingByTransaction />
-        <SectionDemo />
-        {/* Toggle intégré si les deux datasets sont fournis */}
-        <Faq
-          carrier={faqDataCarrier}
-          freight={faqDataFreight}
-          initialAudience={initialAudience} // <-- ICI
-        />
-        <Footer />
-      </>
-    )
+    <>
+      <Header />
+      {heroData && <Hero heroData={heroData} />}
+      <SectionFeatures />
+      <SectionBenefits />
+      <SectionPricingByTransaction />
+      <SectionDemo />
+      <Faq
+        carrier={faqDataCarrier ?? undefined}
+        freight={faqDataFreight ?? undefined}
+        initialAudience="carrier"
+      />
+      <Footer />
+    </>
   );
 }
+
+export const metadata = {
+  alternates: { canonical: "/" },
+};
