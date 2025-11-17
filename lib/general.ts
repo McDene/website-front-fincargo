@@ -47,6 +47,7 @@ export const GENERAL = {
     share: "Share",
     copy_link: "Copy link",
     back_to_blog: "Back to blog",
+    our_partners: "Our Partners",
   },
   es: {
     pricing: "Tarifas",
@@ -97,6 +98,7 @@ export const GENERAL = {
     share: "Compartir",
     copy_link: "Copiar enlace",
     back_to_blog: "Volver al blog",
+    our_partners: "Nuestros socios",
   },
   fr: {
     pricing: "Tarifs",
@@ -148,6 +150,7 @@ export const GENERAL = {
     share: "Partager",
     copy_link: "Copier le lien",
     back_to_blog: "Retour au blog",
+    our_partners: "Nos partenaires",
   },
   de: {
     pricing: "Preise",
@@ -197,5 +200,6 @@ export const GENERAL = {
     share: "Teilen",
     copy_link: "Link kopieren",
     back_to_blog: "Zurück zum Blog",
+    our_partners: "Unsere Partner",
   },
 } as const;

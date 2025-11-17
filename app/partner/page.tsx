@@ -24,7 +24,15 @@ export default function PartenerPage() {
     const fetchData = async () => {
       try {
         const heroURL = `/api/hero-images?filters[Page][$eq]=Partener&populate[Hero][populate]=Image`;
-        const partnerURL = `/api/partner?populate[MultipleText]=true&populate[Gallery]=true`;
+        const partnerURL =
+          `/api/partner?` +
+          [
+            `populate[MultipleText]=true`,
+            `populate[Gallery]=true`,
+            `populate[image]=true`,
+            // If field is named ImageUrl (with 'a'), adjust here accordingly
+            `populate[ImgeUrl][populate]=image`,
+          ].join("&");
 
         const [heroResponse, partnerResponse] = await Promise.all([
           fetchAPI(heroURL, language),
