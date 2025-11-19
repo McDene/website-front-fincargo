@@ -124,6 +124,14 @@ export default function Footer() {
   const handleTrack = (label: string) => () =>
     trackEvent({ action: "click_footer_link", category: "Footer", label });
 
+  const onInternalClick = (label: string) => () => {
+    handleTrack(label)();
+    if (typeof window !== "undefined") {
+      // Smoothly scroll to top on navigation per request
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   const isExternal = (href: string) => /^https?:\/\//i.test(href);
 
   return (
@@ -246,7 +254,7 @@ export default function Footer() {
                     <Link
                       href={localizeHref(link.href)}
                       prefetch={false}
-                      onClick={handleTrack(link.trackLabel)}
+                      onClick={onInternalClick(link.trackLabel)}
                       className="hover:text-white/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded"
                     >
                       {typeof link.labelKey === "string"

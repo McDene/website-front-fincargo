@@ -1,7 +1,6 @@
 import BlogItem from "@/components/Blog/BlogItem";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
-import { detectServerUiLocale, toStrapiLocale } from "@/lib/i18n";
 
 export const revalidate = 3600;
 
@@ -28,21 +27,55 @@ interface Blog {
   Date: string;
   Content: ContentBlock[];
   Gallery?: { url: string }[];
+  Tags?: string[];
 }
 
 const isRecord = (v: unknown): v is Record<string, unknown> =>
   typeof v === "object" && v !== null;
 
+const stringish = (v: unknown): string | undefined =>
+  typeof v === "string" && v ? v : undefined;
+
+const extractTagLabels = (rec: Record<string, unknown>): string[] => {
+  const out: string[] = [];
+  const push = (s?: string) => {
+    const v = (s || "").trim();
+    if (!v) return;
+    if (!out.includes(v)) out.push(v);
+  };
+  const candidates: unknown[] = [];
+  const tagsField = rec["tags"] as unknown;
+  if (Array.isArray(tagsField)) candidates.push(...tagsField);
+  if (isRecord(tagsField) && Array.isArray((tagsField["data"] as unknown[]))) {
+    candidates.push(...((tagsField["data"] as unknown[]) || []));
+  }
+  const attr = rec["attributes"] as unknown;
+  if (isRecord(attr)) {
+    const atags = attr["tags"] as unknown;
+    if (isRecord(atags) && Array.isArray((atags["data"] as unknown[]))) {
+      candidates.push(...((atags["data"] as unknown[]) || []));
+    }
+  }
+  for (const t of candidates) {
+    if (!isRecord(t)) continue;
+    const a = isRecord(t["attributes"]) ? (t["attributes"] as Record<string, unknown>) : {};
+    push(stringish(t["tag"]));
+    push(stringish(a["tag"]));
+    push(stringish(t["name"]));
+    push(stringish(a["name"]));
+  }
+  return out;
+};
+
 async function getBlog(slug: string): Promise<Blog | null> {
-  const ui = await detectServerUiLocale();
   const response = await fetchAPI(
     `/api/blogs?filters[Slug][$eq]=${slug}&populate=*`,
-    toStrapiLocale(ui)
+    "en"
   );
   if (Array.isArray(response?.data) && response.data.length > 0) {
     const fetchedBlog = response.data[0] as unknown;
     if (!isRecord(fetchedBlog)) return null;
-    return {
+    const blog: Blog = {
       Title: String(fetchedBlog.Title ?? ""),
       Introduction: Array.isArray((fetchedBlog as Record<string, unknown>).Introduction)
         ? ((fetchedBlog as Record<string, unknown>).Introduction as ContentBlock[])
@@ -55,7 +88,9 @@ async function getBlog(slug: string): Promise<Blog | null> {
         Array.isArray((fetchedBlog as Record<string, unknown>).Gallery))
         ? ((fetchedBlog as Record<string, unknown>).Gallery as { url: string }[])
         : [],
+      Tags: extractTagLabels(fetchedBlog as Record<string, unknown>),
     };
+    return blog;
   }
   return null;
 }
@@ -78,10 +113,9 @@ export default async function BlogIdPage({
 
 export async function generateStaticParams() {
   // Try to pre-render known slugs; fall back gracefully when API is offline
-  const ui = await detectServerUiLocale();
   const res = await fetchAPI(
     "/api/blogs?pagination[pageSize]=100&fields=Slug",
-    toStrapiLocale(ui)
+    "en"
   );
   type HasSlug = { Slug?: string };
   const slugs: string[] = Array.isArray(res?.data)

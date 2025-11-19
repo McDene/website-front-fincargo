@@ -5,6 +5,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
+  const locales = ["fr", "es", "de"] as const;
 
   // Static routes (non-dynamic pages)
   const staticPaths = [
@@ -55,7 +56,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   type Entry = MetadataRoute.Sitemap[number];
 
-  const entries: MetadataRoute.Sitemap = [
+  const baseEntries: MetadataRoute.Sitemap = [
     {
       url: `${BASE_URL}/`,
       lastModified: now,
@@ -82,5 +83,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   ];
 
-  return entries;
+  // Add locale-prefixed variants so search engines discover translated pages
+  const localizedEntries: MetadataRoute.Sitemap = [];
+  for (const entry of baseEntries) {
+    localizedEntries.push(entry);
+    try {
+      const u = new URL(entry.url);
+      const pathname = u.pathname;
+      for (const lc of locales) {
+        const localizedPath = pathname === "/" ? `/${lc}` : `/${lc}${pathname}`;
+        localizedEntries.push({
+          ...entry,
+          url: `${BASE_URL}${localizedPath}`,
+        });
+      }
+    } catch {
+      // if URL parsing fails, skip localization for that entry
+    }
+  }
+
+  return localizedEntries;
 }

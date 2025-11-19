@@ -47,6 +47,7 @@ export const GENERAL = {
     share: "Share",
     copy_link: "Copy link",
     back_to_blog: "Back to blog",
+    min_read: "min read",
     our_partners: "Our Partners",
   },
   es: {
@@ -98,6 +99,7 @@ export const GENERAL = {
     share: "Compartir",
     copy_link: "Copiar enlace",
     back_to_blog: "Volver al blog",
+    min_read: "min de lectura",
     our_partners: "Nuestros socios",
   },
   fr: {
@@ -150,6 +152,7 @@ export const GENERAL = {
     share: "Partager",
     copy_link: "Copier le lien",
     back_to_blog: "Retour au blog",
+    min_read: "min de lecture",
     our_partners: "Nos partenaires",
   },
   de: {
@@ -200,6 +203,7 @@ export const GENERAL = {
     share: "Teilen",
     copy_link: "Link kopieren",
     back_to_blog: "Zurück zum Blog",
+    min_read: "Min. Lesezeit",
     our_partners: "Unsere Partner",
   },
 } as const;

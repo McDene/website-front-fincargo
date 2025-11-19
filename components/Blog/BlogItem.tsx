@@ -28,6 +28,7 @@ interface Blog {
   Date: string;
   Content: ContentBlock[];
   Gallery?: { url: string }[];
+  Tags?: string[];
 }
 
 // --- helpers ---
@@ -239,13 +240,27 @@ export default function BlogItem({ blog }: { blog: Blog }) {
         <h1 className="text-4xl md:text-6xl font-bold mb-4 text-gray-900 leading-tight">
           {blog.Title}
         </h1>
-        <div className="flex items-center gap-3 text-sm text-gray-600 mb-8">
+        <div className="flex items-center gap-3 text-sm text-gray-600">
           <time dateTime={new Date(blog.Date).toISOString()}>
-            {new Date(blog.Date).toLocaleDateString()}
+            {formatDate(blog.Date)}
           </time>
           <span aria-hidden>•</span>
-          <span>{minutes} min read</span>
+          <span>
+            {minutes} {t("min_read")}
+          </span>
         </div>
+        {!!(blog.Tags && blog.Tags.length) && (
+          <div className="mt-3 flex flex-wrap gap-2">
+            {blog.Tags.map((tg, i) => (
+              <span
+                key={`${tg}-${i}`}
+                className="inline-block px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-800 ring-1 ring-slate-200"
+              >
+                {tg}
+              </span>
+            ))}
+          </div>
+        )}
         {renderContent(blog.Introduction)}
 
         {/* TOC removed */}
@@ -286,6 +301,15 @@ export default function BlogItem({ blog }: { blog: Blog }) {
       )}
     </article>
   );
+}
+
+function formatDate(s: string): string {
+  const d = new Date(s);
+  if (Number.isNaN(d.getTime())) return "";
+  const dd = String(d.getDate()).padStart(2, "0");
+  const mm = String(d.getMonth() + 1).padStart(2, "0");
+  const yyyy = d.getFullYear();
+  return `${dd}/${mm}/${yyyy}`;
 }
 
 function ShareButtons() {
