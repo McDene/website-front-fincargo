@@ -49,11 +49,12 @@ export default function BlogOverview({ blogData, filters }: BlogOverviewProps) {
 
         {/* Grid des cartes */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogData.map((article) => (
+          {blogData.map((article, idx) => (
             <Link
               key={article.id}
               href={`/blog/${article.Slug}`}
               className="group"
+              prefetch={false}
             >
               <div className="bg-white shadow-lg rounded-2xl overflow-hidden transition-transform transform hover:scale-105  relative">
                 {/* Image avec overlay */}
@@ -62,10 +63,10 @@ export default function BlogOverview({ blogData, filters }: BlogOverviewProps) {
                     <Image
                       src={article.PrefaceImage.url}
                       alt={article.PrefaceTitle}
-                      layout="fill"
-                      objectFit="cover"
-                      className="transition-opacity duration-300 opacity-80 group-hover:opacity-100"
-                      unoptimized
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover transition-opacity duration-300 opacity-80 group-hover:opacity-100"
+                      priority={idx === 0}
                     />
                     {/* Overlay dégradé de transparent à bleu */}
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-darkBlue opacity-100"></div>

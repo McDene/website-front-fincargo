@@ -104,6 +104,8 @@ export default function BlogListWithFilters({
     } else {
       params.set("tag", slug.toLowerCase());
     }
+    // Reset pagination when changing tag
+    params.delete("page");
     const qs = params.toString();
     setSelected(slug ? slug.toLowerCase() : null);
     router.push(qs ? `${pathname}?${qs}` : pathname, { scroll: true });

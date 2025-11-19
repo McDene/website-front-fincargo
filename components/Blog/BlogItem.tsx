@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
 
@@ -173,6 +174,7 @@ export default function BlogItem({ blog }: { blog: Blog }) {
   const articleRef = useRef<HTMLDivElement | null>(null);
   const [progress, setProgress] = useState(0);
   const { t } = useTranslation();
+  const router = useRouter();
 
   // TOC removed per request
 
@@ -279,12 +281,22 @@ export default function BlogItem({ blog }: { blog: Blog }) {
           </div>
 
           <div className="mt-12">
-            <Link
-              href="/blog"
+            <button
+              onClick={() => {
+                try {
+                  const ref = document.referrer || "";
+                  const { pathname } = new URL(ref, window.location.origin);
+                  if (pathname.startsWith("/blog")) {
+                    router.back();
+                    return;
+                  }
+                } catch {}
+                router.push("/blog");
+              }}
               className="inline-flex items-center gap-2 text-blue-700 hover:underline"
             >
               ← {t("back_to_blog")}
-            </Link>
+            </button>
           </div>
         </div>
       </div>

@@ -66,11 +66,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="preconnect" href={process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:1337"} />
+      </head>
       <body
         className={`${prompt.variable} ${inter.variable} antialiased bg-white`}
       >
         <Providers>
-          <LanguageProvider key={Math.random()}>
+          <LanguageProvider>
             <main>{children}</main>
           </LanguageProvider>
         </Providers>
