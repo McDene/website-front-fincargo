@@ -23,14 +23,16 @@ export default function HeroImage({ heroImageData }: HeroImageProps) {
     : `${process.env.NEXT_PUBLIC_API_URL || ""}${
         heroImageData?.Image?.url || ""
       }`;
+  const primaryCta = heroImageData.ButtonText && heroImageData.ButtonLink
+    ? { label: heroImageData.ButtonText, href: heroImageData.ButtonLink }
+    : undefined;
 
   return (
     <SectionHeroImage
       title={heroImageData.Title}
       subtitle={heroImageData.SecondeTitle}
       paragraph={heroImageData.Paragraph}
-      buttonText={heroImageData.ButtonText}
-      buttonLink={heroImageData.ButtonLink}
+      primaryCta={primaryCta}
       imageUrl={imageUrl}
       imageAlt="Image de logistique"
     />

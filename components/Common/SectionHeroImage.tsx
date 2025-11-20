@@ -140,6 +140,8 @@ export default function SectionHeroImage({
             {primaryCta && (
               <a
                 href={primaryCta.href}
+                target={/^https?:\/\//i.test(primaryCta.href) ? "_blank" : undefined}
+                rel={/^https?:\/\//i.test(primaryCta.href) ? "noopener noreferrer" : undefined}
                 className="group inline-flex items-center gap-2 rounded-full bg-blue-500/90 hover:bg-blue-500 px-6 py-3 text-white font-semibold shadow-lg ring-1 ring-white/10 backdrop-blur-sm transition-all"
               >
                 {primaryCta.label}
@@ -159,6 +161,8 @@ export default function SectionHeroImage({
             {secondaryCta && (
               <a
                 href={secondaryCta.href}
+                target={/^https?:\/\//i.test(secondaryCta.href) ? "_blank" : undefined}
+                rel={/^https?:\/\//i.test(secondaryCta.href) ? "noopener noreferrer" : undefined}
                 className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-white/80 hover:text-white ring-1 ring-white/15 hover:ring-white/30 transition"
               >
                 {secondaryCta.label}
