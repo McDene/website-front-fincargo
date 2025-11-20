@@ -73,7 +73,8 @@ function renderInline(child: InlineNode, idx: number): React.ReactNode {
         key={idx}
         href={child.url}
         target="_blank"
-        className="text-lightBlue underline"
+        rel="noopener noreferrer"
+        className="underline decoration-[0.06em] underline-offset-4 text-blue-700 hover:text-blue-800"
       >
         {child.children?.map((c, i) => renderInline(c, i))}
       </a>
@@ -101,18 +102,20 @@ function renderContent(blocks: ContentBlock[]) {
       const HeadingTag = `h${level}` as keyof JSX.IntrinsicElements;
       const headingClass =
         level === 1
-          ? "text-5xl"
+          ? "text-4xl md:text-5xl"
           : level === 2
-          ? "text-4xl"
+          ? "text-3xl md:text-4xl"
           : level === 3
-          ? "text-3xl"
-          : "text-2xl";
+          ? "text-2xl md:text-3xl"
+          : level === 4
+          ? "text-xl md:text-2xl"
+          : "text-lg md:text-xl";
       const id = slugify(plainTextFromInline(block.children));
       return (
         <HeadingTag
           key={index}
           id={id}
-          className={`mt-16 mb-4 font-semibold text-gray-900 scroll-mt-28 ${headingClass}`}
+          className={`font-semibold text-gray-900 scroll-mt-28 ${headingClass}`}
         >
           {renderInlineNodes(block.children)}
         </HeadingTag>
@@ -122,7 +125,7 @@ function renderContent(blocks: ContentBlock[]) {
     // Gestion des paragraphes
     if (block.type === "paragraph") {
       return (
-        <p key={index} className="text-lg leading-relaxed mb-4 text-gray-700">
+        <p key={index} className="text-gray-800">
           {renderInlineNodes(block.children)}
         </p>
       );
@@ -131,10 +134,7 @@ function renderContent(blocks: ContentBlock[]) {
     // Gestion des citations
     if (block.type === "quote") {
       return (
-        <blockquote
-          key={index}
-          className="border-l-4 border-gray-500 pl-4 italic text-gray-600 mb-4"
-        >
+        <blockquote key={index} className="">
           {renderInlineNodes(block.children)}
         </blockquote>
       );
@@ -144,9 +144,9 @@ function renderContent(blocks: ContentBlock[]) {
     if (block.type === "list") {
       if (block.format === "unordered") {
         return (
-          <ul key={index} className="list-disc list-inside mb-4">
+          <ul key={index}>
             {block.children.map((item, itemIdx) => (
-              <li key={itemIdx} className="text-lg text-gray-700">
+              <li key={itemIdx} className="text-gray-800">
                 {item.children && renderInlineNodes(item.children)}
               </li>
             ))}
@@ -155,13 +155,57 @@ function renderContent(blocks: ContentBlock[]) {
       }
       if (block.format === "ordered") {
         return (
-          <ol key={index} className="list-decimal list-inside mb-4">
+          <ol key={index}>
             {block.children.map((item, itemIdx) => (
-              <li key={itemIdx} className="text-lg text-gray-700">
+              <li key={itemIdx} className="text-gray-800">
                 {item.children && renderInlineNodes(item.children)}
               </li>
             ))}
           </ol>
+        );
+      }
+    }
+
+    // Code block support
+    if (block.type === "code") {
+      const codeText = plainTextFromInline(block.children);
+      return (
+        <pre key={index}>
+          <code>{codeText}</code>
+        </pre>
+      );
+    }
+
+    // Horizontal rule
+    if (block.type === "hr") {
+      return <hr key={index} />;
+    }
+
+    // Image block (best-effort)
+    if (block.type === "image") {
+      const maybe = block as unknown as {
+        url?: string;
+        alt?: string;
+        image?: { url?: string; alternativeText?: string };
+      };
+      const src = maybe?.url || maybe?.image?.url;
+      const alt = maybe?.alt || maybe?.image?.alternativeText || "";
+      if (src) {
+        return (
+          <figure key={index} className="my-6">
+            <Image
+              src={src}
+              alt={alt}
+              width={1200}
+              height={800}
+              className="w-full h-auto rounded-xl object-cover"
+            />
+            {alt ? (
+              <figcaption className="mt-2 text-sm text-slate-500">
+                {alt}
+              </figcaption>
+            ) : null}
+          </figure>
         );
       }
     }
@@ -221,7 +265,7 @@ export default function BlogItem({ blog }: { blog: Blog }) {
         className="fixed left-0 right-0 top-0 h-1 z-[60] bg-transparent"
       >
         <div
-          className="h-full bg-gradient-to-r from-darkBlue to-black transition-[width] duration-200"
+          className="h-full bg-gradient-to-r from-darkBlue to-lightBlue transition-[width] duration-200"
           style={{ width: `${progress}%` }}
         />
       </div>
@@ -252,7 +296,7 @@ export default function BlogItem({ blog }: { blog: Blog }) {
           </span>
         </div>
         {!!(blog.Tags && blog.Tags.length) && (
-          <div className="mt-3 flex flex-wrap gap-2">
+          <div className="mt-3 mb-8 flex flex-wrap gap-2">
             {blog.Tags.map((tg, i) => (
               <span
                 key={`${tg}-${i}`}
@@ -269,9 +313,9 @@ export default function BlogItem({ blog }: { blog: Blog }) {
       </div>
 
       {/* Contenu principal en une seule colonne */}
-      <div className="mt-16 lg:mt-24">
+      <div className="mt-8 lg:mt-12">
         {/* Texte */}
-        <div className="w-full prose prose-lg max-w-none">
+        <div className="w-full fc-article max-w-none">
           {renderContent(blog.Content)}
 
           {/* Share actions */}
