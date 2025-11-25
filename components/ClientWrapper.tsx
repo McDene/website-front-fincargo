@@ -6,6 +6,7 @@ import CookieBanner from "./CookieBanner";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { fetchAPI } from "@/lib/utils";
 import { LanguageContext } from "@/context/LanguageContext";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface CookieData {
   message: string;
@@ -16,6 +17,7 @@ interface CookieData {
 
 export default function ClientWrapper() {
   const { language } = useContext(LanguageContext);
+  const { t } = useTranslation();
   const [cookieData, setCookieData] = useState<CookieData | null>(null);
   const [consent, setConsent] = useState<string | null>(null);
   const [isBannerVisible, setIsBannerVisible] = useState(false);
@@ -37,14 +39,14 @@ export default function ClientWrapper() {
             message: attributes.Message || "Charging...",
             acceptText: attributes.AcceptButtonText || "Accept",
             rejectText: attributes.RejectButtonText || "Reject",
-            moreInfoLink: attributes.MoreInfoLink || "Learn more",
+            moreInfoLink: attributes.MoreInfoLink || t("learn_more_cookies"),
           });
         } else {
           setCookieData({
             message: "Charging...",
             acceptText: "Accept",
             rejectText: "Reject",
-            moreInfoLink: "Learn more",
+            moreInfoLink: t("learn_more_cookies"),
           });
         }
       } catch (error) {
@@ -60,7 +62,7 @@ export default function ClientWrapper() {
       setIsBannerVisible(true);
     }
     setConsent(cookieConsent ? String(cookieConsent) : null);
-  }, [language]);
+  }, [language, t]);
 
   if (!cookieData) return null;
 

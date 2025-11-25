@@ -278,6 +278,7 @@ export default function SectionHero({
                   <a
                     href="/financial-services"
                     className="group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-white/90 hover:text-white bg-transparent ring-1 ring-white/30 hover:ring-white/50 hover:bg-white/10 transition-all"
+                    aria-label={t("more_info_financial_services")}
                   >
                     {t("hero.more_info")}
                     <svg

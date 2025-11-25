@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { setCookie, hasCookie } from "cookies-next";
 import Link from "next/link";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface CookieBannerProps {
   message: string;
@@ -17,12 +18,13 @@ export default function CookieBanner({
   rejectText,
   moreInfoLink,
 }: CookieBannerProps) {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     if (!hasCookie("cookie_consent")) {
-      setIsVisible(true);
-      document.body.style.overflow = "hidden"; // Empêche le scroll en arrière-plan
+      const t = setTimeout(() => setIsVisible(true), 1200);
+      return () => clearTimeout(t);
     }
   }, []);
 
@@ -36,32 +38,37 @@ export default function CookieBanner({
   if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      {/* Boîte du Cookie Banner */}
-      <div className="bg-gray-200  rounded-lg p-6 border border-gray-200 w-80 md:w-96 transform transition-all duration-500">
+    <div className="fixed inset-x-0 bottom-4 md:bottom-6 z-50 flex justify-center pointer-events-none">
+      {/* Boîte du Cookie Banner (non modale, compacte) */}
+      <div
+        className="pointer-events-auto bg-white/95 rounded-2xl shadow-lg ring-1 ring-slate-200 backdrop-blur px-4 py-3 md:px-5 md:py-4 max-w-xl w-[92%]"
+        role="dialog"
+        aria-live="polite"
+        aria-label="Cookies & Privacy"
+      >
         {/* Titre + Message */}
-        <div className="text-gray-800">
-          <p className="text-xl font-semibold">🍪 Cookies & Privacy</p>
-          <p className="text-sm mt-3">{message}</p>
+        <div className="text-slate-800">
+          <p className="text-[13px] md:text-sm leading-5">{message}</p>
         </div>
 
         {/* Actions */}
-        <div className="mt-4 flex flex-col space-y-2">
+        <div className="mt-3 flex items-center gap-2 flex-wrap">
           <button
             onClick={() => handleConsent("accepted")}
-            className="w-full bg-gray-900 text-white font-medium py-2 rounded-full hover:bg-gray-700 transition-all"
+            className="inline-flex items-center justify-center rounded-full bg-darkBlue text-white text-sm px-4 py-2 hover:opacity-95 transition"
           >
             {acceptText}
           </button>
           <button
             onClick={() => handleConsent("rejected")}
-            className="w-full text-gray-500 font-medium py-2 rounded-md hover:text-gray-700 transition-all"
+            className="inline-flex items-center justify-center rounded-full text-slate-600 text-sm px-3 py-2 hover:text-slate-800 transition"
           >
             {rejectText}
           </button>
           <Link
             href="/cookies"
-            className="text-sm text-gray-900 underline hover:text-darkBlue text-center"
+            className="ml-auto text-sm text-darkBlue underline underline-offset-4 hover:opacity-90"
+            aria-label={t("learn_more_cookies")}
           >
             {moreInfoLink}
           </Link>

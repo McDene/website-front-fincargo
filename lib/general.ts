@@ -49,6 +49,8 @@ export const GENERAL = {
     back_to_blog: "Back to blog",
     min_read: "min read",
     our_partners: "Our Partners",
+    learn_more_cookies: "Learn more about our Cookies Policy",
+    more_info_financial_services: "Learn more about Financial Services",
   },
   es: {
     pricing: "Tarifas",
@@ -101,6 +103,8 @@ export const GENERAL = {
     back_to_blog: "Volver al blog",
     min_read: "min de lectura",
     our_partners: "Nuestros socios",
+    learn_more_cookies: "Más información sobre nuestra política de cookies",
+    more_info_financial_services: "Más información sobre servicios financieros",
   },
   fr: {
     pricing: "Tarifs",
@@ -154,6 +158,8 @@ export const GENERAL = {
     back_to_blog: "Retour au blog",
     min_read: "min de lecture",
     our_partners: "Nos partenaires",
+    learn_more_cookies: "En savoir plus sur notre politique des cookies",
+    more_info_financial_services: "En savoir plus sur les services financiers",
   },
   de: {
     pricing: "Preise",
@@ -205,5 +211,7 @@ export const GENERAL = {
     back_to_blog: "Zurück zum Blog",
     min_read: "Min. Lesezeit",
     our_partners: "Unsere Partner",
+    learn_more_cookies: "Mehr erfahren über unsere Cookie‑Richtlinie",
+    more_info_financial_services: "Mehr erfahren über Finanzdienstleistungen",
   },
 } as const;
