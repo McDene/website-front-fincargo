@@ -224,11 +224,11 @@ export default function SectionHero({
                   <Image
                     src={mockupSrc}
                     alt={imageAlt}
-                    width={500}
-                    height={500}
-                    className="h-full w-full object-cover"
-                    loading="eager"
-                    unoptimized
+                    fill
+                    sizes="(min-width: 1024px) 680px, 90vw"
+                    className="object-cover"
+                    priority={false}
+                    quality={70}
                   />
                 </div>
               </div>

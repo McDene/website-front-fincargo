@@ -39,7 +39,9 @@ export default function SectionApiProcess() {
           <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-darkBlue">
             {t("api.process.title")}
           </h2>
-          <p className="mt-2 text-slate-700 text-lg">{t("api.process.subtitle")}</p>
+          <p className="mt-2 text-slate-700 text-lg">
+            {t("api.process.subtitle")}
+          </p>
         </div>
 
         {/* Timeline/Stepper */}
@@ -60,8 +62,12 @@ export default function SectionApiProcess() {
                     <Icon className="h-5 w-5" />
                   </span>
                   <div>
-                    <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
-                    <p className="mt-1 text-slate-700 text-sm md:text-[15px]">{desc}</p>
+                    <h3 className="text-lg font-semibold text-slate-900">
+                      {title}
+                    </h3>
+                    <p className="mt-1 text-slate-700 text-sm md:text-[15px]">
+                      {desc}
+                    </p>
                   </div>
                 </div>
                 {/* step number chip */}

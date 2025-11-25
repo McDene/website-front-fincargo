@@ -10,7 +10,7 @@ import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
 import { LanguageContext } from "@/context/LanguageContext";
 import { useTranslation } from "@/hooks/useTranslation";
-import SectionApiProcess from "@/components/Common/SectionApiProcess";
+// import SectionApiProcess from "@/components/Common/SectionApiProcess";
 
 export default function ApiPage() {
   const { language } = useContext(LanguageContext);
@@ -157,9 +157,9 @@ export default function ApiPage() {
         <Header />
         {heroData && <HeroImage heroImageData={heroData} />}
         {/* Process (private API) */}
-        <SectionApiProcess />
+        {/* <SectionApiProcess /> */}
         {/* CTA band */}
-        <section className="relative py-10">
+        {/* <section className="relative py-10">
           <div className="mx-auto w-full max-w-7xl px-4">
             <div className="rounded-3xl bg-gradient-to-r from-darkBlue to-black p-[1px]">
               <div className="rounded-3xl bg-white/95 px-6 py-8 md:px-10 md:py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
@@ -178,7 +178,7 @@ export default function ApiPage() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
         {apiData && <Api apiData={apiData} />}
         {/* API Integration Partner Contact Form */}
         <section id="api-partner-form" className="relative py-8 md:py-12 px-4">
@@ -210,7 +210,12 @@ export default function ApiPage() {
                   ref={formRef}
                 >
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
-                    <Field label={t("name")} id="name" required error={errors.name}>
+                    <Field
+                      label={t("name")}
+                      id="name"
+                      required
+                      error={errors.name}
+                    >
                       <input
                         id="name"
                         name="name"
@@ -223,7 +228,12 @@ export default function ApiPage() {
                         aria-invalid={!!errors.name}
                       />
                     </Field>
-                    <Field label={t("email")} id="email" required error={errors.email}>
+                    <Field
+                      label={t("email")}
+                      id="email"
+                      required
+                      error={errors.email}
+                    >
                       <input
                         id="email"
                         name="email"
@@ -258,7 +268,13 @@ export default function ApiPage() {
                         placeholder="+41 79 773 7224"
                       />
                     </Field>
-                    <Field label={t("message")} id="message" required error={errors.message} className="md:col-span-2">
+                    <Field
+                      label={t("message")}
+                      id="message"
+                      required
+                      error={errors.message}
+                      className="md:col-span-2"
+                    >
                       <textarea
                         id="message"
                         name="message"
@@ -275,13 +291,22 @@ export default function ApiPage() {
                     {/* Honeypot */}
                     <div className="hidden">
                       <label htmlFor="hp">Leave this field empty</label>
-                      <input id="hp" name="hp" value={formData.hp} onChange={onChange} />
+                      <input
+                        id="hp"
+                        name="hp"
+                        value={formData.hp}
+                        onChange={onChange}
+                      />
                     </div>
                   </div>
 
                   {/* Status + Submit */}
                   <div className="mt-6 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-4">
-                    <p className="text-sm text-slate-500" role="status" aria-live="polite">
+                    <p
+                      className="text-sm text-slate-500"
+                      role="status"
+                      aria-live="polite"
+                    >
                       {status}
                     </p>
                     <button
