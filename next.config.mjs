@@ -21,6 +21,20 @@ const nextConfig = {
       },
     ],
   },
+  async headers() {
+    return [
+      {
+        // Cache static assets from /public aggressively
+        source: "/:all*{.svg,.jpg,.jpeg,.png,.gif,.webp,.ico,.woff2,.woff,.ttf,.eot}",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+    ];
+  },
   devIndicators: {
     autoPrerender: false,
   },

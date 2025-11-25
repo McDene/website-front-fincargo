@@ -264,6 +264,7 @@ export default function SectionHero({
                             title={country}
                             className="h-5 w-5 rounded-full ring-1 ring-white/20"
                             loading="lazy"
+                            decoding="async"
                           />
                           <span className="text-white/80">{date}</span>
                           <span className="rounded bg-white/15 px-2 py-0.5 text-xs font-semibold ring-1 ring-white/20 ml-auto">

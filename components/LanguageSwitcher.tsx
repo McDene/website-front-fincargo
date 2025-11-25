@@ -81,6 +81,7 @@ export default function LanguageSwitcher() {
           alt={language}
           className="h-4 w-4 rounded-full"
           loading="lazy"
+          decoding="async"
         />
         {LANGUAGES.find((l) => l.code === language)?.label}
         <svg
@@ -116,6 +117,7 @@ export default function LanguageSwitcher() {
                 alt={lang.label}
                 className="h-4 w-4 rounded-full"
                 loading="lazy"
+                decoding="async"
               />
               {lang.label}
             </button>
