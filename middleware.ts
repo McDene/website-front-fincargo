@@ -33,8 +33,16 @@ export function middleware(req: NextRequest) {
     return res;
   }
 
-  // No locale prefix: set default per domain (fr for fincargo.be, else en)
-  const defaultLocale: Locale = host.endsWith("fincargo.be") ? "fr" : "en";
+  // No locale prefix: set default per domain/subdomain
+  // - fr.fincargo.ai → fr
+  // - fincargo.be    → fr
+  // - otherwise      → en
+  const defaultLocale: Locale =
+    host === "fr.fincargo.ai" || host.endsWith(".fr.fincargo.ai")
+      ? "fr"
+      : host.endsWith("fincargo.be")
+      ? "fr"
+      : "en";
   const res = NextResponse.next();
   if (!req.cookies.get("NEXT_LOCALE")?.value) {
     res.cookies.set("NEXT_LOCALE", defaultLocale, {
