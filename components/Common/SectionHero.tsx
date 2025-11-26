@@ -27,7 +27,7 @@ export default function SectionHero({
   buttonLink,
   videoUrl,
   imageAlt = "Product preview on a laptop mockup",
-  mockupSrc = "/images/hero_home_fincargo.png",
+  mockupSrc = "/images/hero_home_fincargo.webp",
 }: SectionHeroProps) {
   const [isVisible, setIsVisible] = useState(false);
   const titleRef = useRef<HTMLDivElement | null>(null);
@@ -227,7 +227,8 @@ export default function SectionHero({
                     fill
                     sizes="(min-width: 1024px) 680px, 90vw"
                     className="object-cover"
-                    priority={false}
+                    priority
+                    fetchPriority="high"
                     quality={70}
                   />
                 </div>

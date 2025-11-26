@@ -76,7 +76,7 @@ export default function SectionHeroImage({
           fill
           sizes="100vw"
           priority
-          unoptimized
+          fetchPriority="high"
           className="object-cover object-center"
         />
         {/* Dark overlay for readability (configurable strength) */}

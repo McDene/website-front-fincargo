@@ -194,11 +194,11 @@ export default function GetStartedPage() {
                 {/* Illustration style "coin" (token) — flat (pas d'effet 3D) */}
                 <div className="relative w-44 h-44 lg:w-60 lg:h-60 xl:w-72 xl:h-72 drop-shadow-2xl">
                   {/* Anneau externe utilisant l'image comme texture via mask en couronne */}
-                  <div className="absolute inset-0 rounded-full bg-[url('/images/fincargo-get-started.png')] bg-cover bg-center [mask-image:radial-gradient(closest-side,transparent_calc(100%_-_12px),#000_calc(100%_-_12px))]" />
+                  <div className="absolute inset-0 rounded-full bg-[url('/images/fincargo-get-started.webp')] bg-cover bg-center [mask-image:radial-gradient(closest-side,transparent_calc(100%_-_12px),#000_calc(100%_-_12px))]" />
                   {/* Face interne contenant l'image */}
                   <div className="absolute inset-[12px] rounded-full overflow-hidden ring-1 ring-white/10">
                     <Image
-                      src="/images/fincargo-get-started.png"
+                      src="/images/fincargo-get-started.webp"
                       alt="Get started illustration"
                       width={560}
                       height={560}
