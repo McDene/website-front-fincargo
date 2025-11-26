@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
+import { getCookie } from "cookies-next";
 
 interface SectionDemoProps {
   title?: string;
@@ -31,6 +32,7 @@ export default function SectionDemo({
   const ref = useRef<HTMLElement | null>(null);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const [muted, setMuted] = useState(true);
+  const [allowVideo, setAllowVideo] = useState(false);
   const { t, tl } = useTranslation();
 
   const tf = (key: string, fallback: string) => {
@@ -60,15 +62,23 @@ export default function SectionDemo({
     return () => obs.disconnect();
   }, []);
 
+  // After hydration, read cookie consent and enable video if accepted.
+  useEffect(() => {
+    try {
+      const v = getCookie("cookie_consent");
+      if (v === "accepted") setAllowVideo(true);
+    } catch {}
+  }, []);
+
   // Unmute handler: requires a user gesture
   const handleUnmute = () => {
     const iframe = iframeRef.current;
     if (!iframe) return;
     const post = (func: string, args: unknown[] = []) => {
-      // Target the YouTube origin to avoid origin mismatch warnings
+      // Match the iframe origin (privacy enhanced mode)
       iframe.contentWindow?.postMessage(
         JSON.stringify({ event: "command", func, args }),
-        "https://www.youtube.com"
+        "https://www.youtube-nocookie.com"
       );
     };
     // Ask player to unmute, set volume and play
@@ -160,20 +170,33 @@ export default function SectionDemo({
           >
             <div className="relative w-full max-w-[860px] mx-auto">
               <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/15 ring-1 ring-white/10 bg-black/40 shadow-2xl">
-                <iframe
-                  ref={iframeRef}
-                  className="absolute inset-0 h-full w-full"
-                  src={`https://www.youtube.com/embed/MPJlhXj5Zi0?autoplay=1&mute=1&loop=1&playlist=MPJlhXj5Zi0&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1${
-                    SITE_ORIGIN ? `&origin=${encodeURIComponent(SITE_ORIGIN)}` : ""
-                  }`}
-                  title="Fincargo Demo"
-                  frameBorder="0"
-                  allow="autoplay; encrypted-media; picture-in-picture"
-                  allowFullScreen
-                  referrerPolicy="origin-when-cross-origin"
-                  loading="lazy"
-                />
-                {muted && (
+                {allowVideo ? (
+                  <iframe
+                    ref={iframeRef}
+                    className="absolute inset-0 h-full w-full"
+                    src={`https://www.youtube-nocookie.com/embed/MPJlhXj5Zi0?autoplay=1&mute=1&loop=1&playlist=MPJlhXj5Zi0&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1${
+                      SITE_ORIGIN ? `&origin=${encodeURIComponent(SITE_ORIGIN)}` : ""
+                    }`}
+                    title="Fincargo Demo"
+                    frameBorder="0"
+                    allow="autoplay; encrypted-media; picture-in-picture"
+                    allowFullScreen
+                    referrerPolicy="origin-when-cross-origin"
+                    loading="lazy"
+                  />
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setAllowVideo(true)}
+                    className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/40 transition-colors"
+                    aria-label="Enable YouTube video"
+                  >
+                    <span className="inline-flex items-center gap-2 rounded-full bg-white/95 text-black px-4 py-2 text-sm font-medium shadow-lg">
+                      ▶ Enable video
+                    </span>
+                  </button>
+                )}
+                { allowVideo && muted && (
                   <button
                     type="button"
                     onClick={handleUnmute}
