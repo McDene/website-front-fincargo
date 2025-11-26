@@ -18,6 +18,15 @@ export default function SectionDemo({
   gradientFromClass = "from-darkBlue",
   gradientToClass = "to-black",
 }: SectionDemoProps) {
+  // Use a build-time origin for deterministic SSR/CSR match (avoid hydration mismatch)
+  const SITE_ORIGIN = (() => {
+    try {
+      const url = process.env.NEXT_PUBLIC_SITE_URL || "";
+      return url ? new URL(url).origin : "";
+    } catch {
+      return "";
+    }
+  })();
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLElement | null>(null);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
@@ -56,9 +65,10 @@ export default function SectionDemo({
     const iframe = iframeRef.current;
     if (!iframe) return;
     const post = (func: string, args: unknown[] = []) => {
+      // Target the YouTube origin to avoid origin mismatch warnings
       iframe.contentWindow?.postMessage(
         JSON.stringify({ event: "command", func, args }),
-        "*"
+        "https://www.youtube.com"
       );
     };
     // Ask player to unmute, set volume and play
@@ -153,11 +163,14 @@ export default function SectionDemo({
                 <iframe
                   ref={iframeRef}
                   className="absolute inset-0 h-full w-full"
-                  src="https://www.youtube.com/embed/MPJlhXj5Zi0?autoplay=1&mute=1&loop=1&playlist=MPJlhXj5Zi0&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1"
+                  src={`https://www.youtube.com/embed/MPJlhXj5Zi0?autoplay=1&mute=1&loop=1&playlist=MPJlhXj5Zi0&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1${
+                    SITE_ORIGIN ? `&origin=${encodeURIComponent(SITE_ORIGIN)}` : ""
+                  }`}
                   title="Fincargo Demo"
                   frameBorder="0"
                   allow="autoplay; encrypted-media; picture-in-picture"
                   allowFullScreen
+                  referrerPolicy="origin-when-cross-origin"
                   loading="lazy"
                 />
                 {muted && (
