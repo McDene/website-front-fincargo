@@ -50,7 +50,7 @@ export default function LanguageSwitcherMobile() {
   }, []);
 
   const flagCode = (code: Language) =>
-    ({ en: "gb", es: "es", fr: "fr", de: "de" } as const)[code];
+    ({ en: "gb", es: "es", fr: "fr", de: "de", nl: "nl" } as const)[code];
 
   return (
     <div ref={wrapperRef} className="relative inline-block text-left">

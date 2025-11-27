@@ -4,7 +4,7 @@ import { getCookie, setCookie } from "cookies-next";
 import TRANSLATIONS from "@/lib/index";
 
 interface LanguageContextProps {
-  language: "en" | "fr" | "es" | "de";
+  language: "en" | "fr" | "es" | "de" | "nl";
   switchLanguage: (lang: LanguageContextProps["language"]) => void;
   translations: Record<string, string | readonly string[]>;
 }
@@ -24,7 +24,7 @@ export const LanguageProvider: React.FC<React.PropsWithChildren> = ({
   useEffect(() => {
     // 1) If server set NEXT_LOCALE (via middleware), honor it on first load
     const cookieLang = getCookie("NEXT_LOCALE");
-    if (cookieLang === "en" || cookieLang === "fr" || cookieLang === "es" || cookieLang === "de") {
+    if (cookieLang === "en" || cookieLang === "fr" || cookieLang === "es" || cookieLang === "de" || cookieLang === "nl") {
       setLanguage(cookieLang);
       // keep localStorage in sync for later navigations
       try { localStorage.setItem("language", cookieLang); } catch {}
@@ -33,7 +33,7 @@ export const LanguageProvider: React.FC<React.PropsWithChildren> = ({
 
     // 2) Fallback to saved local preference
     const saved = typeof window !== "undefined" ? localStorage.getItem("language") : null;
-    if (saved === "en" || saved === "fr" || saved === "es" || saved === "de") {
+    if (saved === "en" || saved === "fr" || saved === "es" || saved === "de" || saved === "nl") {
       setLanguage(saved);
       // also write cookie so SSR fetch uses it on next navigation
       try { setCookie("NEXT_LOCALE", saved, { path: "/" }); } catch {}
@@ -51,7 +51,11 @@ export const LanguageProvider: React.FC<React.PropsWithChildren> = ({
       value={{
         language,
         switchLanguage,
-        translations: TRANSLATIONS[language] || TRANSLATIONS.en,
+        translations:
+          TRANSLATIONS[language] &&
+          Object.keys(TRANSLATIONS[language] as Record<string, unknown>).length > 0
+            ? TRANSLATIONS[language]
+            : TRANSLATIONS.en,
       }}
     >
       {children}

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { toStrapiLocale, type UILocale } from "@/lib/i18n";
+import { toStrapiLocale, type UILocale, detectServerRegion, detectClientRegion } from "@/lib/i18n";
 
 export const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const FALLBACK_API_URL =
@@ -47,7 +47,15 @@ export const fetchAPI = async (
 ) => {
   try {
     const separator = endpoint.includes("?") ? "&" : "?";
-    const strapiLocale = toStrapiLocale(locale);
+    const baseLocale = toStrapiLocale(locale);
+    const region = typeof window === "undefined" ? await detectServerRegion() : detectClientRegion();
+    const strapiLocale = (() => {
+      if (region === "be") {
+        // Belgium site serves English content from en-BE
+        return "en-BE";
+      }
+      return baseLocale;
+    })();
     const buildUrl = (base: string | undefined) =>
       `${normalizeLocalhost(base)}${endpoint}${separator}locale=${strapiLocale}`;
 
@@ -69,7 +77,14 @@ export const fetchAPI = async (
     try {
       if (!FALLBACK_API_URL || FALLBACK_API_URL === API_URL) throw error;
       const separator = endpoint.includes("?") ? "&" : "?";
-      const strapiLocale = toStrapiLocale(locale);
+      const baseLocale = toStrapiLocale(locale);
+      const region = typeof window === "undefined" ? await detectServerRegion() : detectClientRegion();
+      const strapiLocale = (() => {
+        if (region === "be") {
+          return "en-BE";
+        }
+        return baseLocale;
+      })();
       const fallbackUrl = `${normalizeLocalhost(FALLBACK_API_URL)}${endpoint}${separator}locale=${strapiLocale}`;
       const res2 = await axios.get(fallbackUrl, {
         headers: {

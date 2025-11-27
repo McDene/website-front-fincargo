@@ -15,7 +15,7 @@ import { INTEGRATION } from "./integration";
 import { GETSTARTED } from "./get_started";
 import { API } from "./api";
 
-type Lang = "en" | "fr" | "es" | "de";
+type Lang = "en" | "fr" | "es" | "de" | "nl";
 type Value = string | readonly string[];
 type Dict = Record<Lang, Record<string, Value>>;
 
@@ -46,6 +46,7 @@ const emptyByLang: Dict = {
   fr: {},
   es: {},
   de: {},
+  nl: {},
 };
 
 const TRANSLATIONS: Dict = modules.reduce<Dict>((acc, mod) => {

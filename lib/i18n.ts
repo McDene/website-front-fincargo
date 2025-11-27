@@ -1,11 +1,36 @@
-export type LanguageCore = "en" | "fr" | "es" | "de";
-export type StrapiLocale = "en" | "fr" | "es-ES" | "de";
+export type LanguageCore = "en" | "fr" | "es" | "de" | "nl";
+// Keep StrapiLocale wide to allow regional variants returned at runtime
+export type StrapiLocale = string;
 // Accept either UI codes (en, fr, es, de) or Strapi codes (including es-ES)
 export type UILocale = LanguageCore | StrapiLocale;
 
 // Normalize any Spanish variant to the Strapi-required es-ES; pass through others
 export const toStrapiLocale = (lang: UILocale): StrapiLocale =>
   lang === "es" || lang === "es-ES" ? "es-ES" : (lang as StrapiLocale);
+
+export type Region = "global" | "be";
+
+export const detectServerRegion = async (): Promise<Region> => {
+  try {
+    const { headers } = await import("next/headers");
+    const h = await headers();
+    const host = (h.get("host") || "").toLowerCase();
+    if (host === "be.fincargo.ai" || host.endsWith(".be.fincargo.ai") || host.endsWith("fincargo.be")) {
+      return "be";
+    }
+  } catch {}
+  return "global";
+};
+
+export const detectClientRegion = (): Region => {
+  try {
+    const host = typeof window !== "undefined" ? window.location.hostname.toLowerCase() : "";
+    if (host === "be.fincargo.ai" || host.endsWith(".be.fincargo.ai") || host.endsWith("fincargo.be")) {
+      return "be";
+    }
+  } catch {}
+  return "global";
+};
 
 export const SUPPORTED_UI_LOCALES: readonly LanguageCore[] = [
   "en",

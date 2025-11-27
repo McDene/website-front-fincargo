@@ -8,15 +8,10 @@ import { SUPPORTED_UI_LOCALES, type LanguageCore } from "@/lib/i18n";
 /** Langues supportées par ton Context */
 // moved to lib/i18n
 /** Locales attendues côté Strapi */
-export type StrapiLocale = "en" | "fr" | "es-ES" | "de";
-
-/** Helper à utiliser partout pour convertir la langue UI en locale Strapi */
-export const toStrapiLocale = (lang: LanguageCore): StrapiLocale =>
-  lang === "es" ? "es-ES" : lang;
 
 const LANGUAGES: ReadonlyArray<{
   code: LanguageCore; // ce qui va dans switchLanguage
-  strapi: StrapiLocale; // ce qui va dans fetchAPI / Strapi
+  strapi: string; // ce qui va dans fetchAPI / Strapi
   label: string;
 }> = [
   { code: "en", strapi: "en", label: "EN" },
@@ -66,7 +61,7 @@ export default function LanguageSwitcher() {
   }, []);
 
   const flagCode = (code: LanguageCore) =>
-    ({ en: "gb", es: "es", fr: "fr", de: "de" } as const)[code];
+    ({ en: "gb", es: "es", fr: "fr", de: "de", nl: "nl" } as const)[code];
 
   return (
     <div ref={wrapperRef} className="hidden relative lg:inline-block text-left">

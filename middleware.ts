@@ -40,8 +40,10 @@ export function middleware(req: NextRequest) {
   const defaultLocale: Locale =
     host === "fr.fincargo.ai" || host.endsWith(".fr.fincargo.ai")
       ? "fr"
+      : host === "be.fincargo.ai" || host.endsWith(".be.fincargo.ai")
+      ? "en" // Belgium defaults to English (en-BE content)
       : host.endsWith("fincargo.be")
-      ? "fr"
+      ? "en"
       : "en";
   const res = NextResponse.next();
   if (!req.cookies.get("NEXT_LOCALE")?.value) {
