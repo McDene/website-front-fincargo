@@ -9,6 +9,8 @@ import {
   BoltIcon,
 } from "@heroicons/react/24/outline";
 import { useTranslation } from "@/hooks/useTranslation";
+import type { Region } from "@/lib/i18n";
+import { getHeroVariant } from "@/lib/region-hero";
 
 interface SectionHeroProps {
   title: string;
@@ -18,6 +20,7 @@ interface SectionHeroProps {
   videoUrl: string;
   imageAlt?: string;
   mockupSrc?: string;
+  region?: Region;
 }
 
 export default function SectionHero({
@@ -28,6 +31,7 @@ export default function SectionHero({
   videoUrl,
   imageAlt = "Product preview on a laptop mockup",
   mockupSrc = "/images/hero_home_fincargo.webp",
+  region = 'global',
 }: SectionHeroProps) {
   const [isVisible, setIsVisible] = useState(false);
   const titleRef = useRef<HTMLDivElement | null>(null);
@@ -36,6 +40,14 @@ export default function SectionHero({
   const rightRef = useRef<HTMLDivElement | null>(null);
 
   const { t, tl } = useTranslation();
+  const variant = getHeroVariant(region);
+
+  const ICONS = {
+    ShieldCheckIcon,
+    ClipboardDocumentCheckIcon,
+    BoltIcon,
+    DocumentCheckIcon,
+  } as const;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -205,15 +217,18 @@ export default function SectionHero({
                 : "translate-y-6 opacity-0"
             }`}
           >
-            {/* glow */}
-            <div
-              className="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-tr from-white/10 via-white/5 to-transparent blur-2xl"
-              aria-hidden
-            />
+            {/* glow (variant controlled) */}
+            {variant.showGlow && (
+              <div
+                className="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-tr from-white/10 via-white/5 to-transparent blur-2xl"
+                aria-hidden
+              />
+            )}
 
-            {/* Mock laptop frame */}
+            {/* Mock laptop frame (variant controlled) */}
             <div className="relative w-full max-w-[680px]">
-              <div className="mx-auto aspect-[16/10] rounded-2xl border border-white/15 bg-white/5 shadow-2xl backdrop-blur ring-1 ring-white/10">
+              {variant.showMock && (
+                <div className="mx-auto aspect-[16/10] rounded-2xl border border-white/15 bg-white/5 shadow-2xl backdrop-blur ring-1 ring-white/10">
                 {/* Bezel */}
                 <div className="absolute left-0 right-0 top-0 h-8 rounded-t-2xl bg-gradient-to-b from-white/15 to-white/5 flex items-center justify-start px-4 gap-2">
                   <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
@@ -233,72 +248,126 @@ export default function SectionHero({
                   />
                 </div>
               </div>
+              )}
               {/* Laptop base */}
               {/* <div className="mx-auto mt-2 h-3 w-[92%] rounded-b-2xl bg-gradient-to-b from-white/20 to-white/5 shadow-lg" /> */}
 
-              {/* B2B Mandate timing */}
-              <div className="mt-6 rounded-2xl  p-4 sm:p-5 text-white">
-                <div className="mb-3">
-                  <h3 className="text-lg font-semibold tracking-tight">
-                    {t("hero.b2b.label")}
-                  </h3>
-                </div>
-                {/* inline, compact country chips with round flags (equal widths) */}
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-                  {[1, 2, 3, 4, 5].map((i) => {
-                    const [country, date, model] = tl(`hero.country.data.${i}`);
-                    const flagByIndex: { [key: number]: string } = {
-                      1: "it", // Italy
-                      2: "ro", // Romania
-                      3: "be", // Belgium
-                      4: "pl", // Poland
-                      5: "fr", // France
-                    };
-                    const code = flagByIndex[i];
-                    return (
-                      <li key={i} className="w-full">
-                        <span className="inline-flex w-full items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-sm ring-1 ring-white/15">
-                          {/* round country flag */}
-                          <img
-                            src={`https://hatscripts.github.io/circle-flags/flags/${code}.svg`}
-                            alt={country}
-                            title={country}
-                            className="h-5 w-5 rounded-full ring-1 ring-white/20"
-                            loading="lazy"
-                            decoding="async"
-                          />
-                          <span className="text-white/80">{date}</span>
-                          <span className="rounded bg-white/15 px-2 py-0.5 text-xs font-semibold ring-1 ring-white/20 ml-auto">
-                            {model}
-                          </span>
-                        </span>
-                      </li>
-                    );
-                  })}
-                </ul>
-                <div className="mt-4 flex justify-end">
-                  <a
-                    href="/financial-services"
-                    className="group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-white/90 hover:text-white bg-transparent ring-1 ring-white/30 hover:ring-white/50 hover:bg-white/10 transition-all"
-                    aria-label={t("more_info_financial_services")}
+              {/* Right side content (variant controlled) */}
+              <div className={`${variant.showMock ? 'mt-6' : 'mt-2 sm:mt-3'} text-white`}>
+                {variant.right === 'peppol-card' && variant.card && (
+                  <section
+                    aria-labelledby="region-hero-title"
+                    className="rounded-2xl ring-1 ring-lightBlue/30 bg-gradient-to-b from-darkBlue to-black/90 p-4 sm:p-5 shadow-md"
                   >
-                    {t("hero.more_info")}
-                    <svg
-                      className="size-5 transition-transform group-hover:translate-x-0.5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M5 12h14M13 5l7 7-7 7"
-                        stroke="currentColor"
-                        strokeWidth="1.8"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </a>
-                </div>
+                    {variant.card.headerChips && (
+                      <div className="flex items-center gap-2 text-[11px] sm:text-xs font-semibold text-white/85">
+                        {variant.card.headerChips.map((chip, idx) => (
+                          <span
+                            key={idx}
+                            className={
+                              chip.tone === 'success'
+                                ? 'inline-flex items-center gap-1 rounded-full bg-lightBlue/15 px-2 py-0.5 ring-1 ring-lightBlue/30 text-white/90'
+                                : 'inline-flex items-center gap-1 rounded-full bg-white/10 px-2 py-0.5 ring-1 ring-white/20 text-white/85'
+                            }
+                          >
+                            {chip.tone === 'success' ? (
+                              <ShieldCheckIcon className="h-4 w-4 text-lightBlue" aria-hidden="true" />
+                            ) : (
+                              <DocumentCheckIcon className="h-4 w-4 text-white/80" aria-hidden="true" />
+                            )}
+                            {chip.text}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    <h3 id="region-hero-title" className="mt-2 text-xl md:text-2xl font-extrabold tracking-tight leading-tight">
+                      {variant.card.title}
+                    </h3>
+                    {variant.card.leads?.map((lead, i) => (
+                      <p key={i} className={`text-sm md:text-base leading-snug ${i === 0 ? 'mt-2 text-white/85' : 'mt-1 text-white/80'}`}>
+                        {lead}
+                      </p>
+                    ))}
+
+                    {variant.card.features && (
+                      <ul className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        {variant.card.features.map((f, i) => {
+                          const Icon = ICONS[f.icon];
+                          return (
+                            <li key={i} className="flex items-start gap-3 rounded-xl bg-white/5 ring-1 ring-lightBlue/25 hover:ring-lightBlue/40 p-2.5 transition">
+                              <Icon className="h-5 w-5 text-lightBlue flex-shrink-0" aria-hidden="true" />
+                              <div>
+                                <p className="text-sm font-semibold">{f.title}</p>
+                                <p className="text-xs text-white/80">{f.desc}</p>
+                              </div>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
+
+                    {variant.card.cta && (
+                      <div className="mt-3 flex justify-end">
+                        <a
+                          href={variant.card.cta.href}
+                          className="group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-white/95 hover:text-white bg-transparent ring-1 ring-lightBlue/50 hover:ring-lightBlue hover:bg-lightBlue/10 transition-all"
+                          aria-label={variant.card.cta.ariaLabel || variant.card.cta.label}
+                        >
+                          {variant.card.cta.label}
+                          <svg className="size-5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </a>
+                      </div>
+                    )}
+                  </section>
+                )}
+
+                {variant.right === 'chips' && (
+                  <>
+                    <div className="mb-3">
+                      <h3 className="text-lg font-semibold tracking-tight">{t("hero.b2b.label")}</h3>
+                    </div>
+                    {/* inline, compact country chips with round flags (equal widths) */}
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                      {[1, 2, 3, 4, 5].map((i) => {
+                        const [country, date, model] = tl(`hero.country.data.${i}`);
+                        const flagByIndex: { [key: number]: string } = { 1: "it", 2: "ro", 3: "be", 4: "pl", 5: "fr" };
+                        const code = flagByIndex[i];
+                        return (
+                          <li key={i} className="w-full">
+                            <span className="inline-flex w-full items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-sm ring-1 ring-white/15">
+                              {/* round country flag */}
+                              <img
+                                src={`https://hatscripts.github.io/circle-flags/flags/${code}.svg`}
+                                alt={country}
+                                title={country}
+                                className="h-5 w-5 rounded-full ring-1 ring-white/20"
+                                loading="lazy"
+                                decoding="async"
+                              />
+                              <span className="text-white/80">{date}</span>
+                              <span className="rounded bg-white/15 px-2 py-0.5 text-xs font-semibold ring-1 ring-white/20 ml-auto">{model}</span>
+                            </span>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                    <div className="mt-4 flex justify-end">
+                      <a
+                        href="/financial-services"
+                        className="group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-white/90 hover:text-white bg-transparent ring-1 ring-white/30 hover:ring-white/50 hover:bg-white/10 transition-all"
+                        aria-label={t("more_info_financial_services")}
+                      >
+                        {t("hero.more_info")}
+                        <svg className="size-5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </a>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>

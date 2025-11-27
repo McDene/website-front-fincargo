@@ -38,9 +38,9 @@ export function middleware(req: NextRequest) {
   // - fincargo.be    → fr
   // - otherwise      → en
   const defaultLocale: Locale =
-    host === "fr.fincargo.ai" || host.endsWith(".fr.fincargo.ai")
+    host === "fr.fincargo.ai" || host.endsWith(".fr.fincargo.ai") || host === "fr.localhost" || host.endsWith(".fr.localhost")
       ? "fr"
-      : host === "be.fincargo.ai" || host.endsWith(".be.fincargo.ai")
+      : host === "be.fincargo.ai" || host.endsWith(".be.fincargo.ai") || host === "be.localhost" || host.endsWith(".be.localhost")
       ? "en" // Belgium defaults to English (en-BE content)
       : host.endsWith("fincargo.be")
       ? "en"

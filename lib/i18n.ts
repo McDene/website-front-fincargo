@@ -14,8 +14,16 @@ export const detectServerRegion = async (): Promise<Region> => {
   try {
     const { headers } = await import("next/headers");
     const h = await headers();
-    const host = (h.get("host") || "").toLowerCase();
-    if (host === "be.fincargo.ai" || host.endsWith(".be.fincargo.ai") || host.endsWith("fincargo.be")) {
+    // Normalize host and strip port if present (e.g. be.localhost:3000 → be.localhost)
+    const rawHost = (h.get("host") || "").toLowerCase();
+    const host = rawHost.split(":")[0];
+    if (
+      host === "be.fincargo.ai" ||
+      host.endsWith(".be.fincargo.ai") ||
+      host.endsWith("fincargo.be") ||
+      host === "be.localhost" ||
+      host.endsWith(".be.localhost")
+    ) {
       return "be";
     }
   } catch {}
@@ -25,7 +33,13 @@ export const detectServerRegion = async (): Promise<Region> => {
 export const detectClientRegion = (): Region => {
   try {
     const host = typeof window !== "undefined" ? window.location.hostname.toLowerCase() : "";
-    if (host === "be.fincargo.ai" || host.endsWith(".be.fincargo.ai") || host.endsWith("fincargo.be")) {
+    if (
+      host === "be.fincargo.ai" ||
+      host.endsWith(".be.fincargo.ai") ||
+      host.endsWith("fincargo.be") ||
+      host === "be.localhost" ||
+      host.endsWith(".be.localhost")
+    ) {
       return "be";
     }
   } catch {}

@@ -70,21 +70,25 @@ export const fetchAPI = async (
 
     return res.data;
   } catch (error) {
+    const isServer = typeof window === "undefined";
     if (process.env.NODE_ENV !== "production") {
-      console.warn("Error fetching from primary Strapi:", errorSummary(error));
+      const msg = `Error fetching from primary Strapi: ${errorSummary(error)}`;
+      if (isServer) console.warn(msg);
+      else console.debug(msg);
     }
-    // Fallback to remote API if primary fails (useful when localhost Strapi is down)
+
+    // On the client, avoid attempting the FALLBACK_API_URL to prevent CORS console noise.
+    if (!isServer) {
+      return null;
+    }
+
+    // Server-side: Fallback to remote API if primary fails (useful when local Strapi is down)
     try {
       if (!FALLBACK_API_URL || FALLBACK_API_URL === API_URL) throw error;
       const separator = endpoint.includes("?") ? "&" : "?";
       const baseLocale = toStrapiLocale(locale);
-      const region = typeof window === "undefined" ? await detectServerRegion() : detectClientRegion();
-      const strapiLocale = (() => {
-        if (region === "be") {
-          return "en-BE";
-        }
-        return baseLocale;
-      })();
+      const region = await detectServerRegion();
+      const strapiLocale = region === "be" ? "en-BE" : baseLocale;
       const fallbackUrl = `${normalizeLocalhost(FALLBACK_API_URL)}${endpoint}${separator}locale=${strapiLocale}`;
       const res2 = await axios.get(fallbackUrl, {
         headers: {
@@ -98,7 +102,8 @@ export const fetchAPI = async (
       return res2.data;
     } catch (fallbackError) {
       if (process.env.NODE_ENV !== "production") {
-        console.error(
+        // Only log loudly on the server to keep the browser console clean.
+        console.warn(
           "Error fetching data from Strapi (fallback):",
           errorSummary(fallbackError)
         );

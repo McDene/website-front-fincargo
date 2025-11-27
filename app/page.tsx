@@ -7,7 +7,7 @@ import SectionBenefits from "@/components/Common/SectionProvenResults";
 import SectionFeatures from "@/components/Common/SectionFeatures";
 import SectionPricingByTransaction from "@/components/Common/SectionPricingByTransaction";
 import SectionDemo from "@/components/Common/SectionDemo";
-import { detectServerUiLocale, toStrapiLocale } from "@/lib/i18n";
+import { detectServerUiLocale, toStrapiLocale, detectServerRegion } from "@/lib/i18n";
 
 export const revalidate = 3600; // revalidate every hour
 
@@ -113,6 +113,7 @@ const normalizeFaqEntry = (raw: unknown): FaqData | null => {
 export default async function Home() {
   // SSR fetch in default language (en) for SEO
   const uiLocale = await detectServerUiLocale();
+  const region = await detectServerRegion();
   const strapiLocale = toStrapiLocale(uiLocale);
   const [heroResponse, faqCarrierRes, faqFreightRes] = await Promise.all([
     fetchAPI(
@@ -160,7 +161,7 @@ export default async function Home() {
   return (
     <>
       <Header />
-      {heroData && <Hero heroData={heroData} />}
+      {heroData && <Hero heroData={heroData} region={region} />}
       <SectionFeatures />
       <SectionBenefits />
       <SectionPricingByTransaction />

@@ -10,11 +10,14 @@ interface HeroData {
   };
 }
 
+import type { Region } from "@/lib/i18n";
+
 interface HeroProps {
   heroData: HeroData | null;
+  region?: Region;
 }
 
-export default function Hero({ heroData }: HeroProps) {
+export default function Hero({ heroData, region = 'global' }: HeroProps) {
   const videoUrl = heroData?.Video?.url?.startsWith("http")
     ? heroData.Video.url
     : `${process.env.NEXT_PUBLIC_API_URL || ""}${heroData?.Video?.url || ""}`;
@@ -31,6 +34,7 @@ export default function Hero({ heroData }: HeroProps) {
       buttonText={heroData.ButtonText}
       videoUrl={videoUrl}
       imageAlt="Image de logistique"
+      region={region}
     />
   );
 }
