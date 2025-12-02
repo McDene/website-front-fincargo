@@ -56,8 +56,9 @@ export const fetchAPI = async (
       }
       return baseLocale;
     })();
+    const needsLocale = !/[?&]locale=/.test(endpoint);
     const buildUrl = (base: string | undefined) =>
-      `${normalizeLocalhost(base)}${endpoint}${separator}locale=${strapiLocale}`;
+      `${normalizeLocalhost(base)}${endpoint}${needsLocale ? `${separator}locale=${strapiLocale}` : ""}`;
 
     // First attempt: primary API_URL
     const primaryUrl = buildUrl(API_URL);
@@ -89,7 +90,8 @@ export const fetchAPI = async (
       const baseLocale = toStrapiLocale(locale);
       const region = await detectServerRegion();
       const strapiLocale = region === "be" ? "en-BE" : baseLocale;
-      const fallbackUrl = `${normalizeLocalhost(FALLBACK_API_URL)}${endpoint}${separator}locale=${strapiLocale}`;
+      const needsLocale = !/[?&]locale=/.test(endpoint);
+      const fallbackUrl = `${normalizeLocalhost(FALLBACK_API_URL)}${endpoint}${needsLocale ? `${separator}locale=${strapiLocale}` : ""}`;
       const res2 = await axios.get(fallbackUrl, {
         headers: {
           Accept: "application/json",

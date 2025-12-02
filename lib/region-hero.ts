@@ -77,9 +77,10 @@ const VARIANTS: Record<Region, HeroVariant> = {
 
 // Resolve localized values using the given language with fallback to EN
 const resolve = <T,>(v: T | Localized<T>, lang: LanguageCore): T => {
-  if (typeof v === "object" && v !== null && (v as any).en !== undefined) {
+  const maybeObj = v as unknown as Record<string, unknown> | null;
+  if (maybeObj && typeof maybeObj === "object" && "en" in maybeObj) {
     const dict = v as Localized<T>;
-    return dict[lang] ?? dict.en;
+    return (dict[lang] ?? dict.en) as T;
   }
   return v as T;
 };
@@ -96,12 +97,19 @@ export const getHeroVariant = (region: Region, lang: LanguageCore = "en"): Resol
   const base = VARIANTS[region] ?? VARIANTS.global;
   if (!base.card) return base as ResolvedHeroVariant;
   const { card } = base;
+  const leadsResolved: string[] | undefined = (() => {
+    const l = card.leads as string[] | Localized<string[]> | undefined;
+    if (!l) return undefined;
+    if (Array.isArray(l)) return l;
+    return resolve(l, lang);
+  })();
+
   return {
     ...base,
     card: {
       ...card,
       title: resolve(card.title, lang),
-      leads: card.leads ? resolve(card.leads as any, lang) : undefined,
+      leads: leadsResolved,
       cta: card.cta
         ? {
             href: card.cta.href,

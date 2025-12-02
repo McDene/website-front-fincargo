@@ -1,0 +1,241 @@
+import type { LanguageCore } from "@/lib/i18n";
+
+export interface BeEInvoicingContent {
+  h1: string;
+  subheading: string;
+  intro: string[];
+
+  regulation: {
+    h2: string;
+    bulletsTitle: string;
+    bullets: string[];
+    note: string;
+  };
+
+  whyPeppol: {
+    h2: string;
+    bulletsTitle: string;
+    bullets: string[];
+    note: string;
+  };
+
+  ecmr: {
+    h2: string;
+    tagline: string;
+    bullets: string[];
+    note: string;
+    kpi: { title: string; value: string; subtitle: string; chips: string[] };
+  };
+
+  benefits: {
+    h2: string;
+    carriers: { title: string; items: string[] };
+    forwarders: { title: string; items: string[] };
+    shippers: { title: string; items: string[] };
+  };
+
+  capabilities: {
+    h2: string;
+    items: Array<{ title: string; desc: string }>;
+  };
+}
+
+type Dict = Partial<Record<LanguageCore, BeEInvoicingContent>> & {
+  en: BeEInvoicingContent;
+  fr: BeEInvoicingContent;
+};
+
+export const EINVOICING_BE: Dict = {
+  fr: {
+    h1: "E-Invoicing en Belgique",
+    subheading:
+      "Facturation électronique Peppol & EN 16931 pour transporteurs, transitaires et chargeurs",
+    intro: [
+      "La Belgique accélère la transition vers la facturation électronique obligatoire en B2B. Le passage à une facture structurée (EN 16931), transmise via Peppol, devient un standard incontournable pour le secteur du transport et de la logistique.",
+      "Fincargo fournit une plateforme spécialisée capable de générer, transmettre, recevoir et valider des e-factures entièrement conformes, tout en automatisant l'encaissement et le traitement fournisseur.",
+    ],
+    regulation: {
+      h2: "Cadre réglementaire belge : e-facturation obligatoire dès 2026",
+      bulletsTitle: "Obligations clés",
+      bullets: [
+        "E-facturation B2G obligatoire depuis 2017",
+        "E-facturation B2B obligatoire confirmée pour 2026 (loi fédérale)",
+        "Format imposé : EN 16931 (facture structurée européenne)",
+        "Transmission recommandée : réseau Peppol (BIS 3.0)",
+        "Archivage légal obligatoire selon les normes belges",
+        "Alignement complet avec ViDA (VAT in the Digital Age)",
+      ],
+      note: "Ce cadre est particulièrement important pour les entreprises actives dans le transport où les volumes de factures, d’avoirs et de documents associés (CMR, e-CMR, POD) sont élevés.",
+    },
+    whyPeppol: {
+      h2: "Pourquoi Peppol est devenu incontournable pour le secteur du transport en Belgique",
+      bulletsTitle: "Avantages pour les entreprises de transport :",
+      bullets: [
+        "Envoi direct aux ERP des clients (chargeurs, transitaires, entreprises industrielles)",
+        "Diminution des rejets grâce à des contrôles de conformité stricts",
+        "Traçabilité complète via les accusés de réception Peppol",
+        "Réduction des litiges sur la TVA, montants ou doublons",
+        "Traitement accéléré des factures OTIF (On Time In Full)",
+        "Moins de dépendance au PDF et aux saisies manuelles",
+      ],
+      note: "Fincargo est nativement compatible avec Peppol BIS 3.0, UBL 2.1, et toutes les extensions belges pertinentes.",
+    },
+  ecmr: {
+    h2: "E-CMR & digitalisation des documents logistiques",
+    tagline: "Un accélérateur pour l'e-invoicing transport en Belgique",
+    bullets: [
+      "l’automatisation du lien prestation → CMR → facture",
+      "la validation automatique des éléments de transport",
+      "la vérification des incohérences (date, lieu, poids, kilométrage)",
+    ],
+    note: "En combinant e-CMR + e-invoicing, les transporteurs belges peuvent réduire leurs cycles OTC (Order-to-Cash) de 15 à 35 %.",
+    kpi: {
+      title: "Impact sur le cycle OTC",
+      value: "15–35%",
+      subtitle: "de réduction du cycle Order‑to‑Cash",
+      chips: ["Moins de litiges", "Validation + rapide"],
+    },
+  },
+    benefits: {
+      h2: "Avantages pour le transport, les transitaires et les chargeurs en Belgique",
+      carriers: {
+        title: "Pour les transporteurs :",
+        items: [
+          "Génération automatique des e-factures structurées (EN 16931)",
+          "Transmission directe via Peppol",
+          "Contrôles de conformité automatiques avant envoi",
+          "Moins de rejets, moins de litiges",
+          "Encaissement accéléré",
+          "Archivage légal conforme aux normes belges",
+        ],
+      },
+      forwarders: {
+        title: "Pour les transitaires :",
+        items: [
+          "Traitement sans contact des factures fournisseurs",
+          "Rapprochement automatique (e-CMR, bons de transport, tarifs)",
+          "Détection automatique des doublons et anomalies",
+          "Vérification de la TVA et des identifiants d’entreprise",
+          "Piste d’audit complète pour chaque facture",
+        ],
+      },
+      shippers: {
+        title: "Pour les chargeurs et expéditeurs :",
+        items: [
+          "Validation structurée des factures entrantes",
+          "Intégration API avec ERP / TMS / WMS",
+          "Automatisation des contrôles documentaires",
+          "Gestion unifiée des factures transport multi-prestataires",
+        ],
+      },
+    },
+    capabilities: {
+      h2: "Capacités techniques Fincargo (spécifiques au marché belge)",
+      items: [
+        { title: "Norme EN 16931", desc: "Structure européenne obligatoire pour les e-factures B2B et B2G en Belgique." },
+        { title: "Peppol BIS 3.0", desc: "Profil belge standard pour l’échange sécurisé des factures." },
+        { title: "UBL 2.1", desc: "Format de données universel, support natif côté Fincargo." },
+        { title: "Contrôles TVA", desc: "Validation automatique des numéros TVA belges, vérification VIES." },
+        { title: "Signatures numériques", desc: "Garanties d’intégrité, horodatage et preuve légale." },
+        { title: "API ERP/TMS", desc: "Connecteurs vers SAP, Navision, Odoo, Transwide, Trimble, TAS-TMS, etc." },
+        { title: "Multi-langue", desc: "FR & NL (France/Belgique) totalement supportés." },
+      ],
+    },
+  },
+  en: {
+    h1: "E‑Invoicing in Belgium",
+    subheading:
+      "Peppol & EN 16931 e‑invoicing for carriers, forwarders and shippers",
+    intro: [
+      "Belgium is accelerating towards mandatory B2B e‑invoicing. Structured invoices (EN 16931), transmitted via Peppol, are becoming the de‑facto standard for the transport and logistics sector.",
+      "Fincargo provides a specialised platform to generate, send, receive and validate fully compliant e‑invoices — while automating collections and supplier processing.",
+    ],
+    regulation: {
+      h2: "Belgian regulatory framework: mandatory e‑invoicing from 2026",
+      bulletsTitle: "Key obligations",
+      bullets: [
+        "B2G e‑invoicing mandatory since 2017",
+        "B2B e‑invoicing confirmed for 2026 (federal law)",
+        "Required format: EN 16931 (EU structured invoice)",
+        "Recommended transmission: Peppol network (BIS 3.0)",
+        "Legal archiving required under Belgian standards",
+        "Full alignment with ViDA (VAT in the Digital Age)",
+      ],
+      note: "This framework matters especially in transport, where volumes of invoices, credit notes and related documents (CMR, e‑CMR, POD) are high.",
+    },
+    whyPeppol: {
+      h2: "Why Peppol has become essential for transport in Belgium",
+      bulletsTitle: "Benefits for transport businesses:",
+      bullets: [
+        "Direct delivery into clients’ ERPs (shippers, forwarders, industrials)",
+        "Fewer rejections thanks to strict compliance checks",
+        "Full traceability via Peppol acknowledgements",
+        "Fewer VAT/amount/duplicate disputes",
+        "Faster processing of OTIF invoices (On Time In Full)",
+        "Less reliance on PDFs and manual keying",
+      ],
+      note: "Fincargo is natively compatible with Peppol BIS 3.0, UBL 2.1 and all relevant Belgian extensions.",
+    },
+  ecmr: {
+    h2: "e‑CMR & digitalisation of logistics documents",
+    tagline: "A catalyst for transport e‑invoicing in Belgium",
+    bullets: [
+      "automation of service → CMR → invoice linkage",
+      "automatic validation of transport elements",
+      "consistency checks (date, location, weight, mileage)",
+    ],
+    note: "Combining e‑CMR + e‑invoicing helps Belgian carriers shorten OTC (Order‑to‑Cash) cycles by 15–35%.",
+    kpi: {
+      title: "Impact on the OTC cycle",
+      value: "15–35%",
+      subtitle: "reduction in Order‑to‑Cash cycle",
+      chips: ["Fewer disputes", "Faster validation"],
+    },
+  },
+    benefits: {
+      h2: "Benefits for Belgian carriers, forwarders and shippers",
+      carriers: {
+        title: "For carriers:",
+        items: [
+          "Automatic generation of structured e‑invoices (EN 16931)",
+          "Direct transmission over Peppol",
+          "Pre‑submission compliance checks",
+          "Fewer rejections and disputes",
+          "Faster collections",
+          "Legal archiving compliant with Belgian rules",
+        ],
+      },
+      forwarders: {
+        title: "For forwarders:",
+        items: [
+          "Touchless processing of supplier invoices",
+          "Automatic matching (e‑CMR, transport orders, tariffs)",
+          "Automatic duplicate/anomaly detection",
+          "VAT and business ID verification",
+          "Complete audit trail per invoice",
+        ],
+      },
+      shippers: {
+        title: "For shippers:",
+        items: [
+          "Structured validation of incoming invoices",
+          "API integration with ERP / TMS / WMS",
+          "Automated documentary checks",
+          "Unified management of multi‑carrier transport invoices",
+        ],
+      },
+    },
+    capabilities: {
+      h2: "Fincargo technical capabilities (Belgian market)",
+      items: [
+        { title: "EN 16931 standard", desc: "Mandatory EU structure for B2B/B2G e‑invoices in Belgium." },
+        { title: "Peppol BIS 3.0", desc: "Belgian‑standard profile for secure invoice exchange." },
+        { title: "UBL 2.1", desc: "Universal data format with native Fincargo support." },
+        { title: "VAT checks", desc: "Automatic validation of Belgian VAT numbers and VIES lookup." },
+        { title: "Digital signatures", desc: "Integrity guarantees, timestamping and legal proof." },
+        { title: "ERP/TMS API", desc: "Connectors for SAP, Navision, Odoo, Transwide, Trimble, TAS‑TMS, etc." },
+        { title: "Multi‑language", desc: "FR & NL (France/Belgium) fully supported." },
+      ],
+    },
+  },
+};
