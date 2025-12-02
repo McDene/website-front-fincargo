@@ -39,8 +39,8 @@ export default function SectionHero({
   const buttonRef = useRef<HTMLAnchorElement | null>(null);
   const rightRef = useRef<HTMLDivElement | null>(null);
 
-  const { t, tl } = useTranslation();
-  const variant = getHeroVariant(region);
+  const { t, tl, language } = useTranslation();
+  const variant = getHeroVariant(region, language);
 
   const ICONS = {
     ShieldCheckIcon,

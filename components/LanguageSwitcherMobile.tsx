@@ -3,7 +3,8 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { LanguageContext } from "@/context/LanguageContext";
 import { usePathname, useRouter } from "next/navigation";
-import { SUPPORTED_UI_LOCALES, type LanguageCore } from "@/lib/i18n";
+import { SUPPORTED_UI_LOCALES, type LanguageCore, detectClientRegion } from "@/lib/i18n";
+import { getRegionConfig } from "@/lib/region-config";
 
 type Language = LanguageCore;
 
@@ -52,6 +53,11 @@ export default function LanguageSwitcherMobile() {
   const flagCode = (code: Language) =>
     ({ en: "gb", es: "es", fr: "fr", de: "de", nl: "nl" } as const)[code];
 
+  // Restreindre les langues disponibles selon la région
+  const region = detectClientRegion();
+  const allowed = new Set(getRegionConfig(region).allowedLanguages);
+  const options = LANGUAGES.filter((l) => allowed.has(l.code));
+
   return (
     <div ref={wrapperRef} className="relative inline-block text-left">
       {/* Bouton principal */}
@@ -68,7 +74,7 @@ export default function LanguageSwitcherMobile() {
           loading="lazy"
           decoding="async"
         />
-        {LANGUAGES.find((l) => l.code === language)?.label}
+        {options.find((l) => l.code === language)?.label || language.toUpperCase()}
         <svg
           className={`w-4 h-4 ml-1 transition-transform ${isOpen ? "rotate-180" : "rotate-0"}`}
           viewBox="0 0 20 20"
@@ -88,7 +94,7 @@ export default function LanguageSwitcherMobile() {
           className="absolute right-0 mt-2 min-w-[8rem] rounded-xl bg-white/90 supports-[backdrop-filter]:backdrop-blur shadow-lg ring-1 ring-slate-200/80 p-1.5 origin-top-right"
           role="listbox"
         >
-          {LANGUAGES.map((lang) => (
+          {options.map((lang) => (
             <button
               key={lang.code}
               onClick={() => handleLanguageChange(lang.code)} // ✅ typé
