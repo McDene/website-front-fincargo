@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { SUPPORTED_UI_LOCALES, type LanguageCore } from "@/lib/i18n";
+import { SUPPORTED_UI_LOCALES, type LanguageCore, detectClientRegion } from "@/lib/i18n";
 import { Linkedin } from "lucide-react";
 import { useMemo } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
@@ -121,13 +121,28 @@ export default function Footer() {
     },
   ];
 
+  const region = detectClientRegion();
+
+  const externalOverride = (href: string): string | null => {
+    if (region === "be") {
+      if (href === "/careers") return "https://www.fincargo.ai/careers";
+      if (href === "/blog") return "https://www.fincargo.ai/blog";
+    }
+    return null;
+  };
+
   const handleTrack = (label: string) => () =>
     trackEvent({ action: "click_footer_link", category: "Footer", label });
 
-  const onInternalClick = (label: string) => () => {
+  const onInternalClick = (label: string, href: string) => (e: React.MouseEvent) => {
     handleTrack(label)();
+    const override = externalOverride(href);
+    if (override) {
+      e.preventDefault();
+      window.location.assign(override);
+      return;
+    }
     if (typeof window !== "undefined") {
-      // Smoothly scroll to top on navigation per request
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
@@ -254,7 +269,7 @@ export default function Footer() {
                     <Link
                       href={localizeHref(link.href)}
                       prefetch={false}
-                      onClick={onInternalClick(link.trackLabel)}
+                      onClick={onInternalClick(link.trackLabel, link.href)}
                       className="hover:text-white/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded"
                     >
                       {typeof link.labelKey === "string"

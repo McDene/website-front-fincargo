@@ -162,7 +162,7 @@ export default async function Home() {
     <>
       <Header />
       {heroData && <Hero heroData={heroData} region={region} />}
-      <SectionFeatures />
+      <SectionFeatures region={region} />
       <SectionBenefits />
       <SectionPricingByTransaction />
       <SectionDemo />

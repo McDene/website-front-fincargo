@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
+import type { Region } from "@/lib/i18n";
 
 type IconName = "invoice" | "financial" | "analytics" | "integration";
 
@@ -17,6 +18,7 @@ interface SectionFeaturesProps {
   // conservés pour compat API, non nécessaires en thème clair
   gradientFromClass?: string;
   gradientToClass?: string;
+  region?: Region;
 }
 
 /* ---------------- Inline icons (no external deps) ---------------- */
@@ -132,11 +134,11 @@ function FeatureIcon({ name }: { name?: IconName }) {
 
 /* ---------------- Component (light theme / fond blanc) ---------------- */
 
-export default function SectionFeatures({}: SectionFeaturesProps) {
+export default function SectionFeatures({ region }: SectionFeaturesProps) {
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLElement | null>(null);
 
-  const { t, tl } = useTranslation();
+  const { t, tl, language } = useTranslation();
 
   const tf = (key: string, fallback: string) => {
     const v = t(key);
@@ -181,6 +183,20 @@ export default function SectionFeatures({}: SectionFeaturesProps) {
       icon: "integration",
     },
   ];
+
+  // Region-specific override for Belgium card (index 0)
+  if (region === 'be') {
+    const isFr = language === 'fr';
+    const beName = isFr ? 'E‑Invoicing Belgique' : 'E‑Invoicing Belgium';
+    const beDesc = isFr
+      ? 'Facturation électronique structurée pour le transport, conforme EN 16931 & Peppol, avec validation automatique et envoi sécurisé.'
+      : 'Structured e‑invoicing for transport, EN 16931 & Peppol compliant, with automated validation and secure delivery.';
+    features[0] = {
+      ...features[0],
+      name: beName,
+      description: beDesc,
+    };
+  }
 
   useEffect(() => {
     const obs = new IntersectionObserver(
