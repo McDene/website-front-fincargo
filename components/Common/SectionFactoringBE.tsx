@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { EINVOICING_BE } from "@/lib/e-invoicing-be";
 import type { LanguageCore, Region } from "@/lib/i18n";
 import Image from "next/image";
@@ -23,19 +26,42 @@ export default function SectionFactoringBE({
   language,
   regulationImage,
 }: Props) {
-  if (region !== "be") return null;
-
   const t = EINVOICING_BE[language] || EINVOICING_BE.en;
 
   const img = regulationImage; // supprimer l'image si non fournie
 
+  // Effets au chargement (IntersectionObserver)
+  const [v, setV] = useState([false, false, false, false]);
+  const r0 = useRef<HTMLElement | null>(null);
+  const r1 = useRef<HTMLElement | null>(null);
+  const r2 = useRef<HTMLElement | null>(null);
+  const r3 = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const refs = [r0, r1, r2, r3];
+    const observers: IntersectionObserver[] = [];
+    refs.forEach((r, idx) => {
+      const el = r.current;
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        (entries) => entries.forEach((e) => e.isIntersecting && setV((old) => old.map((b, i) => (i === idx ? true : b)))),
+        { threshold: 0.12, rootMargin: "0px 0px 160px 0px" }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
+
+  if (region !== "be") return null;
+
   return (
     <>
       {/* Regulation (white) */}
-      <section className="relative bg-white py-16 md:py-24">
+      <section ref={r0} className="relative bg-white py-16 md:py-24">
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Accent chips */}
-          <div className="flex flex-wrap items-center gap-2">
+          <div className={`flex flex-wrap items-center gap-2 transition-all duration-700 ${v[0] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
             {["B2B 2026", "EN 16931", "Peppol BIS 3.0", "ViDA"].map((c) => (
               <span
                 key={c}
@@ -47,14 +73,14 @@ export default function SectionFactoringBE({
             ))}
           </div>
 
-          <h2 className="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 uppercase">
+          <h2 className={`mt-4 text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 uppercase transition-all duration-700 ${v[0] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
             {t.regulation.h2}
           </h2>
 
           <div
             className={`mt-6 grid grid-cols-1 ${
               img ? "md:grid-cols-12 md:items-center gap-6" : "gap-4"
-            }`}
+            } transition-all duration-700 ${v[0] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}
           >
             {/* Text side */}
             <div className={img ? "md:col-span-7 xl:col-span-8" : ""}>
@@ -87,12 +113,12 @@ export default function SectionFactoringBE({
       </section>
 
       {/* Why Peppol (dark) */}
-      <section className="relative bg-gradient-to-b from-darkBlue to-black py-16 md:py-24 text-white">
+      <section ref={r1} className="relative bg-gradient-to-b from-darkBlue to-black py-16 md:py-24 text-white">
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight uppercase">
+          <h2 className={`text-3xl md:text-4xl font-extrabold tracking-tight uppercase transition-all duration-700 ${v[1] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
             {t.whyPeppol.h2}
           </h2>
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-12 gap-6 md:items-center">
+          <div className={`mt-6 grid grid-cols-1 md:grid-cols-12 gap-6 md:items-center transition-all duration-700 ${v[1] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
             {/* Left: bullets */}
             <div className="md:col-span-8">
               <h3 className="text-base font-semibold text-white/95 tracking-wide">
@@ -223,12 +249,12 @@ export default function SectionFactoringBE({
       </section>
 
       {/* Benefits (dark) */}
-      <section className="relative bg-gradient-to-b from-darkBlue to-black py-16 md:py-24 text-white">
+      <section ref={r2} className="relative bg-gradient-to-b from-darkBlue to-black py-16 md:py-24 text-white">
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight uppercase">
+          <h2 className={`text-3xl md:text-4xl font-extrabold tracking-tight uppercase transition-all duration-700 ${v[2] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
             {t.benefits.h2}
           </h2>
-          <div className="mt-6">
+          <div className={`mt-6 transition-all duration-700 ${v[2] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
             <BenefitsSwitcher
               groups={[
                 { key: 'carriers', title: t.benefits.carriers.title, items: t.benefits.carriers.items },
@@ -241,13 +267,13 @@ export default function SectionFactoringBE({
       </section>
 
       {/* Capabilities (white) */}
-      <section className="relative bg-white py-16 md:py-24">
+      <section ref={r3} className="relative bg-white py-16 md:py-24">
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 uppercase">
+          <h2 className={`text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 uppercase transition-all duration-700 ${v[3] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
             {t.capabilities.h2}
           </h2>
 
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          <div className={`mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 transition-all duration-700 ${v[3] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
             {t.capabilities.items.map((c, i) => {
               const ICONS = [
                 DocumentCheckIcon, // EN 16931

@@ -207,20 +207,41 @@ export default function Footer() {
             </div>
           </div>
 
-          <a
-            href="https://www.swissmadesoftware.org/home.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={handleTrack("Swiss Made Software")}
-            className="inline-flex max-w-[200px] opacity-90 hover:opacity-100 transition"
-          >
-            <Image
-              src="/logo/swiss-made-software.svg"
-              alt="Swiss Made Software Logo"
-              width={200}
-              height={40}
-            />
-          </a>
+          <div className="flex flex-col gap-3">
+            <a
+              href="https://www.swissmadesoftware.org/home.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={handleTrack("Swiss Made Software")}
+              className="inline-flex max-w-[180px] opacity-90 hover:opacity-100 transition"
+            >
+              <Image
+                src="/logo/swiss-made-software.svg"
+                alt="Swiss Made Software Logo"
+                width={160}
+                height={32}
+              />
+            </a>
+
+            {region === "be" && (
+              <a
+                href="https://peppol.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleTrack("Peppol")}
+                className="inline-flex max-w-[140px] opacity-90 hover:opacity-100 transition"
+                aria-label="Peppol"
+                title="Peppol"
+              >
+                <Image
+                  src="/images/peppol_logo.webp"
+                  alt="Peppol logo"
+                  width={120}
+                  height={48}
+                />
+              </a>
+            )}
+          </div>
 
           {/* Social icons */}
           <div className="flex items-center gap-3">
@@ -283,6 +304,8 @@ export default function Footer() {
           </nav>
         ))}
       </div>
+
+      {/* No extra centered logos; BE badges are grouped in left column (Option A) */}
 
       <div className="mt-12 text-center text-gray-400 text-sm">
         &copy; {year} Fincargo. All rights reserved.

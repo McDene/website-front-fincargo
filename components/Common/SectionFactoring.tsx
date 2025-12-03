@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
+import { detectClientRegion } from "@/lib/i18n";
 
 /* -------------------- Inline Icons (no deps) -------------------- */
 function IconBolt(props: React.SVGProps<SVGSVGElement>) {
@@ -216,7 +217,8 @@ function IconCheck(props: React.SVGProps<SVGSVGElement>) {
 
 /* -------------------- Component -------------------- */
 export default function SectionFactoring() {
-  const { t, tl } = useTranslation();
+  const { t, tl, language } = useTranslation();
+  const region = detectClientRegion();
 
   const tf = (k: string, fb = "") => (t(k) === k ? fb : t(k));
   const ta = (k: string, fb: string[] = []) => {
@@ -224,18 +226,20 @@ export default function SectionFactoring() {
     return Array.isArray(arr) && arr.length ? arr : fb;
   };
 
-  // Visibility per section
-  const [v, setV] = useState([false, false, false, false, false]);
+  // Visibility per section (supporte jusqu'à 6 sections)
+  const [v, setV] = useState([false, false, false, false, false, false]);
   // refs stables
-  const r0 = useRef<HTMLElement | null>(null);
-  const r1 = useRef<HTMLElement | null>(null);
-  const r2 = useRef<HTMLElement | null>(null);
-  const r3 = useRef<HTMLElement | null>(null);
-  const r4 = useRef<HTMLElement | null>(null);
+  const r0 = useRef<HTMLElement | null>(null); // Section 1 (intro/why)
+  const r0b = useRef<HTMLElement | null>(null); // Section 2 (BE only, key benefits)
+  const r1 = useRef<HTMLElement | null>(null); // Process
+  const r2 = useRef<HTMLElement | null>(null); // Pricing
+  const r3 = useRef<HTMLElement | null>(null); // Benefits by audience
+  const r4 = useRef<HTMLElement | null>(null); // Risk management
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    const list = [r0, r1, r2, r3, r4];
+    const list =
+      region === "be" ? [r0, r0b, r1, r2, r3, r4] : [r0, r1, r2, r3, r4];
     const observers: IntersectionObserver[] = [];
 
     list.forEach((r, idx) => {
@@ -248,22 +252,22 @@ export default function SectionFactoring() {
               e.isIntersecting &&
               setV((old) => old.map((b, i) => (i === idx ? true : b)))
           ),
-        { threshold: 0.15 }
+        { threshold: 0.12, rootMargin: "0px 0px 160px 0px" }
       );
       obs.observe(el);
       observers.push(obs);
     });
 
     return () => observers.forEach((o) => o.disconnect());
-  }, [r0, r1, r2, r3, r4]); // ✅ deps stables, plus de warning
+  }, [r0, r0b, r1, r2, r3, r4, region]); // ✅ deps stables, plus de warning
 
   /* -------------------- Section 1 (WHITE): Value -------------------- */
-  const s1Title = tf("factoring.section1.title", "Accelerate Your Cash Flow");
-  const s1Desc = tf(
+  let s1Title = tf("factoring.section1.title", "Accelerate Your Cash Flow");
+  let s1Desc = tf(
     "factoring.section1.description",
     "Stop waiting for payments and focus on growing your transport business"
   );
-  const s1Cards = [
+  let s1Cards = [
     {
       icon: <IconBolt className="h-6 w-6" />,
       title: tf("factoring.section1.point1.title", "24-Hour Payment"),
@@ -301,14 +305,18 @@ export default function SectionFactoring() {
       badge: "Scalable",
     },
   ];
+  let s1Bottom: string | undefined;
+  let s1bTitle: string | undefined;
+  let s1bDesc: string | undefined;
+  let s1bCards: typeof s1Cards | undefined;
 
   /* -------------------- Section 2 (DARK): Process -------------------- */
-  const s2Title = tf("factoring.section2.title", "Simple 3-Step Process");
-  const s2Desc = tf(
+  let s2Title = tf("factoring.section2.title", "Simple 3-Step Process");
+  let s2Desc = tf(
     "factoring.section2.description",
     "From invoice to cash in your account within 24 hours"
   );
-  const steps = [
+  let steps = [
     {
       n: 1,
       icon: <IconDoc className="h-5 w-5" />,
@@ -339,59 +347,59 @@ export default function SectionFactoring() {
   ];
 
   /* -------------------- Section 3 (WHITE): Pricing -------------------- */
-  const s3Title = tf("factoring.section3.title", "Transparent Pricing");
-  const s3Desc = tf(
+  let s3Title = tf("factoring.section3.title", "Transparent Pricing");
+  let s3Desc = tf(
     "factoring.section3.description",
     "No hidden fees, no long-term contracts"
   );
 
-  const rateTitle = tf("factoring.section3.factoring.title", "Factoring Rate");
-  const rateData = tf("factoring.section3.factoring.data", "0.10% - 0.15%");
-  const rateTime = tf("factoring.section3.factoring.time", "per day");
-  const rateText = tf(
+  let rateTitle = tf("factoring.section3.factoring.title", "Factoring Rate");
+  let rateData = tf("factoring.section3.factoring.data", "0.10% - 0.15%");
+  let rateTime = tf("factoring.section3.factoring.time", "per day");
+  let rateText = tf(
     "factoring.section3.factoring.content",
     "Competitive daily rates based on creditworthiness and invoice terms."
   );
 
-  const feeTitle = tf("factoring.section3.service.title", "Service Fee");
-  const feeData = tf("factoring.section3.service.data", "20 CHF");
-  const feeTime = tf("factoring.section3.service.time", "per transaction");
-  const feeText = tf(
+  let feeTitle = tf("factoring.section3.service.title", "Service Fee");
+  let feeData = tf("factoring.section3.service.data", "20 CHF");
+  let feeTime = tf("factoring.section3.service.time", "per transaction");
+  let feeText = tf(
     "factoring.section3.service.content",
     "One-time service fee per factored invoice."
   );
 
-  const exTitle = tf("factoring.section3.exemple.title", "Example Calculation");
-  const exD1 = tf("factoring.section3.exemple.data1", "10,000 CHF");
-  const exC1 = tf("factoring.section3.exemple.content1", "Invoice Amount");
-  const exD2 = tf("factoring.section3.exemple.data2", "35 CHF");
-  const exC2 = tf(
+  let exTitle = tf("factoring.section3.exemple.title", "Example Calculation");
+  let exD1 = tf("factoring.section3.exemple.data1", "10,000 CHF");
+  let exC1 = tf("factoring.section3.exemple.content1", "Invoice Amount");
+  let exD2 = tf("factoring.section3.exemple.data2", "35 CHF");
+  let exC2 = tf(
     "factoring.section3.exemple.content2",
     "Total Cost (30 days @ 0.15%)"
   );
-  const exD3 = tf("factoring.section3.exemple.data3", "9,945 CHF");
-  const exC3 = tf("factoring.section3.exemple.content3", "You Receive");
+  let exD3 = tf("factoring.section3.exemple.data3", "9,945 CHF");
+  let exC3 = tf("factoring.section3.exemple.content3", "You Receive");
 
   /* -------------------- Section 4 (DARK): Benefits by audience -------------------- */
-  const s4Title = tf(
+  let s4Title = tf(
     "factoring.section4.title",
     "Benefits for Transport Companies"
   );
-  const carriersTitle = tf("factoring.section4.carriers.title", "For Carriers");
-  const carriersList = ta("factoring.section4.carriers.list", []);
-  const fwdTitle = tf(
+  let carriersTitle = tf("factoring.section4.carriers.title", "For Carriers");
+  let carriersList = ta("factoring.section4.carriers.list", []);
+  let fwdTitle = tf(
     "factoring.section4.forwarders.title",
     "For Forwarders & Shippers"
   );
-  const fwdList = ta("factoring.section4.forwarders.list", []);
+  let fwdList = ta("factoring.section4.forwarders.list", []);
 
   /* -------------------- Section 5 (WHITE): Risk Management -------------------- */
-  const s5Title = tf("factoring.section5.title", "Advanced Risk Management");
-  const s5Desc = tf(
+  let s5Title = tf("factoring.section5.title", "Advanced Risk Management");
+  let s5Desc = tf(
     "factoring.section5.description",
     "Comprehensive protection for both factoring clients and invoice payers"
   );
-  const riskItems = [
+  let riskItems = [
     {
       icon: <IconScale className="h-6 w-6" />,
       title: tf("factoring.section5.item1.title", "Credit Assessment"),
@@ -442,65 +450,465 @@ export default function SectionFactoring() {
     },
   ];
 
+  // --------- Region-specific override: Belgium (fr-BE / en-BE) ---------
+  if (region === "be") {
+    const isFr = language === "fr";
+    // Section 1: Pourquoi l’affacturage est devenu stratégique en Belgique
+    s1Title = isFr
+      ? "Pourquoi l’affacturage est devenu stratégique pour les entreprises de transport en Belgique"
+      : "Why factoring has become strategic for transport companies in Belgium";
+    s1Desc = isFr
+      ? "Le secteur belge du transport fait face à :"
+      : "Belgian transport companies are facing:";
+    s1Cards = [
+      {
+        icon: <IconDoc className="h-6 w-6" />,
+        title: isFr ? "Délais de paiement longs" : "Long payment terms",
+        content: isFr
+          ? "Chez de nombreux chargeurs, 45–60 jours sont fréquents"
+          : "For many shippers, 45–60 days are common",
+        badge: isFr ? "Paiements" : "Payments",
+      },
+      {
+        icon: <IconPercent className="h-6 w-6" />,
+        title: isFr ? "Coûts en hausse" : "Rising costs",
+        content: isFr
+          ? "Carburant et charges d’exploitation impactent la marge"
+          : "Fuel and operating expenses squeeze margins",
+        badge: isFr ? "Coûts" : "Costs",
+      },
+      {
+        icon: <IconShield className="h-6 w-6" />,
+        title: isFr ? "Pression de trésorerie" : "Cash pressure",
+        content: isFr
+          ? "PME et TPE particulièrement exposées"
+          : "SMEs and microbusinesses particularly exposed",
+        badge: isFr ? "Trésorerie" : "Cash",
+      },
+      {
+        icon: <IconLayers className="h-6 w-6" />,
+        title: isFr ? "Marché fragmenté" : "Fragmented market",
+        content: isFr
+          ? "Sous‑traitance élevée et flux complexes"
+          : "Heavy subcontracting and complex flows",
+        badge: isFr ? "Marché" : "Market",
+      },
+      {
+        icon: <IconSearch className="h-6 w-6" />,
+        title: isFr ? "Conformité plus stricte" : "Stricter compliance",
+        content: isFr ? "Peppol, EN 16931, e‑CMR" : "Peppol, EN 16931, e‑CMR",
+        badge: isFr ? "Réglementaire" : "Compliance",
+      },
+    ];
+    s1Bottom = isFr
+      ? "L’affacturage digital devient une alternative fiable au crédit bancaire, surtout pour les transporteurs dont la croissance dépend de la capacité à financer les trajets à l’avance."
+      : "Digital factoring is a reliable alternative to bank credit, especially for carriers whose growth depends on financing trips upfront.";
+
+    // Section 2 (ajoutée): Accélérer la trésorerie — Avantages clés
+    s1bTitle = isFr
+      ? "Accélérez votre trésorerie en 24 heures"
+      : "Accelerate your cash flow in 24 hours";
+    s1bDesc = isFr
+      ? "Un financement conçu pour les factures de transport. Ce modèle permet d’absorber les délais de paiement tout en maintenant une croissance stable."
+      : "Financing purpose‑built for transport invoices. Absorb payment terms while maintaining stable growth.";
+    s1bCards = [
+      {
+        icon: <IconBolt className="h-6 w-6" />,
+        title: isFr ? "Paiement en 24h" : "24‑hour payment",
+        content: isFr
+          ? "Versement sous 24h après validation de la facture"
+          : "Funds in 24h after invoice validation",
+        badge: "24h",
+      },
+      {
+        icon: <IconPercent className="h-6 w-6" />,
+        title: isFr ? "Taux compétitifs" : "Competitive rates",
+        content: isFr ? "0,10% à 0,15% par jour" : "0.10% to 0.15% per day",
+        badge: isFr ? "Taux" : "Rates",
+      },
+      {
+        icon: <IconShield className="h-6 w-6" />,
+        title: isFr ? "Protection du crédit" : "Credit protection",
+        content: isFr
+          ? "Incluse pour limiter les défauts de paiement"
+          : "Included to limit payment defaults",
+        badge: isFr ? "Protégé" : "Protected",
+      },
+      {
+        icon: <IconLayers className="h-6 w-6" />,
+        title: isFr ? "Limites évolutives" : "Scalable limits",
+        content: isFr
+          ? "Évoluent avec le volume de transport"
+          : "Scale with transport volume",
+        badge: isFr ? "Scalable" : "Scalable",
+      },
+      {
+        icon: <IconSearch className="h-6 w-6" />,
+        title: isFr ? "Contrôles rigoureux" : "Rigorous checks",
+        content: isFr
+          ? "Basés sur e‑CMR, POD, OTIF, tarifs"
+          : "Based on e‑CMR, POD, OTIF, tariffs",
+        badge: isFr ? "Contrôles" : "Checks",
+      },
+      {
+        icon: <IconDoc className="h-6 w-6" />,
+        title: isFr ? "Conformité complète" : "Full compliance",
+        content: isFr
+          ? "Réglementations belges et européennes"
+          : "Belgian and EU regulations",
+        badge: isFr ? "Conforme" : "Compliant",
+      },
+    ];
+
+    // Section 2: Process 3 steps (as provided)
+    s2Title = isFr
+      ? "Processus de financement en 3 étapes"
+      : "3-step financing process";
+    s2Desc = isFr
+      ? "De la facture au paiement sur votre compte bancaire en moins de 24 heures"
+      : "From invoice to settlement in your bank account in under 24 hours";
+    steps = [
+      {
+        n: 1,
+        icon: <IconDoc className="h-5 w-5" />,
+        title: isFr ? "Soumettre la facture" : "Submit the invoice",
+        content: isFr
+          ? "Téléchargez vos factures de transport validées via la plateforme ou par API. Les documents associés (e‑CMR, POD, contrats, tarifs) sont rapprochés automatiquement."
+          : "Upload validated transport invoices via the platform or API. Related docs (e‑CMR, POD, contracts, tariffs) are automatically matched.",
+      },
+      {
+        n: 2,
+        icon: <IconSearch className="h-5 w-5" />,
+        title: isFr ? "Approbation instantanée" : "Instant approval",
+        content: isFr
+          ? "Le moteur évalue la solvabilité du débiteur, l’authenticité de la facture, la cohérence des données transport et les risques de double financement."
+          : "Engine checks debtor creditworthiness, invoice authenticity, transport data consistency and double‑financing risks.",
+      },
+      {
+        n: 3,
+        icon: <IconBank className="h-5 w-5" />,
+        title: isFr ? "Recevoir le paiement" : "Receive payment",
+        content: isFr
+          ? "Les fonds sont versés directement sur votre compte bancaire dans les 24h, moins les frais convenus."
+          : "Funds are transferred to your bank account within 24h, minus agreed service fees.",
+      },
+    ];
+
+    // Section 3: Pricing
+    s3Title = isFr
+      ? "Tarification transparente & sans engagement"
+      : "Transparent, no‑commitment pricing";
+    s3Desc = isFr
+      ? "Pas de frais cachés, pas de minimums, pas de contrats longs"
+      : "No hidden fees, no minimums, no long‑term contracts";
+    rateTitle = isFr ? "Taux de factoring" : "Factoring rate";
+    rateData = isFr ? "0,10% à 0,15%" : "0.10% to 0.15%";
+    rateTime = isFr ? "par jour" : "per day";
+    rateText = isFr
+      ? "Basés sur la solvabilité du payeur, l’historique de paiement et la qualité des données (CMR, POD, tarifs)."
+      : "Based on payer creditworthiness, payment history and data quality (CMR, POD, tariffs).";
+
+    feeTitle = isFr ? "Frais de service" : "Service fee";
+    feeData = isFr ? "20 CHF" : "CHF 20";
+    feeTime = isFr ? "par facture" : "per invoice";
+    feeText = isFr
+      ? "Aucun abonnement, aucun volume minimum."
+      : "No subscription, no minimum volume.";
+
+    exTitle = isFr ? "Exemple" : "Example";
+    exD1 = isFr ? "Facture : 10’000 CHF" : "Invoice: CHF 10,000";
+    exC1 = isFr ? "Montant" : "Invoice amount";
+    exD2 = isFr ? "Coût total : 300 CHF" : "Total cost: CHF 300";
+    exC2 = isFr ? "30 jours @ 0,15%" : "30 days @ 0.15%";
+    exD3 = isFr ? "Montant reçu : 9’680 CHF" : "Amount received: CHF 9,680";
+    exC3 = isFr ? "Vous recevez" : "You receive";
+
+    // Section 4: Benefits
+    s4Title = isFr
+      ? "Avantages pour le transport, les transitaires et les chargeurs belges"
+      : "Benefits for Belgian carriers, forwarders and shippers";
+    carriersTitle = isFr ? "Pour les transporteurs" : "For carriers";
+    carriersList = isFr
+      ? [
+          "Débloquez des liquidités en moins de 48h",
+          "Financez trajets et carburant sans pression de trésorerie",
+          "Protection contre les débiteurs en difficulté",
+          "Aucune dette bancaire — financement basé sur les factures",
+          "Évitez le double financement grâce aux contrôles Fincargo",
+        ]
+      : [
+          "Unlock liquidity in under 48h",
+          "Finance trips and fuel without cash stress",
+          "Protection against distressed debtors",
+          "No bank debt — invoice‑based financing",
+          "Avoid double‑financing via Fincargo controls",
+        ];
+    fwdTitle = isFr
+      ? "Pour les transitaires & expéditeurs"
+      : "For forwarders & shippers";
+    fwdList = isFr
+      ? [
+          "Améliorez le DPO sans détériorer la relation fournisseur",
+          "Sécurisez l’approvisionnement",
+          "Paiement anticipé des sous‑traitants, fiabilisation",
+          "Automatisation du rapprochement (e‑CMR, bons, tarifs)",
+          "Piste d’audit complète pour chaque facture",
+          "Validation structurée des factures entrantes",
+          "Intégration API avec ERP / TMS / WMS",
+        ]
+      : [
+          "Improve DPO without harming supplier relations",
+          "Secure supply",
+          "Early payment of subcontractors to build reliability",
+          "Automatic matching (e‑CMR, orders, tariffs)",
+          "Complete audit trail per invoice",
+          "Structured validation of incoming invoices",
+          "API integration with ERP / TMS / WMS",
+        ];
+
+    // Section 5: Risk management
+    s5Title = isFr ? "Gestion des risques avancée" : "Advanced risk management";
+    s5Desc = isFr
+      ? "Contrôles financiers + vérifications documentaires pour sécuriser chaque opération d’affacturage"
+      : "Financial controls + documentary checks to secure every factoring operation";
+    riskItems = [
+      {
+        icon: <IconScale className="h-6 w-6" />,
+        title: isFr ? "Évaluation du crédit" : "Credit evaluation",
+        content: isFr
+          ? "Score débiteur, historiques de paiement, vérification TVA (VIES/BCE)"
+          : "Debtor score, payment history, VAT/VIES checks",
+      },
+      {
+        icon: <IconSearch className="h-6 w-6" />,
+        title: isFr ? "Vérification des factures" : "Invoice verification",
+        content: isFr
+          ? "Contrôles IA de cohérence (e‑CMR, POD, tarifs, montants, dates, références)"
+          : "AI consistency checks (e‑CMR, POD, tariffs, amounts, dates, refs)",
+      },
+      {
+        icon: <IconAlert className="h-6 w-6" />,
+        title: isFr ? "Détection de fraude" : "Fraud detection",
+        content: isFr
+          ? "Doublons, factures fictives, validation identité payeur"
+          : "Duplicates, fake invoices, payer identity validation",
+      },
+      {
+        icon: <IconLock className="h-6 w-6" />,
+        title: isFr ? "Protection des paiements" : "Payment protection",
+        content: isFr
+          ? "Garantie contre défauts, suivi temps réel, escalade en retard"
+          : "Guarantee vs defaults, real‑time tracking, escalation on delay",
+      },
+      {
+        icon: <IconShield className="h-6 w-6" />,
+        title: isFr ? "Conformité" : "Compliance",
+        content: isFr
+          ? "Conformité complète avec les réglementations belges et européennes"
+          : "Full compliance with Belgian and EU regulations",
+      },
+      {
+        icon: <IconPhone className="h-6 w-6" />,
+        title: isFr ? "Recouvrement" : "Collections support",
+        content: isFr
+          ? "Relance et recouvrement professionnels, dossiers auditables"
+          : "Professional dunning and recovery, auditable files",
+      },
+    ];
+  }
+
   return (
     <>
-      {/* ========== Section 1 (WHITE) ========== */}
-      <section ref={r0} className="relative bg-white py-20 md:py-28">
-        <div className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(60%_50%_at_50%_0%,black,transparent)]">
-          <div className="absolute right-12 -top-8 h-40 w-40 rounded-full bg-cyan-500/10 blur-3xl" />
-          <div className="absolute left-1/3 bottom-0 h-56 w-56 rounded-full bg-blue-600/10 blur-3xl" />
-        </div>
-
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div
-            className={`max-w-3xl transition-all duration-700 ${
-              v[0] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
-            }`}
-          >
-            <span className="inline-flex items-center gap-2 rounded-full bg-slate-900/5 px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">
-              <span className="h-1.5 w-1.5 rounded-full bg-slate-500/60" />
-              FACTORING
-            </span>
-            <h2 className="mt-4 text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 uppercase">
-              {s1Title}
-            </h2>
-            <p className="mt-3 text-lg md:text-xl text-slate-700">{s1Desc}</p>
+      {/* ========== Section 1 (variant by region) ========== */}
+      {region !== "be" ? (
+        <section ref={r0} className="relative bg-white py-20 md:py-28">
+          <div className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(60%_50%_at_50%_0%,black,transparent)]">
+            <div className="absolute right-12 -top-8 h-40 w-40 rounded-full bg-cyan-500/10 blur-3xl" />
+            <div className="absolute left-1/3 bottom-0 h-56 w-56 rounded-full bg-blue-600/10 blur-3xl" />
           </div>
 
-          <div
-            className={`mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 transition-all duration-700 ${
-              v[0] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
-          >
-            {s1Cards.map((c, i) => (
-              <div
-                key={i}
-                className="group relative overflow-hidden rounded-2xl bg-white px-6 py-7 md:px-8 md:py-10 border border-slate-200 ring-1 ring-slate-900/5 shadow-sm hover:shadow-md transition"
-                style={{ transitionDelay: `${120 + i * 80}ms` }}
-              >
-                <div className="flex items-start gap-3">
-                  <div className="flex size-10 items-center justify-center rounded-xl bg-slate-50 ring-1 ring-slate-200 text-slate-700">
-                    {c.icon}
-                  </div>
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-2">
-                      <h3 className="text-lg font-bold text-slate-900">
-                        {c.title}
-                      </h3>
-                      {/* <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-[11px] font-semibold text-blue-700 ring-1 ring-blue-200">
-                        {c.badge}
-                      </span> */}
+          <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div
+              className={`max-w-3xl transition-all duration-700 ${
+                v[0] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+              }`}
+            >
+              <span className="inline-flex items-center gap-2 rounded-full bg-slate-900/5 px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">
+                <span className="h-1.5 w-1.5 rounded-full bg-slate-500/60" />
+                FACTORING
+              </span>
+              <h2 className="mt-4 text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 uppercase">
+                {s1Title}
+              </h2>
+              <p className="mt-3 text-lg md:text-xl text-slate-700">{s1Desc}</p>
+            </div>
+
+            <div
+              className={`mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 transition-all duration-700 ${
+                v[0] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+            >
+              {s1Cards.map((c, i) => (
+                <div
+                  key={i}
+                  className="group relative overflow-hidden rounded-2xl bg-white px-6 py-7 md:px-8 md:py-10 border border-slate-200 ring-1 ring-slate-900/5 shadow-sm hover:shadow-md transition"
+                  style={{ transitionDelay: `${120 + i * 80}ms` }}
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="flex size-10 items-center justify-center rounded-xl bg-slate-50 ring-1 ring-slate-200 text-slate-700">
+                      {c.icon}
                     </div>
-                    <p className="mt-2 text-sm md:text-base text-slate-700">
-                      {c.content}
-                    </p>
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-lg font-bold text-slate-900">
+                          {c.title}
+                        </h3>
+                      </div>
+                      <p className="mt-2 text-sm md:text-base text-slate-700">
+                        {c.content}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            {s1Bottom ? (
+              <p className="mt-8 max-w-3xl text-base sm:text-lg md:text-xl text-slate-700">
+                {s1Bottom}
+              </p>
+            ) : null}
           </div>
-        </div>
-      </section>
+        </section>
+      ) : (
+        <section
+          ref={r0}
+          className="relative bg-gradient-to-b from-darkBlue to-black py-20 md:py-28 text-white overflow-hidden"
+        >
+          <div className="pointer-events-none absolute inset-0 opacity-40 mix-blend-screen">
+            <div className="absolute inset-0 bg-[radial-gradient(900px_380px_at_15%_-10%,rgba(59,130,246,0.25),transparent),radial-gradient(800px_300px_at_90%_110%,rgba(34,211,238,0.2),transparent)]" />
+          </div>
+
+          <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div
+              className={`max-w-3xl transition-all duration-700 ${
+                v[0] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+              }`}
+            >
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white/90 ring-1 ring-white/15 backdrop-blur">
+                <span className="h-1.5 w-1.5 rounded-full bg-white/70" />
+                {language === "fr" ? "POURQUOI" : "WHY FACTORING"}
+              </span>
+              <h2 className="mt-4 text-4xl md:text-5xl font-extrabold tracking-tight uppercase">
+                {s1Title}
+              </h2>
+              <p className="mt-3 text-lg md:text-xl text-white/80">{s1Desc}</p>
+            </div>
+
+            <div
+              className={`mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 transition-all duration-700 ${
+                v[0] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+            >
+              {s1Cards.map((c, i) => (
+                <div
+                  key={i}
+                  className="relative overflow-hidden rounded-2xl bg-white/5 px-6 py-7 md:px-8 md:py-10 border border-white/10 ring-1 ring-white/10 shadow-2xl transition-transform duration-300 hover:-translate-y-0.5"
+                  style={{ transitionDelay: `${120 + i * 80}ms` }}
+                >
+                  {/* corner glow */}
+                  <div
+                    className="pointer-events-none absolute -top-6 -right-6 h-24 w-24 rounded-full bg-cyan-400/20 blur-2xl"
+                    aria-hidden
+                  />
+                  <div className="flex items-start gap-3">
+                    <div className="flex size-10 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/15">
+                      {c.icon}
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="text-lg font-bold">{c.title}</h3>
+                      <p className="mt-2 text-sm md:text-base text-white/85">
+                        {c.content}
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className="pointer-events-none absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                    aria-hidden
+                  />
+                </div>
+              ))}
+            </div>
+
+            {s1Bottom ? (
+              <p className="mt-8 max-w-3xl text-base sm:text-lg md:text-xl text-white/85">
+                {s1Bottom}
+              </p>
+            ) : null}
+          </div>
+        </section>
+      )}
+
+      {/* ========== Section 2 (WHITE, BE only) ========== */}
+      {region === "be" && s1bTitle && s1bCards ? (
+        <section ref={r0b} className="relative bg-white py-16 md:py-24">
+          <div className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(60%_50%_at_50%_0%,black,transparent)]">
+            <div className="absolute right-12 -top-8 h-40 w-40 rounded-full bg-cyan-500/10 blur-3xl" />
+            <div className="absolute left-1/3 bottom-0 h-56 w-56 rounded-full bg-blue-600/10 blur-3xl" />
+          </div>
+
+          <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div
+              className={`max-w-3xl transition-all duration-700 ${
+                v[1] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+              }`}
+            >
+              <span className="inline-flex items-center gap-2 rounded-full bg-slate-900/5 px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">
+                <span className="h-1.5 w-1.5 rounded-full bg-slate-500/60" />
+                {language === "fr" ? "AVANTAGES CLÉS" : "KEY BENEFITS"}
+              </span>
+              <h2 className="mt-4 text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 uppercase">
+                {s1bTitle}
+              </h2>
+              {s1bDesc ? (
+                <p className="mt-3 text-lg md:text-xl text-slate-700">
+                  {s1bDesc}
+                </p>
+              ) : null}
+            </div>
+
+            <div
+              className={`mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 transition-all duration-700 ${
+                v[1] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+            >
+              {s1bCards.map((c, i) => (
+                <div
+                  key={i}
+                  className="group relative overflow-hidden rounded-2xl bg-white px-6 py-7 md:px-8 md:py-10 border border-slate-200 ring-1 ring-slate-900/5 shadow-sm hover:shadow-md transition"
+                  style={{ transitionDelay: `${120 + i * 80}ms` }}
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="flex size-10 items-center justify-center rounded-xl bg-slate-50 ring-1 ring-slate-200 text-slate-700">
+                      {c.icon}
+                    </div>
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-lg font-bold text-slate-900">
+                          {c.title}
+                        </h3>
+                      </div>
+                      <p className="mt-2 text-sm md:text-base text-slate-700">
+                        {c.content}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       {/* ========== Section 2 (DARK) ========== */}
       <section
@@ -515,7 +923,9 @@ export default function SectionFactoring() {
           {/* Header */}
           <div
             className={`max-w-3xl transition-all duration-700 ${
-              v[1] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+              (region === "be" ? v[2] : v[1])
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-3"
             }`}
           >
             <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white/90 ring-1 ring-white/15 backdrop-blur">
@@ -531,7 +941,9 @@ export default function SectionFactoring() {
           {/* Steps */}
           <ol
             className={`mt-10 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 transition-all duration-700 ${
-              v[1] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              (region === "be" ? v[2] : v[1])
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-4"
             }`}
           >
             {steps.map((s, i) => (
@@ -601,7 +1013,9 @@ export default function SectionFactoring() {
           {/* Header */}
           <div
             className={`max-w-4xl transition-all duration-700 ${
-              v[2] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+              (region === "be" ? v[3] : v[2])
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-3"
             }`}
           >
             <span className="inline-flex items-center gap-2 rounded-full bg-slate-900/5 px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">
@@ -748,7 +1162,9 @@ export default function SectionFactoring() {
 
           <div
             className={`mt-10 grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 transition-all duration-700 ${
-              v[3] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              (region === "be" ? v[4] : v[3])
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-4"
             }`}
           >
             {/* Carriers */}
@@ -798,7 +1214,7 @@ export default function SectionFactoring() {
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div
             className={`max-w-3xl transition-all duration-700 ${
-              v[4] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+              (region === 'be' ? v[5] : v[4]) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
             }`}
           >
             <span className="inline-flex items-center gap-2 rounded-full bg-slate-900/5 px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">
@@ -810,26 +1226,27 @@ export default function SectionFactoring() {
             <p className="mt-3 text-lg md:text-xl text-slate-700">{s5Desc}</p>
           </div>
 
+          {/* Stacked list layout (clean, not grid-like) */}
           <div
-            className={`mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 transition-all duration-700 ${
-              v[4] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
+            className={`mt-8 transition-all duration-700 ${
+              (region === 'be' ? v[5] : v[4]) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            } md:columns-2 md:gap-6`}
           >
             {riskItems.map((it, i) => (
               <article
                 key={i}
-                className="relative overflow-hidden rounded-2xl bg-white px-6 py-7 md:px-8 md:py-10 border border-slate-200 ring-1 ring-slate-900/5 shadow-sm hover:shadow-md transition"
+                className={`inline-block w-full align-top mb-3 break-inside-avoid relative overflow-hidden rounded-xl border border-slate-200 ring-1 ring-slate-900/5 shadow-sm bg-white px-5 py-4 md:px-5 md:py-5 hover:shadow transition ${
+                  i % 2 === 1 ? 'bg-slate-50/70' : ''
+                }`}
                 style={{ transitionDelay: `${120 + (i % 6) * 60}ms` }}
               >
-                <div className="flex items-start gap-3">
-                  <div className="flex size-10 items-center justify-center rounded-xl bg-slate-50 ring-1 ring-slate-200 text-slate-700">
+                <div className="flex items-start gap-2.5">
+                  <div className="flex size-8 items-center justify-center rounded-lg bg-slate-50 ring-1 ring-slate-200 text-slate-700">
                     {it.icon}
                   </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-slate-900">
-                      {it.title}
-                    </h3>
-                    <p className="mt-2 text-slate-700">{it.content}</p>
+                  <div className="min-w-0">
+                    <h3 className="text-base md:text-lg font-semibold text-slate-900">{it.title}</h3>
+                    <p className="mt-1 text-sm md:text-[15px] leading-relaxed text-slate-700">{it.content}</p>
                   </div>
                 </div>
               </article>
