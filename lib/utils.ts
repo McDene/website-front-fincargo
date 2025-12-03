@@ -51,8 +51,9 @@ export const fetchAPI = async (
     const region = typeof window === "undefined" ? await detectServerRegion() : detectClientRegion();
     const strapiLocale = (() => {
       if (region === "be") {
-        // Belgium site serves English content from en-BE
-        return "en-BE";
+        // Belgique: mapper la langue UI vers la variante régionale de Strapi
+        if (typeof baseLocale === 'string' && baseLocale.toLowerCase().startsWith('fr')) return 'fr-BE';
+        return 'en-BE';
       }
       return baseLocale;
     })();
@@ -89,7 +90,13 @@ export const fetchAPI = async (
       const separator = endpoint.includes("?") ? "&" : "?";
       const baseLocale = toStrapiLocale(locale);
       const region = await detectServerRegion();
-      const strapiLocale = region === "be" ? "en-BE" : baseLocale;
+      const strapiLocale = (() => {
+        if (region === 'be') {
+          if (typeof baseLocale === 'string' && baseLocale.toLowerCase().startsWith('fr')) return 'fr-BE';
+          return 'en-BE';
+        }
+        return baseLocale;
+      })();
       const needsLocale = !/[?&]locale=/.test(endpoint);
       const fallbackUrl = `${normalizeLocalhost(FALLBACK_API_URL)}${endpoint}${needsLocale ? `${separator}locale=${strapiLocale}` : ""}`;
       const res2 = await axios.get(fallbackUrl, {
