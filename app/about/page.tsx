@@ -4,7 +4,7 @@ import { useState, useEffect, useContext } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import Header from "@/components/Header/Main";
 import HeroImage from "@/components/HeroImage";
-import About from "@/components/About";
+import AboutPageContent from "@/components/About/AboutPageContent";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
 import { LanguageContext } from "@/context/LanguageContext";
@@ -54,21 +54,41 @@ export default function AboutPage() {
     );
   }
 
-  return (
-    !loading && (
-      <>
-        <Header />
-        {heroData && (
-          <HeroImage
-            heroImageData={heroData}
-            overlayStrength={0}
-            showOverline={false}
-            imageObjectPosition="object-left md:object-center"
-          />
-        )}
-        {aboutData && <About aboutData={aboutData} />}
-        <Footer />
-      </>
-    )
-  );
+  // Helpers to extract plain text from Strapi richtext
+  const isRecord = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null;
+  const extractPlain = (blocks: unknown): string => {
+    if (!Array.isArray(blocks)) return "";
+    return blocks
+      .map((b) => (isRecord(b) && Array.isArray(b.children) ? b.children.map((c: any) => c?.text ?? "").join(" ") : ""))
+      .filter(Boolean)
+      .join("\n\n");
+  };
+
+  const pickByTitle = (needle: RegExp): any | undefined =>
+    Array.isArray(aboutData)
+      ? (aboutData as any[]).find((s) => typeof s?.Title === "string" && needle.test(s.Title.toLowerCase()))
+      : undefined;
+
+  const missionItem = pickByTitle(/mission/);
+  const visionItem = pickByTitle(/vision/);
+  const aboutItem = pickByTitle(/propos|about|fincargo/);
+  const missionText = extractPlain(isRecord(missionItem) ? (missionItem as any).Content : undefined);
+  const visionText = extractPlain(isRecord(visionItem) ? (visionItem as any).Content : undefined);
+  const aboutText = extractPlain(isRecord(aboutItem) ? (aboutItem as any).Content : undefined);
+
+  return !loading ? (
+    <>
+      <Header />
+      {heroData && (
+        <HeroImage
+          heroImageData={heroData}
+          overlayStrength={0}
+          showOverline={false}
+          imageObjectPosition="object-left md:object-center"
+        />
+      )}
+      <AboutPageContent whoWeAre={aboutText} mission={missionText} vision={visionText} />
+      <Footer />
+    </>
+  ) : null;
 }

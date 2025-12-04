@@ -58,7 +58,8 @@ export default function SectionKPIs({}: Props) {
         from: number;
         to: number;
         decimals?: number;
-        suffix?: string;
+        prefix?: string; // e.g., "< "
+        suffix?: string; // e.g., "%", "+", "M+"
         labelRest?: string;
       }
     | {
@@ -71,12 +72,10 @@ export default function SectionKPIs({}: Props) {
       };
 
   const parseSpec = (title: string): Spec => {
-    // Normalize and be resilient to invisible chars and varied arrows
-    const s0 = title
-      .replace(/\u200B|\u2009|\u00A0/g, " ") // zero‑width, thin space, nbsp → space
-      .trim();
+    // Normaliser et gérer des variantes d'espaces/flèches/opérateurs
+    const s0 = title.replace(/\u200B|\u2009|\u00A0/g, " ").trim();
 
-    // Robust range parse: first two numbers + trailing label when arrow present (→ or ->)
+    // 1) Ranges (ex: 90 → 1 Days)
     if (/[→\-]>/u.test(s0) || /→/u.test(s0)) {
       const nums = s0.match(/\d+[\.,]?\d*/g);
       if (nums && nums.length >= 2) {
@@ -84,7 +83,6 @@ export default function SectionKPIs({}: Props) {
         const toStr = nums[1];
         const from = parseFloat(fromStr.replace(",", "."));
         const to = parseFloat(toStr.replace(",", "."));
-        // label is whatever comes after the second number occurrence
         const secondIndex = s0.indexOf(toStr, s0.indexOf(fromStr) + fromStr.length);
         const rest = secondIndex >= 0 ? s0.slice(secondIndex + toStr.length).trim() : "";
         return {
@@ -98,21 +96,42 @@ export default function SectionKPIs({}: Props) {
       }
     }
 
-    // Fallback: single number with optional % and trailing label
-    const m = s0.match(/^(\d+[\.,]?\d*)(\s*%?)(.*)$/u);
-    if (m) {
-      const val = parseFloat(m[1].replace(",", "."));
-      const hasPct = !!m[2]?.includes("%");
-      const rest = (m[3] || "").trim();
+    // 2) Opérateur "<" (ex: < 1 Second)
+    const mLt = s0.match(/^<\s*(\d+[\.,]?\d*)\s*(.*)$/u);
+    if (mLt) {
+      const val = parseFloat(mLt[1].replace(",", "."));
+      const rest = (mLt[2] || "").trim();
       return {
         kind: "number",
         from: 0,
         to: val,
         decimals: Number.isInteger(val) ? 0 : 1,
-        suffix: hasPct ? " %" : "",
+        prefix: "< ",
         labelRest: rest,
       };
     }
+
+    // 3) Nombre avec magnitude (+ éventuel) ou pourcentage.
+    //    Gère : "1M+ Shipments", "8+ Countries", "100% AML/KYC"
+    const mNum = s0.match(/^\s*(\d+[\.,]?\d*)(?:\s*([%]))?(?:\s*([kKmMbB]))?(\+)?\s*(.*)$/u);
+    if (mNum) {
+      const numStr = mNum[1];
+      const percent = mNum[2] || "";
+      const mag = mNum[3] ? mNum[3].toUpperCase() : ""; // K/M/B
+      const plus = mNum[4] ? "+" : "";
+      const rest = (mNum[5] || "").trim();
+      const val = parseFloat(numStr.replace(",", "."));
+      const suffix = percent ? " %" : mag || plus ? ` ${mag}${plus}`.trim() : "";
+      return {
+        kind: "number",
+        from: 0,
+        to: val,
+        decimals: Number.isInteger(val) ? 0 : 1,
+        suffix,
+        labelRest: rest,
+      };
+    }
+
     return { kind: "number", from: 0, to: 0 };
   };
 
@@ -160,6 +179,7 @@ export default function SectionKPIs({}: Props) {
     }
     return (
       <span className="text-3xl md:text-4xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#67e8f9] to-[#bfdbfe]">
+        {(spec as { prefix?: string }).prefix || ""}
         {formatted}
         {(spec as { suffix?: string }).suffix || ""}
       </span>
