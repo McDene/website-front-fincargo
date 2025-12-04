@@ -14,6 +14,7 @@ import { FACTORING } from "./factoring";
 import { INTEGRATION } from "./integration";
 import { GETSTARTED } from "./get_started";
 import { API } from "./api";
+import { KPIS } from "./kpis";
 
 type Lang = "en" | "fr" | "es" | "de" | "nl";
 type Value = string | readonly string[];
@@ -36,6 +37,7 @@ const modules = [
   INTEGRATION,
   GETSTARTED,
   API,
+  KPIS,
 ] as const;
 
 const merge = <T extends Record<string, unknown>>(a: T, b: T): T =>

@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
 import SectionBenefits from "@/components/Common/SectionProvenResults";
 import SectionFeatures from "@/components/Common/SectionFeatures";
+import SectionKPIs from "@/components/Common/SectionKPIs";
 import SectionPricingByTransaction from "@/components/Common/SectionPricingByTransaction";
 import SectionDemo from "@/components/Common/SectionDemo";
 import { detectServerUiLocale, toStrapiLocale, detectServerRegion } from "@/lib/i18n";
@@ -162,6 +163,7 @@ export default async function Home() {
     <>
       <Header />
       {heroData && <Hero heroData={heroData} region={region} />}
+      <SectionKPIs region={region} />
       <SectionFeatures region={region} />
       <SectionBenefits />
       <SectionPricingByTransaction />
