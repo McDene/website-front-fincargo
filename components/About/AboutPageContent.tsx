@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function AboutPageContent({ whoWeAre, mission, vision }: Props) {
-  const { t, tl, language } = useTranslation();
+  const { t, tl } = useTranslation();
   const region: Region = detectClientRegion();
 
   const tf = (key: string, fallback: string) => {
@@ -254,7 +254,7 @@ export default function AboutPageContent({ whoWeAre, mission, vision }: Props) {
             </div>
 
             {/* Carte alignée à droite */}
-            <div className="lg:col-span-6 flex lg:justify-center">
+            <div className="lg:col-span-6 flex lg:justify-end">
               <Image
                 src="/images/fincargo_map.png"
                 alt={tf("about.map_alt", "Carte des implantations Fincargo")}

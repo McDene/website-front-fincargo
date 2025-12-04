@@ -56,25 +56,39 @@ export default function AboutPage() {
 
   // Helpers to extract plain text from Strapi richtext
   const isRecord = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null;
+  type RichTextChild = { text?: string };
+  type RichTextBlock = { children?: RichTextChild[] };
+  type AboutItem = { Title?: string; Content?: RichTextBlock[] };
+
   const extractPlain = (blocks: unknown): string => {
     if (!Array.isArray(blocks)) return "";
-    return blocks
-      .map((b) => (isRecord(b) && Array.isArray(b.children) ? b.children.map((c: any) => c?.text ?? "").join(" ") : ""))
+    const arr = blocks as RichTextBlock[];
+    return arr
+      .map((b) =>
+        Array.isArray(b?.children)
+          ? (b.children as RichTextChild[])
+              .map((c) => (typeof c?.text === "string" ? c.text : ""))
+              .join(" ")
+          : ""
+      )
       .filter(Boolean)
       .join("\n\n");
   };
 
-  const pickByTitle = (needle: RegExp): any | undefined =>
+  const pickByTitle = (needle: RegExp): AboutItem | undefined =>
     Array.isArray(aboutData)
-      ? (aboutData as any[]).find((s) => typeof s?.Title === "string" && needle.test(s.Title.toLowerCase()))
+      ? (aboutData as unknown[]).find(
+          (s): s is AboutItem =>
+            isRecord(s) && typeof s.Title === "string" && needle.test(s.Title.toLowerCase())
+        )
       : undefined;
 
   const missionItem = pickByTitle(/mission/);
   const visionItem = pickByTitle(/vision/);
   const aboutItem = pickByTitle(/propos|about|fincargo/);
-  const missionText = extractPlain(isRecord(missionItem) ? (missionItem as any).Content : undefined);
-  const visionText = extractPlain(isRecord(visionItem) ? (visionItem as any).Content : undefined);
-  const aboutText = extractPlain(isRecord(aboutItem) ? (aboutItem as any).Content : undefined);
+  const missionText = extractPlain(missionItem?.Content);
+  const visionText = extractPlain(visionItem?.Content);
+  const aboutText = extractPlain(aboutItem?.Content);
 
   return !loading ? (
     <>
