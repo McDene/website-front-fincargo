@@ -51,6 +51,10 @@ export const GENERAL = {
     our_partners: "Our Partners",
     learn_more_cookies: "Learn more about our Cookies Policy",
     more_info_financial_services: "Learn more about Financial Services",
+    integrations: "Integrations",
+    "integrations.section": "Integrations",
+    "integrations.title": "Connected with leading transport systems",
+    "integrations.subtitle": "Selected ecosystem partners for telematics, TMS and logistics platforms",
   },
   es: {
     pricing: "Tarifas",
@@ -105,6 +109,10 @@ export const GENERAL = {
     our_partners: "Nuestros socios",
     learn_more_cookies: "Más información sobre nuestra política de cookies",
     more_info_financial_services: "Más información sobre servicios financieros",
+    integrations: "Integraciones",
+    "integrations.section": "Integraciones",
+    "integrations.title": "Conectado con los principales sistemas de transporte",
+    "integrations.subtitle": "Socios del ecosistema seleccionados para telemática, TMS y plataformas logísticas",
   },
   fr: {
     pricing: "Tarifs",
@@ -160,6 +168,10 @@ export const GENERAL = {
     our_partners: "Nos partenaires",
     learn_more_cookies: "En savoir plus sur notre politique des cookies",
     more_info_financial_services: "En savoir plus sur les services financiers",
+    integrations: "Intégrations",
+    "integrations.section": "Intégrations",
+    "integrations.title": "Connecté aux principaux systèmes de transport",
+    "integrations.subtitle": "Partenaires de l'écosystème sélectionnés pour la télématique, les TMS et les plateformes logistiques",
   },
   de: {
     pricing: "Preise",
@@ -213,5 +225,9 @@ export const GENERAL = {
     our_partners: "Unsere Partner",
     learn_more_cookies: "Mehr erfahren über unsere Cookie‑Richtlinie",
     more_info_financial_services: "Mehr erfahren über Finanzdienstleistungen",
+    integrations: "Integrationen",
+    "integrations.section": "Integrationen",
+    "integrations.title": "Verbunden mit führenden Transportsystemen",
+    "integrations.subtitle": "Ausgewählte Ökosystem‑Partner für Telematik, TMS und Logistikplattformen",
   },
 } as const;

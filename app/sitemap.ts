@@ -4,19 +4,31 @@ import { fetchAPI } from "@/lib/utils";
 const ENV_BASE = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 const WWW_BASE = "https://www.fincargo.ai";
 
+// Cache the sitemap for 1 hour to avoid hitting Strapi on every request
+export const revalidate = 3600;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Detect requested host to serve domain-aware URLs (BE subdomain)
   let BASE_URL = ENV_BASE;
+  let region: "global" | "be" = "global";
   try {
     const { headers } = await import("next/headers");
     const h = await headers();
     const host = (h.get("host") || "").toLowerCase();
-    if (host === "be.fincargo.ai" || host.endsWith(".be.fincargo.ai") || host === "be.localhost" || host.endsWith(".be.localhost")) {
+    if (
+      host === "be.fincargo.ai" ||
+      host.endsWith(".be.fincargo.ai") ||
+      host === "be.localhost" ||
+      host.endsWith(".be.localhost")
+    ) {
       BASE_URL = "https://be.fincargo.ai";
+      region = "be";
     }
   } catch {}
+
   const now = new Date();
-  const locales = ["fr", "es", "de"] as const;
+  // Supported locale prefixes by region (used for <xhtml:link> alternates)
+  const regionLocales = region === "be" ? (['fr', 'en'] as const) : (['en', 'fr', 'es', 'de'] as const);
 
   // Static routes (non-dynamic pages)
   const staticPaths = [
@@ -99,28 +111,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   ];
 
-  // Add locale-prefixed variants so search engines discover translated pages
-  const localizedEntries: MetadataRoute.Sitemap = [];
-  for (const entry of baseEntries) {
-    localizedEntries.push(entry);
+  // Add language alternates on same-domain entries to emit <xhtml:link>
+  const withAlternates: MetadataRoute.Sitemap = baseEntries.map((entry) => {
+    if (!entry.url.startsWith(BASE_URL)) return entry; // external (www) entries: keep as-is
     try {
       const u = new URL(entry.url);
       const pathname = u.pathname;
-      // Only add locale-prefixed variants for entries under the current base domain
-      const isSameDomain = entry.url.startsWith(BASE_URL);
-      if (isSameDomain) {
-        for (const lc of locales) {
-          const localizedPath = pathname === "/" ? `/${lc}` : `/${lc}${pathname}`;
-          localizedEntries.push({
-            ...entry,
-            url: `${BASE_URL}${localizedPath}`,
-          });
-        }
+      const map: Record<string, string> = {};
+      for (const lc of regionLocales) {
+        const isHome = pathname === "/";
+        const isDefault = region === "global" ? lc === "en" : lc === "fr";
+        const localizedPath = isHome
+          ? (isDefault ? "/" : `/${lc}`)
+          : (isDefault ? pathname : `/${lc}${pathname}`);
+        map[lc] = `${BASE_URL}${localizedPath}`;
       }
+      return {
+        ...entry,
+        alternates: {
+          languages: map,
+        },
+      } as MetadataRoute.Sitemap[number];
     } catch {
-      // if URL parsing fails, skip localization for that entry
+      return entry;
     }
-  }
+  });
 
-  return localizedEntries;
+  return withAlternates;
 }

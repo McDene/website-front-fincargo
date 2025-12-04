@@ -8,6 +8,7 @@ import SectionFeatures from "@/components/Common/SectionFeatures";
 import SectionKPIs from "@/components/Common/SectionKPIs";
 import SectionPricingByTransaction from "@/components/Common/SectionPricingByTransaction";
 import SectionDemo from "@/components/Common/SectionDemo";
+import SectionIntegrations from "@/components/Common/SectionIntegrations";
 import { detectServerUiLocale, toStrapiLocale, detectServerRegion } from "@/lib/i18n";
 
 export const revalidate = 3600; // revalidate every hour
@@ -168,6 +169,7 @@ export default async function Home() {
       <SectionBenefits />
       <SectionPricingByTransaction />
       <SectionDemo />
+      <SectionIntegrations />
       <Faq
         carrier={faqDataCarrier ?? undefined}
         freight={faqDataFreight ?? undefined}
