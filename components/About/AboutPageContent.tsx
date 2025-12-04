@@ -78,14 +78,12 @@ export default function AboutPageContent({ whoWeAre, mission, vision }: Props) {
   // Afficher immédiatement la première section (au-dessus de la ligne de flottaison)
   const [whoVisible, setWhoVisible] = useState(true);
   const [sitesVisible, setSitesVisible] = useState(false);
-  const [vmVisible, setVmVisible] = useState(false);
   const [joinVisible, setJoinVisible] = useState(false);
 
   useEffect(() => {
     // Sécurité: si IntersectionObserver indisponible, afficher tout
     if (typeof window !== "undefined" && !("IntersectionObserver" in window)) {
       setSitesVisible(true);
-      setVmVisible(true);
       setJoinVisible(true);
       return;
     }
@@ -96,24 +94,21 @@ export default function AboutPageContent({ whoWeAre, mission, vision }: Props) {
       );
     const o1 = mk(setWhoVisible);
     const o2 = mk(setSitesVisible);
-    const o3 = mk(setVmVisible);
     const o4 = mk(setJoinVisible);
     if (whoRef.current) o1.observe(whoRef.current);
     if (sitesRef.current) o2.observe(sitesRef.current);
-    if (vmRef.current) o3.observe(vmRef.current);
+    // Vision/Mission affiché sans observer
     if (joinRef.current) o4.observe(joinRef.current);
 
     // Fallback: si pas déclenché au bout de 1s, forcer visible
     const t = window.setTimeout(() => {
       setSitesVisible((v) => v || true);
-      setVmVisible((v) => v || true);
       setJoinVisible((v) => v || true);
     }, 1000);
 
     return () => {
       o1.disconnect();
       o2.disconnect();
-      o3.disconnect();
       o4.disconnect();
       window.clearTimeout(t);
     };
@@ -288,7 +283,7 @@ export default function AboutPageContent({ whoWeAre, mission, vision }: Props) {
       {/* Vision & Mission ensemble */}
       {(vision || mission) && (
         <section ref={vmRef} className="relative bg-gradient-to-b from-gray-50 to-white py-16 md:py-24">
-          <div className={`mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 transition-all duration-700 ease-out ${vmVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 items-start gap-10">
               <div className="lg:col-span-6">
                 <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight uppercase text-slate-900">
