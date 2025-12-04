@@ -75,16 +75,24 @@ export default function AboutPageContent({ whoWeAre, mission, vision }: Props) {
   const sitesRef = useRef<HTMLElement | null>(null);
   const vmRef = useRef<HTMLElement | null>(null);
   const joinRef = useRef<HTMLElement | null>(null);
-  const [whoVisible, setWhoVisible] = useState(false);
+  // Afficher immédiatement la première section (au-dessus de la ligne de flottaison)
+  const [whoVisible, setWhoVisible] = useState(true);
   const [sitesVisible, setSitesVisible] = useState(false);
   const [vmVisible, setVmVisible] = useState(false);
   const [joinVisible, setJoinVisible] = useState(false);
 
   useEffect(() => {
+    // Sécurité: si IntersectionObserver indisponible, afficher tout
+    if (typeof window !== "undefined" && !("IntersectionObserver" in window)) {
+      setSitesVisible(true);
+      setVmVisible(true);
+      setJoinVisible(true);
+      return;
+    }
     const mk = (cb: (v: boolean) => void) =>
       new IntersectionObserver(
         (es) => es.forEach((e) => e.isIntersecting && cb(true)),
-        { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+        { threshold: 0.01, rootMargin: "0px 0px -10% 0px" }
       );
     const o1 = mk(setWhoVisible);
     const o2 = mk(setSitesVisible);
@@ -94,11 +102,20 @@ export default function AboutPageContent({ whoWeAre, mission, vision }: Props) {
     if (sitesRef.current) o2.observe(sitesRef.current);
     if (vmRef.current) o3.observe(vmRef.current);
     if (joinRef.current) o4.observe(joinRef.current);
+
+    // Fallback: si pas déclenché au bout de 1s, forcer visible
+    const t = window.setTimeout(() => {
+      setSitesVisible((v) => v || true);
+      setVmVisible((v) => v || true);
+      setJoinVisible((v) => v || true);
+    }, 1000);
+
     return () => {
       o1.disconnect();
       o2.disconnect();
       o3.disconnect();
       o4.disconnect();
+      window.clearTimeout(t);
     };
   }, []);
 
