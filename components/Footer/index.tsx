@@ -4,8 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SUPPORTED_UI_LOCALES, type LanguageCore, detectClientRegion } from "@/lib/i18n";
+import type { Region } from "@/lib/i18n";
 import { Linkedin } from "lucide-react";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
 import { trackEvent } from "@/lib/analytics";
 
@@ -121,7 +122,13 @@ export default function Footer() {
     },
   ];
 
-  const region = detectClientRegion();
+  // Hydration-safe region detection to avoid SSR/CSR mismatch
+  const [region, setRegion] = useState<Region>("global");
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+    setRegion(detectClientRegion());
+  }, []);
 
   const externalOverride = (href: string): string | null => {
     if (region === "be") {
@@ -223,7 +230,7 @@ export default function Footer() {
               />
             </a>
 
-            {region === "be" && (
+            {mounted && region === "be" && (
               <a
                 href="https://peppol.org/"
                 target="_blank"
