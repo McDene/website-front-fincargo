@@ -10,6 +10,8 @@ import SectionPricingByTransaction from "@/components/Common/SectionPricingByTra
 import SectionDemo from "@/components/Common/SectionDemo";
 import SectionIntegrations from "@/components/Common/SectionIntegrations";
 import { detectServerUiLocale, toStrapiLocale, detectServerRegion } from "@/lib/i18n";
+import type { Metadata } from "next";
+import { detectLangFromHeaders, type MetaLang } from "@/lib/seo";
 
 export const revalidate = 3600; // revalidate every hour
 
@@ -180,6 +182,20 @@ export default async function Home() {
   );
 }
 
-export const metadata = {
-  alternates: { canonical: "/" },
+const HOME_DESCRIPTIONS: Record<MetaLang, string> = {
+  en: "INVOICE-TO-CASH FOR THE TRANSPORT INDUSTRY",
+  fr: "INVOICE‑TO‑CASH POUR L’INDUSTRIE DU TRANSPORT",
+  es: "INVOICE‑TO‑CASH PARA LA INDUSTRIA DEL TRANSPORTE",
+  de: "INVOICE‑TO‑CASH FÜR DIE TRANSPORTBRANCHE",
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const lang = await detectLangFromHeaders();
+  const description = HOME_DESCRIPTIONS[lang] || HOME_DESCRIPTIONS.en;
+  return {
+    alternates: { canonical: "/" },
+    description,
+    openGraph: { description },
+    twitter: { description },
+  };
+}

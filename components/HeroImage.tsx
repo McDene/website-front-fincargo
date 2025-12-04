@@ -15,9 +15,10 @@ interface HeroImageData {
 
 interface HeroImageProps {
   heroImageData: HeroImageData;
+  overlayStrength?: number; // optionnel: 0..100
 }
 
-export default function HeroImage({ heroImageData }: HeroImageProps) {
+export default function HeroImage({ heroImageData, overlayStrength }: HeroImageProps) {
   const imageUrl = heroImageData?.Image?.url?.startsWith("http")
     ? heroImageData.Image.url
     : `${process.env.NEXT_PUBLIC_API_URL || ""}${
@@ -35,6 +36,7 @@ export default function HeroImage({ heroImageData }: HeroImageProps) {
       primaryCta={primaryCta}
       imageUrl={imageUrl}
       imageAlt="Image de logistique"
+      overlayStrength={overlayStrength}
     />
   );
 }

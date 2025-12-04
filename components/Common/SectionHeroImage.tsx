@@ -79,17 +79,19 @@ export default function SectionHeroImage({
           fetchPriority="high"
           className="object-cover object-center"
         />
-        {/* Dark overlay for readability (configurable strength) */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: `linear-gradient(120deg, rgba(0,0,0,${
-              overlayStrength / 100
-            }) 20%, rgba(0,0,0,${
-              overlayStrength / 160
-            }) 60%, rgba(0,0,0,0.15) 100%)`,
-          }}
-        />
+        {/* Dark overlay for readability (configurable strength). Hide if 0 */}
+        {overlayStrength > 0 && (
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `linear-gradient(120deg, rgba(0,0,0,${
+                overlayStrength / 100
+              }) 20%, rgba(0,0,0,${
+                overlayStrength / 160
+              }) 60%, rgba(0,0,0,0.15) 100%)`,
+            }}
+          />
+        )}
         {/* Soft glows to match brand style */}
         <div
           className="pointer-events-none absolute -inset-24 opacity-70 [filter:blur(80px)]"

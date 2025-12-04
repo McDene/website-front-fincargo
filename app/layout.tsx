@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { detectLangFromHeaders } from "@/lib/seo";
 import { Prompt, Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
@@ -19,45 +20,50 @@ const inter = Inter({
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: {
-    default: "AI-Powered Invoice Financing for Road Freight Carriers",
-    template: "%s | Fincargo",
-  },
-  description:
-    "AI-powered Invoice-to-Cash solution for the transportation industry.",
-  icons: {
-    icon: "/favicon.png",
-  },
-  openGraph: {
-    title: "AI-Powered Invoice Financing for Road Freight Carriers",
-    description:
-      "AI-powered Invoice-to-Cash solution for the transportation industry.",
-    url: SITE_URL,
-    siteName: "Fincargo",
-    locale: "en_US",
-    images: [
-      {
-        url: `${SITE_URL}/logo/logo-fincargo.png`,
-        width: 1200,
-        height: 630,
-        alt: "Fincargo AI-driven freight financing",
-      },
-    ],
-    type: "website",
-  },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "Fincargo - AI-powered Freight Financing",
-    description:
-      "Fincargo leverages AI to improve efficiency in freight forwarding. Join us today!",
-    images: [
-      `${SITE_URL}/meta/twitter-image.jpg`,
-    ],
-  },
+const GLOBAL_DESCRIPTIONS: Record<"en"|"fr"|"es"|"de", string> = {
+  en: "INVOICE-TO-CASH FOR THE TRANSPORT INDUSTRY",
+  fr: "INVOICE‑TO‑CASH POUR L’INDUSTRIE DU TRANSPORT",
+  es: "INVOICE‑TO‑CASH PARA LA INDUSTRIA DEL TRANSPORTE",
+  de: "INVOICE‑TO‑CASH FÜR DIE TRANSPORTBRANCHE",
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const lang = await detectLangFromHeaders();
+  const description = GLOBAL_DESCRIPTIONS[lang] || GLOBAL_DESCRIPTIONS.en;
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: {
+      default: "AI-Powered Invoice Financing for Road Freight Carriers",
+      template: "%s | Fincargo",
+    },
+    description,
+    icons: {
+      icon: "/favicon.png",
+    },
+    openGraph: {
+      title: "AI-Powered Invoice Financing for Road Freight Carriers",
+      description,
+      url: SITE_URL,
+      siteName: "Fincargo",
+      locale: "en_US",
+      images: [
+        {
+          url: `${SITE_URL}/logo/logo-fincargo.png`,
+          width: 1200,
+          height: 630,
+          alt: "Fincargo AI-driven freight financing",
+        },
+      ],
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Fincargo - AI-powered Freight Financing",
+      description,
+      images: [`${SITE_URL}/meta/twitter-image.jpg`],
+    },
+  };
+}
 
 export default function RootLayout({
   children,
