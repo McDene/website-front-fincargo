@@ -23,6 +23,10 @@ interface SectionHeroImageProps {
   overlayStrength?: number; // 0..100, default 60 (as percent opacity)
   /** Height presets to avoid full-viewport hero trap */
   heightMode?: "full" | "balanced" | "compact"; // default: balanced
+  /** Show the small overline badge above the H1 */
+  showOverline?: boolean; // default true
+  /** Tailwind classes to control background image object-position */
+  imageObjectPosition?: string; // e.g., "object-left md:object-center"
 }
 
 export default function SectionHeroImage({
@@ -36,6 +40,8 @@ export default function SectionHeroImage({
   align = "left",
   overlayStrength = 60,
   heightMode = "balanced",
+  showOverline = true,
+  imageObjectPosition = "object-center",
 }: SectionHeroImageProps) {
   const [isVisible, setIsVisible] = useState(false);
   const contentRef = useRef<HTMLDivElement | null>(null);
@@ -77,7 +83,7 @@ export default function SectionHeroImage({
           sizes="100vw"
           priority
           fetchPriority="high"
-          className="object-cover object-center"
+          className={`object-cover ${imageObjectPosition}`}
         />
         {/* Dark overlay for readability (configurable strength). Hide if 0 */}
         {overlayStrength > 0 && (
@@ -112,10 +118,12 @@ export default function SectionHeroImage({
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white/90 ring-1 ring-white/15 backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-white/70" />
-            {title}
-          </span>
+          {showOverline && (
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white/90 ring-1 ring-white/15 backdrop-blur">
+              <span className="h-1.5 w-1.5 rounded-full bg-white/70" />
+              {title}
+            </span>
+          )}
           <h1 className="mt-4 text-5xl md:text-7xl font-extrabold tracking-tight text-white uppercase leading-[1.05]">
             {subtitle}
           </h1>

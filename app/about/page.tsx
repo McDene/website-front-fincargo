@@ -58,7 +58,14 @@ export default function AboutPage() {
     !loading && (
       <>
         <Header />
-        {heroData && <HeroImage heroImageData={heroData} overlayStrength={0} />}
+        {heroData && (
+          <HeroImage
+            heroImageData={heroData}
+            overlayStrength={0}
+            showOverline={false}
+            imageObjectPosition="object-left md:object-center"
+          />
+        )}
         {aboutData && <About aboutData={aboutData} />}
         <Footer />
       </>

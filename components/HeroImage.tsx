@@ -16,9 +16,11 @@ interface HeroImageData {
 interface HeroImageProps {
   heroImageData: HeroImageData;
   overlayStrength?: number; // optionnel: 0..100
+  showOverline?: boolean;
+  imageObjectPosition?: string; // ex: "object-left md:object-center"
 }
 
-export default function HeroImage({ heroImageData, overlayStrength }: HeroImageProps) {
+export default function HeroImage({ heroImageData, overlayStrength, showOverline, imageObjectPosition }: HeroImageProps) {
   const imageUrl = heroImageData?.Image?.url?.startsWith("http")
     ? heroImageData.Image.url
     : `${process.env.NEXT_PUBLIC_API_URL || ""}${
@@ -37,6 +39,8 @@ export default function HeroImage({ heroImageData, overlayStrength }: HeroImageP
       imageUrl={imageUrl}
       imageAlt="Image de logistique"
       overlayStrength={overlayStrength}
+      showOverline={showOverline}
+      imageObjectPosition={imageObjectPosition}
     />
   );
 }
