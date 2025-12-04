@@ -24,52 +24,94 @@ export default function SectionKPIs({}: Props) {
 
   const titlesTl = tl("kpis.titles");
   const descTl = tl("kpis.desc");
-  const titles = Array.isArray(titlesTl) && titlesTl.length
-    ? (titlesTl as string[])
-    : [
-        "24 Hours",
-        "90 → 1 Days",
-        "99.5% Approval",
-        "70% Less Admin",
-        "0 Hidden Fees",
-      ];
-  const desc = Array.isArray(descTl) && descTl.length
-    ? (descTl as string[])
-    : [
-        "Cash approval, fast liquidity when it’s needed most",
-        "DSO acceleration with instant payment on delivery",
-        "First-pass invoice acceptance with clean data capture",
-        "Automation reduces workload and errors",
-        "Transparent pricing and fair access to capital",
-      ];
+  const titles =
+    Array.isArray(titlesTl) && titlesTl.length
+      ? (titlesTl as string[])
+      : [
+          "24 Hours",
+          "90 → 1 Days",
+          "99.5% Approval",
+          "70% Less Admin",
+          "0 Hidden Fees",
+        ];
+  const desc =
+    Array.isArray(descTl) && descTl.length
+      ? (descTl as string[])
+      : [
+          "Cash approval, fast liquidity when it’s needed most",
+          "DSO acceleration with instant payment on delivery",
+          "First-pass invoice acceptance with clean data capture",
+          "Automation reduces workload and errors",
+          "Transparent pricing and fair access to capital",
+        ];
 
   const items = titles.map((t, i) => ({ title: t, desc: desc[i] ?? "" }));
 
-  const nf = useMemo(() => new Intl.NumberFormat(language || "en", { maximumFractionDigits: 1 }), [language]);
+  const nf = useMemo(
+    () => new Intl.NumberFormat(language || "en", { maximumFractionDigits: 1 }),
+    [language]
+  );
 
   type Spec =
-    | { kind: "number"; from: number; to: number; decimals?: number; suffix?: string; labelRest?: string }
-    | { kind: "range"; from: number; to: number; decimals?: number; endLabel?: string; labelRest?: string };
+    | {
+        kind: "number";
+        from: number;
+        to: number;
+        decimals?: number;
+        suffix?: string;
+        labelRest?: string;
+      }
+    | {
+        kind: "range";
+        from: number;
+        to: number;
+        decimals?: number;
+        endLabel?: string;
+        labelRest?: string;
+      };
 
   const parseSpec = (title: string): Spec => {
-    const s = title.trim();
-    // Range: e.g., 90 → 1 Days (allow hyphen arrow variants)
-    const rangeRe = /^(\d+[\.,]?\d*)\s*[→\-]>?\s*(\d+[\.,]?\d*)(.*)$/u;
-    const mRange = s.match(rangeRe);
-    if (mRange) {
-      const from = parseFloat(mRange[1].replace(",", "."));
-      const to = parseFloat(mRange[2].replace(",", "."));
-      const rest = (mRange[3] || "").trim();
-      return { kind: "range", from, to, decimals: Number.isInteger(to) && Number.isInteger(from) ? 0 : 1, endLabel: nf.format(to), labelRest: rest };
+    // Normalize and be resilient to invisible chars and varied arrows
+    const s0 = title
+      .replace(/\u200B|\u2009|\u00A0/g, " ") // zero‑width, thin space, nbsp → space
+      .trim();
+
+    // Robust range parse: first two numbers + trailing label when arrow present (→ or ->)
+    if (/[→\-]>/u.test(s0) || /→/u.test(s0)) {
+      const nums = s0.match(/\d+[\.,]?\d*/g);
+      if (nums && nums.length >= 2) {
+        const fromStr = nums[0];
+        const toStr = nums[1];
+        const from = parseFloat(fromStr.replace(",", "."));
+        const to = parseFloat(toStr.replace(",", "."));
+        // label is whatever comes after the second number occurrence
+        const secondIndex = s0.indexOf(toStr, s0.indexOf(fromStr) + fromStr.length);
+        const rest = secondIndex >= 0 ? s0.slice(secondIndex + toStr.length).trim() : "";
+        return {
+          kind: "range",
+          from,
+          to,
+          decimals: Number.isInteger(to) && Number.isInteger(from) ? 0 : 1,
+          endLabel: nf.format(to),
+          labelRest: rest,
+        };
+      }
     }
-    // Number with optional % directly after
-    const numRe = /^(\d+[\.,]?\d*)(\s*%?)(.*)$/u;
-    const m = s.match(numRe);
+
+    // Fallback: single number with optional % and trailing label
+    const m = s0.match(/^(\d+[\.,]?\d*)(\s*%?)(.*)$/u);
     if (m) {
       const val = parseFloat(m[1].replace(",", "."));
       const hasPct = !!m[2]?.includes("%");
       const rest = (m[3] || "").trim();
-      return { kind: "number", from: 0, to: val, decimals: Number.isInteger(val) ? 0 : 1, suffix: hasPct ? " %" : "", labelRest: rest };
+      return {
+        kind: "number",
+        from: 0,
+        to: val,
+        decimals: Number.isInteger(val) ? 0 : 1,
+        suffix: hasPct ? " %" : "",
+        labelRest: rest,
+      };
     }
     return { kind: "number", from: 0, to: 0 };
   };
@@ -83,8 +125,12 @@ export default function SectionKPIs({}: Props) {
       let raf = 0;
       const start = performance.now();
       const dur = 1400;
-      const from = spec.kind === "range" ? spec.from : (spec as { from: number }).from ?? 0;
-      const to = spec.kind === "range" ? spec.to : (spec as { to: number }).to ?? 0;
+      const from =
+        spec.kind === "range"
+          ? spec.from
+          : (spec as { from: number }).from ?? 0;
+      const to =
+        spec.kind === "range" ? spec.to : (spec as { to: number }).to ?? 0;
       const step = () => {
         const t = Math.min(1, (performance.now() - start) / dur);
         const k = easeOut(t);
@@ -97,14 +143,18 @@ export default function SectionKPIs({}: Props) {
     }, [run, spec]);
 
     const decimals = (spec as { decimals?: number }).decimals ?? 0;
-    const formatted = nf.format(Number((val).toFixed(decimals)));
+    const formatted = nf.format(Number(val.toFixed(decimals)));
     if (spec.kind === "range") {
+      // Afficher la valeur de départ (ex: 90) à gauche en statique,
+      // et la valeur cible à droite après la flèche (ex: → 1).
+      const startLabel = nf.format((spec as { from: number }).from ?? 0);
+      const endLabel = (spec as { endLabel?: string }).endLabel ?? nf.format((spec as { to: number }).to ?? 0);
       return (
         <div className="flex items-baseline gap-2">
           <span className="text-3xl md:text-4xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#67e8f9] to-[#bfdbfe]">
-            {formatted}
+            {startLabel}
           </span>
-          <span className="text-white/70 text-sm md:text-base">→ {spec.endLabel}</span>
+          <span className="text-white/70 text-sm md:text-base">→ {endLabel}</span>
         </div>
       );
     }
@@ -143,9 +193,15 @@ export default function SectionKPIs({}: Props) {
                 {(() => {
                   const s = parseSpec(it.title);
                   const label = (s as { labelRest?: string }).labelRest;
-                  return label ? <div className="mt-1 text-xs md:text-sm text-white/80">{label}</div> : null;
+                  return label ? (
+                    <div className="mt-1 text-xs md:text-sm text-white/80">
+                      {label}
+                    </div>
+                  ) : null;
                 })()}
-                <p className="mt-2 text-sm md:text-base text-white/85 leading-relaxed">{it.desc}</p>
+                <p className="mt-2 text-sm md:text-base text-white/85 leading-relaxed">
+                  {it.desc}
+                </p>
               </div>
             </li>
           ))}
