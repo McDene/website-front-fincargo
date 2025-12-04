@@ -177,7 +177,7 @@ export default function AboutPageContent({ whoWeAre, mission, vision }: Props) {
       )}
 
       {/* KPIs */}
-      <SectionKPIs />
+      <SectionKPIs context="about" />
 
       {/* Nos sites */}
       <section ref={sitesRef} className="relative bg-white py-16 md:py-24">

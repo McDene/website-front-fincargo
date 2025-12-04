@@ -5,10 +5,11 @@ import { useTranslation } from "@/hooks/useTranslation";
 import type { Region } from "@/lib/i18n";
 
 interface Props {
-  region?: Region; // reserved for future regional variants
+  region?: Region; // réservé pour l'avenir
+  context?: "home" | "about";
 }
 
-export default function SectionKPIs({}: Props) {
+export default function SectionKPIs({ context = "home" }: Props) {
   const { tl, language } = useTranslation();
   const ref = useRef<HTMLElement | null>(null);
   const [visible, setVisible] = useState(false);
@@ -22,11 +23,13 @@ export default function SectionKPIs({}: Props) {
     return () => obs.disconnect();
   }, []);
 
-  const titlesTl = tl("kpis.titles");
-  const descTl = tl("kpis.desc");
-  const titles =
-    Array.isArray(titlesTl) && titlesTl.length
-      ? (titlesTl as string[])
+  const titlesTl = tl(`kpis.${context}.titles`);
+  const descTl = tl(`kpis.${context}.desc`);
+  const legacyTitlesTl = tl("kpis.titles");
+  const legacyDescTl = tl("kpis.desc");
+  const fallbackTitles =
+    Array.isArray(legacyTitlesTl) && legacyTitlesTl.length
+      ? (legacyTitlesTl as string[])
       : [
           "24 Hours",
           "90 → 1 Days",
@@ -34,9 +37,9 @@ export default function SectionKPIs({}: Props) {
           "70% Less Admin",
           "0 Hidden Fees",
         ];
-  const desc =
-    Array.isArray(descTl) && descTl.length
-      ? (descTl as string[])
+  const fallbackDesc =
+    Array.isArray(legacyDescTl) && legacyDescTl.length
+      ? (legacyDescTl as string[])
       : [
           "Cash approval, fast liquidity when it’s needed most",
           "DSO acceleration with instant payment on delivery",
@@ -44,6 +47,15 @@ export default function SectionKPIs({}: Props) {
           "Automation reduces workload and errors",
           "Transparent pricing and fair access to capital",
         ];
+
+  const titles =
+    Array.isArray(titlesTl) && titlesTl.length
+      ? (titlesTl as string[])
+      : fallbackTitles;
+  const desc =
+    Array.isArray(descTl) && descTl.length
+      ? (descTl as string[])
+      : fallbackDesc;
 
   const items = titles.map((t, i) => ({ title: t, desc: desc[i] ?? "" }));
 
