@@ -1,6 +1,8 @@
 "use client";
+/* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any */
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { useTranslation } from "@/hooks/useTranslation";
 
 type Audience = "carrier" | "freight";
@@ -84,7 +86,7 @@ export default function SectionBenefits({
     <section
       id="benefit"
       ref={sectionRef}
-      className="relative bg-gradient-to-b from-darkBlue to-black py-20 md:py-28 text-white"
+      className="relative bg-gradient-to-b from-darkBlue to-black py-14 md:py-18 text-white"
     >
       {/* accents */}
       <div className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(50%_50%_at_50%_20%,black,transparent)]">
@@ -145,40 +147,59 @@ export default function SectionBenefits({
           </div>
         </div>
 
-        {/* Benefits grid */}
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-          {benefits.map((b, i) => (
-            <div
-              key={`${audience}-${i}`}
-              className={`group relative overflow-hidden rounded-2xl bg-white px-6 py-8 md:px-7 md:py-10 border border-white/20 shadow-sm ring-1 ring-black/5 transition-all duration-700 ease-out ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-6"
-              } hover:shadow-md`}
-              style={{ transitionDelay: `${150 + i * 80}ms` }}
-            >
-              <div className="pointer-events-none absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-blue-400/50 to-transparent" />
-              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute -inset-12 bg-gradient-to-tr from-blue-500/[0.06] to-cyan-500/[0.06] blur-2xl" />
-              </div>
-
-              <h3 className="text-lg md:text-xl font-semibold tracking-tight text-slate-900 flex items-center gap-2">
-                <span className="inline-flex items-center justify-center h-9 w-9 rounded-lg bg-slate-50 ring-1 ring-slate-200 text-slate-700">
-                  <BenefitIcon
-                    audience={audience}
-                    index={i}
-                    className="h-5 w-5"
+        {/* Benefits + Illustration */}
+        <div
+          className={`mt-10 grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 items-start transition-all duration-700 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}
+        >
+          {/* Left: benefits list */}
+          <div className="lg:col-span-7">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {benefits.map((b, i) => (
+                <div
+                  key={`${audience}-${i}`}
+                  className="relative overflow-hidden rounded-lg bg-white/5 ring-1 ring-white/10 border border-white/10 px-4 py-3 md:px-4 md:py-3 hover:bg-white/7 transition"
+                  style={{ transitionDelay: `${120 + i * 50}ms` }}
+                >
+                  <div
+                    className="pointer-events-none absolute -top-3 -left-3 h-14 w-14 rounded-full bg-[#67e8f9]/25 blur-xl"
+                    aria-hidden
                   />
-                </span>
-                <span className="bg-gradient-to-r from-darkBlue to-slate-900 bg-clip-text text-transparent">
-                  {b.title}
-                </span>
-              </h3>
-              <p className="mt-2 text-slate-600 leading-relaxed">
-                {b.description}
-              </p>
+                  <h3 className="text-[15px] md:text-[16px] font-semibold tracking-tight uppercase">
+                    {b.title}
+                  </h3>
+                  <p className="mt-1 text-sm text-white/85 leading-relaxed">
+                    {b.description}
+                  </p>
+                  <div className="pointer-events-none absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* Right: audience image */}
+          <div className="lg:col-span-5">
+            <div className="relative overflow-hidden rounded-xl ring-1 ring-white/10 border border-white/10 shadow-xl">
+              <div className="pointer-events-none absolute inset-0 opacity-40">
+                <div className="absolute -inset-16 bg-[radial-gradient(600px_260px_at_85%_10%,rgba(103,232,249,0.15),transparent),radial-gradient(540px_220px_at_10%_90%,rgba(191,219,254,0.12),transparent)]" />
+              </div>
+              <Image
+                src={
+                  audience === "carrier"
+                    ? "/images/fincargo_carrier.webp"
+                    : "/images/fincargo_forwarder_shipper.webp"
+                }
+                alt={
+                  audience === "carrier" ? "Carriers" : "Forwarders & Shippers"
+                }
+                width={900}
+                height={600}
+                className="relative w-full h-auto object-contain max-h-56 md:max-h-72"
+                priority={false}
+              />
+            </div>
+          </div>
         </div>
 
         {/* Separator to emphasize difference */}
@@ -243,79 +264,12 @@ export default function SectionBenefits({
 //   return parts.map((p) => p[0]?.toUpperCase() ?? "").join("");
 // }
 
-function BenefitIcon({
-  audience,
-  index,
-  className = "h-5 w-5",
-}: {
-  audience: Audience;
-  index: number;
-  className?: string;
-}) {
-  // Map icons to the semantic meaning of each benefit item
-  if (audience === "carrier") {
-    switch (index) {
-      case 0:
-        // Get paid faster
-        return <IconBolt className={className} />;
-      case 1:
-        // Fewer invoice rejections
-        return <IconCheckCircle className={className} />;
-      case 2:
-        // Less admin, more driving
-        return <IconClock className={className} />;
-      case 3:
-        // Live invoice & payment status
-        return <IconEye className={className} />;
-      case 4:
-        // Simple onboarding
-        return <IconPlug className={className} />;
-      case 5:
-        // Border‑ready compliance
-        return <IconShield className={className} />;
-      default:
-        return <IconChart className={className} />;
-    }
-  }
-
-  // freight audience
-  switch (index) {
-    case 0:
-      // Higher first‑pass acceptance
-      return <IconCheckCircle className={className} />;
-    case 1:
-      // Payment accuracy & control
-      return <IconReceiptCheck className={className} />;
-    case 2:
-      // Working‑capital agility
-      return <IconCard className={className} />;
-    case 3:
-      // End‑to‑end audit trail
-      return <IconDocumentSearch className={className} />;
-    case 4:
-      // Single source of truth
-      return <IconDatabase className={className} />;
-    default:
-      // Actionable analytics
-      return <IconChart className={className} />;
-  }
+// Compact mode: icons disabled (keep stub to avoid refactor)
+function BenefitIcon() {
+  return null;
 }
 
-function IconBolt(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z" />
-    </svg>
-  );
-}
+// Icons retained below (not used in compact mode)
 // function IconChf(props: React.SVGProps<SVGSVGElement>) {
 //   return (
 //     <svg
@@ -340,53 +294,14 @@ function IconBolt(props: React.SVGProps<SVGSVGElement>) {
 //   );
 // }
 
-function IconClock(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <circle cx="12" cy="12" r="9" />
-      <path d="M12 7v6l4 2" />
-    </svg>
-  );
+function IconClock() {
+  return null as any;
 }
-function IconCheckCircle(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <circle cx="12" cy="12" r="9" />
-      <path d="M8.5 12.5l2.5 2.5 4.5-4.5" />
-    </svg>
-  );
+function IconCheckCircle() {
+  return null as any;
 }
-function IconShield(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <path d="M12 3l7 4v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7l7-4Z" />
-      <path d="M9.5 12.5l2 2 3.5-3.5" />
-    </svg>
-  );
+function IconShield() {
+  return null as any;
 }
 function IconEye(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -457,78 +372,17 @@ function IconChart(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-function IconReceiptCheck(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <path d="M6 3h12v16l-3-2-3 2-3-2-3 2V3Z" />
-      <path d="M8 7h8" />
-      <path d="M8 11h5" />
-      <path d="M9 14l2 2 4-4" />
-    </svg>
-  );
+function IconReceiptCheck() {
+  return null as any;
 }
-function IconCard(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <rect x="3" y="6" width="18" height="12" rx="2" />
-      <path d="M3 10h18" />
-      <path d="M7 15h5" />
-      <path d="M14 15h3" />
-    </svg>
-  );
+function IconCard() {
+  return null as any;
 }
-function IconDocumentSearch(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" />
-      <path d="M14 3v5h5" />
-      <path d="M9 12h6" />
-      <path d="M9 16h3" />
-      <circle cx="15.5" cy="16.5" r="2.5" />
-      <path d="m19 20-2.2-2.2" />
-    </svg>
-  );
+function IconDocumentSearch() {
+  return null as any;
 }
-function IconDatabase(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <ellipse cx="12" cy="5" rx="8" ry="3" />
-      <path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5" />
-      <path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6" />
-    </svg>
-  );
+function IconDatabase() {
+  return null as any;
 }
 function IconQuote(props: React.SVGProps<SVGSVGElement>) {
   return (
