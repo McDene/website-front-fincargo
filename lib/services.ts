@@ -3,7 +3,7 @@ export const SERVICES = {
     "services.section": "Services",
     "services.title": "Complete AI-Powered Transport Solution",
     "services.description":
-      "Five integrated modules designed to digitalize, optimize, and accelerate your transport operations with full regulatory compliance.",
+      "Four integrated modules designed to digitalize, optimize, and accelerate your transport operations with full regulatory compliance.",
     "services.invoice.title": "e-Invoicing",
     "services.invoice.description":
       "ViDA‑compliant structured invoicing ready  EU requirements. Machine‑readable and cross‑border compatible.",
@@ -47,7 +47,7 @@ export const SERVICES = {
     "services.section": "Services",
     "services.title": "Solution de transport complète propulsée par l'IA",
     "services.description":
-      "Cinq modules intégrés conçus pour numériser, optimiser et accélérer vos opérations de transport avec une conformité réglementaire totale.",
+      "Quatre modules intégrés conçus pour numériser, optimiser et accélérer vos opérations de transport avec une conformité réglementaire totale.",
     "services.invoice.title": "Facturation électronique",
     "services.invoice.description":
       "Facturation structurée conforme à ViDA, prête pour les exigences de l'UE. Lisible par machine et compatible transfrontalière.",
@@ -90,7 +90,7 @@ export const SERVICES = {
     "services.section": "Servicios",
     "services.title": "Solución de transporte completa impulsada por IA",
     "services.description":
-      "Cinco módulos integrados diseñados para digitalizar, optimizar y acelerar sus operaciones de transporte con total cumplimiento normativo.",
+      "Cuatro módulos integrados diseñados para digitalizar, optimizar y acelerar sus operaciones de transporte con total cumplimiento normativo.",
     "services.invoice.title": "Facturación electrónica",
     "services.invoice.description":
       "Facturación estructurada compatible con ViDA y lista para los requisitos de la UE. Legible por máquina y compatible con operaciones transfronterizas.",
@@ -133,7 +133,7 @@ export const SERVICES = {
     "services.section": "Dienstleistungen",
     "services.title": "Komplette, KI-gestützte Transportlösung",
     "services.description":
-      "Fünf integrierte Module, die darauf ausgelegt sind, Ihre Transportabläufe mit voller Einhaltung der Vorschriften zu digitalisieren, zu optimieren und zu beschleunigen.",
+      "Vier integrierte Module, die darauf ausgelegt sind, Ihre Transportabläufe mit voller Einhaltung der Vorschriften zu digitalisieren, zu optimieren und zu beschleunigen.",
     "services.invoice.title": "E-Rechnung",
     "services.invoice.description":
       "ViDA-konforme strukturierte Rechnungsstellung, die den EU-Anforderungen entspricht. Maschinenlesbar und grenzüberschreitend kompatibel.",

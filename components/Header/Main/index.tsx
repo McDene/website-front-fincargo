@@ -9,7 +9,7 @@ import MenuButton from "./MenuButton";
 import MobileMenu from "./MobileMenu";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import LanguageSwitcherMobile from "@/components/LanguageSwitcherMobile";
-import { SUPPORTED_UI_LOCALES, type LanguageCore } from "@/lib/i18n";
+import { SUPPORTED_UI_LOCALES, type LanguageCore, detectClientRegion } from "@/lib/i18n";
 
 /**
  * Header with headroom behavior (hide on scroll down, show on scroll up),
@@ -22,6 +22,11 @@ import { SUPPORTED_UI_LOCALES, type LanguageCore } from "@/lib/i18n";
 export default function Header() {
   const { t } = useTranslation();
   const pathname = usePathname();
+  const [clientRegion, setClientRegion] = useState<"global" | "be" | null>(null);
+  useEffect(() => {
+    // Détecter la région uniquement côté client pour éviter les mismatches d'hydratation
+    setClientRegion(detectClientRegion());
+  }, []);
 
   // Build menu items (use hash anchors on the homepage, absolute fallback elsewhere)
   const menu = useMemo(
@@ -182,10 +187,21 @@ export default function Header() {
                   height={40}
                 />
               </Link>
-              <div className="flex items-center gap-3">
-                <LanguageSwitcherMobile />
-                <MenuButton menuOpen={menuOpen} toggleMenu={toggleMenu} />
-              </div>
+            <div className="flex items-center gap-3">
+              <LanguageSwitcherMobile />
+              {/* EU flag to go back to global site when on BE domain */}
+              {clientRegion === "be" && (
+                <a
+                  href="https://www.fincargo.ai"
+                  className="inline-flex items-center justify-center px-1.5 py-1"
+                  aria-label="Go to global site"
+                  title="Global site"
+                >
+                  <FlagEU className="h-3.5 w-5" />
+                </a>
+              )}
+              <MenuButton menuOpen={menuOpen} toggleMenu={toggleMenu} />
+            </div>
             </div>
 
             {/* Main bar (desktop) */}
@@ -226,6 +242,17 @@ export default function Header() {
                   </button>
                 </Link>
                 <LanguageSwitcher />
+                {/* EU flag to go back to global site when on BE domain */}
+                {clientRegion === "be" && (
+                  <a
+                    href="https://www.fincargo.ai"
+                    className="inline-flex items-center justify-center px-2 py-1.5"
+                    aria-label="Global site"
+                    title="Global site"
+                  >
+                    <FlagEU className="h-3.5 w-5" />
+                  </a>
+                )}
               </div>
             </div>
           </div>
@@ -305,5 +332,26 @@ function NavItem({
     >
       {text}
     </Link>
+  );
+}
+
+// Small EU flag (blue with 12 stars) for the BE header link
+function FlagEU({ className }: { className?: string }) {
+  const w = 18;
+  const h = 12;
+  const cx = 9;
+  const cy = 6;
+  const r = 3.5;
+  const dots = Array.from({ length: 12 }, (_, i) => {
+    const angle = ((i * 30 - 90) * Math.PI) / 180;
+    const x = cx + Math.cos(angle) * r;
+    const y = cy + Math.sin(angle) * r;
+    return <circle key={i} cx={x} cy={y} r={0.45} fill="#ffd90c" />;
+  });
+  return (
+    <svg viewBox={`0 0 ${w} ${h}`} className={className} aria-hidden>
+      <rect width={w} height={h} fill="#003399" />
+      {dots}
+    </svg>
   );
 }

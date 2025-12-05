@@ -97,6 +97,19 @@ export const GENERAL = {
     "country.ch": "Switzerland",
     "country.es": "Spain",
     "about.map_alt": "Fincargo presence map",
+    // Region banner
+    "region.title.suggest": "Are you visiting from Belgium?",
+    "region.title.chooser": "Select your region",
+    "region.subtitle.suggest": "We have a Belgian version of Fincargo with local e-invoicing and financial services for transport.",
+    "region.subtitle.chooser": "Visit our Belgian site for local e‑invoicing and financial services for transport, or stay on the global site.",
+    "region.go_be": "Go to Fincargo Belgium",
+    "region.stay": "Stay on this site",
+    "region.choose_language": "Choose your language",
+    "region.language.fr": "French",
+    "region.language.en": "English",
+    // Region switch (footer)
+    "region.switch_be": "Switch to Belgium",
+    "region.switch_global": "Switch to Europe",
   },
   es: {
     pricing: "Tarifas",
@@ -197,6 +210,19 @@ export const GENERAL = {
     "country.ch": "Suiza",
     "country.es": "España",
     "about.map_alt": "Mapa de presencia de Fincargo",
+    // Region banner
+    "region.title.suggest": "¿Nos visitas desde Bélgica?",
+    "region.title.chooser": "Selecciona tu región",
+    "region.subtitle.suggest": "Tenemos una versión belga de Fincargo con e‑facturación local y servicios financieros para el transporte.",
+    "region.subtitle.chooser": "Visita nuestro sitio belga (e‑facturación local, servicios financieros) o quédate en el sitio global.",
+    "region.go_be": "Ir a Fincargo Bélgica",
+    "region.stay": "Permanecer en este sitio",
+    "region.choose_language": "Elige tu idioma",
+    "region.language.fr": "Francés",
+    "region.language.en": "Inglés",
+    // Region switch (footer)
+    "region.switch_be": "Cambiar a Bélgica",
+    "region.switch_global": "Cambiar a Europa",
   },
   fr: {
     pricing: "Tarifs",
@@ -298,6 +324,19 @@ export const GENERAL = {
     "country.ch": "Suisse",
     "country.es": "Espagne",
     "about.map_alt": "Carte des implantations Fincargo",
+    // Region banner
+    "region.title.suggest": "Venez‑vous de Belgique ?",
+    "region.title.chooser": "Sélectionnez votre région",
+    "region.subtitle.suggest": "Nous avons une version belge de Fincargo avec e‑invoicing local et services financiers pour le transport.",
+    "region.subtitle.chooser": "Visitez notre site belge (e‑invoicing local, services financiers), ou restez sur le site global.",
+    "region.go_be": "Aller sur Fincargo Belgique",
+    "region.stay": "Rester sur ce site",
+    "region.choose_language": "Choisissez votre langue",
+    "region.language.fr": "Français",
+    "region.language.en": "Anglais",
+    // Region switch (footer)
+    "region.switch_be": "Basculer vers la Belgique",
+    "region.switch_global": "Basculer vers l'Europe",
   },
   de: {
     pricing: "Preise",
@@ -397,5 +436,18 @@ export const GENERAL = {
     "country.ch": "Schweiz",
     "country.es": "Spanien",
     "about.map_alt": "Fincargo‑Standortkarte",
+    // Region banner
+    "region.title.suggest": "Besuchen Sie uns aus Belgien?",
+    "region.title.chooser": "Wählen Sie Ihre Region",
+    "region.subtitle.suggest": "Wir haben eine belgische Version von Fincargo mit lokaler E‑Rechnung und Finanzdienstleistungen für den Transport.",
+    "region.subtitle.chooser": "Besuchen Sie unsere belgische Website (lokale E‑Rechnung, Finanzservices) oder bleiben Sie auf der globalen Seite.",
+    "region.go_be": "Zur Fincargo‑Belgien‑Seite",
+    "region.stay": "Auf dieser Seite bleiben",
+    "region.choose_language": "Sprache auswählen",
+    "region.language.fr": "Französisch",
+    "region.language.en": "Englisch",
+    // Region switch (footer)
+    "region.switch_be": "Zu Belgien wechseln",
+    "region.switch_global": "Zu Europa wechseln",
   },
 } as const;

@@ -3,7 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { SUPPORTED_UI_LOCALES, type LanguageCore, detectClientRegion } from "@/lib/i18n";
+import {
+  SUPPORTED_UI_LOCALES,
+  type LanguageCore,
+  detectClientRegion,
+} from "@/lib/i18n";
 import type { Region } from "@/lib/i18n";
 import { Linkedin } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
@@ -141,18 +145,19 @@ export default function Footer() {
   const handleTrack = (label: string) => () =>
     trackEvent({ action: "click_footer_link", category: "Footer", label });
 
-  const onInternalClick = (label: string, href: string) => (e: React.MouseEvent) => {
-    handleTrack(label)();
-    const override = externalOverride(href);
-    if (override) {
-      e.preventDefault();
-      window.location.assign(override);
-      return;
-    }
-    if (typeof window !== "undefined") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
+  const onInternalClick =
+    (label: string, href: string) => (e: React.MouseEvent) => {
+      handleTrack(label)();
+      const override = externalOverride(href);
+      if (override) {
+        e.preventDefault();
+        window.location.assign(override);
+        return;
+      }
+      if (typeof window !== "undefined") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    };
 
   const isExternal = (href: string) => /^https?:\/\//i.test(href);
 
@@ -312,11 +317,83 @@ export default function Footer() {
         ))}
       </div>
 
-      {/* No extra centered logos; BE badges are grouped in left column (Option A) */}
+      {/* Bottom bar as a 3-column grid; switch in the last column */}
+      <div className="mt-10 mx-auto w-full max-w-7xl px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 items-center">
+        {/* First column left intentionally empty for balance on desktop */}
+        <div className="hidden md:block" />
 
-      <div className="mt-12 text-center text-gray-400 text-sm">
-        &copy; {year} Fincargo. All rights reserved.
+        {/* On mobile show switch above copyright; on desktop place it in col 3 right-aligned */}
+        {mounted && (
+          <div className="mb-8 justify-self-center md:mb-0 md:col-start-3 ">
+            <a
+              href={
+                region === "be"
+                  ? "https://www.fincargo.ai"
+                  : "https://be.fincargo.ai"
+              }
+              onClick={handleTrack("Region Switch")}
+              className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-2 text-sm font-semibold text-white ring-1 ring-white/15 shadow-sm hover:bg-white/15 transition"
+              aria-label={
+                region === "be"
+                  ? t("region.switch_global")
+                  : t("region.switch_be")
+              }
+              title={
+                region === "be"
+                  ? t("region.switch_global")
+                  : t("region.switch_be")
+              }
+            >
+              {region === "be" ? (
+                <FlagEU className="h-3.5 w-5" />
+              ) : (
+                <FlagBE className="h-3.5 w-5" />
+              )}
+              <span>
+                {region === "be"
+                  ? t("region.switch_global")
+                  : t("region.switch_be")}
+              </span>
+            </a>
+          </div>
+        )}
+
+        {/* Middle column: copyright centered (col 2 on desktop) */}
+        <div className="text-center text-gray-400 text-sm md:justify-self-center md:col-start-2">
+          &copy; {year} Fincargo. All rights reserved.
+        </div>
       </div>
     </footer>
+  );
+}
+
+// Inline flags (Belgium / EU)
+function FlagBE({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 3 2" className={className} aria-hidden>
+      <rect width="1" height="2" x="0" fill="#000000" />
+      <rect width="1" height="2" x="1" fill="#FFD90C" />
+      <rect width="1" height="2" x="2" fill="#EF3340" />
+    </svg>
+  );
+}
+
+function FlagEU({ className }: { className?: string }) {
+  const w = 18;
+  const h = 12;
+  const cx = 9;
+  const cy = 6;
+  const r = 3.5;
+  const dots = Array.from({ length: 12 }, (_, i) => {
+    const angle = ((i * 30 - 90) * Math.PI) / 180;
+    const x = cx + Math.cos(angle) * r;
+    const y = cy + Math.sin(angle) * r;
+    return <circle key={i} cx={x} cy={y} r={0.45} fill="#ffd90c" />;
+  });
+  return (
+    <svg viewBox={`0 0 ${w} ${h}`} className={className} aria-hidden>
+      <rect width={w} height={h} fill="#003399" />
+      {dots}
+    </svg>
   );
 }

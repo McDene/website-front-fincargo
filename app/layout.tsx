@@ -5,6 +5,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 import { LanguageProvider } from "@/context/LanguageContext";
 import ClientWrapper from "@/components/ClientWrapper";
+import RegionSwitchBanner from "./_components/RegionSwitchBanner";
 
 const prompt = Prompt({
   weight: ["400", "700", "900"],
@@ -84,7 +85,8 @@ export default function RootLayout({
             <main>{children}</main>
           </LanguageProvider>
         </Providers>
-
+        {/* Suggest BE site for Belgian visitors on global domain (non-blocking, client-only) */}
+        <RegionSwitchBanner />
         <ClientWrapper />
       </body>
     </html>
