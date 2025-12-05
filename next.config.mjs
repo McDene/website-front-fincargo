@@ -26,6 +26,12 @@ const nextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      // Ensure browsers fetching /favicon.ico still get our PNG
+      { source: "/favicon.ico", destination: "/favicon.png" },
+    ];
+  },
   async headers() {
     return [
       {

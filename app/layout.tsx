@@ -40,7 +40,11 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description,
     icons: {
-      icon: "/favicon.png",
+      icon: [
+        { url: "/favicon.png", type: "image/png", sizes: "32x32" },
+        { url: "/favicon.png", type: "image/png", sizes: "16x16" },
+      ],
+      shortcut: "/favicon.png",
     },
     openGraph: {
       title: "Invoice Financing for Road Freight Carriers",
@@ -80,7 +84,10 @@ export default function RootLayout({
           rel="preconnect"
           href={process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:1337"}
         />
-        {/* Consent Mode defaults (set before GTM) */}
+        {/* Explicit favicon fallback links for broader browser support */}
+        <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="/favicon.png" sizes="16x16" />
+      {/* Consent Mode defaults (set before GTM) */}
         <Script id="gtm-consent-defaults" strategy="beforeInteractive">{`
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
