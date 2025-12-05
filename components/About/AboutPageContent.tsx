@@ -262,6 +262,25 @@ export default function AboutPageContent({ whoWeAre, mission, vision }: Props) {
                     ))}
                   </address>
                 </div>
+                {/* LinkedIn CTA */}
+                <div className="pt-2">
+                  <a
+                    href="https://www.linkedin.com/company/fincargo/posts/?feedView=all"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-analytics-action="click_outbound_link"
+                    data-analytics-category="About_Sites"
+                    data-analytics-label="LinkedIn"
+                    className="inline-flex items-center gap-1.5 rounded-full bg-slate-100/70 px-3 py-1.5 text-xs font-medium text-slate-700 ring-1 ring-slate-200 hover:bg-slate-100 transition"
+                    aria-label="LinkedIn"
+                    title="LinkedIn"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden className="h-3.5 w-3.5 fill-current">
+                      <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0zM7.5 8h4.8v2.2h.07c.67-1.2 2.3-2.47 4.74-2.47 5.07 0 6 3.34 6 7.68V24h-5v-7.9c0-1.88-.03-4.3-2.62-4.3-2.62 0-3.02 2.05-3.02 4.17V24h-5z" />
+                    </svg>
+                    <span>LinkedIn</span>
+                  </a>
+                </div>
               </div>
             </div>
 

@@ -66,8 +66,21 @@ export const metadata = {
   title: "Blog",
   description:
     "Insights and news about freight finance, factoring, and logistics.",
-  alternates: { canonical: "/blog" },
-};
+  alternates: {
+    canonical: "/blog",
+    languages: (() => {
+      const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+      const basePath = "/blog";
+      return {
+        "x-default": `${SITE_URL}${basePath}`,
+        en: `${SITE_URL}${basePath}`,
+        fr: `${SITE_URL}/fr${basePath}`,
+        es: `${SITE_URL}/es${basePath}`,
+        de: `${SITE_URL}/de${basePath}`,
+      } as const;
+    })(),
+  },
+} as const;
 
 function PaginationControls({
   current,

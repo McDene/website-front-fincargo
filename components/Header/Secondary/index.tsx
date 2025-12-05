@@ -208,6 +208,9 @@ export default function Header() {
               <div className="flex items-center gap-3">
                 <Link href={localizeHref("/get-started")}>
                   <button
+                    data-analytics-action="cta_click"
+                    data-analytics-category="Header_Secondary"
+                    data-analytics-label="Get Started"
                     className={`px-4 py-2 rounded-full text-sm font-semibold transition ring-1 ${
                       sticky
                         ? "bg-darkBlue text-white ring-darkBlue hover:bg-lightBlue hover:ring-lightBlue"

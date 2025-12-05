@@ -63,7 +63,22 @@ export default function ClientWrapper() {
     if (!cookieConsent) {
       setIsBannerVisible(true);
     }
-    setConsent(cookieConsent ? String(cookieConsent) : null);
+    const stored = cookieConsent ? String(cookieConsent) : null;
+    setConsent(stored);
+    // If consent previously granted/denied, update Consent Mode immediately
+    try {
+      if (stored && typeof window !== "undefined" && window.gtag) {
+        const granted = stored === "accepted";
+        window.gtag("consent", "update", {
+          ad_user_data: granted ? "granted" : "denied",
+          ad_personalization: granted ? "granted" : "denied",
+          ad_storage: granted ? "granted" : "denied",
+          analytics_storage: granted ? "granted" : "denied",
+          functionality_storage: "granted",
+          security_storage: "granted",
+        });
+      }
+    } catch {}
     // Listen to consent changes (so we can start GA without reload)
     const onConsent = (e: Event) => {
       const detail = (e as CustomEvent).detail as string | undefined;
@@ -78,12 +93,14 @@ export default function ClientWrapper() {
 
   if (!cookieData) return null;
 
+  const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+
   return (
     <>
-      {/* ✅ Google Analytics activé uniquement après acceptation */}
+      {/* ✅ Analytics uniquement après consentement. GA direct optionnel; GTM-only sinon */}
       {consent === "accepted" && (
         <>
-          <GoogleAnalytics gaId="G-VGSWFSGPXZ" />
+          {GA_ID ? <GoogleAnalytics gaId={GA_ID} /> : null}
           <GAView />
           <AnalyticsEvents />
         </>

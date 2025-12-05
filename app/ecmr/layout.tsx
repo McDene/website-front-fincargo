@@ -2,17 +2,17 @@ import type { Metadata } from "next";
 import { detectLangFromHeaders, type MetaLang } from "@/lib/seo";
 
 const DESCRIPTIONS: Record<MetaLang, string> = {
-  en: "Get in touch with the Fincargo team for product, partnership, or support inquiries.",
-  fr: "Contactez l'équipe Fincargo pour toute question produit, partenariat ou support.",
-  de: "Kontaktieren Sie das Fincargo‑Team für Produkt‑, Partnerschafts‑ oder Supportanfragen.",
-  es: "Póngase en contacto con el equipo de Fincargo para consultas de producto, asociación o soporte.",
+  en: "Electronic consignment note (eCMR) enablement and workflow guidance for transport.",
+  fr: "Mise en œuvre eCMR (lettre de voiture électronique) et bonnes pratiques pour le transport.",
+  de: "eCMR (elektronischer Frachtbrief) Einführung und Workflow‑Leitfaden für den Transport.",
+  es: "Implementación de eCMR (carta de porte electrónica) y guía de flujos para el transporte.",
 };
 
 export async function generateMetadata(): Promise<Metadata> {
   const lang = await detectLangFromHeaders();
   const description = DESCRIPTIONS[lang] || DESCRIPTIONS.en;
   const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-  const basePath = "/contact";
+  const basePath = "/ecmr";
   const languages = {
     "x-default": `${SITE_URL}${basePath}`,
     en: `${SITE_URL}${basePath}`,
@@ -21,13 +21,13 @@ export async function generateMetadata(): Promise<Metadata> {
     de: `${SITE_URL}/de${basePath}`,
   } as const;
   return {
-    title: "Contact Us",
+    title: "eCMR",
     description,
     openGraph: { description },
-    alternates: { canonical: "/contact", languages },
+    alternates: { canonical: "/ecmr", languages },
   };
 }
 
-export default function ContactLayout({ children }: { children: React.ReactNode }) {
+export default function ECMRLayout({ children }: { children: React.ReactNode }) {
   return children;
 }

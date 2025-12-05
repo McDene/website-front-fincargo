@@ -2,17 +2,17 @@ import type { Metadata } from "next";
 import { detectLangFromHeaders, type MetaLang } from "@/lib/seo";
 
 const DESCRIPTIONS: Record<MetaLang, string> = {
-  en: "Get in touch with the Fincargo team for product, partnership, or support inquiries.",
-  fr: "Contactez l'équipe Fincargo pour toute question produit, partenariat ou support.",
-  de: "Kontaktieren Sie das Fincargo‑Team für Produkt‑, Partnerschafts‑ oder Supportanfragen.",
-  es: "Póngase en contacto con el equipo de Fincargo para consultas de producto, asociación o soporte.",
+  en: "Solutions for freight forwarders: finance, integrations, and operational visibility.",
+  fr: "Solutions pour transitaires : finance, intégrations et visibilité opérationnelle.",
+  de: "Lösungen für Spediteure: Finanzierung, Integrationen und operative Transparenz.",
+  es: "Soluciones para transitarios: finanzas, integraciones y visibilidad operativa.",
 };
 
 export async function generateMetadata(): Promise<Metadata> {
   const lang = await detectLangFromHeaders();
   const description = DESCRIPTIONS[lang] || DESCRIPTIONS.en;
   const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-  const basePath = "/contact";
+  const basePath = "/freight-forwarders";
   const languages = {
     "x-default": `${SITE_URL}${basePath}`,
     en: `${SITE_URL}${basePath}`,
@@ -21,13 +21,13 @@ export async function generateMetadata(): Promise<Metadata> {
     de: `${SITE_URL}/de${basePath}`,
   } as const;
   return {
-    title: "Contact Us",
+    title: "Freight Forwarders",
     description,
     openGraph: { description },
-    alternates: { canonical: "/contact", languages },
+    alternates: { canonical: "/freight-forwarders", languages },
   };
 }
 
-export default function ContactLayout({ children }: { children: React.ReactNode }) {
+export default function FreightForwardersLayout({ children }: { children: React.ReactNode }) {
   return children;
 }

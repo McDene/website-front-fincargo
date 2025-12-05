@@ -261,6 +261,9 @@ export default function RegionSwitchBanner(): JSX.Element | null {
               <button
                 type="button"
                 onClick={onGoBe}
+                data-analytics-action="click_button"
+                data-analytics-category="RegionSwitch"
+                data-analytics-label="Go_BE"
                 className="inline-flex items-center gap-2.5 justify-center rounded-md bg-gradient-to-r from-blue-600 to-indigo-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-blue-500/20 hover:from-blue-500 hover:to-indigo-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 aria-label={t("region.go_be")}
               >
@@ -270,6 +273,9 @@ export default function RegionSwitchBanner(): JSX.Element | null {
               <button
                 type="button"
                 onClick={onStay}
+                data-analytics-action="click_button"
+                data-analytics-category="RegionSwitch"
+                data-analytics-label="Stay_Global"
                 className="inline-flex items-center gap-2.5 justify-center rounded-md bg-white px-3.5 py-2 text-sm font-semibold text-slate-700 ring-1 ring-slate-200 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300"
                 aria-label={t("region.stay")}
               >

@@ -26,7 +26,7 @@ export default function AnalyticsEvents() {
       const target = e.target as HTMLElement | null;
       if (!target) return;
       const el = target.closest<HTMLElement>("[data-analytics-action], a, button");
-      if (!el || !window.gtag) return;
+      if (!el) return;
 
       const actionAttr = el.getAttribute("data-analytics-action") || undefined;
       const categoryAttr = el.getAttribute("data-analytics-category") || undefined;
@@ -53,7 +53,6 @@ export default function AnalyticsEvents() {
     };
 
     const onSubmit = (e: Event) => {
-      if (!window.gtag) return;
       const form = e.target as HTMLFormElement | null;
       if (!form) return;
       const label = form.getAttribute("name") || form.getAttribute("id") || form.action || "form";
@@ -61,7 +60,6 @@ export default function AnalyticsEvents() {
     };
 
     const onScroll = () => {
-      if (!window.gtag) return;
       const h = document.documentElement;
       const b = document.body;
       const scrollTop = h.scrollTop || b.scrollTop;
@@ -94,4 +92,3 @@ export default function AnalyticsEvents() {
 
   return null;
 }
-

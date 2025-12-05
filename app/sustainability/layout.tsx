@@ -11,11 +11,20 @@ const DESCRIPTIONS: Record<MetaLang, string> = {
 export async function generateMetadata(): Promise<Metadata> {
   const lang = await detectLangFromHeaders();
   const description = DESCRIPTIONS[lang] || DESCRIPTIONS.en;
+  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const basePath = "/sustainability";
+  const languages = {
+    "x-default": `${SITE_URL}${basePath}`,
+    en: `${SITE_URL}${basePath}`,
+    fr: `${SITE_URL}/fr${basePath}`,
+    es: `${SITE_URL}/es${basePath}`,
+    de: `${SITE_URL}/de${basePath}`,
+  } as const;
   return {
     title: "Sustainability",
     description,
     openGraph: { description },
-    alternates: { canonical: "/sustainability" },
+    alternates: { canonical: "/sustainability", languages },
   };
 }
 

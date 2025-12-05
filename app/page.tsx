@@ -9,6 +9,7 @@ import SectionKPIs from "@/components/Common/SectionKPIs";
 import SectionPricingByTransaction from "@/components/Common/SectionPricingByTransaction";
 import SectionDemo from "@/components/Common/SectionDemo";
 import SectionIntegrations from "@/components/Common/SectionIntegrations";
+import Script from "next/script";
 import { detectServerUiLocale, toStrapiLocale, detectServerRegion } from "@/lib/i18n";
 import type { Metadata } from "next";
 import { detectLangFromHeaders, type MetaLang } from "@/lib/seo";
@@ -177,6 +178,35 @@ export default async function Home() {
         freight={faqDataFreight ?? undefined}
         initialAudience="carrier"
       />
+      {/* FAQ JSON-LD (if FAQ data available) */}
+      {(() => {
+        const items: { Question: string; Answer: string }[] = [];
+        const push = (list?: { Question: string; Answer: string }[]) => {
+          if (!Array.isArray(list)) return;
+          list.forEach((i) => {
+            const q = (i?.Question || "").trim();
+            const a = (i?.Answer || "").trim();
+            if (q && a) items.push({ Question: q, Answer: a });
+          });
+        };
+        push(faqDataCarrier?.FAQ?.Accordion);
+        push(faqDataFreight?.FAQ?.Accordion);
+        if (items.length === 0) return null;
+        const schema = {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: items.map((it) => ({
+            "@type": "Question",
+            name: it.Question,
+            acceptedAnswer: { "@type": "Answer", text: it.Answer },
+          })),
+        } as const;
+        return (
+          <Script id="ld-faq" type="application/ld+json">
+            {JSON.stringify(schema)}
+          </Script>
+        );
+      })()}
       <Footer />
     </>
   );
@@ -192,8 +222,16 @@ const HOME_DESCRIPTIONS: Record<MetaLang, string> = {
 export async function generateMetadata(): Promise<Metadata> {
   const lang = await detectLangFromHeaders();
   const description = HOME_DESCRIPTIONS[lang] || HOME_DESCRIPTIONS.en;
+  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const languages = {
+    "x-default": `${SITE_URL}/`,
+    en: `${SITE_URL}/`,
+    fr: `${SITE_URL}/fr`,
+    es: `${SITE_URL}/es`,
+    de: `${SITE_URL}/de`,
+  } as const;
   return {
-    alternates: { canonical: "/" },
+    alternates: { canonical: "/", languages },
     description,
     openGraph: { description },
     twitter: { description },

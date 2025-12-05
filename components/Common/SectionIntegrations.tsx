@@ -84,6 +84,9 @@ export default function SectionIntegrations() {
                     className="group relative inline-flex items-center justify-center w-full px-2 py-4 md:px-3 md:py-5 transition-all"
                     aria-label={it.name}
                     title={it.name}
+                    data-analytics-action="click_outbound_link"
+                    data-analytics-category="Integrations"
+                    data-analytics-label={it.name}
                   >
                     <Image
                       src={it.src}

@@ -1,6 +1,7 @@
 import BlogItem from "@/components/Blog/BlogItem";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";
+import Script from "next/script";
 
 export const revalidate = 3600;
 
@@ -102,10 +103,36 @@ export default async function BlogIdPage({
 }) {
   const { slug } = await params;
   const blog = await getBlog(slug);
+  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const title = blog?.Title || "Blog";
+  const description = excerptFromBlocks(blog?.Introduction) ||
+    "Article about freight finance, factoring and logistics by Fincargo.";
+  const imageUrl = blog?.Gallery && blog.Gallery[0]?.url
+    ? blog.Gallery[0].url
+    : `${SITE_URL}/logo/logo-fincargo.png`;
 
   return (
     <>
       {blog ? <BlogItem blog={blog} /> : <p className="text-center">Article non trouvé.</p>}
+      {/* BlogPosting JSON-LD */}
+      {blog && (
+        <Script id="ld-blog-posting" type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: title,
+            description,
+            image: [imageUrl],
+            datePublished: blog.Date || undefined,
+            author: {
+              "@type": "Organization",
+              name: "Fincargo",
+              url: SITE_URL,
+            },
+            mainEntityOfPage: `${SITE_URL}/blog/${slug}`,
+          })}
+        </Script>
+      )}
       <Footer />
     </>
   );
@@ -157,7 +184,9 @@ export async function generateMetadata({
   return {
     title,
     description,
-    alternates: { canonical: `/blog/${slug}` },
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
     openGraph: {
       title,
       description,

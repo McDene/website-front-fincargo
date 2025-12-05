@@ -9,6 +9,7 @@ import { useTranslation } from "@/hooks/useTranslation";
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
+    dataLayer?: Array<Record<string, unknown>>;
   }
 }
 
@@ -52,6 +53,11 @@ export default function CookieBanner({
           security_storage: "granted",
         });
       }
+    } catch {}
+    // Inform GTM (dataLayer) for optional triggers (e.g., re-fire page_view on consent)
+    try {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: "cookie_consent", consent });
     } catch {}
     // Notify listeners so GA can start without reload
     try {
