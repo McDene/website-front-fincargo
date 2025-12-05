@@ -136,6 +136,9 @@ export default function SectionHero({
                 href={buttonLink}
                 target="_blank"
                 rel="noreferrer"
+                data-analytics-action="cta_click"
+                data-analytics-category="Hero"
+                data-analytics-label={buttonText}
                 className="group inline-flex items-center gap-2 rounded-full bg-white hover:bg-darkBlue px-6 py-3 text-blue-950 hover:text-white font-semibold shadow-lg ring-1 ring-white/10 backdrop-blur-sm transition-all"
               >
                 {buttonText}

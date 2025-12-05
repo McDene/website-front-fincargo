@@ -119,6 +119,9 @@ export default function SectionDemo({
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
                 href={contactHref}
+                data-analytics-action="cta_click"
+                data-analytics-category="Demo"
+                data-analytics-label={ctaLive}
                 className="group inline-flex items-center gap-2 rounded-full bg-blue-500/90 hover:bg-blue-500 px-6 py-3 text-white font-semibold shadow-lg ring-1 ring-white/10 backdrop-blur-sm transition-all"
                 aria-label={ctaLive}
               >

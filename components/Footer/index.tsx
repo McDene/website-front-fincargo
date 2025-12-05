@@ -225,6 +225,9 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleTrack("Swiss Made Software")}
+              data-analytics-action="click_outbound_link"
+              data-analytics-category="Footer"
+              data-analytics-label="Swiss Made Software"
               className="inline-flex max-w-[180px] opacity-90 hover:opacity-100 transition"
             >
               <Image
@@ -241,6 +244,9 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleTrack("Peppol")}
+                data-analytics-action="click_outbound_link"
+                data-analytics-category="Footer"
+                data-analytics-label="Peppol"
                 className="inline-flex max-w-[140px] opacity-90 hover:opacity-100 transition"
                 aria-label="Peppol"
                 title="Peppol"
@@ -264,6 +270,9 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleTrack("LinkedIn")}
+              data-analytics-action="click_outbound_link"
+              data-analytics-category="Social"
+              data-analytics-label="LinkedIn"
               className="inline-flex items-center justify-center h-9 w-9 rounded-full bg-white/5 ring-1 ring-white/10 hover:bg-white/10 hover:ring-white/20 transition"
             >
               <Linkedin className="h-5 w-5 text-white" aria-hidden="true" />

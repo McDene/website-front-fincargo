@@ -116,6 +116,9 @@ export default function SectionFeaturesBE() {
             <a
               key={f.name}
               href={f.href}
+              data-analytics-action="card_click"
+              data-analytics-category="Services_BE"
+              data-analytics-label={f.name}
               className={`group relative overflow-hidden rounded-2xl flex h-full flex-col bg-gradient-to-b from-darkBlue to-black text-white border border-blue-500/30 ring-3 ring-blue-500/10 shadow-xl transition-all duration-700 hover:duration-200 ease-out transform-gpu ${
                 visible
                   ? "opacity-100 translate-y-0"

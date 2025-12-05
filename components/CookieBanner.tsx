@@ -5,6 +5,13 @@ import { setCookie, hasCookie } from "cookies-next";
 import Link from "next/link";
 import { useTranslation } from "@/hooks/useTranslation";
 
+// Provide a safe typing for GA global at module level
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 interface CookieBannerProps {
   message: string;
   acceptText: string;
@@ -32,7 +39,24 @@ export default function CookieBanner({
     setCookie("cookie_consent", consent, { maxAge: 365 * 24 * 60 * 60 });
     setIsVisible(false);
     document.body.style.overflow = "auto"; // Rétablit le scroll normal
-    window.location.reload();
+    // Consent Mode v2 (best effort)
+    try {
+      if (window.gtag) {
+        const granted = consent === "accepted";
+        window.gtag("consent", "update", {
+          ad_user_data: granted ? "granted" : "denied",
+          ad_personalization: granted ? "granted" : "denied",
+          ad_storage: granted ? "granted" : "denied",
+          analytics_storage: granted ? "granted" : "denied",
+          functionality_storage: "granted",
+          security_storage: "granted",
+        });
+      }
+    } catch {}
+    // Notify listeners so GA can start without reload
+    try {
+      window.dispatchEvent(new CustomEvent("cookie-consent", { detail: consent }));
+    } catch {}
   };
 
   if (!isVisible) return null;

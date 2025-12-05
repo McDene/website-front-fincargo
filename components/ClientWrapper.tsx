@@ -3,6 +3,8 @@
 import { useEffect, useState, useContext } from "react";
 import { getCookie } from "cookies-next";
 import CookieBanner from "./CookieBanner";
+import GAView from "@/app/_components/GAView";
+import AnalyticsEvents from "@/app/_components/AnalyticsEvents";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { fetchAPI } from "@/lib/utils";
 import { LanguageContext } from "@/context/LanguageContext";
@@ -62,6 +64,16 @@ export default function ClientWrapper() {
       setIsBannerVisible(true);
     }
     setConsent(cookieConsent ? String(cookieConsent) : null);
+    // Listen to consent changes (so we can start GA without reload)
+    const onConsent = (e: Event) => {
+      const detail = (e as CustomEvent).detail as string | undefined;
+      if (detail === "accepted" || detail === "rejected") {
+        setConsent(detail);
+        setIsBannerVisible(false);
+      }
+    };
+    window.addEventListener("cookie-consent", onConsent as EventListener);
+    return () => window.removeEventListener("cookie-consent", onConsent as EventListener);
   }, [language, t]);
 
   if (!cookieData) return null;
@@ -69,7 +81,13 @@ export default function ClientWrapper() {
   return (
     <>
       {/* ✅ Google Analytics activé uniquement après acceptation */}
-      {consent === "accepted" && <GoogleAnalytics gaId="G-VGSWFSGPXZ" />}
+      {consent === "accepted" && (
+        <>
+          <GoogleAnalytics gaId="G-VGSWFSGPXZ" />
+          <GAView />
+          <AnalyticsEvents />
+        </>
+      )}
 
       {/* ✅ Affichage du bandeau de cookies uniquement si non accepté/rejeté */}
       {isBannerVisible && <CookieBanner {...cookieData} />}
