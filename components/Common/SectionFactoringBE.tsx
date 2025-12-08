@@ -44,7 +44,12 @@ export default function SectionFactoringBE({
       const el = r.current;
       if (!el) return;
       const obs = new IntersectionObserver(
-        (entries) => entries.forEach((e) => e.isIntersecting && setV((old) => old.map((b, i) => (i === idx ? true : b)))),
+        (entries) =>
+          entries.forEach(
+            (e) =>
+              e.isIntersecting &&
+              setV((old) => old.map((b, i) => (i === idx ? true : b)))
+          ),
         { threshold: 0.12, rootMargin: "0px 0px 160px 0px" }
       );
       obs.observe(el);
@@ -61,7 +66,11 @@ export default function SectionFactoringBE({
       <section ref={r0} className="relative bg-white py-16 md:py-24">
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Accent chips */}
-          <div className={`flex flex-wrap items-center gap-2 transition-all duration-700 ${v[0] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
+          <div
+            className={`flex flex-wrap items-center gap-2 transition-all duration-700 ${
+              v[0] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+            }`}
+          >
             {["B2B 2026", "EN 16931", "Peppol BIS 3.0", "ViDA"].map((c) => (
               <span
                 key={c}
@@ -73,14 +82,20 @@ export default function SectionFactoringBE({
             ))}
           </div>
 
-          <h2 className={`mt-4 text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 uppercase transition-all duration-700 ${v[0] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
+          <h2
+            className={`mt-4 text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 uppercase transition-all duration-700 ${
+              v[0] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+            }`}
+          >
             {t.regulation.h2}
           </h2>
 
           <div
             className={`mt-6 grid grid-cols-1 ${
               img ? "md:grid-cols-12 md:items-center gap-6" : "gap-4"
-            } transition-all duration-700 ${v[0] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}
+            } transition-all duration-700 ${
+              v[0] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+            }`}
           >
             {/* Text side */}
             <div className={img ? "md:col-span-7 xl:col-span-8" : ""}>
@@ -102,23 +117,34 @@ export default function SectionFactoringBE({
                 ))}
               </div>
 
-              {t.regulation.note && (
+              {/* {t.regulation.note && (
                 <p className="mt-4 text-slate-700 max-w-3xl">
                   {t.regulation.note}
                 </p>
-              )}
+              )} */}
             </div>
           </div>
         </div>
       </section>
 
       {/* Why Peppol (dark) */}
-      <section ref={r1} className="relative bg-gradient-to-b from-darkBlue to-black py-16 md:py-24 text-white">
+      <section
+        ref={r1}
+        className="relative bg-gradient-to-b from-darkBlue to-black py-16 md:py-24 text-white"
+      >
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className={`text-3xl md:text-4xl font-extrabold tracking-tight uppercase transition-all duration-700 ${v[1] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
+          <h2
+            className={`text-3xl md:text-4xl font-extrabold tracking-tight uppercase transition-all duration-700 ${
+              v[1] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+            }`}
+          >
             {t.whyPeppol.h2}
           </h2>
-          <div className={`mt-6 grid grid-cols-1 md:grid-cols-12 gap-6 md:items-center transition-all duration-700 ${v[1] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
+          <div
+            className={`mt-6 grid grid-cols-1 md:grid-cols-12 gap-6 md:items-center transition-all duration-700 ${
+              v[1] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+            }`}
+          >
             {/* Left: bullets */}
             <div className="md:col-span-8">
               <h3 className="text-base font-semibold text-white/95 tracking-wide">
@@ -233,14 +259,24 @@ export default function SectionFactoringBE({
                 <div className="absolute -inset-10 opacity-40 [mask-image:radial-gradient(60%_60%_at_70%_30%,black,transparent)]">
                   <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent" />
                 </div>
-                <p className="relative text-xs uppercase tracking-widest text-white/80">{t.ecmr.kpi.title}</p>
-                <p className="relative mt-2 text-4xl md:text-5xl font-extrabold tracking-tight">
-                  <span className="bg-gradient-to-r from-cyan-200 to-blue-200 bg-clip-text text-transparent">{t.ecmr.kpi.value}</span>
+                <p className="relative text-xs uppercase tracking-widest text-white/80">
+                  {t.ecmr.kpi.title}
                 </p>
-                <p className="relative mt-1 text-white/85">{t.ecmr.kpi.subtitle}</p>
+                <p className="relative mt-2 text-4xl md:text-5xl font-extrabold tracking-tight">
+                  <span className="bg-gradient-to-r from-cyan-200 to-blue-200 bg-clip-text text-transparent">
+                    {t.ecmr.kpi.value}
+                  </span>
+                </p>
+                <p className="relative mt-1 text-white/85">
+                  {t.ecmr.kpi.subtitle}
+                </p>
                 <div className="relative mt-4 grid grid-cols-2 gap-2 text-sm">
-                  <div className="rounded-lg bg-white/5 ring-1 ring-white/10 px-3 py-2">{t.ecmr.kpi.chips[0]}</div>
-                  <div className="rounded-lg bg-white/5 ring-1 ring-white/10 px-3 py-2">{t.ecmr.kpi.chips[1]}</div>
+                  <div className="rounded-lg bg-white/5 ring-1 ring-white/10 px-3 py-2">
+                    {t.ecmr.kpi.chips[0]}
+                  </div>
+                  <div className="rounded-lg bg-white/5 ring-1 ring-white/10 px-3 py-2">
+                    {t.ecmr.kpi.chips[1]}
+                  </div>
                 </div>
               </div>
             </aside>
@@ -249,17 +285,40 @@ export default function SectionFactoringBE({
       </section>
 
       {/* Benefits (dark) */}
-      <section ref={r2} className="relative bg-gradient-to-b from-darkBlue to-black py-16 md:py-24 text-white">
+      <section
+        ref={r2}
+        className="relative bg-gradient-to-b from-darkBlue to-black py-16 md:py-24 text-white"
+      >
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className={`text-3xl md:text-4xl font-extrabold tracking-tight uppercase transition-all duration-700 ${v[2] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
+          <h2
+            className={`text-3xl md:text-4xl font-extrabold tracking-tight uppercase transition-all duration-700 ${
+              v[2] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+            }`}
+          >
             {t.benefits.h2}
           </h2>
-          <div className={`mt-6 transition-all duration-700 ${v[2] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
+          <div
+            className={`mt-6 transition-all duration-700 ${
+              v[2] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+            }`}
+          >
             <BenefitsSwitcher
               groups={[
-                { key: 'carriers', title: t.benefits.carriers.title, items: t.benefits.carriers.items },
-                { key: 'forwarders', title: t.benefits.forwarders.title, items: t.benefits.forwarders.items },
-                { key: 'shippers', title: t.benefits.shippers.title, items: t.benefits.shippers.items },
+                {
+                  key: "carriers",
+                  title: t.benefits.carriers.title,
+                  items: t.benefits.carriers.items,
+                },
+                {
+                  key: "forwarders",
+                  title: t.benefits.forwarders.title,
+                  items: t.benefits.forwarders.items,
+                },
+                {
+                  key: "shippers",
+                  title: t.benefits.shippers.title,
+                  items: t.benefits.shippers.items,
+                },
               ]}
             />
           </div>
@@ -269,11 +328,19 @@ export default function SectionFactoringBE({
       {/* Capabilities (white) */}
       <section ref={r3} className="relative bg-white py-16 md:py-24">
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className={`text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 uppercase transition-all duration-700 ${v[3] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
+          <h2
+            className={`text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 uppercase transition-all duration-700 ${
+              v[3] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+            }`}
+          >
             {t.capabilities.h2}
           </h2>
 
-          <div className={`mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 transition-all duration-700 ${v[3] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
+          <div
+            className={`mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 transition-all duration-700 ${
+              v[3] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+            }`}
+          >
             {t.capabilities.items.map((c, i) => {
               const ICONS = [
                 DocumentCheckIcon, // EN 16931
@@ -295,7 +362,9 @@ export default function SectionFactoringBE({
                       <Icon className="h-5 w-5" aria-hidden="true" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-slate-900">{c.title}</h3>
+                      <h3 className="text-lg font-bold text-slate-900">
+                        {c.title}
+                      </h3>
                       <p className="mt-2 text-slate-700">{c.desc}</p>
                     </div>
                   </div>
