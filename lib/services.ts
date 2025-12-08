@@ -1,9 +1,9 @@
 export const SERVICES = {
   en: {
     "services.section": "Services",
-    "services.title": "Complete AI-Powered Transport Solution",
+    "services.title": "AI-powered Invoice-to-Cash platform",
     "services.description":
-      "Four integrated modules designed to digitalize, optimize, and accelerate your transport operations with full regulatory compliance.",
+      "Our platform is built around four seamlessly integrated components to accelerate your compliance and cash-to-cash cycle.",
     "services.invoice.title": "e-Invoicing",
     "services.invoice.description":
       "ViDA‑compliant structured invoicing ready  EU requirements. Machine‑readable and cross‑border compatible.",
@@ -45,9 +45,9 @@ export const SERVICES = {
 
   fr: {
     "services.section": "Services",
-    "services.title": "Solution de transport complète propulsée par l'IA",
+    "services.title": "Plateforme Invoice-to-cash propulsée par l’IA",
     "services.description":
-      "Quatre modules intégrés conçus pour numériser, optimiser et accélérer vos opérations de transport avec une conformité réglementaire totale.",
+      "Notre plateforme s’articule autour de quatre composants parfaitement intégrés pour accélérer votre conformité et votre cycle cash-to-cash.",
     "services.invoice.title": "Facturation électronique",
     "services.invoice.description":
       "Facturation structurée conforme à ViDA, prête pour les exigences de l'UE. Lisible par machine et compatible transfrontalière.",
@@ -88,9 +88,9 @@ export const SERVICES = {
   },
   es: {
     "services.section": "Servicios",
-    "services.title": "Solución de transporte completa impulsada por IA",
+    "services.title": "Plataforma de Invoice-to-Cash impulsada por IA",
     "services.description":
-      "Cuatro módulos integrados diseñados para digitalizar, optimizar y acelerar sus operaciones de transporte con total cumplimiento normativo.",
+      "Nuestra plataforma se articula en torno a cuatro componentes perfectamente integrados para acelerar su cumplimiento y su ciclo cash-to-cash.",
     "services.invoice.title": "Facturación electrónica",
     "services.invoice.description":
       "Facturación estructurada compatible con ViDA y lista para los requisitos de la UE. Legible por máquina y compatible con operaciones transfronterizas.",
@@ -131,9 +131,9 @@ export const SERVICES = {
   },
   de: {
     "services.section": "Dienstleistungen",
-    "services.title": "Komplette, KI-gestützte Transportlösung",
+    "services.title": "KI-gestützte Invoice-to-Cash-Plattform",
     "services.description":
-      "Vier integrierte Module, die darauf ausgelegt sind, Ihre Transportabläufe mit voller Einhaltung der Vorschriften zu digitalisieren, zu optimieren und zu beschleunigen.",
+      "Unsere Plattform basiert auf vier nahtlos integrierten Komponenten, um Ihre Compliance und Ihren Cash-to-Cash-Zyklus.",
     "services.invoice.title": "E-Rechnung",
     "services.invoice.description":
       "ViDA-konforme strukturierte Rechnungsstellung, die den EU-Anforderungen entspricht. Maschinenlesbar und grenzüberschreitend kompatibel.",

@@ -26,11 +26,14 @@ export default function SectionFeaturesBE() {
 
   const learnMore = tf("services.learn_more", "Learn more");
   const sectionLabel = tf("services.section", "Services");
-  const title = tf("services.title", "Complete AI-Powered Transport Solution");
-  const subtitle = tf(
-    "services.description",
-    "Five integrated modules designed to digitalize, optimize, and accelerate your transport operations with full regulatory compliance."
+  const title = tf(
+    "services.title",
+    "Plateforme Invoice-to-cash propulsée par l’IA"
   );
+  // BE-specific subtitle copy (FR/EN) regardless of global default
+  const subtitle = language === "fr"
+    ? "Notre plateforme s’articule autour de quatre composants parfaitement intégrés pour accélérer votre conformité et votre cycle cash-to-cash en Belgique dès 2026."
+    : "Our platform is built around four seamlessly integrated components to accelerate your compliance and cash-to-cash cycle in Belgium starting in 2026.";
 
   const features: FeatureItem[] = [
     {

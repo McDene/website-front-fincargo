@@ -109,7 +109,7 @@ export const GENERAL = {
     "region.language.en": "English",
     // Region switch (footer)
     "region.switch_be": "Switch to Belgium",
-    "region.switch_global": "Switch to Europe",
+    "region.switch_global": "Switch to Global",
   },
   es: {
     pricing: "Tarifas",
@@ -222,7 +222,7 @@ export const GENERAL = {
     "region.language.en": "Inglés",
     // Region switch (footer)
     "region.switch_be": "Cambiar a Bélgica",
-    "region.switch_global": "Cambiar a Europa",
+    "region.switch_global": "Cambiar al sitio global",
   },
   fr: {
     pricing: "Tarifs",
@@ -336,7 +336,7 @@ export const GENERAL = {
     "region.language.en": "Anglais",
     // Region switch (footer)
     "region.switch_be": "Basculer vers la Belgique",
-    "region.switch_global": "Basculer vers l'Europe",
+    "region.switch_global": "Basculer vers le site global",
   },
   de: {
     pricing: "Preise",
@@ -448,6 +448,6 @@ export const GENERAL = {
     "region.language.en": "Englisch",
     // Region switch (footer)
     "region.switch_be": "Zu Belgien wechseln",
-    "region.switch_global": "Zu Europa wechseln",
+    "region.switch_global": "Zur globalen Website wechseln",
   },
 } as const;

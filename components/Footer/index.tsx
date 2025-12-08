@@ -353,10 +353,10 @@ export default function Footer() {
                   : t("region.switch_be")
               }
             >
-              {region === "be" ? (
-                <FlagEU className="h-3.5 w-5" />
-              ) : (
+              {region !== "be" ? (
                 <FlagBE className="h-3.5 w-5" />
+              ) : (
+                <IconGlobe className="h-4 w-4" />
               )}
               <span>
                 {region === "be"
@@ -387,22 +387,21 @@ function FlagBE({ className }: { className?: string }) {
   );
 }
 
-function FlagEU({ className }: { className?: string }) {
-  const w = 18;
-  const h = 12;
-  const cx = 9;
-  const cy = 6;
-  const r = 3.5;
-  const dots = Array.from({ length: 12 }, (_, i) => {
-    const angle = ((i * 30 - 90) * Math.PI) / 180;
-    const x = cx + Math.cos(angle) * r;
-    const y = cy + Math.sin(angle) * r;
-    return <circle key={i} cx={x} cy={y} r={0.45} fill="#ffd90c" />;
-  });
+function IconGlobe({ className }: { className?: string }) {
   return (
-    <svg viewBox={`0 0 ${w} ${h}`} className={className} aria-hidden>
-      <rect width={w} height={h} fill="#003399" />
-      {dots}
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      aria-hidden
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3 12h18" />
+      <path d="M12 3a15.3 15.3 0 0 1 0 18a15.3 15.3 0 0 1 0-18z" />
     </svg>
   );
 }
