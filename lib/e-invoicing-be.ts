@@ -52,30 +52,30 @@ export const EINVOICING_BE: Dict = {
       "Facturation électronique Peppol & EN 16931 pour transporteurs, transitaires et chargeurs",
     intro: [
       "La Belgique accélère la transition vers la facturation électronique obligatoire en B2B. Le passage à une facture structurée (EN 16931), transmise via Peppol, devient un standard incontournable pour le secteur du transport et de la logistique.",
-      "Fincargo fournit une plateforme spécialisée capable de générer, transmettre, recevoir et valider des e-factures entièrement conformes, tout en automatisant l'encaissement et le traitement fournisseur.",
+      "Fincargo fournit une plateforme spécialisée capable de générer, transmettre, recevoir et valider des factures électroniques entièrement conformes, tout en automatisant l'encaissement et le traitement fournisseur.",
     ],
     regulation: {
-      h2: "Cadre réglementaire belge : e-facturation obligatoire dès 2026",
+      h2: "Cadre réglementaire belge : facturation électronique obligatoire dès 2026",
       bulletsTitle: "Obligations clés",
       bullets: [
-        "E-facturation B2G obligatoire depuis 2017",
-        "E-facturation B2B obligatoire confirmée pour 2026 (loi fédérale)",
+        "Facturation électronique B2G obligatoire depuis 2017",
+        "Facturation électronique B2B obligatoire confirmée pour 2026 (loi fédérale)",
         "Format imposé : EN 16931 (facture structurée européenne)",
         "Transmission recommandée : réseau Peppol (BIS 3.0)",
         "Archivage légal obligatoire selon les normes belges",
         "Alignement complet avec ViDA (VAT in the Digital Age)",
       ],
-      note: "Ce cadre est particulièrement important pour les entreprises actives dans le transport où les volumes de factures, d’avoirs et de documents associés (CMR, e-CMR, POD) sont élevés.",
+      note: "Ce cadre est particulièrement important pour les entreprises actives dans le transport où les volumes de factures, d’avoirs et de documents associés (CMR, e-waybill, POD) sont élevés.",
     },
     whyPeppol: {
       h2: "Pourquoi Peppol est devenu incontournable pour le secteur du transport en Belgique",
       bulletsTitle: "Avantages pour les entreprises de transport :",
       bullets: [
-        "Envoi direct aux ERP des clients (chargeurs, transitaires, entreprises industrielles)",
-        "Diminution des rejets grâce à des contrôles de conformité stricts",
+        "Transmission directe",
+        "Moins de rejets des autorités fiscales grâce au 100-FPA (First Past Acceptance) de Fincargo",
         "Traçabilité complète via les accusés de réception Peppol",
         "Réduction des litiges sur la TVA, montants ou doublons",
-        "Traitement accéléré des factures OTIF (On Time In Full)",
+        "Reconnaissance des revenus plus rapide et réduction du DSO",
         "Plus besoin de conserver des PDF ni de gérer des tâches manuelles",
       ],
       note: "Fincargo est nativement compatible avec Peppol BIS 3.0, UBL 2.1, et toutes les extensions belges pertinentes.",
@@ -88,10 +88,10 @@ export const EINVOICING_BE: Dict = {
         "la validation automatique des éléments de transport",
         "la vérification des incohérences (date, lieu, poids, kilométrage)",
       ],
-      note: "En combinant e-CMR + e-invoicing, les transporteurs belges peuvent réduire leurs cycles OTC (Order-to-Cash) de 15 à 35 %.",
+      note: "En combinant e-waybill + e-invoicing, les transporteurs belges peuvent réduire leurs cycles OTC (Order-to-Cash) de 95 %.",
       kpi: {
         title: "Impact sur le cycle OTC",
-        value: "15–35%",
+        value: "95%",
         subtitle: "de réduction du cycle Order‑to‑Cash",
         chips: ["Moins de litiges", "Validation + rapide"],
       },
@@ -101,7 +101,7 @@ export const EINVOICING_BE: Dict = {
       carriers: {
         title: "Pour les transporteurs :",
         items: [
-          "Génération automatique des e-factures structurées (EN 16931)",
+          "Génération automatique de factures électroniques et de e-waybills structurées",
           "Transmission directe via Peppol",
           "Contrôles de conformité automatiques avant envoi",
           "Moins de rejets, moins de litiges",
@@ -112,8 +112,8 @@ export const EINVOICING_BE: Dict = {
       forwarders: {
         title: "Pour les transitaires :",
         items: [
-          "Traitement sans contact des factures fournisseurs",
-          "Rapprochement automatique (e-CMR, bons de transport, tarifs)",
+          "Traitement sans intervention des factures électroniques et e-waybills",
+          "Rapprochement automatique (e-waybill, bons de transport, tarifs)",
           "Détection automatique des doublons et anomalies",
           "Vérification de la TVA et des identifiants d’entreprise",
           "Piste d’audit complète pour chaque facture",
@@ -122,7 +122,7 @@ export const EINVOICING_BE: Dict = {
       shippers: {
         title: "Pour les chargeurs et expéditeurs :",
         items: [
-          "Validation structurée des factures entrantes",
+          "Validation structurée des factures électroniques waybills entrantes",
           "Intégration API avec ERP / TMS / WMS",
           "Automatisation des contrôles documentaires",
           "Gestion unifiée des factures transport multi-prestataires",
@@ -134,7 +134,7 @@ export const EINVOICING_BE: Dict = {
       items: [
         {
           title: "Norme EN 16931",
-          desc: "Structure européenne obligatoire pour les e-factures B2B et B2G en Belgique.",
+          desc: "Structure européenne obligatoire pour les factures électroniques B2B et B2G en Belgique.",
         },
         {
           title: "Peppol BIS 3.0",
@@ -182,17 +182,17 @@ export const EINVOICING_BE: Dict = {
         "Legal archiving required under Belgian standards",
         "Full alignment with ViDA (VAT in the Digital Age)",
       ],
-      note: "This framework matters especially in transport, where volumes of invoices, credit notes and related documents (CMR, e‑CMR, POD) are high.",
+      note: "This framework matters especially in transport, where volumes of invoices, credit notes and related documents (CMR, e-waybill, POD) are high.",
     },
     whyPeppol: {
       h2: "Why Peppol has become essential for transport in Belgium",
       bulletsTitle: "Benefits for transport businesses:",
       bullets: [
-        "Direct delivery into clients’ ERPs (shippers, forwarders, industrials)",
-        "Fewer rejections thanks to strict compliance checks",
+        "Direct transmission",
+        "Fewer tax-authority rejections thanks to Fincargo’s 100-FPA (First Past Acceptance)",
         "Full traceability via Peppol acknowledgements",
         "Fewer VAT/amount/duplicate disputes",
-        "Faster processing of OTIF invoices (On Time In Full)",
+        "Fster revenue recognition, and a shorter DSO",
         "No need to keep PDFs or handle manual tasks anymore",
       ],
       note: "Fincargo is natively compatible with Peppol BIS 3.0, UBL 2.1 and all relevant Belgian extensions.",
@@ -205,10 +205,10 @@ export const EINVOICING_BE: Dict = {
         "automatic validation of transport elements",
         "consistency checks (date, location, weight, mileage)",
       ],
-      note: "Combining e‑CMR + e‑invoicing helps Belgian carriers shorten OTC (Order‑to‑Cash) cycles by 15–35%.",
+      note: "Combining e‑waybill + e‑invoicing helps Belgian carriers shorten OTC (Order‑to‑Cash) cycles by 95%.",
       kpi: {
         title: "Impact on the OTC cycle",
-        value: "15–35%",
+        value: "95%",
         subtitle: "reduction in Order‑to‑Cash cycle",
         chips: ["Fewer disputes", "Faster validation"],
       },
@@ -218,7 +218,7 @@ export const EINVOICING_BE: Dict = {
       carriers: {
         title: "For carriers:",
         items: [
-          "Automatic generation of structured e‑invoices (EN 16931)",
+          "Automatic generation of structured e‑invoices and e-waybill",
           "Direct transmission over Peppol",
           "Pre‑submission compliance checks",
           "Fewer rejections and disputes",
@@ -229,8 +229,8 @@ export const EINVOICING_BE: Dict = {
       forwarders: {
         title: "For forwarders:",
         items: [
-          "Touchless processing of supplier invoices",
-          "Automatic matching (e‑CMR, transport orders, tariffs)",
+          "Touchless processing of e-invoices and e-waybills",
+          "Automatic matching (e‑waybill, transport orders, tariffs)",
           "Automatic duplicate/anomaly detection",
           "VAT and business ID verification",
           "Complete audit trail per invoice",
@@ -239,7 +239,7 @@ export const EINVOICING_BE: Dict = {
       shippers: {
         title: "For shippers:",
         items: [
-          "Structured validation of incoming invoices",
+          "Structured validation of incoming e-invoices",
           "API integration with ERP / TMS / WMS",
           "Automated documentary checks",
           "Unified management of multi‑carrier transport invoices",

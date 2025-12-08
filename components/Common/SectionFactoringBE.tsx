@@ -200,7 +200,7 @@ export default function SectionFactoringBE({
 
           {/* Flow chips: prestation → CMR → facture */}
           <div className="mt-6 flex flex-wrap items-center gap-2 text-sm">
-            {["Prestation", "CMR / e‑CMR", "Facture EN 16931"].map(
+            {["Prestation", "CMR / e‑waybill", "Facture EN 16931"].map(
               (label, idx, arr) => (
                 <div key={label} className="flex items-center gap-2">
                   <span className="inline-flex items-center gap-2 rounded-full bg-slate-50 px-3 py-1 ring-1 ring-slate-200 text-slate-800">
