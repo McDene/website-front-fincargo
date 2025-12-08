@@ -2,23 +2,23 @@
 import { useTranslation } from "@/hooks/useTranslation";
 
 /* --------- Small inline icon --------- */
-function IconInfo(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <circle cx="12" cy="12" r="9" />
-      <path d="M12 8h.01" />
-      <path d="M10.8 12h2.4v5h-2.4z" />
-    </svg>
-  );
-}
+// function IconInfo(props: React.SVGProps<SVGSVGElement>) {
+//   return (
+//     <svg
+//       viewBox="0 0 24 24"
+//       fill="none"
+//       stroke="currentColor"
+//       strokeWidth="1.8"
+//       strokeLinecap="round"
+//       strokeLinejoin="round"
+//       {...props}
+//     >
+//       <circle cx="12" cy="12" r="9" />
+//       <path d="M12 8h.01" />
+//       <path d="M10.8 12h2.4v5h-2.4z" />
+//     </svg>
+//   );
+// }
 
 export default function SectionPricingByTransaction() {
   const { t, tl } = useTranslation();
@@ -62,16 +62,10 @@ export default function SectionPricingByTransaction() {
       "AI‑assisted checks; buyer profile optimization; explainable reasons",
     ],
     [
-      "Financing — Factoring",
+      "Financing",
       "0.10–0.15% / day + fixed CHF fee",
       "per financed invoice",
       "Advance rate and fee depend on buyer risk and ageing",
-    ],
-    [
-      "Financing — Reverse Factoring",
-      "0.10–0.15% / day + fixed CHF fee",
-      "per financed invoice",
-      "Program terms vary by buyer program",
     ],
     [
       "Enterprise & Integrations",
@@ -87,10 +81,10 @@ export default function SectionPricingByTransaction() {
       : [];
   const rows: string[][] = rowsTrans.length ? rowsTrans : fallbackRows;
 
-  const example = tf(
-    "pricing.by_transaction.example",
-    "Illustrative example (simple‑interest): at 0.12%/day for 30 days, fees ≈ 3.6% of face value + fixed service fee. Actual costs depend on eligibility, program terms, and days outstanding."
-  );
+  // const example = tf(
+  //   "pricing.by_transaction.example",
+  //   "Illustrative example (simple‑interest): at 0.12%/day for 30 days, fees ≈ 3.6% of face value + fixed service fee. Actual costs depend on eligibility, program terms, and days outstanding."
+  // );
   const notes = tf(
     "pricing.by_transaction.notes",
     "Notes: Prices are indicative and subject to underwriting, volume, compliance and taxes. Financing subject to eligibility and program agreements."
@@ -125,18 +119,26 @@ export default function SectionPricingByTransaction() {
               key={idx}
               className="rounded-2xl bg-white px-4 py-4 ring-1 ring-slate-200 border border-slate-200 shadow-sm"
             >
-              <div className="text-base font-semibold text-slate-900">{r[0]}</div>
+              <div className="text-base font-semibold text-slate-900">
+                {r[0]}
+              </div>
               <div className="mt-3 grid grid-cols-1 gap-2">
                 <div>
-                  <div className="text-[11px] font-semibold uppercase text-slate-500">{H1}</div>
+                  <div className="text-[11px] font-semibold uppercase text-slate-500">
+                    {H1}
+                  </div>
                   <div className="text-sm text-slate-700">{r[1]}</div>
                 </div>
                 <div>
-                  <div className="text-[11px] font-semibold uppercase text-slate-500">{H2}</div>
+                  <div className="text-[11px] font-semibold uppercase text-slate-500">
+                    {H2}
+                  </div>
                   <div className="text-sm text-slate-700">{r[2]}</div>
                 </div>
                 <div>
-                  <div className="text-[11px] font-semibold uppercase text-slate-500">{H3}</div>
+                  <div className="text-[11px] font-semibold uppercase text-slate-500">
+                    {H3}
+                  </div>
                   <div className="text-sm text-slate-700">{r[3]}</div>
                 </div>
               </div>
@@ -191,7 +193,7 @@ export default function SectionPricingByTransaction() {
         </div>
 
         {/* Example */}
-        <div className="mt-5 rounded-xl bg-slate-50 px-4 py-3 sm:px-5 sm:py-4 ring-1 ring-slate-200">
+        {/* <div className="mt-5 rounded-xl bg-slate-50 px-4 py-3 sm:px-5 sm:py-4 ring-1 ring-slate-200">
           <div className="flex items-start gap-3">
             <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white ring-1 ring-slate-200">
               <IconInfo className="h-4 w-4 text-slate-700" />
@@ -200,9 +202,11 @@ export default function SectionPricingByTransaction() {
               {example}
             </p>
           </div>
-        </div>
+        </div> */}
         {/* Notes */}
-        <p className="mt-3 text-[12px] sm:text-[13px] text-slate-600">{notes}</p>
+        <p className="mt-3 text-[12px] sm:text-[13px] text-slate-600">
+          {notes}
+        </p>
       </div>
     </section>
   );

@@ -31,9 +31,10 @@ export default function SectionFeaturesBE() {
     "Plateforme Invoice-to-cash propulsée par l’IA"
   );
   // BE-specific subtitle copy (FR/EN) regardless of global default
-  const subtitle = language === "fr"
-    ? "Notre plateforme s’articule autour de quatre composants parfaitement intégrés pour accélérer votre conformité et votre cycle cash-to-cash en Belgique dès 2026."
-    : "Our platform is built around four seamlessly integrated components to accelerate your compliance and cash-to-cash cycle in Belgium starting in 2026.";
+  const subtitle =
+    language === "fr"
+      ? "Notre plateforme s’articule autour de quatre composants parfaitement intégrés pour accélérer votre conformité et votre cycle cash-to-cash en Belgique dès 2026."
+      : "Our platform is built around four seamlessly integrated components to accelerate your compliance and cash-to-cash cycle in Belgium starting in 2026.";
 
   const features: FeatureItem[] = [
     {
@@ -72,7 +73,7 @@ export default function SectionFeaturesBE() {
 
   // Force BE copy for the first card (e‑invoicing)
   const isFr = language === "fr";
-  const beName = isFr ? "E‑Invoicing Belgique" : "E‑Invoicing Belgium";
+  const beName = isFr ? "E‑Invoicing & e-waybill" : "E‑Invoicing & e-waybill";
   const beDesc = isFr
     ? "Facturation électronique structurée pour le transport, conforme EN 16931 & Peppol, avec validation automatique et envoi sécurisé."
     : "Structured e‑invoicing for transport, EN 16931 & Peppol compliant, with automated validation and secure delivery.";

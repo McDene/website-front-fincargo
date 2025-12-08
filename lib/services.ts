@@ -4,9 +4,9 @@ export const SERVICES = {
     "services.title": "AI-powered Invoice-to-Cash platform",
     "services.description":
       "Our platform is built around four seamlessly integrated components to accelerate your compliance and cash-to-cash cycle.",
-    "services.invoice.title": "e-Invoicing",
+    "services.invoice.title": "e-Invoicing & e-waybill",
     "services.invoice.description":
-      "ViDA‑compliant structured invoicing ready  EU requirements. Machine‑readable and cross‑border compatible.",
+      "Structured invoicing compliant with ViDA & e-FTI, fully EU-ready, machine-readable, and cross-border compatible",
     "services.invoice.points": [
       "ViDA Compliant",
       "Structured data",
@@ -48,9 +48,9 @@ export const SERVICES = {
     "services.title": "Plateforme Invoice-to-cash propulsée par l’IA",
     "services.description":
       "Notre plateforme s’articule autour de quatre composants parfaitement intégrés pour accélérer votre conformité et votre cycle cash-to-cash.",
-    "services.invoice.title": "Facturation électronique",
+    "services.invoice.title": "e-Invoicing & e-waybill",
     "services.invoice.description":
-      "Facturation structurée conforme à ViDA, prête pour les exigences de l'UE. Lisible par machine et compatible transfrontalière.",
+      "Facturation structurée conforme à ViDA et e-FTI, entièrement alignée sur les exigences européennes. Lisible par machine et compatible transfrontière.",
     "services.invoice.points": [
       "Conforme à ViDA",
       "Données structurées",
@@ -91,9 +91,9 @@ export const SERVICES = {
     "services.title": "Plataforma de Invoice-to-Cash impulsada por IA",
     "services.description":
       "Nuestra plataforma se articula en torno a cuatro componentes perfectamente integrados para acelerar su cumplimiento y su ciclo cash-to-cash.",
-    "services.invoice.title": "Facturación electrónica",
+    "services.invoice.title": "e-Invoicing & e-waybill",
     "services.invoice.description":
-      "Facturación estructurada compatible con ViDA y lista para los requisitos de la UE. Legible por máquina y compatible con operaciones transfronterizas.",
+      "Facturación estructurada conforme con ViDA y e-FTI, totalmente alineada con los requisitos de la UE. Legible por máquina y compatible a nivel transfronterizo.",
     "services.invoice.points": [
       "Compatible con ViDA",
       "Datos estructurados",
@@ -134,9 +134,9 @@ export const SERVICES = {
     "services.title": "KI-gestützte Invoice-to-Cash-Plattform",
     "services.description":
       "Unsere Plattform basiert auf vier nahtlos integrierten Komponenten, um Ihre Compliance und Ihren Cash-to-Cash-Zyklus.",
-    "services.invoice.title": "E-Rechnung",
+    "services.invoice.title": "e-Invoicing & e-waybill",
     "services.invoice.description":
-      "ViDA-konforme strukturierte Rechnungsstellung, die den EU-Anforderungen entspricht. Maschinenlesbar und grenzüberschreitend kompatibel.",
+      "Strukturierte Rechnungsstellung gemäß ViDA und e-FTI, vollständig an die EU-Anforderungen angepasst. Maschinenlesbar und grenzüberschreitend kompatibel.",
     "services.invoice.points": [
       "ViDA-konform",
       "Strukturierte Daten",

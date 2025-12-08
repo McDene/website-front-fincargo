@@ -27,16 +27,11 @@ export const PRICINGS_BY_TRANSACTION = {
       ],
       [
         "Financing — Factoring",
-        "0.10–0.15% / day + fixed CHF fee",
+        "0.03–0.15% / day + fixed CHF fee",
         "per financed invoice",
         "Advance rate and fee depend on buyer risk and ageing",
       ],
-      [
-        "Financing — Reverse Factoring",
-        "0.10–0.15% / day + fixed CHF fee",
-        "per financed invoice",
-        "Program terms vary by buyer program",
-      ],
+
       [
         "Enterprise & Integrations",
         "Custom",
@@ -76,16 +71,11 @@ export const PRICINGS_BY_TRANSACTION = {
       ],
       [
         "Financement — Affacturage",
-        "0.10–0.15% / jour + frais CHF fixe",
+        "0.03–0.15% / jour + frais CHF fixe",
         "par facture financée",
         "Taux d’avance et frais selon le risque acheteur et l’ancienneté",
       ],
-      [
-        "Financement — Affacturage inversé",
-        "0.10–0.15% / jour + frais CHF fixe",
-        "par facture financée",
-        "Conditions selon le programme de l’acheteur",
-      ],
+
       [
         "Entreprise & Intégrations",
         "Sur mesure",
@@ -125,16 +115,11 @@ export const PRICINGS_BY_TRANSACTION = {
       ],
       [
         "Financiación — Factoring",
-        "0.10–0.15% / día + tarifa CHF fija",
+        "0.03–0.15% / día + tarifa CHF fija",
         "por factura financiada",
         "Tasa de anticipo y tarifa dependen del riesgo del comprador y la antigüedad",
       ],
-      [
-        "Financiación — Reverse Factoring",
-        "0.10–0.15% / día + tarifa CHF fija",
-        "por factura financiada",
-        "Condiciones según el programa del comprador",
-      ],
+
       [
         "Enterprise e Integraciones",
         "A medida",
@@ -174,16 +159,11 @@ export const PRICINGS_BY_TRANSACTION = {
       ],
       [
         "Finanzierung — Factoring",
-        "0.10–0.15% / Tag + fixer CHF‑Gebühr",
+        "0.03–0.15% / Tag + fixer CHF‑Gebühr",
         "pro finanzierte Rechnung",
         "Vorschussrate und Gebühr abhängig vom Käuferrisiko und der Fälligkeit",
       ],
-      [
-        "Finanzierung — Reverse Factoring",
-        "0.10–0.15% / Tag + fixer CHF‑Gebühr",
-        "pro finanzierte Rechnung",
-        "Programmbedingungen je nach Käuferprogramm",
-      ],
+
       [
         "Enterprise & Integrationen",
         "Individuell",

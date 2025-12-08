@@ -18,12 +18,6 @@ const INTEGRATIONS: Integration[] = [
     alt: "Webfleet",
   },
   {
-    name: "Transporeon",
-    href: "https://www.transporeon.com/en",
-    src: "/images/transporeon.svg",
-    alt: "Transporeon",
-  },
-  {
     name: "BlueRock TMS",
     href: "https://www.bluerocktms.com/",
     src: "/images/bluerock_logo.svg",
@@ -34,6 +28,12 @@ const INTEGRATIONS: Integration[] = [
     href: "https://log-hub.com/",
     src: "/images/log_hub.webp",
     alt: "Log-hub",
+  },
+  {
+    name: "Transporeon",
+    href: "https://www.transporeon.com/en",
+    src: "/images/transporeon.svg",
+    alt: "Transporeon",
   },
 ];
 
