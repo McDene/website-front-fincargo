@@ -180,21 +180,21 @@ function IconCheck(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-function IconSquare(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      {/* <rect x="5" y="5" width="14" height="14" rx="2" /> */}
-    </svg>
-  );
-}
+// function IconSquare(props: React.SVGProps<SVGSVGElement>) {
+//   return (
+//     <svg
+//       viewBox="0 0 24 24"
+//       fill="none"
+//       stroke="currentColor"
+//       strokeWidth="1.8"
+//       strokeLinecap="round"
+//       strokeLinejoin="round"
+//       {...props}
+//     >
+//       {/* <rect x="5" y="5" width="14" height="14" rx="2" /> */}
+//     </svg>
+//   );
+// }
 
 /* -------------------- Component -------------------- */
 export default function SectionInvoicing() {
@@ -506,11 +506,7 @@ export default function SectionInvoicing() {
                     className="flex items-start gap-2 text-slate-700"
                   >
                     <span className="mt-0.5 inline-flex items-center justify-center rounded-md bg-slate-50 ring-1 ring-slate-200 p-1">
-                      {idx === 0 ? (
-                        <IconSquare className="h-3.5 w-3.5 text-slate-400" />
-                      ) : (
-                        <IconCheck className="h-3.5 w-3.5" />
-                      )}
+                      <IconCheck className="h-3.5 w-3.5" />
                     </span>
                     <span className="text-sm md:text-base">{li}</span>
                   </li>

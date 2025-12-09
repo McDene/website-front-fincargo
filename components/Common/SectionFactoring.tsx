@@ -485,18 +485,20 @@ export default function SectionFactoring() {
           : "SMEs and microbusinesses particularly exposed",
         badge: isFr ? "Trésorerie" : "Cash",
       },
-      {
-        icon: <IconLayers className="h-6 w-6" />,
-        title: isFr ? "Marché fragmenté" : "Fragmented market",
-        content: isFr
-          ? "Sous‑traitance élevée et flux complexes"
-          : "Heavy subcontracting and complex flows",
-        badge: isFr ? "Marché" : "Market",
-      },
+      // {
+      //   icon: <IconLayers className="h-6 w-6" />,
+      //   title: isFr ? "Marché fragmenté" : "Fragmented market",
+      //   content: isFr
+      //     ? "Sous‑traitance élevée et flux complexes"
+      //     : "Heavy subcontracting and complex flows",
+      //   badge: isFr ? "Marché" : "Market",
+      // },
       {
         icon: <IconSearch className="h-6 w-6" />,
         title: isFr ? "Conformité plus stricte" : "Stricter compliance",
-        content: isFr ? "Peppol, EN 16931, e‑CMR" : "Peppol, EN 16931, e‑CMR",
+        content: isFr
+          ? "Peppol, EN 16931, e‑waybill"
+          : "Peppol, EN 16931, e‑waybill",
         badge: isFr ? "Réglementaire" : "Compliance",
       },
     ];
@@ -523,7 +525,7 @@ export default function SectionFactoring() {
       {
         icon: <IconPercent className="h-6 w-6" />,
         title: isFr ? "Taux compétitifs" : "Competitive rates",
-        content: isFr ? "0,10% à 0,15% par jour" : "0.10% to 0.15% per day",
+        content: isFr ? "à partir de 0,03% par jour" : "as from 0.03% per day",
         badge: isFr ? "Taux" : "Rates",
       },
       {
@@ -546,8 +548,8 @@ export default function SectionFactoring() {
         icon: <IconSearch className="h-6 w-6" />,
         title: isFr ? "Contrôles rigoureux" : "Rigorous checks",
         content: isFr
-          ? "Basés sur e‑CMR, POD, OTIF, tarifs"
-          : "Based on e‑CMR, POD, OTIF, tariffs",
+          ? "Basé sur les e-waybills et les tarifs"
+          : "Based on e-waybills and tariffs",
         badge: isFr ? "Contrôles" : "Checks",
       },
       {
@@ -571,18 +573,18 @@ export default function SectionFactoring() {
       {
         n: 1,
         icon: <IconDoc className="h-5 w-5" />,
-        title: isFr ? "Soumettre la facture" : "Submit the invoice",
+        title: isFr ? "Demande de factoring" : "Factoring request",
         content: isFr
-          ? "Téléchargez vos factures de transport validées via la plateforme ou par API. Les documents associés (e‑CMR, POD, contrats, tarifs) sont rapprochés automatiquement."
-          : "Upload validated transport invoices via the platform or API. Related docs (e‑CMR, POD, contracts, tariffs) are automatically matched.",
+          ? "Sélectionnez simplement la facture électronique que vous souhaitez anticiper depuis votre flux électronique, puis demandez un paiement anticipé en un clic."
+          : "Simply select the e-invoice you want to advance from your digital workflow and request early payment with a single click.",
       },
       {
         n: 2,
         icon: <IconSearch className="h-5 w-5" />,
         title: isFr ? "Approbation instantanée" : "Instant approval",
         content: isFr
-          ? "Le moteur évalue la solvabilité du débiteur, l’authenticité de la facture, la cohérence des données transport et les risques de double financement."
-          : "Engine checks debtor creditworthiness, invoice authenticity, transport data consistency and double‑financing risks.",
+          ? "Notre moteur vérifie les limites de crédit, évalue la solvabilité et compare les données avec les informations de transport."
+          : "Our engine verifies credit limits, assesses creditworthiness, and cross-checks the data with transport information.",
       },
       {
         n: 3,
@@ -602,7 +604,7 @@ export default function SectionFactoring() {
       ? "Pas de frais cachés, pas de minimums, pas de contrats longs"
       : "No hidden fees, no minimums, no long‑term contracts";
     rateTitle = isFr ? "Taux de factoring" : "Factoring rate";
-    rateData = isFr ? "0,10% à 0,15%" : "0.10% to 0.15%";
+    rateData = isFr ? "à partir de 0.03%" : "as from 0.03%";
     rateTime = isFr ? "par jour" : "per day";
     rateText = isFr
       ? "Basés sur la solvabilité du payeur, l’historique de paiement et la qualité des données (CMR, POD, tarifs)."
@@ -630,18 +632,16 @@ export default function SectionFactoring() {
     carriersTitle = isFr ? "Pour les transporteurs" : "For carriers";
     carriersList = isFr
       ? [
-          "Débloquez des liquidités en moins de 48h",
+          "Débloquez des liquidités en moins de 24h",
           "Financez trajets et carburant sans pression de trésorerie",
           "Protection contre les débiteurs en difficulté",
           "Aucune dette bancaire — financement basé sur les factures",
-          "Évitez le double financement grâce aux contrôles Fincargo",
         ]
       : [
-          "Unlock liquidity in under 48h",
+          "Unlock liquidity in under 24h",
           "Finance trips and fuel without cash stress",
           "Protection against distressed debtors",
           "No bank debt — invoice‑based financing",
-          "Avoid double‑financing via Fincargo controls",
         ];
     fwdTitle = isFr
       ? "Pour les transitaires & expéditeurs"
@@ -651,7 +651,7 @@ export default function SectionFactoring() {
           "Améliorez le DPO sans détériorer la relation fournisseur",
           "Sécurisez l’approvisionnement",
           "Paiement anticipé des sous‑traitants, fiabilisation",
-          "Automatisation du rapprochement (e‑CMR, bons, tarifs)",
+          "Automatisation du rapprochement (e‑waybill, bons, tarifs)",
           "Piste d’audit complète pour chaque facture",
           "Validation structurée des factures entrantes",
           "Intégration API avec ERP / TMS / WMS",
@@ -660,7 +660,7 @@ export default function SectionFactoring() {
           "Improve DPO without harming supplier relations",
           "Secure supply",
           "Early payment of subcontractors to build reliability",
-          "Automatic matching (e‑CMR, orders, tariffs)",
+          "Automatic matching (e‑waybill, orders, tariffs)",
           "Complete audit trail per invoice",
           "Structured validation of incoming invoices",
           "API integration with ERP / TMS / WMS",
@@ -683,8 +683,8 @@ export default function SectionFactoring() {
         icon: <IconSearch className="h-6 w-6" />,
         title: isFr ? "Vérification des factures" : "Invoice verification",
         content: isFr
-          ? "Contrôles IA de cohérence (e‑CMR, POD, tarifs, montants, dates, références)"
-          : "AI consistency checks (e‑CMR, POD, tariffs, amounts, dates, refs)",
+          ? "Contrôles IA de cohérence (e-waybill, POD, tarifs, montants, dates, références)"
+          : "AI consistency checks (e‑waybill, POD, tariffs, amounts, dates, refs)",
       },
       {
         icon: <IconAlert className="h-6 w-6" />,
@@ -1214,7 +1214,9 @@ export default function SectionFactoring() {
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div
             className={`max-w-3xl transition-all duration-700 ${
-              (region === 'be' ? v[5] : v[4]) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+              (region === "be" ? v[5] : v[4])
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-3"
             }`}
           >
             <span className="inline-flex items-center gap-2 rounded-full bg-slate-900/5 px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">
@@ -1229,14 +1231,16 @@ export default function SectionFactoring() {
           {/* Stacked list layout (clean, not grid-like) */}
           <div
             className={`mt-8 transition-all duration-700 ${
-              (region === 'be' ? v[5] : v[4]) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              (region === "be" ? v[5] : v[4])
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-4"
             } md:columns-2 md:gap-6`}
           >
             {riskItems.map((it, i) => (
               <article
                 key={i}
                 className={`inline-block w-full align-top mb-3 break-inside-avoid relative overflow-hidden rounded-xl border border-slate-200 ring-1 ring-slate-900/5 shadow-sm bg-white px-5 py-4 md:px-5 md:py-5 hover:shadow transition ${
-                  i % 2 === 1 ? 'bg-slate-50/70' : ''
+                  i % 2 === 1 ? "bg-slate-50/70" : ""
                 }`}
                 style={{ transitionDelay: `${120 + (i % 6) * 60}ms` }}
               >
@@ -1245,8 +1249,12 @@ export default function SectionFactoring() {
                     {it.icon}
                   </div>
                   <div className="min-w-0">
-                    <h3 className="text-base md:text-lg font-semibold text-slate-900">{it.title}</h3>
-                    <p className="mt-1 text-sm md:text-[15px] leading-relaxed text-slate-700">{it.content}</p>
+                    <h3 className="text-base md:text-lg font-semibold text-slate-900">
+                      {it.title}
+                    </h3>
+                    <p className="mt-1 text-sm md:text-[15px] leading-relaxed text-slate-700">
+                      {it.content}
+                    </p>
                   </div>
                 </div>
               </article>

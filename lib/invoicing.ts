@@ -3,7 +3,7 @@ export const INVOICING = {
     "invocing.section1.title": "Next-Generation Digital Invoicing",
     "invocing.section1.description":
       "Fully automated, compliant, and ready for the European digital transformation",
-    "invocing.section1.point1.title": "ViDA Compliant",
+    "invocing.section1.point1.title": "ViDA and eFTA Compliant",
     "invocing.section1.point1.content":
       "100% compliant with EU's ViDA (VAT in the Digital Age) regulation",
     "invocing.section1.point2.title": "Structured Data",
@@ -58,9 +58,9 @@ export const INVOICING = {
     "invocing.section4.technical2.title": "UBL 2.1 Format",
     "invocing.section4.technical2.content":
       "Universal Business Language for structured data exchange",
-    "invocing.section4.technical3.title": "PEPPOL Network",
+    "invocing.section4.technical3.title": "PEPPOL certified",
     "invocing.section4.technical3.content":
-      "Pan-European public procurement online connectivity",
+      "Certified Peppol Access Point Provider",
     "invocing.section4.technical4.title": "Digital Signatures",
     "invocing.section4.technical4.content":
       "Advanced electronic signatures for legal validity",
@@ -75,7 +75,7 @@ export const INVOICING = {
     "invocing.section1.title": "Facturation numérique de nouvelle génération",
     "invocing.section1.description":
       "Entièrement automatisée, conforme et prête pour la transformation numérique européenne",
-    "invocing.section1.point1.title": "Conforme à ViDA",
+    "invocing.section1.point1.title": "Conforme à ViDA et eFTA",
     "invocing.section1.point1.content":
       "100% conforme à la réglementation ViDA (VAT in the Digital Age) de l'UE",
     "invocing.section1.point2.title": "Données structurées",
@@ -132,9 +132,9 @@ export const INVOICING = {
     "invocing.section4.technical2.title": "Format UBL 2.1",
     "invocing.section4.technical2.content":
       "Langage universel des affaires pour l'échange de données structurées",
-    "invocing.section4.technical3.title": "Réseau PEPPOL",
+    "invocing.section4.technical3.title": "Certifié Peppol",
     "invocing.section4.technical3.content":
-      "Connectivité paneuropéenne pour les marchés publics en ligne",
+      "Fournisseur certifié Peppol Access Point",
     "invocing.section4.technical4.title": "Signatures numériques",
     "invocing.section4.technical4.content":
       "Signatures électroniques avancées pour la validité légale",
@@ -150,7 +150,7 @@ export const INVOICING = {
     "invocing.section1.title": "Facturación digital de nueva generación",
     "invocing.section1.description":
       "Totalmente automatizada, conforme y lista para la transformación digital europea",
-    "invocing.section1.point1.title": "Cumplimiento de ViDA",
+    "invocing.section1.point1.title": "Cumplimiento de ViDA y eFTA",
     "invocing.section1.point1.content":
       "100% conforme con la regulación ViDA (VAT in the Digital Age) de la UE",
     "invocing.section1.point2.title": "Datos estructurados",
@@ -206,9 +206,9 @@ export const INVOICING = {
     "invocing.section4.technical2.title": "Formato UBL 2.1",
     "invocing.section4.technical2.content":
       "Lenguaje universal de negocios para intercambio de datos estructurados",
-    "invocing.section4.technical3.title": "Red PEPPOL",
+    "invocing.section4.technical3.title": "Certificado Peppol",
     "invocing.section4.technical3.content":
-      "Conectividad paneuropea para adquisiciones públicas en línea",
+      "Proveedor certificado de Peppol Access Point",
     "invocing.section4.technical4.title": "Firmas digitales",
     "invocing.section4.technical4.content":
       "Firmas electrónicas avanzadas para validez legal",
@@ -223,7 +223,7 @@ export const INVOICING = {
     "invocing.section1.title": "Next-Generation Digitale Rechnungsstellung",
     "invocing.section1.description":
       "Vollautomatisiert, konform und bereit für die europäische digitale Transformation",
-    "invocing.section1.point1.title": "ViDA-konform",
+    "invocing.section1.point1.title": "ViDA-konform und eFTA-konform",
     "invocing.section1.point1.content":
       "100% konform mit der EU-Verordnung ViDA (VAT in the Digital Age)",
     "invocing.section1.point2.title": "Strukturierte Daten",
@@ -279,9 +279,9 @@ export const INVOICING = {
     "invocing.section4.technical2.title": "UBL 2.1 Format",
     "invocing.section4.technical2.content":
       "Universal Business Language für strukturierten Datenaustausch",
-    "invocing.section4.technical3.title": "PEPPOL-Netzwerk",
+    "invocing.section4.technical3.title": "Peppol-zertifiziert",
     "invocing.section4.technical3.content":
-      "Paneuropäische öffentliche Beschaffungs-Online-Konnektivität",
+      "Zertifizierter Peppol Access Point Provider",
     "invocing.section4.technical4.title": "Digitale Signaturen",
     "invocing.section4.technical4.content":
       "Fortgeschrittene elektronische Signaturen für rechtliche Gültigkeit",
