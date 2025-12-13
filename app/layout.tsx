@@ -22,6 +22,7 @@ const inter = Inter({
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID || "G-VGSWFSGPXZ";
+const ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || "AW-17700124208";
 
 const GLOBAL_DESCRIPTIONS: Record<"en" | "fr" | "es" | "de", string> = {
   en: "INVOICE-TO-CASH FOR THE TRANSPORT INDUSTRY",
@@ -115,6 +116,8 @@ export default function RootLayout({
           window.GA_MEASUREMENT_ID = '${GA_MEASUREMENT_ID}';
           gtag('js', new Date());
           gtag('config', '${GA_MEASUREMENT_ID}');
+          // Also initialize Google Ads tag (single gtag for both GA4 + Ads)
+          gtag('config', '${ADS_ID}');
         `}</Script>
         {/* Google Tag Manager – placed high in head */}
         <Script id="gtm-base" strategy="beforeInteractive">{`
