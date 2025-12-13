@@ -10,7 +10,7 @@ declare global {
   }
 }
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID; // fournie via env, sinon fallback GTM-only
+const envGA = process.env.NEXT_PUBLIC_GA_ID;
 
 export default function GAView() {
   const pathname = usePathname();
@@ -19,6 +19,8 @@ export default function GAView() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    // Resolve GA ID either from env or from global injected in layout
+    const GA_ID = envGA || (window as unknown as { GA_MEASUREMENT_ID?: string }).GA_MEASUREMENT_ID;
     const pagePath = pathname + (search?.toString() ? `?${search.toString()}` : "");
     // GA direct
     if (GA_ID && window.gtag) {

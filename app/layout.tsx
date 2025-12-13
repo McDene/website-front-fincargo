@@ -21,6 +21,7 @@ const inter = Inter({
 });
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID || "G-VGSWFSGPXZ";
 
 const GLOBAL_DESCRIPTIONS: Record<"en" | "fr" | "es" | "de", string> = {
   en: "INVOICE-TO-CASH FOR THE TRANSPORT INDUSTRY",
@@ -100,6 +101,20 @@ export default function RootLayout({
             'security_storage': 'granted',
             'wait_for_update': 500
           });
+        `}</Script>
+        {/* Google tag (gtag.js) — direct GA as requested. Keep Consent defaults above. */}
+        <Script
+          id="ga4-src"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="beforeInteractive"
+        />
+        <Script id="ga4-init" strategy="beforeInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          // Expose ID for SPA tracking fallback
+          window.GA_MEASUREMENT_ID = '${GA_MEASUREMENT_ID}';
+          gtag('js', new Date());
+          gtag('config', '${GA_MEASUREMENT_ID}');
         `}</Script>
         {/* Google Tag Manager – placed high in head */}
         <Script id="gtm-base" strategy="beforeInteractive">{`
