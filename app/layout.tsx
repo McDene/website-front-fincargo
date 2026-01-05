@@ -25,10 +25,10 @@ const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID || "G-VGSWFSGPXZ";
 const ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || "AW-17700124208";
 
 const GLOBAL_DESCRIPTIONS: Record<"en" | "fr" | "es" | "de", string> = {
-  en: "INVOICE-TO-CASH FOR THE TRANSPORT INDUSTRY",
-  fr: "INVOICE‑TO‑CASH POUR L’INDUSTRIE DU TRANSPORT",
-  es: "INVOICE‑TO‑CASH PARA LA INDUSTRIA DEL TRANSPORTE",
-  de: "INVOICE‑TO‑CASH FÜR DIE TRANSPORTBRANCHE",
+  en: "AI-powered Invoice-to-Cash platform for the supply chain industry. E-invoicing and E-Waybill Access Point",
+  fr: "Plateforme Invoice-to-Cash avec IA pour la supply chain. Point d’accès E-invoicing et E-Waybill",
+  es: "Plataforma Invoice-to-Cash con IA para la cadena de suministro. Punto de acceso de facturación electrónica y E-Waybill",
+  de: "KI-gestützte Invoice-to-Cash-Plattform für die Supply-Chain-Branche. E-Invoicing und E-Waybill Access Point",
 };
 
 export async function generateMetadata(): Promise<Metadata> {
