@@ -238,6 +238,24 @@ export default function Footer() {
               />
             </a>
 
+            <a
+              href="https://www.cyber-safe.ch/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={handleTrack("CyberSafe")}
+              data-analytics-action="click_outbound_link"
+              data-analytics-category="Footer"
+              data-analytics-label="CyberSafe"
+              className="inline-flex max-w-[180px] opacity-90 hover:opacity-100 transition"
+            >
+              <Image
+                src="/images/Label-CyberSafe-Negatif-RVB-transparent.png"
+                alt="CyberSafe Label"
+                width={160}
+                height={65}
+              />
+            </a>
+
             {mounted && region === "be" && (
               <a
                 href="https://peppol.org/"
