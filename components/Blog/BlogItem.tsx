@@ -307,7 +307,11 @@ export default function BlogItem({ blog }: { blog: Blog }) {
             ))}
           </div>
         )}
-        {renderContent(blog.Introduction)}
+        {!!(blog.Introduction && blog.Introduction.length) && (
+          <div className="fc-article max-w-none">
+            {renderContent(blog.Introduction)}
+          </div>
+        )}
 
         {/* TOC removed */}
       </div>
