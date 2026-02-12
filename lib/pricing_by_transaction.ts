@@ -14,20 +14,26 @@ export const PRICINGS_BY_TRANSACTION = {
     ],
     "pricing.by_transaction.table.rows": [
       [
+        "e‑Waybill / e‑CMR",
+        "CHF 0.05",
+        "per transaction",
+        "Multi-party e‑Waybill; tamper‑proof; and additional anti‑fraud features",
+      ],
+      [
         "e‑Invoicing",
-        "CHF 0.50",
+        "CHF 0.05",
         "per invoice",
         "Collection & payment; authority‑ready formats; multi‑rail delivery",
       ],
       [
         "Pre/Post‑Billing Audit",
-        "CHF 0.50",
+        "CHF 0.15",
         "per invoice",
         "AI‑assisted checks; buyer profile optimization; explainable reasons",
       ],
       [
         "Financing — Factoring",
-        "0.03–0.15% / day + fixed CHF fee",
+        "0.033–0.15% / day + fixed CHF fee",
         "per financed invoice",
         "Advance rate and fee depend on buyer risk and ageing",
       ],
@@ -58,20 +64,26 @@ export const PRICINGS_BY_TRANSACTION = {
     ],
     "pricing.by_transaction.table.rows": [
       [
+        "e‑Waybill / e‑CMR",
+        "CHF 0.05",
+        "par transaction",
+        "e‑Waybill multi‑parties; infalsifiable; et fonctionnalités anti‑fraude supplémentaires",
+      ],
+      [
         "e‑facturation",
-        "CHF 0.50",
+        "CHF 0.05",
         "par facture",
         "Collecte & paiement; formats prêts pour les autorités; livraison multi‑canaux",
       ],
       [
         "Audit pré/post‑facturation",
-        "CHF 0.50",
+        "CHF 0.15",
         "par facture",
         "Contrôles assistés par IA; optimisation du profil acheteur; motifs explicables",
       ],
       [
         "Financement — Affacturage",
-        "0.03–0.15% / jour + frais CHF fixe",
+        "0.033–0.15% / jour + frais CHF fixe",
         "par facture financée",
         "Taux d’avance et frais selon le risque acheteur et l’ancienneté",
       ],
@@ -79,8 +91,8 @@ export const PRICINGS_BY_TRANSACTION = {
       [
         "Entreprise & Intégrations",
         "Sur mesure",
-        "unique",
-        "Connecteurs standardisés, bidirectionnels",
+        "ponctuel",
+        "Connecteurs standardisés, bidirectionnels.",
       ],
     ],
     "pricing.by_transaction.example":
@@ -102,20 +114,26 @@ export const PRICINGS_BY_TRANSACTION = {
     ],
     "pricing.by_transaction.table.rows": [
       [
+        "e‑Waybill / e‑CMR",
+        "CHF 0.05",
+        "por transacción",
+        "e‑Waybill multipartes; a prueba de manipulaciones; y funciones antifraude adicionales",
+      ],
+      [
         "e‑Facturación",
-        "CHF 0.50",
+        "CHF 0.05",
         "por factura",
         "Cobro y pago; formatos listos para autoridades; entrega multicanal",
       ],
       [
         "Auditoría Pre/Post‑facturación",
-        "CHF 0.50",
+        "CHF 0.15",
         "por factura",
         "Controles asistidos por IA; optimización del perfil del comprador; motivos explicables",
       ],
       [
         "Financiación — Factoring",
-        "0.03–0.15% / día + tarifa CHF fija",
+        "0.033–0.15% / día + tarifa CHF fija",
         "por factura financiada",
         "Tasa de anticipo y tarifa dependen del riesgo del comprador y la antigüedad",
       ],
@@ -123,8 +141,8 @@ export const PRICINGS_BY_TRANSACTION = {
       [
         "Enterprise e Integraciones",
         "A medida",
-        "Única",
-        "Conectores estandarizados, bidireccionales",
+        "único",
+        "Conectores estandarizados, bidireccionales.",
       ],
     ],
     "pricing.by_transaction.example":
@@ -146,20 +164,26 @@ export const PRICINGS_BY_TRANSACTION = {
     ],
     "pricing.by_transaction.table.rows": [
       [
+        "e‑Waybill / e‑CMR",
+        "CHF 0.05",
+        "pro Transaktion",
+        "Mehrparteien‑e‑Waybill; manipulationssicher; und zusätzliche Anti‑Betrugs‑Funktionen",
+      ],
+      [
         "E‑Rechnung",
-        "CHF 0.50",
+        "CHF 0.05",
         "pro Rechnung",
         "Inkasso & Zahlung; behördenfähige Formate; Multi‑Rail‑Zustellung",
       ],
       [
         "Pre/Post‑Billing Audit",
-        "CHF 0.50",
+        "CHF 0.15",
         "pro Rechnung",
         "KI‑gestützte Prüfungen; Optimierung des Käuferprofils; erklärbare Gründe",
       ],
       [
         "Finanzierung — Factoring",
-        "0.03–0.15% / Tag + fixer CHF‑Gebühr",
+        "0.033–0.15% / Tag + fixer CHF‑Gebühr",
         "pro finanzierte Rechnung",
         "Vorschussrate und Gebühr abhängig vom Käuferrisiko und der Fälligkeit",
       ],
@@ -168,7 +192,7 @@ export const PRICINGS_BY_TRANSACTION = {
         "Enterprise & Integrationen",
         "Individuell",
         "einmalig",
-        "Standardisierte, bidirektionale Konnektoren",
+        "Standardisierte, bidirektionale Konnektoren.",
       ],
     ],
     "pricing.by_transaction.example":

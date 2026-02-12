@@ -50,28 +50,34 @@ export default function SectionPricingByTransaction() {
   // rows: string[][]
   const fallbackRows: string[][] = [
     [
+      "e‑Waybill / e‑CMR",
+      "CHF 0.05",
+      "per transaction",
+      "Multi-party e‑Waybill; tamper‑proof; and additional anti‑fraud features",
+    ],
+    [
       "e‑Invoicing",
-      "CHF 0.50",
+      "CHF 0.05",
       "per invoice",
       "Collection & payment; authority‑ready formats; multi‑rail delivery",
     ],
     [
       "Pre/Post‑Billing Audit",
-      "CHF 0.50",
+      "CHF 0.15",
       "per invoice",
       "AI‑assisted checks; buyer profile optimization; explainable reasons",
     ],
     [
-      "Financing",
-      "0.10–0.15% / day + fixed CHF fee",
+      "Financing — Factoring",
+      "0.033–0.15% / day + fixed CHF fee",
       "per financed invoice",
       "Advance rate and fee depend on buyer risk and ageing",
     ],
     [
       "Enterprise & Integrations",
       "Custom",
-      "per month",
-      "Standardized connectors, SLA and support tiers",
+      "one-off",
+      "Standardized connectors, bi-directional.",
     ],
   ];
   const rowsRaw = tl("pricing.by_transaction.table.rows");
