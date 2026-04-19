@@ -15,12 +15,14 @@ import type { Region } from "@/lib/i18n";
 interface HeroProps {
   heroData: HeroData | null;
   region?: Region;
+  videoOverride?: string;
 }
 
-export default function Hero({ heroData, region = 'global' }: HeroProps) {
-  const videoUrl = heroData?.Video?.url?.startsWith("http")
-    ? heroData.Video.url
-    : `${process.env.NEXT_PUBLIC_API_URL || ""}${heroData?.Video?.url || ""}`;
+export default function Hero({ heroData, region = 'global', videoOverride }: HeroProps) {
+  const videoUrl = videoOverride ?? [
+    "/videos/Moving Vessel.mp4",
+    "/videos/fincargo_freight_forwader_1.mp4",
+  ];
 
   if (!heroData) {
     return null;

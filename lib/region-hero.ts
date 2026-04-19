@@ -29,7 +29,7 @@ export interface HeroVariant {
 const VARIANTS: Record<Region, HeroVariant> = {
   global: {
     key: "global",
-    showMock: true,
+    showMock: false,
     showGlow: true,
     right: "chips",
   },

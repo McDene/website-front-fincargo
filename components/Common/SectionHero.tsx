@@ -17,7 +17,7 @@ interface SectionHeroProps {
   paragraph: string;
   buttonText: string;
   buttonLink: string;
-  videoUrl: string;
+  videoUrl: string | string[];
   imageAlt?: string;
   mockupSrc?: string;
   region?: Region;
@@ -33,6 +33,9 @@ export default function SectionHero({
   mockupSrc = "/images/hero_home_fincargo.webp",
   region = 'global',
 }: SectionHeroProps) {
+  const videos = Array.isArray(videoUrl) ? videoUrl : [videoUrl];
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const titleRef = useRef<HTMLDivElement | null>(null);
   const textRef = useRef<HTMLDivElement | null>(null);
@@ -71,16 +74,15 @@ export default function SectionHero({
 
   return (
     <section className="relative min-h-[92vh] lg:min-h-screen overflow-hidden">
-      {/* Background transport video (truck in circulation) */}
       <video
+        ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover z-0"
-        src={videoUrl}
+        src={videos[currentIndex]}
         autoPlay
         muted
-        loop
         playsInline
+        onEnded={() => setCurrentIndex((i) => (i + 1) % videos.length)}
       />
-
       {/* Dark + gradient overlays for SaaS readability */}
       <div className="absolute inset-0 z-0 bg-gradient-to-tr from-black/70 via-black/40 to-transparent" />
       <div

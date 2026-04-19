@@ -86,7 +86,7 @@ export default function FreightForwardersPage() {
     !loading && (
       <>
         <Header />
-        {heroData && <Hero heroData={heroData} />}
+        {heroData && <Hero heroData={heroData} videoOverride="/videos/fincargo_freight_forwader_1.mp4" />}
         {featureData && <Feature featureData={featureData} />}
         {benefitData && <Benefit benefitData={benefitData} />}
         {inviteData && <Invite inviteData={inviteData} />}
