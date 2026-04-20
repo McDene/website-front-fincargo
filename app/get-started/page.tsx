@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
-import Header from "@/components/Header/Secondary";
+import Header from "@/components/Header/Main";
 import Image from "next/image";
 import SectionHeroSmall from "@/components/Common/SectionHeroSmall";
 import Footer from "@/components/Footer";

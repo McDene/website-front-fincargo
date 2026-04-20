@@ -1,9 +1,9 @@
 export const HERO = {
   en: {
-    "hero.bank_label": "Bank-level Security",
-    "hero.efti_label": "eFTI Compliant",
-    "hero.vida_lablel": "ViDA Compliant",
-    "hero.all_label": "24/7 Processing",
+    "hero.bank_label": "Execution Truth",
+    "hero.efti_label": "Fiscal Truth",
+    "hero.vida_lablel": "Liquidity Truth",
+    "hero.all_label": "Insight Truth",
     "hero.see_demo": "See demo",
     "hero.more_info": "More info",
     "hero.b2b.label": "B2B Mandate Timing",
@@ -15,10 +15,10 @@ export const HERO = {
     "hero.country.data.5": ["France", "Sept 2026", "5-corner"],
   },
   es: {
-    "hero.bank_label": "Seguridad a nivel bancario",
-    "hero.efti_label": "Cumplimiento eFTI",
-    "hero.vida_lablel": "Cumplimiento ViDA",
-    "hero.all_label": "Procesamiento 24/7",
+    "hero.bank_label": "Verdad de ejecución",
+    "hero.efti_label": "Verdad fiscal",
+    "hero.vida_lablel": "Verdad de liquidez",
+    "hero.all_label": "Verdad de insight",
     "hero.see_demo": "Ver demostración",
     "hero.more_info": "Más información",
     "hero.b2b.label": "Plazos del mandato B2B",
@@ -31,10 +31,10 @@ export const HERO = {
   },
 
   fr: {
-    "hero.bank_label": "Sécurité de niveau bancaire",
-    "hero.efti_label": "Conforme eFTI",
-    "hero.vida_lablel": "Conforme ViDA",
-    "hero.all_label": "Traitement 24/7",
+    "hero.bank_label": "Vérité d'exécution",
+    "hero.efti_label": "Vérité fiscale",
+    "hero.vida_lablel": "Vérité de liquidité",
+    "hero.all_label": "Vérité d'insight",
     "hero.see_demo": "Voir la démo",
     "hero.more_info": "En savoir plus",
     "hero.b2b.label": "Délais du mandat B2B",
@@ -47,10 +47,10 @@ export const HERO = {
   },
 
   de: {
-    "hero.bank_label": "Bank-Level-Sicherheit",
-    "hero.efti_label": "eFTI-konform",
-    "hero.vida_lablel": "ViDA-konform",
-    "hero.all_label": "24/7-Verarbeitung",
+    "hero.bank_label": "Ausführungswahrheit",
+    "hero.efti_label": "Fiskalwahrheit",
+    "hero.vida_lablel": "Liquiditätswahrheit",
+    "hero.all_label": "Erkenntniswahrheit",
     "hero.see_demo": "Demo ansehen",
     "hero.more_info": "Mehr Infos",
     "hero.b2b.label": "B2B-Mandatsfristen",

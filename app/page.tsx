@@ -6,9 +6,9 @@ import { fetchAPI } from "@/lib/utils";
 import SectionBenefits from "@/components/Common/SectionProvenResults";
 import SectionFeatures from "@/components/Common/SectionFeatures";
 import SectionKPIs from "@/components/Common/SectionKPIs";
-import SectionPricingByTransaction from "@/components/Common/SectionPricingByTransaction";
 import SectionDemo from "@/components/Common/SectionDemo";
 import SectionIntegrations from "@/components/Common/SectionIntegrations";
+import SectionVirtualEmployee from "@/components/Common/SectionVirtualEmployee";
 import Script from "next/script";
 import { detectServerUiLocale, toStrapiLocale, detectServerRegion } from "@/lib/i18n";
 import type { Metadata } from "next";
@@ -170,7 +170,7 @@ export default async function Home() {
       <SectionKPIs region={region} />
       <SectionFeatures region={region} />
       <SectionBenefits />
-      <SectionPricingByTransaction />
+      <SectionVirtualEmployee />
       <SectionDemo />
       <SectionIntegrations />
       <Faq

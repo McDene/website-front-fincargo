@@ -13,8 +13,6 @@ interface FeatureItem {
   imageAlt: string;
 }
 
-// icons supprimées (l’illustration visuelle suffit)
-
 export default function SectionFeaturesGlobal() {
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLElement | null>(null);
@@ -27,21 +25,37 @@ export default function SectionFeaturesGlobal() {
   };
 
   const learnMore = tf("services.learn_more", "Learn more");
-  const sectionLabel = tf("services.section", "Services");
-  const title = tf("services.title", "Complete AI-Powered Transport Solution");
+  const sectionLabel = tf("services.section", "Platform");
+  const title = tf("services.title", "From execution data to accepted invoices — to liquidity");
   const subtitle = tf(
     "services.description",
-    "Five integrated modules designed to digitalize, optimize, and accelerate your transport operations with full regulatory compliance."
+    "Six integrated truth layers that turn every transport event into a verified, financeable, and compliant record."
   );
 
   const features: FeatureItem[] = [
     {
+      name: t("services.waybill.title"),
+      description: t("services.waybill.description"),
+      href: "/e-waybill",
+      points: tl("services.waybill.points"),
+      imageSrc: "/images/fincargo_invoicing.webp",
+      imageAlt: "Fincargo e-Waybill",
+    },
+    {
       name: t("services.invoice.title"),
       description: t("services.invoice.description"),
-      href: "/e-invoicing",
+      href: "/invoice-integrity",
       points: tl("services.invoice.points"),
+      imageSrc: "/images/fincargo_financial.webp",
+      imageAlt: "Fincargo Invoice Integrity",
+    },
+    {
+      name: t("services.einvoicing.title"),
+      description: t("services.einvoicing.description"),
+      href: "/e-invoicing",
+      points: tl("services.einvoicing.points"),
       imageSrc: "/images/fincargo_invoicing.webp",
-      imageAlt: "Fincargo e‑Invoicing",
+      imageAlt: "Fincargo e-Invoicing",
     },
     {
       name: t("services.financial.title"),
@@ -49,7 +63,7 @@ export default function SectionFeaturesGlobal() {
       href: "/financial-services",
       points: tl("services.financial.points"),
       imageSrc: "/images/fincargo_financial.webp",
-      imageAlt: "Fincargo financial services",
+      imageAlt: "Fincargo Supply Chain Finance",
     },
     {
       name: t("services.analytics.title"),
@@ -57,7 +71,7 @@ export default function SectionFeaturesGlobal() {
       href: "/analytics",
       points: tl("services.analytics.points"),
       imageSrc: "/images/fincargo_analytics.webp",
-      imageAlt: "Fincargo analytics",
+      imageAlt: "Fincargo Analytics",
     },
     {
       name: t("services.integration.title"),
@@ -65,14 +79,14 @@ export default function SectionFeaturesGlobal() {
       href: "/integration",
       points: tl("services.integration.points"),
       imageSrc: "/images/fincargo_integration.webp",
-      imageAlt: "Fincargo integrations",
+      imageAlt: "Fincargo Integration",
     },
   ];
 
   useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.isIntersecting && setVisible(true)),
-      { threshold: 0.15 }
+      { threshold: 0.1 }
     );
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
@@ -105,7 +119,7 @@ export default function SectionFeaturesGlobal() {
           <p className="mt-3 text-lg md:text-xl text-slate-600">{subtitle}</p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {features.map((f, i) => (
             <a
               key={f.name}
@@ -113,38 +127,38 @@ export default function SectionFeaturesGlobal() {
               data-analytics-action="card_click"
               data-analytics-category="Services"
               data-analytics-label={f.name}
-              className={`group relative overflow-hidden rounded-2xl flex h-full flex-col bg-gradient-to-b from-darkBlue to-black text-white border border-blue-500/30 ring-3 ring-blue-500/10 shadow-xl transition-all duration-700 hover:duration-200 ease-out transform-gpu ${
+              className={`group relative overflow-hidden rounded-2xl flex h-full flex-col bg-gradient-to-b from-darkBlue to-black text-white border border-blue-500/30 shadow-xl transition-all duration-700 hover:duration-200 ease-out transform-gpu ${
                 visible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-6"
-              } hover:shadow-lg hover:-translate-y-0.5`}
-              style={{ transitionDelay: `${50 + i * 50}ms` }}
+              } hover:shadow-2xl hover:-translate-y-1 hover:ring-2 hover:ring-blue-400/30`}
+              style={{ transitionDelay: `${50 + i * 60}ms` }}
               aria-label={`${f.name} – ${learnMore}`}
             >
-              {/* Illustration (smaller) */}
+              {/* Illustration */}
               <div className="relative">
                 <Image
                   src={f.imageSrc}
                   alt={f.imageAlt}
                   width={800}
                   height={600}
-                  className="w-full aspect-[16/9] max-h-40 md:max-h-48 object-contain transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                  className="w-full aspect-[16/9] max-h-36 md:max-h-44 object-contain transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                 />
               </div>
 
               {/* Content */}
               <div className="px-6 pt-4 pb-4 md:pb-5 flex-1">
-                <h3 className="text-xl font-bold tracking-tight uppercase">
+                <h3 className="text-lg font-bold tracking-tight uppercase leading-tight">
                   <span className="bg-gradient-to-r from-lightBlue to-white bg-clip-text text-transparent">
                     {f.name}
                   </span>
                 </h3>
-                <p className="mt-2 text-sm md:text-base text-white/80 leading-relaxed">
+                <p className="mt-2 text-sm text-white/80 leading-relaxed">
                   {f.description}
                 </p>
               </div>
 
-              {/* CTA button aligned bottom */}
+              {/* CTA */}
               <div className="px-6 pb-6 md:pb-7 mt-auto">
                 <span className="inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-white/80 hover:bg-white/95 hover:ring-white focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white">
                   {learnMore}

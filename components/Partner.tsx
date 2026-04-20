@@ -101,7 +101,7 @@ export default function Partner({ partnerData }: { partnerData: PartnerData }) {
   return (
     <section className="relative py-24 md:py-32 bg-gradient-to-b from-gray-100 via-white to-white px-6 lg:px-8">
       <div className="mx-auto w-full max-w-7xl">
-        {!!(partnerData.ImgeUrl && partnerData.ImgeUrl.length) && (
+        {!!(partnerData.Gallery && partnerData.Gallery.length) && (
           <section className="pb-16 md:pb-24" aria-labelledby="partners-title">
             <div className="text-center mb-8 md:mb-10">
               <h2
@@ -113,16 +113,15 @@ export default function Partner({ partnerData }: { partnerData: PartnerData }) {
               <div className="mt-4 mx-auto h-1.5 w-32 rounded-full bg-gradient-to-r from-black via-darkBlue to-lightBlue" />
             </div>
 
-            <div className="grid grid-cols-2 gap-6 md:gap-8 items-stretch">
-              {partnerData.ImgeUrl.map((item) => {
-                const href = item.url || "#";
-                const src = pickFromImgeUrlItem(item);
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 items-stretch">
+              {partnerData.Gallery.map((img, i) => {
+                const src = normalizeUrl(img.url);
                 if (!src) return null;
-                const alt =
-                  item.image?.alternativeText || hostFromUrl(href) || "Partner";
+                const href = partnerData.ImgeUrl?.[i]?.url || "#";
+                const alt = img.alternativeText || hostFromUrl(href) || "Partner";
                 return (
                   <a
-                    key={String(item.id)}
+                    key={String(img.id)}
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -135,7 +134,7 @@ export default function Partner({ partnerData }: { partnerData: PartnerData }) {
                         alt={alt}
                         fill
                         className="object-contain grayscale group-hover:grayscale-0 transition duration-200"
-                        sizes="(min-width: 1024px) 560px, 50vw"
+                        sizes="(min-width: 1024px) 220px, (min-width: 640px) 33vw, 50vw"
                         draggable={false}
                       />
                     </div>

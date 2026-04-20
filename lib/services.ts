@@ -1,175 +1,277 @@
 export const SERVICES = {
   en: {
-    "services.section": "Services",
-    "services.title": "AI-powered Invoice-to-Cash platform",
+    "services.section": "Platform",
+    "services.title": "From execution data to accepted invoices — to liquidity",
     "services.description":
-      "Our platform is built around four seamlessly integrated components to accelerate your compliance and cash-to-cash cycle.",
-    "services.invoice.title": "e-Invoicing & e-waybill",
+      "Six integrated truth layers that turn every transport event into a verified, financeable, and compliant record.",
+
+    "services.waybill.title": "e-Waybill — Execution Truth",
+    "services.waybill.description":
+      "Transport execution is captured digitally at source, creating a secure and auditable record of what actually happened. Replaces paper with trusted, non-repudiable evidence.",
+    "services.waybill.points": [
+      "eFTI Compliant",
+      "Non-repudiable evidence",
+      "Digital at source",
+      "Audit-ready records",
+    ],
+
+    "services.invoice.title": "Invoice Integrity — Economic Truth",
     "services.invoice.description":
-      "Structured invoicing compliant with ViDA & e-FTI, fully EU-ready, machine-readable, and cross-border compatible",
+      "Execution data is converted into clean receivables and verified payables. Only services actually delivered, under agreed conditions, are billed and paid.",
     "services.invoice.points": [
+      "Verified payables",
+      "Clean receivables",
+      "Delivery-based billing",
+      "Anomaly detection",
+    ],
+
+    "services.einvoicing.title": "e-Invoicing — Fiscal Truth",
+    "services.einvoicing.description":
+      "Invoices are validated, exchanged, and accepted through compliant access points and models. Maximises first-pass acceptance while protecting VAT and tax cash flows.",
+    "services.einvoicing.points": [
       "ViDA Compliant",
-      "Structured data",
+      "EN 16931 structured",
+      "99.5% first-pass rate",
       "Cross-border ready",
-      "Instant processing",
     ],
-    "services.financial.title": "Financial services",
+
+    "services.financial.title": "Supply Chain Finance — Liquidity Truth",
     "services.financial.description":
-      "Embedded factoring for collections and reverse factoring for payments. Visible limits and fast decisions on fiscal‑grade data.",
+      "Only accepted, correct transactions are exposed to liquidity providers via Factor Connector™. Fast financing based on verified reality.",
     "services.financial.points": [
-      "Factoring & reverse",
-      "Ledger‑aware checks",
-      "Fincargo payment card for carriers",
+      "Factor Connector™",
       "24–48h funding",
+      "Verified-only exposure",
+      "Transparent limits",
     ],
-    "services.analytics.title": "Analytics",
+
+    "services.analytics.title": "Analytics & Intelligence — Insight Truth",
     "services.analytics.description":
-      "KPIs, scorecards, and conversational insights to lift first‑pass acceptance, reduce rejections, and shorten DSO.",
+      "Trusted data is continuously analysed to deliver visibility, predictions, and anomaly detection. Turns operational and financial data into actionable intelligence.",
     "services.analytics.points": [
       "FPA & DSO KPIs",
-      "Rejection trends",
-      "Root‑cause insights",
+      "Anomaly detection",
       "Conversational AI",
+      "Root-cause insights",
     ],
-    "services.integration.title": "Integration",
+
+    "services.integration.title": "Integration & Connectivity — Continuity Truth",
     "services.integration.description":
-      "API‑first, standardized connectors with ERP, TMS and accounting systems. Reliable write‑back and observability built‑in.",
+      "Data flows seamlessly through APIs and multi-source integrations, without disrupting existing systems. Automation and intelligence without changing how you work.",
     "services.integration.points": [
-      "Standard connectors",
-      "API‑first & webhooks",
-      "Bi‑directional write‑back",
+      "API-first & webhooks",
+      "ERP / TMS connectors",
+      "Bi-directional write-back",
       "SLAs & monitoring",
     ],
+
     "services.learn_more": "Learn more",
   },
 
   fr: {
-    "services.section": "Services",
-    "services.title": "Plateforme Invoice-to-cash propulsée par l’IA",
+    "services.section": "Plateforme",
+    "services.title": "De la donnée d'exécution à la facture acceptée — jusqu'à la liquidité",
     "services.description":
-      "Notre plateforme s’articule autour de quatre composants parfaitement intégrés pour accélérer votre conformité et votre cycle cash-to-cash.",
-    "services.invoice.title": "e-Invoicing & e-waybill",
+      "Six couches de vérité intégrées qui transforment chaque événement transport en un enregistrement vérifié, finançable et conforme.",
+
+    "services.waybill.title": "e-Waybill — Vérité d'exécution",
+    "services.waybill.description":
+      "L'exécution du transport est capturée numériquement à la source, créant un enregistrement sécurisé et auditables de ce qui s'est réellement passé.",
+    "services.waybill.points": [
+      "Conforme eFTI",
+      "Preuve non répudiable",
+      "Numérique à la source",
+      "Prêt pour l'audit",
+    ],
+
+    "services.invoice.title": "Intégrité des factures — Vérité économique",
     "services.invoice.description":
-      "Facturation structurée conforme à ViDA et e-FTI, entièrement alignée sur les exigences européennes. Lisible par machine et compatible transfrontière.",
+      "Les données d'exécution sont converties en créances propres et en dettes vérifiées. Seuls les services réellement livrés, dans les conditions convenues, sont facturés et payés.",
     "services.invoice.points": [
-      "Conforme à ViDA",
-      "Données structurées",
-      "Prêt pour les opérations transfrontalières",
-      "Traitement instantané",
+      "Dettes vérifiées",
+      "Créances propres",
+      "Facturation basée sur la livraison",
+      "Détection d'anomalies",
     ],
-    "services.financial.title": "Services financiers",
+
+    "services.einvoicing.title": "e-Invoicing — Vérité fiscale",
+    "services.einvoicing.description":
+      "Les factures sont validées, échangées et acceptées via des points d'accès conformes. Maximise l'acceptation au premier passage tout en protégeant les flux TVA.",
+    "services.einvoicing.points": [
+      "Conforme ViDA",
+      "Structuré EN 16931",
+      "99,5% au premier passage",
+      "Compatible transfrontalier",
+    ],
+
+    "services.financial.title": "Finance de chaîne — Vérité de liquidité",
     "services.financial.description":
-      "Affacturage intégré pour les recouvrements et affacturage inversé pour les paiements. Limites visibles et décisions rapides sur des données de qualité fiscale.",
+      "Seules les transactions acceptées et correctes sont exposées aux fournisseurs de liquidités via Factor Connector™. Financement rapide basé sur la réalité vérifiée.",
     "services.financial.points": [
-      "Affacturage & affacturage inversé",
-      "Vérifications compatibles avec le grand livre",
-      "Carte de paiement Fincargo pour les transporteurs",
-      "Financement en 24 à 48 heures",
+      "Factor Connector™",
+      "Financement 24–48h",
+      "Exposition vérifiée uniquement",
+      "Limites transparentes",
     ],
-    "services.analytics.title": "Analytique",
+
+    "services.analytics.title": "Analytique & Intelligence — Vérité d'insight",
     "services.analytics.description":
-      "KPI, tableaux de bord et insights conversationnels pour améliorer l'acceptation au premier passage, réduire les rejets et raccourcir le DSO.",
+      "Les données fiables sont analysées en continu pour fournir visibilité, prédictions et détection d'anomalies. Transforme les données en intelligence actionnable.",
     "services.analytics.points": [
       "KPI FPA & DSO",
-      "Tendances des rejets",
-      "Insights sur les causes profondes",
+      "Détection d'anomalies",
       "IA conversationnelle",
+      "Causes profondes",
     ],
-    "services.integration.title": "Intégration",
+
+    "services.integration.title": "Intégration & Connectivité — Vérité de continuité",
     "services.integration.description":
-      "Connecteurs standardisés et API-first avec ERP, TMS et systèmes comptables. Écriture fiable et observabilité intégrée.",
+      "Les données circulent sans interruption via des API et intégrations multi-sources, sans perturber les systèmes existants.",
     "services.integration.points": [
-      "Connecteurs standardisés",
       "API-first & webhooks",
+      "Connecteurs ERP / TMS",
       "Écriture bidirectionnelle",
       "SLA & surveillance",
     ],
+
     "services.learn_more": "En savoir plus",
   },
+
   es: {
-    "services.section": "Servicios",
-    "services.title": "Plataforma de Invoice-to-Cash impulsada por IA",
+    "services.section": "Plataforma",
+    "services.title": "De los datos de ejecución a las facturas aceptadas — hasta la liquidez",
     "services.description":
-      "Nuestra plataforma se articula en torno a cuatro componentes perfectamente integrados para acelerar su cumplimiento y su ciclo cash-to-cash.",
-    "services.invoice.title": "e-Invoicing & e-waybill",
+      "Seis capas de verdad integradas que convierten cada evento de transporte en un registro verificado, financiable y conforme.",
+
+    "services.waybill.title": "e-Waybill — Verdad de ejecución",
+    "services.waybill.description":
+      "La ejecución del transporte se captura digitalmente en origen, creando un registro seguro y auditable de lo que realmente ocurrió.",
+    "services.waybill.points": [
+      "Conforme eFTI",
+      "Evidencia no repudiable",
+      "Digital en origen",
+      "Listo para auditoría",
+    ],
+
+    "services.invoice.title": "Integridad de facturas — Verdad económica",
     "services.invoice.description":
-      "Facturación estructurada conforme con ViDA y e-FTI, totalmente alineada con los requisitos de la UE. Legible por máquina y compatible a nivel transfronterizo.",
+      "Los datos de ejecución se convierten en cuentas por cobrar limpias y cuentas por pagar verificadas. Solo se facturan y pagan los servicios realmente entregados.",
     "services.invoice.points": [
-      "Compatible con ViDA",
-      "Datos estructurados",
-      "Listo para operaciones transfronterizas",
-      "Procesamiento instantáneo",
+      "Cuentas por pagar verificadas",
+      "Cuentas por cobrar limpias",
+      "Facturación basada en entrega",
+      "Detección de anomalías",
     ],
-    "services.financial.title": "Servicios financieros",
+
+    "services.einvoicing.title": "e-Invoicing — Verdad fiscal",
+    "services.einvoicing.description":
+      "Las facturas son validadas, intercambiadas y aceptadas a través de puntos de acceso conformes. Maximiza la aceptación en el primer intento protegiendo los flujos de IVA.",
+    "services.einvoicing.points": [
+      "Conforme ViDA",
+      "Estructurado EN 16931",
+      "99,5% primer intento",
+      "Compatible transfronterizo",
+    ],
+
+    "services.financial.title": "Finanzas de cadena — Verdad de liquidez",
     "services.financial.description":
-      "Factoraje integrado para cobranzas y factoraje inverso para pagos. Límites visibles y decisiones rápidas basadas en datos de calidad fiscal.",
+      "Solo las transacciones aceptadas y correctas se exponen a proveedores de liquidez a través de Factor Connector™. Financiamiento rápido basado en la realidad verificada.",
     "services.financial.points": [
-      "Factoraje y factoraje inverso",
-      "Verificaciones compatibles con el libro mayor",
-      "Tarjeta de pago Fincargo para transportistas",
-      "Financiamiento en 24 a 48 horas",
+      "Factor Connector™",
+      "Financiamiento 24–48h",
+      "Exposición solo verificada",
+      "Límites transparentes",
     ],
-    "services.analytics.title": "Analítica",
+
+    "services.analytics.title": "Analítica & Inteligencia — Verdad de insight",
     "services.analytics.description":
-      "KPI, cuadros de mando e insights conversacionales para mejorar la aceptación en el primer intento, reducir rechazos y acortar DSO.",
+      "Los datos confiables se analizan continuamente para ofrecer visibilidad, predicciones y detección de anomalías. Convierte datos en inteligencia accionable.",
     "services.analytics.points": [
-      "KPI de FPA y DSO",
-      "Tendencias de rechazos",
-      "Insights sobre causas raíz",
+      "KPI FPA y DSO",
+      "Detección de anomalías",
       "IA conversacional",
+      "Causas raíz",
     ],
-    "services.integration.title": "Integración",
+
+    "services.integration.title": "Integración & Conectividad — Verdad de continuidad",
     "services.integration.description":
-      "Conectores estandarizados y API-first con ERP, TMS y sistemas contables. Escritura confiable y observabilidad integrada.",
+      "Los datos fluyen sin interrupciones a través de APIs e integraciones multi-fuente, sin disrumpir los sistemas existentes.",
     "services.integration.points": [
-      "Conectores estandarizados",
       "API-first y webhooks",
+      "Conectores ERP / TMS",
       "Escritura bidireccional",
       "SLA y monitoreo",
     ],
+
     "services.learn_more": "Aprende más",
   },
+
   de: {
-    "services.section": "Dienstleistungen",
-    "services.title": "KI-gestützte Invoice-to-Cash-Plattform",
+    "services.section": "Plattform",
+    "services.title": "Von Ausführungsdaten zu akzeptierten Rechnungen — bis zur Liquidität",
     "services.description":
-      "Unsere Plattform basiert auf vier nahtlos integrierten Komponenten, um Ihre Compliance und Ihren Cash-to-Cash-Zyklus.",
-    "services.invoice.title": "e-Invoicing & e-waybill",
+      "Sechs integrierte Wahrheitsebenen, die jedes Transportereignis in einen verifizierten, finanzierbaren und konformen Datensatz verwandeln.",
+
+    "services.waybill.title": "e-Waybill — Ausführungswahrheit",
+    "services.waybill.description":
+      "Die Transportausführung wird digital an der Quelle erfasst und schafft einen sicheren, prüffähigen Nachweis dessen, was tatsächlich passiert ist.",
+    "services.waybill.points": [
+      "eFTI-konform",
+      "Unwiderlegbarer Nachweis",
+      "Digital an der Quelle",
+      "Prüfungsbereit",
+    ],
+
+    "services.invoice.title": "Rechnungsintegrität — Wirtschaftswahrheit",
     "services.invoice.description":
-      "Strukturierte Rechnungsstellung gemäß ViDA und e-FTI, vollständig an die EU-Anforderungen angepasst. Maschinenlesbar und grenzüberschreitend kompatibel.",
+      "Ausführungsdaten werden in saubere Forderungen und verifizierte Verbindlichkeiten umgewandelt. Nur tatsächlich erbrachte Leistungen werden abgerechnet.",
     "services.invoice.points": [
+      "Verifizierte Verbindlichkeiten",
+      "Saubere Forderungen",
+      "Lieferungsbasierte Abrechnung",
+      "Anomalieerkennung",
+    ],
+
+    "services.einvoicing.title": "e-Invoicing — Fiskalwahrheit",
+    "services.einvoicing.description":
+      "Rechnungen werden über konforme Zugangspunkte validiert, ausgetauscht und akzeptiert. Maximiert die Erstakzeptanzrate und schützt die Mehrwertsteuerflüsse.",
+    "services.einvoicing.points": [
       "ViDA-konform",
-      "Strukturierte Daten",
+      "EN 16931 strukturiert",
+      "99,5% Erstakzeptanz",
       "Grenzüberschreitungsbereit",
-      "Sofortige Verarbeitung",
     ],
-    "services.financial.title": "Finanzdienstleistungen",
+
+    "services.financial.title": "Supply-Chain-Finanzierung — Liquiditätswahrheit",
     "services.financial.description":
-      "Eingebettetes Factoring für Inkasso und Reverse Factoring für Zahlungen. Sichtbare Limits und schnelle Entscheidungen auf fiskalisch geprüften Daten.",
+      "Nur akzeptierte, korrekte Transaktionen werden über Factor Connector™ Liquiditätsanbietern zugänglich gemacht. Schnelle Finanzierung auf Basis verifizierter Realität.",
     "services.financial.points": [
-      "Factoring & Reverse",
-      "Ledger-bewusste Prüfungen",
-      "Fincargo-Zahlungskarte für Spediteure",
-      "Finanzierung in 24–48 Stunden",
+      "Factor Connector™",
+      "Finanzierung in 24–48h",
+      "Nur verifizierte Exposition",
+      "Transparente Limits",
     ],
-    "services.analytics.title": "Analytik",
+
+    "services.analytics.title": "Analytik & Intelligenz — Erkenntniswahrheit",
     "services.analytics.description":
-      "KPIs, Scorecards und konversationelle Einblicke zur Steigerung der First-Pass-Akzeptanz, Reduzierung von Ablehnungen und Verkürzung des DSO.",
+      "Vertrauenswürdige Daten werden kontinuierlich analysiert, um Sichtbarkeit, Prognosen und Anomalieerkennung zu liefern. Operationale Daten werden zu umsetzbarer Intelligenz.",
     "services.analytics.points": [
       "FPA- & DSO-KPIs",
-      "Ablehnungstrends",
-      "Root-Cause-Einblicke",
+      "Anomalieerkennung",
       "Konversationelle KI",
+      "Root-Cause-Insights",
     ],
-    "services.integration.title": "Integration",
+
+    "services.integration.title": "Integration & Konnektivität — Kontinuitätswahrheit",
     "services.integration.description":
-      "API-first, standardisierte Konnektoren mit ERP-, TMS- und Buchhaltungssystemen. Zuverlässiges Zurückschreiben und Beobachtbarkeit integriert.",
+      "Daten fließen nahtlos über APIs und Mehrquellen-Integrationen, ohne bestehende Systeme zu stören. Automatisierung ohne Änderung der Arbeitsweise.",
     "services.integration.points": [
-      "Standardisierte Konnektoren",
       "API-first & Webhooks",
-      "Bidirektionales Zurückschreiben",
+      "ERP / TMS-Konnektoren",
+      "Bidirektionales Schreiben",
       "SLAs & Überwachung",
     ],
+
     "services.learn_more": "Erfahren Sie mehr",
   },
 } as const;

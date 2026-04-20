@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useTranslation } from "@/hooks/useTranslation";
 
-type Audience = "carrier" | "freight";
+type Audience = "carrier" | "freight" | "fi";
 
 interface BenefitCard {
   title: string;
@@ -50,7 +50,7 @@ export default function SectionBenefits({
     );
 
   const buildBenefits = (who: Audience): BenefitCard[] => {
-    const prefix = who === "carrier" ? "benefits.carrier" : "benefits.freight";
+    const prefix = who === "carrier" ? "benefits.carrier" : who === "freight" ? "benefits.freight" : "benefits.fi";
     const items: BenefitCard[] = [];
     for (let i = 1; i <= 6; i++) {
       const title = tv(`${prefix}_${i}.title`);
@@ -61,6 +61,7 @@ export default function SectionBenefits({
   };
 
   const getTestimonial = (who: Audience): Testimonial | null => {
+    if (who === "fi") return null;
     const p = `benefits.testimonial.${who}`;
     const title = tv(`${p}.title`);
     const location = tv(`${p}.location`);
@@ -143,6 +144,18 @@ export default function SectionBenefits({
               >
                 {tf("benefits.freight", "Forwarders & Shippers")}
               </button>
+              <button
+                role="tab"
+                aria-selected={audience === "fi"}
+                onClick={() => setAudience("fi")}
+                className={`ml-1 px-3.5 py-2 text-sm font-medium rounded-lg transition ${
+                  audience === "fi"
+                    ? "bg-white text-blue-900 shadow ring-1 ring-white/80"
+                    : "text-white/85 hover:bg-white/10"
+                }`}
+              >
+                {tf("benefits.fi", "Financial Institutions")}
+              </button>
             </div>
           </div>
         </div>
@@ -185,14 +198,8 @@ export default function SectionBenefits({
                 <div className="absolute -inset-16 bg-[radial-gradient(600px_260px_at_85%_10%,rgba(103,232,249,0.15),transparent),radial-gradient(540px_220px_at_10%_90%,rgba(191,219,254,0.12),transparent)]" />
               </div>
               <Image
-                src={
-                  audience === "carrier"
-                    ? "/images/fincargo_carrier.webp"
-                    : "/images/fincargo_forwarder_shipper.webp"
-                }
-                alt={
-                  audience === "carrier" ? "Carriers" : "Forwarders & Shippers"
-                }
+                src="/images/shutterstock_1697041726.jpg"
+                alt="Fincargo — turning execution data into liquidity"
                 width={900}
                 height={600}
                 className="relative w-full h-auto object-contain max-h-56 md:max-h-72"
