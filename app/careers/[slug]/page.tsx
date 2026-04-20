@@ -1,4 +1,4 @@
-import Header from "@/components/Header/Secondary";
+import Header from "@/components/Header/Main";
 import SectionHeroSmall from "@/components/Common/SectionHeroSmall";
 import CareerItem from "@/components/Career/CareerItem";
 import Footer from "@/components/Footer";

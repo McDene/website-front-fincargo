@@ -216,7 +216,7 @@ export default function SectionKPIs({ context = "home" }: Props) {
           {items.map((it, i) => (
             <li
               key={i}
-              className="relative px-0 py-2 md:py-3 lg:border-l lg:border-white/15 lg:pl-6"
+              className="relative rounded-xl bg-white/5 px-5 py-5 border border-white/10 lg:border-0 lg:bg-transparent lg:rounded-none lg:px-0 lg:py-3 lg:border-l lg:border-white/15 lg:pl-6"
               style={{ transitionDelay: `${80 + i * 60}ms` }}
             >
               <div className="relative">

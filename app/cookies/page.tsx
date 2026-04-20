@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useContext } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
-import Header from "@/components/Header/Secondary";
+import Header from "@/components/Header/Main";
 import SectionHeroSmall from "@/components/Common/SectionHeroSmall";
 import Footer from "@/components/Footer";
 import { fetchAPI } from "@/lib/utils";

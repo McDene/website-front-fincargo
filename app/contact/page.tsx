@@ -9,7 +9,7 @@ import {
   PaperAirplaneIcon,
 } from "@heroicons/react/24/outline";
 import ClipLoader from "react-spinners/ClipLoader";
-import Header from "@/components/Header/Secondary";
+import Header from "@/components/Header/Main";
 import SectionHeroSmall from "@/components/Common/SectionHeroSmall";
 import Footer from "@/components/Footer";
 

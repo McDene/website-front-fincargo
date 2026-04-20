@@ -49,79 +49,43 @@ export default function Footer() {
     return `/${currentLocale}${href}`;
   };
 
-  // Centralized config so it’s easier to maintain / reorder
   const sections: FooterSection[] = [
     {
       titleKey: "company",
       links: [
         { href: "/about", labelKey: "about_us", trackLabel: "About Us" },
-        { href: "/contact", labelKey: "contact", trackLabel: "Contact" },
-        {
-          href: "/confidentiality-security-notice",
-          labelKey: "Confidentiality",
-          trackLabel: "Confidentiality & Security",
-        },
-        {
-          href: "/legal-notice",
-          labelKey: "legal_notice",
-          trackLabel: "Legal Notice",
-        },
-        { href: "/cookies", labelKey: "cookies", trackLabel: "Cookies Policy" },
-        {
-          href: "/sustainability",
-          labelKey: "sustainability",
-          trackLabel: "Sustainability",
-        },
+        { href: "/careers", labelKey: "careers", trackLabel: "Careers" },
         { href: "/partner", labelKey: "partners", trackLabel: "Partners" },
         { href: "/investor", labelKey: "investors", trackLabel: "Investors" },
-        { href: "/careers", labelKey: "careers", trackLabel: "Careers" },
         { href: "/blog", labelKey: "Blog", trackLabel: "Blog" },
+        { href: "/contact", labelKey: "contact", trackLabel: "Contact" },
+        { href: "/sustainability", labelKey: "sustainability", trackLabel: "Sustainability" },
+        { href: "/legal-notice", labelKey: "legal_notice", trackLabel: "Legal Notice" },
+        { href: "/cookies", labelKey: "cookies", trackLabel: "Cookies Policy" },
+        { href: "/confidentiality-security-notice", labelKey: "Confidentiality", trackLabel: "Confidentiality & Security" },
       ],
     },
     {
-      titleKey: "carriers",
+      titleKey: "Solutions",
       links: [
-        {
-          href: "/get-started",
-          labelKey: "get_started",
-          trackLabel: "Get Started - Carriers",
-        },
-        // {
-        //   href: "/explore-freight-forwarders-partners",
-        //   labelKey: "explore_freight_forwarders_partners",
-        //   trackLabel: "Explore Freight Forwarding Partners",
-        // },
-        {
-          href: "/carrier-protection-policy",
-          labelKey: "carriers_protection_policy",
-          trackLabel: "Carriers Protection Policy",
-        },
-        {
-          href: "/?aud=carrier#faqs",
-          labelKey: "faq",
-          trackLabel: "FAQ - Carriers",
-        },
+        { href: "/order-management", labelKey: "Order Management", trackLabel: "Order Management" },
+        { href: "/e-waybill", labelKey: "E-Waybill", trackLabel: "E-Waybill" },
+        { href: "/invoice-integrity", labelKey: "Invoice Integrity & Automation", trackLabel: "Invoice Integrity" },
+        { href: "/e-invoicing", labelKey: "E-Invoicing", trackLabel: "E-Invoicing" },
+        { href: "/financial-services", labelKey: "Supply Chain Finance", trackLabel: "Supply Chain Finance" },
+        { href: "/analytics", labelKey: "Analytics & Intelligence", trackLabel: "Analytics" },
+        { href: "/integration", labelKey: "Integration & Connectivity", trackLabel: "Integration" },
       ],
     },
     {
-      titleKey: "freight_forwarders",
+      titleKey: "Industries",
       links: [
-        {
-          href: "/get-started",
-          labelKey: "get_started",
-          trackLabel: "Get Started - Freight Forwarders",
-        },
-        // {
-        //   href: "/#",
-        //   labelKey: "pay_carrier_early",
-        //   trackLabel: "Pay Carrier Early",
-        // },
-        {
-          href: "/api",
-          labelKey: "api_integration",
-          trackLabel: "API Integration",
-        },
-        { href: "/?aud=freight#faqs", labelKey: "faq", trackLabel: "FAQ" },
+        { href: "/industries/transport-logistics", labelKey: "Transport & Logistics", trackLabel: "Transport & Logistics" },
+        { href: "/industries/government", labelKey: "Government & Public Authorities", trackLabel: "Government" },
+        { href: "/industries/wholesale-distribution", labelKey: "Wholesale & Distribution", trackLabel: "Wholesale & Distribution" },
+        { href: "/industries/manufacturing", labelKey: "Manufacturing", trackLabel: "Manufacturing" },
+        { href: "/industries/consumer-goods", labelKey: "Consumer Goods", trackLabel: "Consumer Goods" },
+        { href: "/industries/healthcare", labelKey: "Healthcare", trackLabel: "Healthcare" },
       ],
     },
   ];
@@ -308,7 +272,7 @@ export default function Footer() {
               id={`footer-${section.titleKey}`}
               className="text-sm font-bold text-blue-200 mb-4 md:mb-6 uppercase tracking-wide"
             >
-              {t(section.titleKey)}
+              {t(section.titleKey) === section.titleKey ? section.titleKey : t(section.titleKey)}
             </h2>
             <ul className="space-y-2">
               {section.links.map((link) => (
@@ -319,22 +283,18 @@ export default function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={handleTrack(link.trackLabel)}
-                      className="hover:text-white/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded"
+                      className="inline-block border-b border-transparent hover:border-white/40 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded"
                     >
-                      {typeof link.labelKey === "string"
-                        ? t(link.labelKey as string)
-                        : link.labelKey}
+                      {(() => { const v = t(link.labelKey); return v === link.labelKey ? link.labelKey : v; })()}
                     </a>
                   ) : (
                     <Link
                       href={localizeHref(link.href)}
                       prefetch={false}
                       onClick={onInternalClick(link.trackLabel, link.href)}
-                      className="hover:text-white/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded"
+                      className="inline-block border-b border-transparent hover:border-white/40 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded"
                     >
-                      {typeof link.labelKey === "string"
-                        ? t(link.labelKey as string)
-                        : link.labelKey}
+                      {(() => { const v = t(link.labelKey); return v === link.labelKey ? link.labelKey : v; })()}
                     </Link>
                   )}
                 </li>

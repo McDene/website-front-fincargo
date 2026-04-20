@@ -63,10 +63,13 @@ export const fetchAPI = async (
 
     // First attempt: primary API_URL
     const primaryUrl = buildUrl(API_URL);
+    const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
+    const authHeader = token ? { Authorization: `Bearer ${token}` } : {};
     const res = await axios.get(primaryUrl, {
       headers: {
         Accept: "application/json",
         "Cache-Control": "no-cache",
+        ...authHeader,
       },
     });
 
@@ -99,10 +102,13 @@ export const fetchAPI = async (
       })();
       const needsLocale = !/[?&]locale=/.test(endpoint);
       const fallbackUrl = `${normalizeLocalhost(FALLBACK_API_URL)}${endpoint}${needsLocale ? `${separator}locale=${strapiLocale}` : ""}`;
+      const token2 = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
+      const authHeader2 = token2 ? { Authorization: `Bearer ${token2}` } : {};
       const res2 = await axios.get(fallbackUrl, {
         headers: {
           Accept: "application/json",
           "Cache-Control": "no-cache",
+          ...authHeader2,
         },
       });
       if (process.env.NODE_ENV !== "production") {

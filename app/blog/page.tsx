@@ -1,4 +1,4 @@
-import Header from "@/components/Header/Secondary";
+import Header from "@/components/Header/Main";
 import BlogListWithFilters from "@/components/Blog/BlogListWithFilters";
 import { Suspense } from "react";
 import SectionHeroSmall from "@/components/Common/SectionHeroSmall";
