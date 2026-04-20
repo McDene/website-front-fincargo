@@ -123,7 +123,7 @@ export default function SCFBanksPage() {
 
             <div className="rounded-2xl border border-indigo-100 bg-indigo-50 p-6 text-center">
               <p className="text-indigo-700 font-semibold italic">
-                "A transaction-origination accelerator — not a lender, not a financial intermediary."
+                &ldquo;A transaction-origination accelerator — not a lender, not a financial intermediary.&rdquo;
               </p>
             </div>
 

@@ -122,7 +122,7 @@ export default function SCFAssetManagersPage() {
 
             <div className="rounded-2xl border border-indigo-100 bg-indigo-50 p-6 text-center">
               <p className="text-indigo-700 font-semibold italic">
-                "A data-driven access layer to short-term private credit — not a fund, not a balance sheet."
+                &ldquo;A data-driven access layer to short-term private credit — not a fund, not a balance sheet.&rdquo;
               </p>
             </div>
 
