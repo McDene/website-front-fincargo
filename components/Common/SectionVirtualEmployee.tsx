@@ -66,7 +66,7 @@ const phases = [
 export default function SectionVirtualEmployee() {
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLElement | null>(null);
-  const { language } = useTranslation();
+  useTranslation();
 
   useEffect(() => {
     const obs = new IntersectionObserver(

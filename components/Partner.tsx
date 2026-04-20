@@ -74,21 +74,6 @@ export default function Partner({ partnerData }: { partnerData: PartnerData }) {
     return normalizeUrl(large || medium || img.url);
   };
 
-  const isDirectImageUrl = (url?: string) =>
-    !!url &&
-    /\.(avif|webp|png|jpe?g|gif|svg)(\?.*)?$/i.test(url.split("?")[0] || "");
-
-  const pickFromImgeUrlItem = (item?: {
-    url?: string;
-    image?: PartnerImage | null;
-  }): string => {
-    if (!item) return "";
-    const img = pickBestImageUrl(item.image);
-    if (img) return img;
-    if (isDirectImageUrl(item.url)) return item.url as string;
-    return "";
-  };
-
   const hostFromUrl = (u?: string) => {
     try {
       return u ? new URL(u).hostname : "";

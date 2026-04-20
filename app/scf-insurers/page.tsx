@@ -122,7 +122,7 @@ export default function SCFInsurersPage() {
 
             <div className="rounded-2xl border border-indigo-100 bg-indigo-50 p-6 text-center">
               <p className="text-indigo-700 font-semibold italic">
-                "A transaction-level risk intelligence layer — not an underwriter, not a distributor."
+                &ldquo;A transaction-level risk intelligence layer — not an underwriter, not a distributor.&rdquo;
               </p>
             </div>
 
