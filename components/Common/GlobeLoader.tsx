@@ -276,7 +276,7 @@ export default function GlobeLoader() {
         const depth    = Math.min(1, v * 1.4);
         const fontSize = h.tier === 1 ? 14 : h.tier === 2 ? 12 : 11;
         const weight   = h.tier === 1 ? "600" : "400";
-        ctx!.font = `${weight} ${fontSize}px 'Helvetica Neue', Helvetica, Arial, sans-serif`;
+        ctx!.font = `${weight} ${fontSize}px var(--font-inter), Inter, sans-serif`;
         const tw  = ctx!.measureText(h.name).width;
         const hgt = fontSize * 1.1;
 
@@ -359,16 +359,11 @@ export default function GlobeLoader() {
   }, []);
 
   return (
-    <section
-      className="relative flex items-center justify-center py-16 overflow-hidden"
-      style={{
-        background:
-          "radial-gradient(ellipse at 50% 50%, #0E2238 0%, #081628 55%, #04101e 100%)",
-      }}
-    >
-      {/* Section label */}
+    <section className="relative flex items-center justify-center py-16 overflow-hidden bg-gradient-to-b from-darkBlue to-black">
+
+      {/* Section label — Prompt font, lightBlue, matches other dark sections */}
       <div className="absolute top-8 left-1/2 -translate-x-1/2 text-center pointer-events-none">
-        <span className="text-xs font-semibold tracking-widest uppercase text-[#3DD9C7]/60">
+        <span className="font-[family-name:var(--font-arimo)] text-xs font-semibold tracking-widest uppercase text-lightBlue/70">
           Supply Chain Finance Platform
         </span>
       </div>
@@ -399,18 +394,22 @@ export default function GlobeLoader() {
           ].map((item) => (
             <div
               key={item.title}
-              className="rounded-xl border border-[#3DD9C7]/15 bg-white/[0.04] backdrop-blur-sm p-4"
+              className="rounded-xl border border-lightBlue/20 bg-white/[0.04] backdrop-blur-sm p-4"
             >
-              <span className="text-[10px] font-semibold tracking-widest uppercase text-[#3DD9C7]/50 mb-1 block">
+              <span className="font-[family-name:var(--font-arimo)] text-[10px] font-semibold tracking-widest uppercase text-lightBlue/60 mb-1 block">
                 {item.label}
               </span>
-              <h3 className="text-sm font-semibold text-[#E8FFFB] mb-1">{item.title}</h3>
-              <p className="text-xs text-white/50 leading-relaxed mb-2">{item.desc}</p>
+              <h3 className="font-[family-name:var(--font-arimo)] text-sm font-semibold text-white mb-1">
+                {item.title}
+              </h3>
+              <p className="font-[family-name:var(--font-inter)] text-xs text-white/50 leading-relaxed mb-2">
+                {item.desc}
+              </p>
               <div className="flex flex-wrap gap-1">
                 {item.chips.map((c) => (
                   <span
                     key={c}
-                    className="text-[10px] px-2 py-0.5 rounded-full border border-[#3DD9C7]/25 text-[#3DD9C7]/70"
+                    className="font-[family-name:var(--font-inter)] text-[10px] px-2 py-0.5 rounded-full border border-lightBlue/30 text-lightBlue/80"
                   >
                     {c}
                   </span>
@@ -459,18 +458,22 @@ export default function GlobeLoader() {
           ].map((item) => (
             <div
               key={item.title}
-              className="rounded-xl border border-[#3DD9C7]/15 bg-white/[0.04] backdrop-blur-sm p-4"
+              className="rounded-xl border border-lightBlue/20 bg-white/[0.04] backdrop-blur-sm p-4"
             >
-              <span className="text-[10px] font-semibold tracking-widest uppercase text-[#3DD9C7]/50 mb-1 block">
+              <span className="font-[family-name:var(--font-arimo)] text-[10px] font-semibold tracking-widest uppercase text-lightBlue/60 mb-1 block">
                 {item.label}
               </span>
-              <h3 className="text-sm font-semibold text-[#E8FFFB] mb-1">{item.title}</h3>
-              <p className="text-xs text-white/50 leading-relaxed mb-2">{item.desc}</p>
+              <h3 className="font-[family-name:var(--font-arimo)] text-sm font-semibold text-white mb-1">
+                {item.title}
+              </h3>
+              <p className="font-[family-name:var(--font-inter)] text-xs text-white/50 leading-relaxed mb-2">
+                {item.desc}
+              </p>
               <div className="flex flex-wrap gap-1">
                 {item.chips.map((c) => (
                   <span
                     key={c}
-                    className="text-[10px] px-2 py-0.5 rounded-full border border-[#3DD9C7]/25 text-[#3DD9C7]/70"
+                    className="font-[family-name:var(--font-inter)] text-[10px] px-2 py-0.5 rounded-full border border-lightBlue/30 text-lightBlue/80"
                   >
                     {c}
                   </span>
