@@ -85,7 +85,7 @@ export default function SectionVirtualEmployee() {
       {/* Background decoration */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-3/4 bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-64 w-64 rounded-full bg-indigo-500/5 blur-3xl" />
+        <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-64 w-64 rounded-full bg-lightBlue/5 blur-3xl" />
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -96,19 +96,19 @@ export default function SectionVirtualEmployee() {
             visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
-          <span className="inline-flex items-center gap-2 rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-600 ring-1 ring-indigo-200">
-            <span className="h-1.5 w-1.5 rounded-full bg-indigo-500" />
+          <span className="inline-flex items-center gap-2 rounded-full bg-lightBlue/10 px-3 py-1 text-xs font-semibold text-lightBlue ring-1 ring-lightBlue/30">
+            <span className="h-1.5 w-1.5 rounded-full bg-lightBlue" />
             THE AI PROMISE
           </span>
 
-          <h2 className="mt-5 text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 uppercase leading-tight">
+          <h2 className="mt-5 text-4xl md:text-6xl font-extrabold tracking-tight text-darkBlue uppercase leading-tight">
             The move towards{" "}
-            <span className="bg-gradient-to-r from-indigo-600 to-violet-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-darkBlue to-lightBlue bg-clip-text text-transparent">
               Virtual Employee™
             </span>
           </h2>
 
-          <p className="mt-4 mx-auto max-w-2xl text-lg md:text-xl text-slate-500 leading-relaxed">
+          <p className="mt-4 mx-auto max-w-2xl text-lg md:text-xl text-darkBlue/60 leading-relaxed">
             Fincargo proposes Virtual Employees™ to its customers that can cover
             all key processes 24×7 and are capable of continuous learning.
           </p>
@@ -120,7 +120,7 @@ export default function SectionVirtualEmployee() {
             visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
-          <h3 className="text-lg md:text-xl font-bold tracking-widest text-slate-800 uppercase">
+          <h3 className="text-lg md:text-xl font-bold tracking-widest text-darkBlue/70 uppercase">
             The evolution of enterprise software
           </h3>
         </div>
@@ -129,80 +129,81 @@ export default function SectionVirtualEmployee() {
         <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-0 items-stretch">
           {phases.map((p, i) => (
             <div key={p.phase} className="flex items-stretch">
-            <div
-              className={`relative flex flex-col rounded-2xl border p-7 w-full transition-all duration-700 ease-out transform-gpu hover:-translate-y-1 hover:shadow-xl ${
-                visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              } ${
-                p.dark
-                  ? "bg-slate-900 border-slate-700 text-white shadow-2xl shadow-slate-900/30 ring-1 ring-indigo-500/20"
-                  : "bg-white border-slate-200 text-slate-900 shadow-md hover:ring-1 hover:ring-indigo-200"
-              }`}
-              style={{ transitionDelay: `${150 + i * 100}ms` }}
-            >
-              {/* Phase header */}
-              <div className="flex items-center gap-3">
-                <div
-                  className={`flex h-10 w-10 items-center justify-center rounded-xl ${
-                    p.dark
-                      ? "bg-indigo-500/20 text-indigo-400"
-                      : "bg-indigo-50 text-indigo-600"
-                  }`}
-                >
-                  {p.icon}
+              <div
+                className={`relative flex flex-col rounded-2xl border p-7 w-full transition-all duration-700 ease-out transform-gpu hover:-translate-y-1 hover:shadow-xl ${
+                  visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                } ${
+                  p.dark
+                    ? "bg-darkBlue border-darkBlue text-white shadow-2xl shadow-darkBlue/30 ring-1 ring-lightBlue/20"
+                    : "bg-white border-slate-200 text-darkBlue shadow-md hover:ring-1 hover:ring-lightBlue/30"
+                }`}
+                style={{ transitionDelay: `${150 + i * 100}ms` }}
+              >
+                {/* Phase header */}
+                <div className="flex items-center gap-3">
+                  <div
+                    className={`flex h-10 w-10 items-center justify-center rounded-xl ${
+                      p.dark
+                        ? "bg-lightBlue/20 text-lightBlue"
+                        : "bg-lightBlue/10 text-lightBlue"
+                    }`}
+                  >
+                    {p.icon}
+                  </div>
+                  <div>
+                    <p className={`text-sm font-bold tracking-widest uppercase ${p.dark ? "text-lightBlue" : "text-lightBlue"}`}>
+                      {p.phase}
+                    </p>
+                    <p className={`text-xs ${p.dark ? "text-white/50" : "text-darkBlue/40"}`}>
+                      {p.year}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <p className={`text-sm font-bold tracking-widest uppercase ${p.dark ? "text-indigo-400" : "text-indigo-600"}`}>
-                    {p.phase}
+
+                {/* Mode */}
+                <p className={`mt-5 text-sm font-semibold ${p.dark ? "text-white/90" : "text-darkBlue/80"}`}>
+                  {p.mode}
+                </p>
+
+                {/* Points */}
+                <ul className="mt-3 space-y-2.5 flex-1">
+                  {p.points.map((pt) => (
+                    <li key={pt} className="flex items-start gap-2.5">
+                      <svg
+                        className={`mt-0.5 h-4 w-4 flex-shrink-0 ${p.dark ? "text-lightBlue" : "text-lightBlue"}`}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span className={`text-sm leading-snug ${p.dark ? "text-white/70" : "text-darkBlue/60"}`}>
+                        {pt}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Pricing model */}
+                <div className={`mt-6 pt-5 border-t ${p.dark ? "border-white/10" : "border-slate-100"}`}>
+                  <p className={`text-xs font-semibold tracking-widest uppercase ${p.dark ? "text-white/40" : "text-darkBlue/40"}`}>
+                    Pricing Model
                   </p>
-                  <p className={`text-xs ${p.dark ? "text-slate-400" : "text-slate-400"}`}>
-                    {p.year}
+                  <p className={`mt-1 text-base font-bold ${p.dark ? "text-white" : "text-darkBlue"}`}>
+                    {p.pricing}
                   </p>
                 </div>
               </div>
 
-              {/* Mode */}
-              <p className={`mt-5 text-sm font-semibold ${p.dark ? "text-slate-200" : "text-slate-700"}`}>
-                {p.mode}
-              </p>
-
-              {/* Points */}
-              <ul className="mt-3 space-y-2.5 flex-1">
-                {p.points.map((pt) => (
-                  <li key={pt} className="flex items-start gap-2.5">
-                    <svg
-                      className={`mt-0.5 h-4 w-4 flex-shrink-0 ${p.dark ? "text-indigo-400" : "text-indigo-500"}`}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span className={`text-sm leading-snug ${p.dark ? "text-slate-300" : "text-slate-600"}`}>
-                      {pt}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* Pricing model */}
-              <div className={`mt-6 pt-5 border-t ${p.dark ? "border-slate-700" : "border-slate-100"}`}>
-                <p className={`text-xs font-semibold tracking-widest uppercase ${p.dark ? "text-slate-500" : "text-slate-400"}`}>
-                  Pricing Model
-                </p>
-                <p className={`mt-1 text-base font-bold ${p.dark ? "text-white" : "text-slate-900"}`}>
-                  {p.pricing}
-                </p>
-              </div>
-            </div>
-            {/* Arrow connector between cards */}
-            {i < phases.length - 1 && (
-              <div className="hidden md:flex items-center justify-center w-8 flex-shrink-0">
-                <svg className="h-5 w-5 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-            )}
+              {/* Arrow connector between cards */}
+              {i < phases.length - 1 && (
+                <div className="hidden md:flex items-center justify-center w-8 flex-shrink-0">
+                  <svg className="h-5 w-5 text-lightBlue/40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              )}
             </div>
           ))}
         </div>
