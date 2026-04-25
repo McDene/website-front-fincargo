@@ -109,7 +109,11 @@ function IconGlobe({ className }: { className?: string }) {
   );
 }
 
+// Belgium region is on stand-by; re-enable by setting this to false
+const BE_REGION_ENABLED = false;
+
 export default function RegionSwitchBanner(): JSX.Element | null {
+  if (!BE_REGION_ENABLED) return null;
   const { t } = useTranslation();
   const [show, setShow] = useState(false);
   const [mode, setMode] = useState<"suggest" | "chooser">("suggest");
