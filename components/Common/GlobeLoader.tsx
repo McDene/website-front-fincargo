@@ -366,17 +366,120 @@ export default function GlobeLoader() {
           "radial-gradient(ellipse at 50% 50%, #0E2238 0%, #081628 55%, #04101e 100%)",
       }}
     >
-      <div
-        role="img"
-        aria-label="Fincargo global trade network"
-        style={{ width: 720, height: 720, position: "relative" }}
-      >
-        <canvas
-          ref={canvasRef}
-          width={1440}
-          height={1440}
-          style={{ width: 720, height: 720, display: "block" }}
-        />
+      {/* Section label */}
+      <div className="absolute top-8 left-1/2 -translate-x-1/2 text-center pointer-events-none">
+        <span className="text-xs font-semibold tracking-widest uppercase text-[#3DD9C7]/60">
+          Supply Chain Finance Platform
+        </span>
+      </div>
+
+      <div className="relative flex items-center justify-center gap-6 xl:gap-10 w-full max-w-[1400px] px-4">
+
+        {/* ── Left panel: Execution & Compliance ── */}
+        <div className="hidden lg:flex flex-col gap-4 w-52 xl:w-60 shrink-0">
+          {[
+            {
+              label: "Execution Truth",
+              title: "e-Waybill",
+              desc: "Digital transport records — eFTI-compliant, non-repudiable, audit-ready.",
+              chips: ["eFTI Compliant", "Digital at source"],
+            },
+            {
+              label: "Economic Truth",
+              title: "Invoice Integrity",
+              desc: "Only services actually delivered are billed. Verified payables, clean receivables.",
+              chips: ["Anomaly detection", "Delivery-based billing"],
+            },
+            {
+              label: "Fiscal Truth",
+              title: "e-Invoicing",
+              desc: "Structured invoices validated and exchanged via compliant access points.",
+              chips: ["ViDA Compliant", "EN 16931"],
+            },
+          ].map((item) => (
+            <div
+              key={item.title}
+              className="rounded-xl border border-[#3DD9C7]/15 bg-white/[0.04] backdrop-blur-sm p-4"
+            >
+              <span className="text-[10px] font-semibold tracking-widest uppercase text-[#3DD9C7]/50 mb-1 block">
+                {item.label}
+              </span>
+              <h3 className="text-sm font-semibold text-[#E8FFFB] mb-1">{item.title}</h3>
+              <p className="text-xs text-white/50 leading-relaxed mb-2">{item.desc}</p>
+              <div className="flex flex-wrap gap-1">
+                {item.chips.map((c) => (
+                  <span
+                    key={c}
+                    className="text-[10px] px-2 py-0.5 rounded-full border border-[#3DD9C7]/25 text-[#3DD9C7]/70"
+                  >
+                    {c}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* ── Globe canvas ── */}
+        <div
+          role="img"
+          aria-label="Fincargo global trade network"
+          className="shrink-0"
+          style={{ width: 720, height: 720, position: "relative" }}
+        >
+          <canvas
+            ref={canvasRef}
+            width={1440}
+            height={1440}
+            style={{ width: 720, height: 720, display: "block" }}
+          />
+        </div>
+
+        {/* ── Right panel: Finance & Intelligence ── */}
+        <div className="hidden lg:flex flex-col gap-4 w-52 xl:w-60 shrink-0">
+          {[
+            {
+              label: "Liquidity Truth",
+              title: "Supply Chain Finance",
+              desc: "Only accepted, verified transactions are exposed to liquidity providers via Factor Connector™.",
+              chips: ["24–48h funding", "Factor Connector™"],
+            },
+            {
+              label: "Insight Truth",
+              title: "Analytics & Intelligence",
+              desc: "FPA, DSO, and anomaly detection powered by trusted operational data.",
+              chips: ["Conversational AI", "Root-cause insights"],
+            },
+            {
+              label: "Continuity Truth",
+              title: "Integration & Connectivity",
+              desc: "API-first connectivity to your ERP and TMS — bi-directional, without disruption.",
+              chips: ["ERP / TMS connectors", "API-first"],
+            },
+          ].map((item) => (
+            <div
+              key={item.title}
+              className="rounded-xl border border-[#3DD9C7]/15 bg-white/[0.04] backdrop-blur-sm p-4"
+            >
+              <span className="text-[10px] font-semibold tracking-widest uppercase text-[#3DD9C7]/50 mb-1 block">
+                {item.label}
+              </span>
+              <h3 className="text-sm font-semibold text-[#E8FFFB] mb-1">{item.title}</h3>
+              <p className="text-xs text-white/50 leading-relaxed mb-2">{item.desc}</p>
+              <div className="flex flex-wrap gap-1">
+                {item.chips.map((c) => (
+                  <span
+                    key={c}
+                    className="text-[10px] px-2 py-0.5 rounded-full border border-[#3DD9C7]/25 text-[#3DD9C7]/70"
+                  >
+                    {c}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
   );
