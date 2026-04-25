@@ -26,7 +26,7 @@ export default function CareerPage() {
         // Fetch departments and jobs in parallel
         const [departmentsRes, jobsRes] = await Promise.all([
           fetchAPI("/api/departments", language),
-          fetchAPI("/api/careers?populate=Department", language),
+          fetchAPI("/api/careers?populate=Department&fields[0]=Title&fields[1]=Location&fields[2]=Slug&fields[3]=AvailableFrom&populate[Department][fields][0]=id", language),
         ]);
 
         if (departmentsRes?.data) setDepartments(departmentsRes.data);

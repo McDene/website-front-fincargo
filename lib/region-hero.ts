@@ -31,7 +31,7 @@ const VARIANTS: Record<Region, HeroVariant> = {
     key: "global",
     showMock: false,
     showGlow: true,
-    right: "chips",
+    right: "none",
   },
   be: {
     key: "be",

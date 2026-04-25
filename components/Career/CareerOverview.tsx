@@ -15,6 +15,7 @@ interface Job {
   Title: string;
   Location: string;
   Slug: string;
+  AvailableFrom?: string;
   Department?: {
     id: number;
   };
@@ -169,6 +170,10 @@ export default function CareerOverview({
               )}
             </div>
 
+            <p className="text-sm text-gray-500 mb-6">
+              Positions are available from <strong>June 2026</strong> and <strong>October 2026</strong>.
+            </p>
+
             {filteredJobs.length > 0 ? (
               <div className="space-y-6">
                 {filteredJobs.map((job) => (
@@ -181,7 +186,14 @@ export default function CareerOverview({
                       <h2 className="text-3xl md:text-4xl font-semibold">
                         {job.Title}
                       </h2>
-                      <p className="text-gray-600 mt-2">{job.Location}</p>
+                      <div className="flex flex-wrap items-center gap-3 mt-2">
+                        <p className="text-gray-600">{job.Location}</p>
+                        {job.AvailableFrom && (
+                          <span className="inline-block rounded-full bg-blue-50 border border-blue-200 px-3 py-0.5 text-xs font-medium text-blue-700">
+                            Available from {job.AvailableFrom}
+                          </span>
+                        )}
+                      </div>
                     </div>
                   </Link>
                 ))}

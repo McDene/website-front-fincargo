@@ -349,7 +349,7 @@ export default function GetStartedPage() {
                       value={formData.phone}
                       onChange={onChange}
                       className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder-slate-400 shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-500/40"
-                      placeholder="+41 79 773 7224"
+                      placeholder="+1 234 567 8900"
                     />
                   </Field>
                   <Field label={t("message")} id="message" required error={errors.message} className="md:col-span-2">
