@@ -7,6 +7,7 @@ import SectionBenefits from "@/components/Common/SectionProvenResults";
 import SectionFeatures from "@/components/Common/SectionFeatures";
 import SectionKPIs from "@/components/Common/SectionKPIs";
 import SectionDemo from "@/components/Common/SectionDemo";
+import GlobeLoader from "@/components/Common/GlobeLoader";
 import SectionIntegrations from "@/components/Common/SectionIntegrations";
 import SectionVirtualEmployee from "@/components/Common/SectionVirtualEmployee";
 import Script from "next/script";
@@ -168,6 +169,7 @@ export default async function Home() {
       <Header />
       {heroData && <Hero heroData={heroData} region={region} />}
       <SectionKPIs region={region} />
+      <GlobeLoader />
       <SectionFeatures region={region} />
       <SectionBenefits />
       <SectionVirtualEmployee />
