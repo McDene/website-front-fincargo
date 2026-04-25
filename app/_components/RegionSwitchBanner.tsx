@@ -113,7 +113,6 @@ function IconGlobe({ className }: { className?: string }) {
 const BE_REGION_ENABLED = false;
 
 export default function RegionSwitchBanner(): JSX.Element | null {
-  if (!BE_REGION_ENABLED) return null;
   const { t } = useTranslation();
   const [show, setShow] = useState(false);
   const [mode, setMode] = useState<"suggest" | "chooser">("suggest");
@@ -232,7 +231,7 @@ export default function RegionSwitchBanner(): JSX.Element | null {
     setShow(false);
   };
 
-  if (!show) return null;
+  if (!show || !BE_REGION_ENABLED) return null;
 
   const title =
     mode === "chooser" ? t("region.title.chooser") : t("region.title.suggest");
