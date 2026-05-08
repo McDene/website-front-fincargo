@@ -182,15 +182,15 @@ export default function SectionKPIs({ context = "home" }: Props) {
       const endLabel = (spec as { endLabel?: string }).endLabel ?? nf.format((spec as { to: number }).to ?? 0);
       return (
         <div className="flex items-baseline gap-2">
-          <span className="text-3xl md:text-4xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#67e8f9] to-[#bfdbfe]">
+          <span className="text-3xl md:text-4xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-darkBlue to-blue-500">
             {startLabel}
           </span>
-          <span className="text-white/70 text-sm md:text-base">→ {endLabel}</span>
+          <span className="text-slate-500 text-sm md:text-base">→ {endLabel}</span>
         </div>
       );
     }
     return (
-      <span className="text-3xl md:text-4xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#67e8f9] to-[#bfdbfe]">
+      <span className="text-3xl md:text-4xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-darkBlue to-blue-500">
         {(spec as { prefix?: string }).prefix || ""}
         {formatted}
         {(spec as { suffix?: string }).suffix || ""}
@@ -201,10 +201,10 @@ export default function SectionKPIs({ context = "home" }: Props) {
   return (
     <section
       ref={ref}
-      className="relative bg-gradient-to-b from-darkBlue to-black py-14 md:py-18 text-white"
+      className="relative bg-white py-14 md:py-18 text-slate-900"
     >
-      <div className="pointer-events-none absolute inset-0 opacity-50 mix-blend-screen">
-        <div className="absolute inset-0 bg-[radial-gradient(900px_380px_at_10%_-10%,rgba(103,232,249,0.12),transparent),radial-gradient(800px_300px_at_90%_110%,rgba(191,219,254,0.12),transparent)]" />
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(900px_380px_at_10%_-10%,rgba(34,60,96,0.05),transparent),radial-gradient(800px_300px_at_90%_110%,rgba(34,60,96,0.04),transparent)]" />
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -216,7 +216,7 @@ export default function SectionKPIs({ context = "home" }: Props) {
           {items.map((it, i) => (
             <li
               key={i}
-              className="relative rounded-xl bg-white/5 px-5 py-5 border border-white/10 lg:border-0 lg:bg-transparent lg:rounded-none lg:px-0 lg:py-3 lg:border-l lg:border-white/15 lg:pl-6"
+              className="relative rounded-xl bg-slate-50 px-5 py-5 border border-slate-200 lg:border-0 lg:bg-transparent lg:rounded-none lg:px-0 lg:py-3 lg:border-l lg:border-slate-200 lg:pl-6"
               style={{ transitionDelay: `${80 + i * 60}ms` }}
             >
               <div className="relative">
@@ -226,12 +226,12 @@ export default function SectionKPIs({ context = "home" }: Props) {
                   const s = parseSpec(it.title);
                   const label = (s as { labelRest?: string }).labelRest;
                   return label ? (
-                    <div className="mt-1 text-xs md:text-sm text-white/80">
+                    <div className="mt-1 text-xs md:text-sm text-slate-500">
                       {label}
                     </div>
                   ) : null;
                 })()}
-                <p className="mt-2 text-sm md:text-base text-white/85 leading-relaxed">
+                <p className="mt-2 text-sm md:text-base text-slate-600 leading-relaxed">
                   {it.desc}
                 </p>
               </div>

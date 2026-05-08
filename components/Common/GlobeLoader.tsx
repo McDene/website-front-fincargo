@@ -65,7 +65,7 @@ export default function GlobeLoader() {
     const RADIUS = 280;
     const CX = SIZE / 2;
     const CY = SIZE / 2;
-    ctx.scale(2, 2);
+    ctx.setTransform(2, 0, 0, 2, 0, 0);
 
     const projection = d3
       .geoOrthographic()

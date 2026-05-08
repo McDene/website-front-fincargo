@@ -65,11 +65,10 @@ export default function SectionFaq({
   }
 
   return (
-    <section id="faqs" className="relative bg-white py-20 md:py-28 px-6">
-      {/* accents très discrets */}
+    <section id="faqs" className="relative bg-gradient-to-b from-darkBlue to-black text-white py-20 md:py-28 px-6">
       <div className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(60%_50%_at_50%_0%,black,transparent)]">
-        <div className="absolute right-12 -top-8 h-40 w-40 rounded-full bg-cyan-500/10 blur-3xl" />
-        <div className="absolute left-1/3 bottom-0 h-56 w-56 rounded-full bg-blue-600/10 blur-3xl" />
+        <div className="absolute right-12 -top-8 h-40 w-40 rounded-full bg-cyan-400/20 blur-3xl" />
+        <div className="absolute left-1/3 bottom-0 h-56 w-56 rounded-full bg-blue-500/20 blur-3xl" />
       </div>
 
       <div
@@ -80,16 +79,16 @@ export default function SectionFaq({
       >
         {/* Head */}
         <div className="text-center">
-          <span className="inline-flex items-center gap-2 rounded-full bg-slate-900/5 px-3 py-1 text-xs font-medium text-slate-700 ring-1 ring-slate-900/10">
-            <span className="h-1.5 w-1.5 rounded-full bg-slate-500/60" />
+          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white/90 ring-1 ring-white/15">
+            <span className="h-1.5 w-1.5 rounded-full bg-white/70" />
             FAQ
           </span>
 
-          <h2 className="mt-4 text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 uppercase">
+          <h2 className="mt-4 text-4xl md:text-5xl font-extrabold tracking-tight text-white uppercase">
             {current.title}
           </h2>
           {current.subtitle && (
-            <p className="mt-3 text-lg md:text-xl text-slate-600">
+            <p className="mt-3 text-lg md:text-xl text-white/80">
               {current.subtitle}
             </p>
           )}
@@ -99,7 +98,7 @@ export default function SectionFaq({
               <div
                 role="tablist"
                 aria-label="Choose audience"
-                className="inline-flex rounded-xl bg-slate-100 p-1 ring-1 ring-slate-200"
+                className="inline-flex rounded-xl bg-white/10 p-1 ring-1 ring-white/20"
               >
                 <button
                   role="tab"
@@ -108,7 +107,7 @@ export default function SectionFaq({
                   className={`px-4 py-1.5 text-sm font-medium rounded-lg transition ${
                     audience === "carrier"
                       ? "bg-white text-slate-900 shadow"
-                      : "text-slate-600 hover:text-slate-900"
+                      : "text-white/70 hover:text-white"
                   }`}
                 >
                   Carriers
@@ -120,7 +119,7 @@ export default function SectionFaq({
                   className={`ml-1 px-4 py-1.5 text-sm font-medium rounded-lg transition ${
                     audience === "freight"
                       ? "bg-white text-slate-900 shadow"
-                      : "text-slate-600 hover:text-slate-900"
+                      : "text-white/70 hover:text-white"
                   }`}
                 >
                   Forwarders &amp; Shippers
@@ -141,8 +140,8 @@ export default function SectionFaq({
                 key={faq.id}
                 className={`rounded-2xl border transition-all duration-300 ${
                   open
-                    ? "border-blue-300 ring-1 ring-blue-200 bg-white"
-                    : "border-slate-200 bg-white"
+                    ? "border-blue-300 ring-1 ring-blue-400/40 bg-white/10"
+                    : "border-white/15 bg-white/5"
                 }`}
               >
                 <button
@@ -152,14 +151,14 @@ export default function SectionFaq({
                   onClick={() => toggleAccordion(index)}
                   className="w-full text-left px-5 py-4 flex justify-between items-center gap-4"
                 >
-                  <span className="text-lg md:text-xl font-semibold text-slate-900">
+                  <span className="text-lg md:text-xl font-semibold text-white">
                     {faq.question}
                   </span>
                   <span
                     className={`inline-flex items-center justify-center h-9 w-9 rounded-full ring-1 transition-all duration-300 ${
                       open
-                        ? "bg-blue-50 ring-blue-200 text-blue-700"
-                        : "bg-slate-50 ring-slate-200 text-slate-600"
+                        ? "bg-white/20 ring-blue-300 text-white"
+                        : "bg-white/10 ring-white/20 text-white/70"
                     }`}
                     aria-hidden
                   >
@@ -176,7 +175,7 @@ export default function SectionFaq({
                   }`}
                 >
                   <div className="min-h-0">
-                    <div className="px-5 pb-5 pt-0 text-slate-700 leading-relaxed">
+                    <div className="px-5 pb-5 pt-0 text-white/80 leading-relaxed">
                       {faq.answer}
                     </div>
                   </div>

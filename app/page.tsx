@@ -215,10 +215,10 @@ export default async function Home() {
 }
 
 const HOME_DESCRIPTIONS: Record<MetaLang, string> = {
-  en: "INVOICE-TO-CASH FOR THE TRANSPORT INDUSTRY",
-  fr: "INVOICE‑TO‑CASH POUR L’INDUSTRIE DU TRANSPORT",
-  es: "INVOICE‑TO‑CASH PARA LA INDUSTRIA DEL TRANSPORTE",
-  de: "INVOICE‑TO‑CASH FÜR DIE TRANSPORTBRANCHE",
+  en: "AI-powered order-to-cash platform for the logistics & supply chain industry, combining advanced order management, regulatory e-CMR and e-Invoicing workflows with supply chain finance solutions.",
+  fr: "Plateforme order-to-cash propulsée par l’IA pour la logistique et la supply chain, combinant gestion des commandes, workflows e-CMR et e-Facturation réglementaires, et solutions de financement de la chaîne d’approvisionnement.",
+  es: "Plataforma order-to-cash impulsada por IA para la logística y la cadena de suministro, que combina gestión avanzada de pedidos, flujos de trabajo de e-CMR y e-Facturación normativos con soluciones de financiación de la cadena de suministro.",
+  de: "KI-gestützte Order-to-Cash-Plattform für Logistik & Supply Chain, die fortschrittliches Auftragsmanagement, regulatorische e-CMR- und e-Rechnungs-Workflows mit Supply-Chain-Finance-Lösungen verbindet.",
 };
 
 export async function generateMetadata(): Promise<Metadata> {
