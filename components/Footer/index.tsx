@@ -58,6 +58,7 @@ export default function Footer() {
         { href: "/partner", labelKey: "partners", trackLabel: "Partners" },
         { href: "/investor", labelKey: "investors", trackLabel: "Investors" },
         { href: "/blog", labelKey: "Blog", trackLabel: "Blog" },
+        { href: "/webinars", labelKey: "Webinars", trackLabel: "Webinars" },
         { href: "/contact", labelKey: "contact", trackLabel: "Contact" },
         { href: "/sustainability", labelKey: "sustainability", trackLabel: "Sustainability" },
         { href: "/legal-notice", labelKey: "legal_notice", trackLabel: "Legal Notice" },

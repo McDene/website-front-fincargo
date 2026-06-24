@@ -60,6 +60,7 @@ export default function Header() {
         { label: "Healthcare", href: "/industries/healthcare" },
       ],
     },
+    { label: "Webinars", href: "/webinars" },
   ];
 
   // Keep legacy menu for IntersectionObserver active-section tracking
@@ -289,10 +290,13 @@ export default function Header() {
       <MobileMenu
         menuOpen={menuOpen}
         toggleMenu={toggleMenu}
-        menuItems={menu.map((m) => ({
-          name: m.name,
-          anchor: resolveHref(m.anchor),
-        }))}
+        menuItems={[
+          ...menu.map((m) => ({
+            name: m.name,
+            anchor: resolveHref(m.anchor),
+          })),
+          { name: "Webinars", anchor: localizeHref("/webinars") },
+        ]}
         pathname={pathname}
       />
     </>
