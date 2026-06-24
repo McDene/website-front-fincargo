@@ -145,14 +145,6 @@ export default function Header() {
 
   return (
     <>
-      {/* Skip link for a11y */}
-      <a
-        href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] rounded bg-slate-900 px-3 py-2 text-white"
-      >
-        Skip to content
-      </a>
-
       <header
         className={`fixed top-0 z-50 w-full transition-transform duration-500 ${
           visible || prefersReduced ? "translate-y-0" : "-translate-y-full"

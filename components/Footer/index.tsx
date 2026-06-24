@@ -310,77 +310,11 @@ export default function Footer() {
         {/* First column left intentionally empty for balance on desktop */}
         <div className="hidden md:block" />
 
-        {/* On mobile show switch above copyright; on desktop place it in col 3 right-aligned */}
-        {mounted && (
-          <div className="mb-8 justify-self-center md:mb-0 md:col-start-3 ">
-            <a
-              href={
-                region === "be"
-                  ? "https://www.fincargo.ai"
-                  : "https://be.fincargo.ai"
-              }
-              onClick={handleTrack("Region Switch")}
-              className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-2 text-sm font-semibold text-white ring-1 ring-white/15 shadow-sm hover:bg-white/15 transition"
-              aria-label={
-                region === "be"
-                  ? t("region.switch_global")
-                  : t("region.switch_be")
-              }
-              title={
-                region === "be"
-                  ? t("region.switch_global")
-                  : t("region.switch_be")
-              }
-            >
-              {region !== "be" ? (
-                <FlagBE className="h-3.5 w-5" />
-              ) : (
-                <IconGlobe className="h-4 w-4" />
-              )}
-              <span>
-                {region === "be"
-                  ? t("region.switch_global")
-                  : t("region.switch_be")}
-              </span>
-            </a>
-          </div>
-        )}
-
         {/* Middle column: copyright centered (col 2 on desktop) */}
         <div className="text-center text-gray-400 text-sm md:justify-self-center md:col-start-2">
           &copy; {year} Fincargo. All rights reserved.
         </div>
       </div>
     </footer>
-  );
-}
-
-// Inline flags (Belgium / EU)
-function FlagBE({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 3 2" className={className} aria-hidden>
-      <rect width="1" height="2" x="0" fill="#000000" />
-      <rect width="1" height="2" x="1" fill="#FFD90C" />
-      <rect width="1" height="2" x="2" fill="#EF3340" />
-    </svg>
-  );
-}
-
-function IconGlobe({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className={className}
-      aria-hidden
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="12" cy="12" r="9" />
-      <path d="M3 12h18" />
-      <path d="M12 3a15.3 15.3 0 0 1 0 18a15.3 15.3 0 0 1 0-18z" />
-    </svg>
   );
 }

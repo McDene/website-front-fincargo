@@ -71,7 +71,7 @@ const automation = [
 function WorkflowDiagram() {
   const steps = [
     {
-      label: "Order\nCreation", color: "#6366f1",
+      label: "Order\nCreation", color: "#223c60",
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" className="h-7 w-7">
           <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
@@ -81,7 +81,7 @@ function WorkflowDiagram() {
       ),
     },
     {
-      label: "Carrier\nAssignment", color: "#3b82f6",
+      label: "Carrier\nAssignment", color: "#2d4b70",
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" className="h-7 w-7">
           <path d="M1 3h15v13H1zM16 8h4l3 3v5h-7V8z" />
@@ -91,7 +91,7 @@ function WorkflowDiagram() {
       ),
     },
     {
-      label: "Execution\nTracking", color: "#0ea5e9",
+      label: "Execution\nTracking", color: "#385980",
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" className="h-7 w-7">
           <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
@@ -100,7 +100,7 @@ function WorkflowDiagram() {
       ),
     },
     {
-      label: "Proof of\nDelivery", color: "#10b981",
+      label: "Proof of\nDelivery", color: "#42688f",
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" className="h-7 w-7">
           <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
@@ -109,7 +109,7 @@ function WorkflowDiagram() {
       ),
     },
     {
-      label: "Invoice\nGeneration", color: "#f59e0b",
+      label: "Invoice\nGeneration", color: "#4d769f",
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" className="h-7 w-7">
           <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
@@ -118,7 +118,7 @@ function WorkflowDiagram() {
       ),
     },
     {
-      label: "Payment &\nFinancing", color: "#8b5cf6",
+      label: "Payment &\nFinancing", color: "#5885af",
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" className="h-7 w-7">
           <rect x="2" y="5" width="20" height="14" rx="2" />
@@ -172,7 +172,7 @@ function WorkflowDiagram() {
           className="absolute inset-y-0 left-0 rounded-full"
           style={{
             width: "100%",
-            background: "linear-gradient(to right, #6366f1, #3b82f6, #0ea5e9, #10b981, #f59e0b, #8b5cf6)",
+            background: "linear-gradient(to right, #223c60, #2d4b70, #385980, #42688f, #4d769f, #5885af)",
           }}
         />
       </div>
@@ -180,9 +180,9 @@ function WorkflowDiagram() {
       {/* Bottom labels */}
       <div className="mt-8 grid grid-cols-3 gap-4 md:grid-cols-3">
         {[
-          { label: "Operations", desc: "Orders, carriers, tracking & delivery", color: "#6366f1" },
-          { label: "Compliance", desc: "Validated, structured, audit-ready data", color: "#10b981" },
-          { label: "Finance", desc: "Instant invoicing, reconciliation & liquidity", color: "#8b5cf6" },
+          { label: "Operations", desc: "Orders, carriers, tracking & delivery", color: "#223c60" },
+          { label: "Compliance", desc: "Validated, structured, audit-ready data", color: "#42688f" },
+          { label: "Finance", desc: "Instant invoicing, reconciliation & liquidity", color: "#5885af" },
         ].map((tag) => (
           <div
             key={tag.label}
@@ -200,7 +200,7 @@ function WorkflowDiagram() {
 
 function FeatureCard({ title, desc }: { title: string; desc: string }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:ring-1 hover:ring-indigo-200 transition-all duration-200">
+    <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:ring-1 hover:ring-lightBlue/40 transition-all duration-200">
       <h4 className="font-bold text-slate-900">{title}</h4>
       <p className="mt-2 text-sm text-slate-600 leading-relaxed">{desc}</p>
     </div>
