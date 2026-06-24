@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 /**
  * Webinars landing page content (interactive).
@@ -22,6 +22,10 @@ const WEBINAR = {
   title:
     "Sustainable Mobility Law (Law 9/2025): from regulatory obligation to competitive advantage",
   time: "12:00 – 12:30 CEST",
+  // Sent to the CRM webhook (see WEBINAR_WEBHOOK.md)
+  seminarName: "Sustainable Mobility Law (Law 9/2025) — e-CMR / eDC",
+  seminarDate: "2026-07-16",
+  whenLabel: "16 July 2026 · 12:00–12:30 CEST",
   calendar: {
     title:
       "Webinar: Ley de Movilidad Sostenible (e-CMR) — Fincargo × Catalonia Logistics",
@@ -132,27 +136,6 @@ function buildOutlookHref() {
   return "https://outlook.office.com/calendar/0/deeplink/compose?" + p.toString();
 }
 
-function persistRegistration(data: {
-  name: string;
-  email: string;
-  company: string;
-  profile: string;
-}) {
-  // DEMO persistence — stand-in for CRM/backend. Replace with a real POST.
-  try {
-    const k = "fincargo_webinar_registrations";
-    const list = JSON.parse(localStorage.getItem(k) || "[]");
-    list.push({
-      ...data,
-      webinar: "e-CMR 2026-07-16",
-      registeredAt: new Date().toISOString(),
-    });
-    localStorage.setItem(k, JSON.stringify(list));
-  } catch {
-    /* ignore storage failures */
-  }
-}
-
 export default function WebinarsContent() {
   const [daysLeft, setDaysLeft] = useState<number | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
@@ -162,6 +145,9 @@ export default function WebinarsContent() {
   const [company, setCompany] = useState("");
   const [profile, setProfile] = useState(PROFILES[0]);
   const [consent, setConsent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const formStartedAtRef = useRef(0);
 
   // Live countdown, refreshed every minute.
   useEffect(() => {
@@ -194,17 +180,49 @@ export default function WebinarsContent() {
 
   const open = useCallback(() => {
     setSubmitted(false);
+    setError(null);
+    formStartedAtRef.current = Date.now();
     setModalOpen(true);
   }, []);
   const close = useCallback(() => setModalOpen(false), []);
 
   const canSubmit = Boolean(name && email && consent);
 
-  const submit = useCallback(() => {
-    if (!canSubmit) return;
-    persistRegistration({ name, email, company, profile });
-    setSubmitted(true);
-  }, [canSubmit, name, email, company, profile]);
+  const submit = useCallback(async () => {
+    if (!canSubmit || submitting) return;
+    setSubmitting(true);
+    setError(null);
+    try {
+      const res = await fetch("/internal-api/webinar-register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-started-at": String(formStartedAtRef.current || Date.now()),
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          company,
+          profile,
+          seminar: WEBINAR.seminarName,
+          seminar_date: WEBINAR.seminarDate,
+          when: WEBINAR.whenLabel,
+          calendar: WEBINAR.calendar,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || data?.ok === false) {
+        throw new Error(data?.error || "Registration failed");
+      }
+      setSubmitted(true);
+    } catch {
+      setError(
+        "We couldn't confirm your seat just now. Please try again, or email contact@fincargo.ai."
+      );
+    } finally {
+      setSubmitting(false);
+    }
+  }, [canSubmit, submitting, name, email, company, profile]);
 
   // Lock body scroll + close on Escape while the modal is open.
   useEffect(() => {
@@ -568,15 +586,20 @@ export default function WebinarsContent() {
 
                   <button
                     onClick={submit}
-                    disabled={!canSubmit}
+                    disabled={!canSubmit || submitting}
                     className={`mt-1.5 w-full rounded-xl py-[15px] text-base font-extrabold tracking-[0.01em] transition ${
-                      canSubmit
+                      canSubmit && !submitting
                         ? "bg-[#5E8CFF] text-white cursor-pointer hover:bg-[#4a7af0]"
                         : "bg-[#c8d3ea] text-white cursor-not-allowed"
                     }`}
                   >
-                    Confirm my seat&nbsp;&nbsp;→
+                    {submitting ? "Confirming…" : <>Confirm my seat&nbsp;&nbsp;→</>}
                   </button>
+                  {error && (
+                    <p className="mt-0.5 text-center text-[13px] font-semibold text-[#c0341f]">
+                      {error}
+                    </p>
+                  )}
                   <p className="mt-0.5 text-center text-xs text-[#8794ac]">
                     Your data is processed in accordance with our privacy policy.
                   </p>
