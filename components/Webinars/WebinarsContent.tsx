@@ -22,8 +22,9 @@ const WEBINAR = {
   title:
     "Sustainable Mobility Law (Law 9/2025): from regulatory obligation to competitive advantage",
   time: "12:00 – 12:30 CEST",
-  // Sent to the CRM webhook (see WEBINAR_WEBHOOK.md)
-  seminarName: "Sustainable Mobility Law (Law 9/2025) — e-CMR / eDC",
+  // Sent to the CRM as `seminar`; must match the CRM email template's Seminar
+  // Name (case-insensitive/trimmed). Kept ASCII-simple for reliable matching.
+  seminarName: "Sustainable Mobility Law (e-CMR)",
   seminarDate: "2026-07-16",
   calendar: {
     title:
