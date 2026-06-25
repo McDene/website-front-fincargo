@@ -23,8 +23,8 @@ const WEBINAR = {
     "Sustainable Mobility Law (Law 9/2025): from regulatory obligation to competitive advantage",
   time: "12:00 – 12:30 CEST",
   // Sent to the CRM as `seminar`; must match the CRM email template's Seminar
-  // Name (case-insensitive/trimmed). Kept ASCII-simple for reliable matching.
-  seminarName: "Sustainable Mobility Law (e-CMR)",
+  // Name exactly (case-insensitive/trimmed) for the confirmation email to fire.
+  seminarName: "FINCARGO Iberia Webinar 16.07.2026",
   seminarDate: "2026-07-16",
   calendar: {
     title:
