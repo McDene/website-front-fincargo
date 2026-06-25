@@ -25,7 +25,6 @@ const WEBINAR = {
   // Sent to the CRM webhook (see WEBINAR_WEBHOOK.md)
   seminarName: "Sustainable Mobility Law (Law 9/2025) — e-CMR / eDC",
   seminarDate: "2026-07-16",
-  whenLabel: "16 July 2026 · 12:00–12:30 CEST",
   calendar: {
     title:
       "Webinar: Ley de Movilidad Sostenible (e-CMR) — Fincargo × Catalonia Logistics",
@@ -147,6 +146,7 @@ export default function WebinarsContent() {
   const [consent, setConsent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [emailQueued, setEmailQueued] = useState(false);
   const formStartedAtRef = useRef(0);
 
   // Live countdown, refreshed every minute.
@@ -206,14 +206,15 @@ export default function WebinarsContent() {
           profile,
           seminar: WEBINAR.seminarName,
           seminar_date: WEBINAR.seminarDate,
-          when: WEBINAR.whenLabel,
-          calendar: WEBINAR.calendar,
         }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || data?.ok === false) {
         throw new Error(data?.error || "Registration failed");
       }
+      // The CRM queues the confirmation email when the seminar matches a
+      // template; only promise an email if it actually did.
+      setEmailQueued(Boolean(data?.queued));
       setSubmitted(true);
     } catch {
       setError(
@@ -618,8 +619,8 @@ export default function WebinarsContent() {
                 <p className="mx-auto mb-[26px] max-w-[380px] text-[15px] leading-[1.6] text-[#3a465e]">
                   See you on{" "}
                   <strong className="text-[#1a2438]">16 July at 12:00 (CEST)</strong>.
-                  We&apos;ve sent the confirmation to your email. Add it to your calendar
-                  now:
+                  {emailQueued ? " We've sent a confirmation to your email." : ""} Add
+                  it to your calendar now:
                 </p>
 
                 <div className="flex gap-2.5 justify-center flex-wrap">
